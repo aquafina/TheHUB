@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="att_handle_NCEntertainmentPageDef"
+                Package="hub.nishat.net.view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="VO_EntertainmentEmployees1" RangeSize="25"
+              DataControl="NCEHUBModuleDataControl"
+              id="VO_EntertainmentEmployees1Iterator"/>
+    <iterator Binds="VO_NCEAttendance2" RangeSize="25"
+              DataControl="NCEHUBModuleDataControl"
+              id="VO_NCEAttendance2Iterator"/>
+  </executables>
+  <bindings>
+    <list IterBinding="VO_EntertainmentEmployees1Iterator" StaticList="false"
+          Uses="LOV_FullName" id="FullName" DTSupportsMRU="false"/>
+    <attributeValues IterBinding="VO_EntertainmentEmployees1Iterator"
+                     id="PersonId">
+      <AttrNames>
+        <Item Value="PersonId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_EntertainmentEmployees1Iterator"
+                     id="EmailAddress">
+      <AttrNames>
+        <Item Value="EmailAddress"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_EntertainmentEmployees1Iterator"
+                     id="TempPass">
+      <AttrNames>
+        <Item Value="TempPass"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_EntertainmentEmployees1Iterator"
+                     id="LastUpdatedDate">
+      <AttrNames>
+        <Item Value="LastUpdatedDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_EntertainmentEmployees1Iterator"
+                     id="LastUpdatedBy">
+      <AttrNames>
+        <Item Value="LastUpdatedBy"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_EntertainmentEmployees1Iterator"
+                     id="Password">
+      <AttrNames>
+        <Item Value="Password"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_EntertainmentEmployees1Iterator"
+                     id="AnnualLeaveCriteria">
+      <AttrNames>
+        <Item Value="AnnualLeaveCriteria"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_EntertainmentEmployees1Iterator"
+                     id="CasualLeaveCriteria">
+      <AttrNames>
+        <Item Value="CasualLeaveCriteria"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_EntertainmentEmployees1Iterator"
+                     id="LateSittingCriteria">
+      <AttrNames>
+        <Item Value="LateSittingCriteria"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_EntertainmentEmployees1Iterator"
+                     id="EffectiveStartDate">
+      <AttrNames>
+        <Item Value="EffectiveStartDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_EntertainmentEmployees1Iterator"
+                     id="EffectiveEndDate">
+      <AttrNames>
+        <Item Value="EffectiveEndDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_EntertainmentEmployees1Iterator"
+                     id="EmpType">
+      <AttrNames>
+        <Item Value="EmpType"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_EntertainmentEmployees1Iterator"
+                     id="EmpCode">
+      <AttrNames>
+        <Item Value="EmpCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_EntertainmentEmployees1Iterator" id="IsHr">
+      <AttrNames>
+        <Item Value="IsHr"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="VO_NCEAttendance2Iterator" id="VO_NCEAttendance2">
+      <nodeDefinition DefName="hub.nishat.net.model.VO.NCE.VO_NCEAttendance"
+                      Name="VO_NCEAttendance20">
+        <AttrNames>
+          <Item Value="EmpAtdId"/>
+          <Item Value="Description"/>
+          <Item Value="EmpId"/>
+          <Item Value="EmpName"/>
+          <Item Value="CardNum"/>
+          <Item Value="LeaveCancelled"/>
+          <Item Value="ExpectedWorkHours"/>
+          <Item Value="MinInTime"/>
+          <Item Value="MaxOutTime"/>
+          <Item Value="PreviousDayOutTime"/>
+          <Item Value="PreviousDayEffectiveHours"/>
+          <Item Value="Outtime"/>
+          <Item Value="Intime"/>
+          <Item Value="EffectiveWorkedHours"/>
+          <Item Value="MaxStartTime"/>
+          <Item Value="MaxEndTime"/>
+          <Item Value="EndTime"/>
+          <Item Value="StartTime"/>
+          <Item Value="AttendanceDate"/>
+          <Item Value="LeaveTypeId"/>
+          <Item Value="LeaveApprovedFlag"/>
+          <Item Value="TypeOfLeave"/>
+          <Item Value="PolicyException"/>
+          <Item Value="LeaveToday"/>
+          <Item Value="IsHalf"/>
+          <Item Value="WorkingTime"/>
+          <Item Value="LeaveType"/>
+          <Item Value="PolicyExceptionApprovedFlag"/>
+          <Item Value="LateSittingMinTiming"/>
+          <Item Value="Day"/>
+          <Item Value="Today"/>
+          <Item Value="Month"/>
+          <Item Value="MonthNumber"/>
+          <Item Value="Year"/>
+          <Item Value="OffDayWorking"/>
+          <Item Value="EmpType"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

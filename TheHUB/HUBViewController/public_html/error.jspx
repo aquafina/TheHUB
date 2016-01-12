@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <f:view>
+    <af:document id="d1">
+      <af:messages id="m1"/>
+      <af:form id="f1">
+        <af:pageTemplate viewId="/template/hub_template.jspx" id="pt1">
+          <f:facet name="header"/>
+          <f:facet name="footer"/>
+          <f:facet name="left"/>
+          <f:facet name="content">
+            <af:panelGroupLayout id="pgl1">
+              <af:selectOneChoice value="#{bindings.HierarchyName.inputValue}"
+                                  label="#{bindings.HierarchyName.label}"
+                                  required="#{bindings.HierarchyName.hints.mandatory}"
+                                  shortDesc="#{bindings.HierarchyName.hints.tooltip}"
+                                  id="soc1" autoSubmit="true">
+                <f:selectItems value="#{bindings.HierarchyName.items}"
+                               id="si1"/>
+              </af:selectOneChoice>
+              <af:table value="#{bindings.VO_ActiveEmployees4.collectionModel}"
+                        var="row"
+                        rows="#{bindings.VO_ActiveEmployees4.rangeSize}"
+                        emptyText="#{bindings.VO_ActiveEmployees4.viewable ? 'No data to display.' : 'Access Denied.'}"
+                        fetchSize="#{bindings.VO_ActiveEmployees4.rangeSize}"
+                        rowBandingInterval="0"
+                        selectedRowKeys="#{bindings.VO_ActiveEmployees4.collectionModel.selectedRow}"
+                        selectionListener="#{bindings.VO_ActiveEmployees4.collectionModel.makeCurrent}"
+                        rowSelection="single" id="t1" partialTriggers="::soc1">
+                <af:column sortProperty="#{bindings.VO_ActiveEmployees4.hints.ChildPersonId.name}"
+                           sortable="false"
+                           headerText="#{bindings.VO_ActiveEmployees4.hints.ChildPersonId.label}"
+                           id="c2">
+                  <af:inputText value="#{row.bindings.ChildPersonId.inputValue}"
+                                label="#{bindings.VO_ActiveEmployees4.hints.ChildPersonId.label}"
+                                required="#{bindings.VO_ActiveEmployees4.hints.ChildPersonId.mandatory}"
+                                columns="#{bindings.VO_ActiveEmployees4.hints.ChildPersonId.displayWidth}"
+                                maximumLength="#{bindings.VO_ActiveEmployees4.hints.ChildPersonId.precision}"
+                                shortDesc="#{bindings.VO_ActiveEmployees4.hints.ChildPersonId.tooltip}"
+                                id="it1">
+                    <f:validator binding="#{row.bindings.ChildPersonId.validator}"/>
+                    <af:convertNumber groupingUsed="false"
+                                      pattern="#{bindings.VO_ActiveEmployees4.hints.ChildPersonId.format}"/>
+                  </af:inputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.VO_ActiveEmployees4.hints.HierarchyName.name}"
+                           sortable="false"
+                           headerText="#{bindings.VO_ActiveEmployees4.hints.HierarchyName.label}"
+                           id="c1">
+                  <af:selectOneChoice value="#{row.bindings.HierarchyName.inputValue}"
+                                      label="#{row.bindings.HierarchyName.label}"
+                                      required="#{bindings.VO_ActiveEmployees4.hints.HierarchyName.mandatory}"
+                                      shortDesc="#{bindings.VO_ActiveEmployees4.hints.HierarchyName.tooltip}"
+                                      id="soc2">
+                    <f:selectItems value="#{row.bindings.HierarchyName.items}"
+                                   id="si2"/>
+                  </af:selectOneChoice>
+                </af:column>
+                <af:column sortProperty="#{bindings.VO_ActiveEmployees4.hints.FullNameChild.name}"
+                           sortable="false"
+                           headerText="#{bindings.VO_ActiveEmployees4.hints.FullNameChild.label}"
+                           id="c3">
+                  <af:inputText value="#{row.bindings.FullNameChild.inputValue}"
+                                label="#{bindings.VO_ActiveEmployees4.hints.FullNameChild.label}"
+                                required="#{bindings.VO_ActiveEmployees4.hints.FullNameChild.mandatory}"
+                                columns="#{bindings.VO_ActiveEmployees4.hints.FullNameChild.displayWidth}"
+                                maximumLength="#{bindings.VO_ActiveEmployees4.hints.FullNameChild.precision}"
+                                shortDesc="#{bindings.VO_ActiveEmployees4.hints.FullNameChild.tooltip}"
+                                id="it2">
+                    <f:validator binding="#{row.bindings.FullNameChild.validator}"/>
+                  </af:inputText>
+                </af:column>
+              </af:table>
+            </af:panelGroupLayout>
+          </f:facet>
+        </af:pageTemplate>
+      </af:form>
+    </af:document>
+  </f:view>
+</jsp:root>

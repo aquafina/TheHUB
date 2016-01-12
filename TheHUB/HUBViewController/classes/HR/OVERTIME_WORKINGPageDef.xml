@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="OVERTIME_WORKINGPageDef"
+                Package="HR">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="VO_OVERTIME_EMPS3" RangeSize="25"
+              DataControl="HubModuleDataControl"
+              id="VO_OVERTIME_EMPS3Iterator" ChangeEventPolicy="ppr"/>
+    <iterator Binds="VO_OVERTIME_ATTENDANCE1" RangeSize="25"
+              DataControl="HubModuleDataControl"
+              id="VO_OVERTIME_ATTENDANCE1Iterator" ChangeEventPolicy="ppr"/>
+    <searchRegion Criteria="VO_OVERTIME_ATTENDANCECriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="VO_OVERTIME_ATTENDANCE1Iterator"
+                  id="VOOVERTIMEATTENDANCECriteriaQuery"/>
+    <iterator Binds="VO_OVERTIME_DETAILS2" RangeSize="25"
+              DataControl="HubModuleDataControl"
+              id="VO_OVERTIME_DETAILS2Iterator" ChangeEventPolicy="ppr"/>
+    <searchRegion Binds="VO_OVERTIME_DETAILS2Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="VO_OVERTIME_DETAILS2Query"/>
+  </executables>
+  <bindings>
+    <action IterBinding="VO_OVERTIME_EMPS3Iterator" id="First"
+            RequiresUpdateModel="true" Action="first"/>
+    <action IterBinding="VO_OVERTIME_EMPS3Iterator" id="Previous"
+            RequiresUpdateModel="true" Action="previous"/>
+    <action IterBinding="VO_OVERTIME_EMPS3Iterator" id="Next"
+            RequiresUpdateModel="true" Action="next"/>
+    <action IterBinding="VO_OVERTIME_EMPS3Iterator" id="Last"
+            RequiresUpdateModel="true" Action="last"/>
+    <attributeValues IterBinding="VO_OVERTIME_EMPS3Iterator" id="PersonId">
+      <AttrNames>
+        <Item Value="PersonId"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="VO_OVERTIME_ATTENDANCE1Iterator"
+          id="VO_OVERTIME_ATTENDANCE1">
+      <nodeDefinition DefName="hub.nishat.net.model.VO.HR.VO_OVERTIME_ATTENDANCE"
+                      Name="VO_OVERTIME_ATTENDANCE10">
+        <AttrNames>
+          <Item Value="AttendanceDate"/>
+          <Item Value="CardNum"/>
+          <Item Value="EffectiveWorkedHours"/>
+          <Item Value="EmpAtdId"/>
+          <Item Value="EmpId"/>
+          <Item Value="EmpName"/>
+          <Item Value="EmpType"/>
+          <Item Value="EndTime"/>
+          <Item Value="ExpectedWorkHours"/>
+          <Item Value="IsHalf"/>
+          <Item Value="LeaveApprovedFlag"/>
+          <Item Value="LeaveCancelled"/>
+          <Item Value="LeaveToday"/>
+          <Item Value="LeaveTypeId"/>
+          <Item Value="MaxEndTime"/>
+          <Item Value="MaxOutTime"/>
+          <Item Value="MaxStartTime"/>
+          <Item Value="MinInTime"/>
+          <Item Value="OffDayWorking"/>
+          <Item Value="PolicyException"/>
+          <Item Value="PolicyExceptionApprovedFlag"/>
+          <Item Value="StartTime"/>
+          <Item Value="TypeOfLeave"/>
+          <Item Value="TimeWorked"/>
+          <Item Value="InTime"/>
+          <Item Value="OutTime"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <list IterBinding="VO_OVERTIME_EMPS3Iterator" StaticList="false"
+          Uses="LOV_FullName" id="FullName1" DTSupportsMRU="true"/>
+    <action IterBinding="VO_OVERTIME_ATTENDANCE1Iterator" id="Execute"
+            RequiresUpdateModel="true" Action="iteratorExecute"/>
+    <tree IterBinding="VO_OVERTIME_DETAILS2Iterator" id="VO_OVERTIME_DETAILS2">
+      <nodeDefinition DefName="hub.nishat.net.model.VO.HR.VO_OVERTIME_DETAILS"
+                      Name="VO_OVERTIME_DETAILS20">
+        <AttrNames>
+          <Item Value="AttendanceDate"/>
+          <Item Value="EmpAtdId"/>
+          <Item Value="EmpId"/>
+          <Item Value="EmpName"/>
+          <Item Value="MaxOutTime"/>
+          <Item Value="MinInTime"/>
+          <Item Value="Description"/>
+          <Item Value="DayOfWeek"/>
+          <Item Value="MonthNumber"/>
+          <Item Value="TimeWorked"/>
+          <Item Value="InTime"/>
+          <Item Value="OutTime"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

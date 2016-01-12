@@ -1,0 +1,299 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <f:view beforePhase="#{EmployeeInfo4SupervisorBean.beforeRenderingPhase}">
+    <af:document id="d1">
+      <af:messages id="m1"/>
+      <af:form id="f1">
+        <af:pageTemplate viewId="/template/hub_template.jspx" id="pt1">
+          <f:facet name="header"/>
+          <f:facet name="footer"/>
+          <f:facet name="left"/>
+          <f:facet name="content">
+            <af:panelGroupLayout id="pgl1" layout="scroll">
+              <af:panelGroupLayout id="pgl4" layout="horizontal">
+                <af:panelGroupLayout id="pgl3">
+                  <af:image source="/imageparser?person_id=#{param['emp_id']}" id="imageofemployee"/>
+                </af:panelGroupLayout>
+                <af:panelFormLayout id="pfl1" rows="3" maxColumns="2">
+                  <f:facet name="footer"/>
+                  <af:outputText value="Name:" id="ot3"
+                                 inlineStyle="font-size:medium;"/>
+                  <af:outputText value="Supervisor" id="ot4"
+                                 inlineStyle="font-size:medium;"/>
+                  <af:outputText value="Position" id="ot5"
+                                 inlineStyle="font-size:medium;"/>
+                  <h:inputText id="it1"
+                               disabled="true" value="#{param['emp_name']}"
+                               size="35"/>
+                  <h:inputText id="it2"
+                               disabled="true" value="#{param['emp_parent']}"
+                               size="35"/>
+                  <h:inputText id="it3"
+                               size="70" disabled="true"
+                               value="#{param['emp_position']}"/>
+                </af:panelFormLayout>
+              </af:panelGroupLayout>
+              <af:panelGroupLayout id="pgl5" layout="vertical">
+                <af:table value="#{bindings.VO_EmpAttendance1.collectionModel}"
+                          var="row"
+                          rows="#{bindings.VO_EmpAttendance1.rangeSize}"
+                          emptyText="#{bindings.VO_EmpAttendance1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                          fetchSize="#{bindings.VO_EmpAttendance1.rangeSize}"
+                          rowBandingInterval="0"
+                          selectedRowKeys="#{bindings.VO_EmpAttendance1.collectionModel.selectedRow}"
+                          selectionListener="#{bindings.VO_EmpAttendance1.collectionModel.makeCurrent}"
+                          rowSelection="single" id="t1" width="100%"
+                          inlineStyle="height:inherit;">
+                  <af:column sortProperty="#{bindings.VO_EmpAttendance1.hints.EmpAtdId.name}"
+                             sortable="false"
+                             headerText="#{bindings.VO_EmpAttendance1.hints.EmpAtdId.label}"
+                             id="c2" rendered="false">
+                    <af:outputText value="#{row.EmpAtdId}" id="ot17">
+                      <af:convertNumber groupingUsed="false"
+                                        pattern="#{bindings.VO_EmpAttendance1.hints.EmpAtdId.format}"/>
+                    </af:outputText>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_EmpAttendance1.hints.AttendanceDate.name}"
+                             sortable="false"
+                             headerText="Attendance Date"
+                             id="c8" align="left" width="250">
+                    <af:outputText value="#{row.AttendanceDate}" id="ot14">
+                      <af:convertDateTime pattern="#{bindings.VO_EmpAttendance1.hints.AttendanceDate.format}"
+                                          dateStyle="full"/>
+                    </af:outputText>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_EmpAttendance1.hints.Description.name}"
+                             sortable="false"
+                             headerText="Description"
+                             id="c21" align="left" width="200">
+                    <af:outputText value="#{ row.Description == 'SATURDAY_OFF' ? 'Saturday Off' : row.Description == 'SATURDAY_ON' ? 'Saturday On' : row.Description } " id="ot13"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_EmpAttendance1.hints.EmpId.name}"
+                             sortable="false"
+                             headerText="#{bindings.VO_EmpAttendance1.hints.EmpId.label}"
+                             id="c23" rendered="false">
+                    <af:outputText value="#{row.EmpId}" id="ot21">
+                      <af:convertNumber groupingUsed="false"
+                                        pattern="#{bindings.VO_EmpAttendance1.hints.EmpId.format}"/>
+                    </af:outputText>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_EmpAttendance1.hints.EmpName.name}"
+                             sortable="false"
+                             headerText="Employee Name"
+                             id="c24" align="center" width="200"
+                             rendered="false">
+                    <af:outputText value="#{row.EmpName}" id="ot35"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_EmpAttendance1.hints.CardNum.name}"
+                             sortable="false"
+                             headerText="#{bindings.VO_EmpAttendance1.hints.CardNum.label}"
+                             id="c33" rendered="false">
+                    <af:outputText value="#{row.CardNum}" id="ot29"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_EmpAttendance1.hints.LeaveCancelled.name}"
+                             sortable="false"
+                             headerText="#{bindings.VO_EmpAttendance1.hints.LeaveCancelled.label}"
+                             id="c18" rendered="false">
+                    <af:outputText value="#{row.LeaveCancelled}" id="ot22"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_EmpAttendance1.hints.Intime.name}"
+                             sortable="false" headerText="In Time" id="c29"
+                             align="center">
+                    <af:outputText value="#{row.Intime}" id="ot28"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_EmpAttendance1.hints.Outtime.name}"
+                             sortable="false" headerText="Out Time" id="c35"
+                             align="center">
+                    <af:outputText value="#{row.Outtime}" id="ot39"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_EmpAttendance1.hints.EffectiveWorkedHours.name}"
+                             sortable="false"
+                             headerText="Hours Worked (Office Time)" id="c17"
+                             align="center">
+                    <af:outputText value="#{row.EffectiveWorkedHours}"
+                                   id="ot9"/>
+                  </af:column>
+                  <af:column id="c36" headerText="Hours Worked  (Late Sitting)" align="center"
+                             width="90">
+                    <af:outputText value="#{row.LateSitting}" id="ot41"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_EmpAttendance1.hints.ExpectedWorkHours.name}"
+                             sortable="false"
+                             headerText="Expected Work Hours"
+                             id="c12" align="center">
+                    <af:outputText value="#{row.ExpectedWorkHours}" id="ot8"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_EmpAttendance1.hints.MinInTime.name}"
+                             sortable="false"
+                             headerText="#{bindings.VO_EmpAttendance1.hints.MinInTime.label}"
+                             id="c9" rendered="false">
+                    <af:outputText value="#{row.MinInTime}" id="ot12">
+                      <af:convertDateTime pattern="#{bindings.VO_EmpAttendance1.hints.MinInTime.format}"/>
+                    </af:outputText>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_EmpAttendance1.hints.MaxOutTime.name}"
+                             sortable="false"
+                             headerText="#{bindings.VO_EmpAttendance1.hints.MaxOutTime.label}"
+                             id="c20" rendered="false">
+                    <af:outputText value="#{row.MaxOutTime}" id="ot24">
+                      <af:convertDateTime pattern="#{bindings.VO_EmpAttendance1.hints.MaxOutTime.format}"/>
+                    </af:outputText>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_EmpAttendance1.hints.PreviousDayOutTime.name}"
+                             sortable="false"
+                             headerText="#{bindings.VO_EmpAttendance1.hints.PreviousDayOutTime.label}"
+                             id="c31" rendered="false">
+                    <af:outputText value="#{row.PreviousDayOutTime}" id="ot26"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_EmpAttendance1.hints.PreviousDayEffectiveHours.name}"
+                             sortable="false"
+                             headerText="#{bindings.VO_EmpAttendance1.hints.PreviousDayEffectiveHours.label}"
+                             id="c27" rendered="false">
+                    <af:outputText value="#{row.PreviousDayEffectiveHours}"
+                                   id="ot34"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_EmpAttendance1.hints.MaxStartTime.name}"
+                             sortable="false"
+                             headerText="#{bindings.VO_EmpAttendance1.hints.MaxStartTime.label}"
+                             id="c34" rendered="false">
+                    <af:outputText value="#{row.MaxStartTime}" id="ot10"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_EmpAttendance1.hints.MaxEndTime.name}"
+                             sortable="false"
+                             headerText="#{bindings.VO_EmpAttendance1.hints.MaxEndTime.label}"
+                             id="c10" rendered="false">
+                    <af:outputText value="#{row.MaxEndTime}" id="ot31"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_EmpAttendance1.hints.EndTime.name}"
+                             sortable="false"
+                             headerText="#{bindings.VO_EmpAttendance1.hints.EndTime.label}"
+                             id="c15" rendered="false">
+                    <af:outputText value="#{row.EndTime}" id="ot15"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_EmpAttendance1.hints.StartTime.name}"
+                             sortable="false"
+                             headerText="#{bindings.VO_EmpAttendance1.hints.StartTime.label}"
+                             id="c5" rendered="false">
+                    <af:outputText value="#{row.StartTime}" id="ot16"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_EmpAttendance1.hints.LeaveTypeId.name}"
+                             sortable="false"
+                             headerText="#{bindings.VO_EmpAttendance1.hints.LeaveTypeId.label}"
+                             id="c16" rendered="false">
+                    <af:outputText value="#{row.LeaveTypeId}" id="ot20">
+                      <af:convertNumber groupingUsed="false"
+                                        pattern="#{bindings.VO_EmpAttendance1.hints.LeaveTypeId.format}"/>
+                    </af:outputText>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_EmpAttendance1.hints.LeaveApprovedFlag.name}"
+                             sortable="false"
+                             headerText="#{bindings.VO_EmpAttendance1.hints.LeaveApprovedFlag.label}"
+                             id="c6" rendered="false">
+                    <af:outputText value="#{row.LeaveApprovedFlag}" id="ot23"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_EmpAttendance1.hints.TypeOfLeave.name}"
+                             sortable="false"
+                             headerText="#{bindings.VO_EmpAttendance1.hints.TypeOfLeave.label}"
+                             id="c30" rendered="false">
+                    <af:outputText value="#{row.TypeOfLeave}" id="ot40">
+                      <af:convertNumber groupingUsed="false"
+                                        pattern="#{bindings.VO_EmpAttendance1.hints.TypeOfLeave.format}"/>
+                    </af:outputText>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_EmpAttendance1.hints.PolicyException.name}"
+                             sortable="false"
+                             headerText="#{bindings.VO_EmpAttendance1.hints.PolicyException.label}"
+                             id="c13" rendered="false">
+                    <af:outputText value="#{row.PolicyException}" id="ot25"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_EmpAttendance1.hints.LeaveToday.name}"
+                             sortable="false"
+                             headerText="#{bindings.VO_EmpAttendance1.hints.LeaveToday.label}"
+                             id="c7" rendered="false">
+                    <af:outputText value="#{row.LeaveToday}" id="ot18"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_EmpAttendance1.hints.IsHalf.name}"
+                             sortable="false"
+                             headerText="#{bindings.VO_EmpAttendance1.hints.IsHalf.label}"
+                             id="c4" rendered="false">
+                    <af:outputText value="#{row.IsHalf}" id="ot38"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_EmpAttendance1.hints.WorkingTime.name}"
+                             sortable="false"
+                             headerText="#{bindings.VO_EmpAttendance1.hints.WorkingTime.label}"
+                             id="c14" rendered="false">
+                    <af:outputText value="#{row.WorkingTime}" id="ot36"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_EmpAttendance1.hints.LeaveType.name}"
+                             sortable="false"
+                             headerText="#{bindings.VO_EmpAttendance1.hints.LeaveType.label}"
+                             id="c3" rendered="false">
+                    <af:outputText value="#{row.LeaveType}" id="ot33"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_EmpAttendance1.hints.PolicyExceptionApprovedFlag.name}"
+                             sortable="false"
+                             headerText="#{bindings.VO_EmpAttendance1.hints.PolicyExceptionApprovedFlag.label}"
+                             id="c1" rendered="false">
+                    <af:outputText value="#{row.PolicyExceptionApprovedFlag}"
+                                   id="ot27"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_EmpAttendance1.hints.LateSittingMinTiming.name}"
+                             sortable="false"
+                             headerText="#{bindings.VO_EmpAttendance1.hints.LateSittingMinTiming.label}"
+                             id="c11" rendered="false">
+                    <af:outputText value="#{row.LateSittingMinTiming}"
+                                   id="ot32"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_EmpAttendance1.hints.Day.name}"
+                             sortable="false"
+                             headerText="#{bindings.VO_EmpAttendance1.hints.Day.label}"
+                             id="c26" rendered="false">
+                    <af:outputText value="#{row.Day}" id="ot19"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_EmpAttendance1.hints.Today.name}"
+                             sortable="false"
+                             headerText="#{bindings.VO_EmpAttendance1.hints.Today.label}"
+                             id="c25" rendered="false">
+                    <af:outputText value="#{row.Today}" id="ot30"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_EmpAttendance1.hints.Month.name}"
+                             sortable="false"
+                             headerText="#{bindings.VO_EmpAttendance1.hints.Month.label}"
+                             id="c28" rendered="false">
+                    <af:outputText value="#{row.Month}" id="ot11"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_EmpAttendance1.hints.Year.name}"
+                             sortable="false"
+                             headerText="#{bindings.VO_EmpAttendance1.hints.Year.label}"
+                             id="c22" rendered="false">
+                    <af:outputText value="#{row.Year}" id="ot6"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_EmpAttendance1.hints.OffDayWorking.name}"
+                             sortable="false"
+                             headerText="#{bindings.VO_EmpAttendance1.hints.OffDayWorking.label}"
+                             id="c32" rendered="false">
+                    <af:outputText value="#{row.OffDayWorking}" id="ot7"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_EmpAttendance1.hints.EmpType.name}"
+                             sortable="false"
+                             headerText="#{bindings.VO_EmpAttendance1.hints.EmpType.label}"
+                             id="c19" rendered="false">
+                    <af:outputText value="#{row.EmpType}" id="ot37">
+                      <af:convertNumber groupingUsed="false"
+                                        pattern="#{bindings.VO_EmpAttendance1.hints.EmpType.format}"/>
+                    </af:outputText>
+                  </af:column>
+                </af:table>
+              </af:panelGroupLayout>
+            </af:panelGroupLayout>
+          </f:facet>
+        </af:pageTemplate>
+      </af:form>
+    </af:document>
+  </f:view>
+  <!--oracle-jdev-comment:preferred-managed-bean-name:EmployeeInfo4SupervisorBean-->
+</jsp:root>

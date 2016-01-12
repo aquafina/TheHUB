@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<JavaBean xmlns="http://xmlns.oracle.com/adfm/beanmodel" version="11.1.1.64.93"
+          id="MonthlyDeductionsDetails"
+          Package="view.nishat.net.CustomDataControl"
+          BeanClass="view.nishat.net.CustomDataControl.MonthlyDeductionsDetails"
+          isJavaBased="true">
+  <AccessorAttribute id="list" IsCollection="true"
+                     BeanClass="view.nishat.net.CustomDataControl.AnnualDeductedLeaveRptBean"
+                     CollectionBeanClass="UpdateableCollection"/>
+  <ConstructorMethod IsCollection="true"
+                     Type="view.nishat.net.CustomDataControl.MonthlyDeductionsDetails"
+                     BeanClass="view.nishat.net.CustomDataControl.MonthlyDeductionsDetails"
+                     id="MonthlyDeductionsDetails"/>
+</JavaBean>

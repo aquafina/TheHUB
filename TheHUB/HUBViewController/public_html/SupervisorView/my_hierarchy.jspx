@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:dvt="http://xmlns.oracle.com/dss/adf/faces">
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <f:view>
+    <af:document id="d1">
+      <af:messages id="m1"/>
+      <af:form id="f1">
+        <af:pageTemplate viewId="/template/hub_template.jspx" id="pt1">
+          <f:facet name="header"/>
+          <f:facet name="footer"/>
+          <f:facet name="left"/>
+          <f:facet name="content">
+            <dvt:hierarchyViewer id="hv1" var="node"
+                                 value="#{bindings.VO_SupervisorOrgChart1.treeModel}"
+                                 selectionListener="#{bindings.VO_SupervisorOrgChart1.treeModel.makeCurrent}"
+                                 layout="hier_vert_top"
+                                 levelFetchSize="#{bindings.VO_SupervisorOrgChart1.rangeSize}"
+                                 styleClass="AFStretchWidth">
+              <dvt:link linkType="orthogonalRounded" id="l1"/>
+              <dvt:node type="hub.nishat.net.model.VO.Supervisor.VO_SupervisorOrgChart"
+                        width="233" height="330" id="n1">
+                <f:facet name="zoom100">
+                  <af:panelGroupLayout styleClass="AFStretchWidth AFHVNodeStretchHeight AFHVNodePadding"
+                                       layout="vertical" id="pgl5">
+                    <af:panelGroupLayout layout="horizontal" id="pgl4">
+                      <af:panelGroupLayout id="pgl3">
+                        <af:image styleClass="AFHVNodeImageSize" id="i1"
+                                  source="/imageparser?person_id=#{node.ChildPersonId}"/>
+                      </af:panelGroupLayout>
+                      <af:spacer width="5" height="5" id="s2"/>
+                    </af:panelGroupLayout>
+                    <af:spacer height="5" id="s3"/>
+                    <af:panelGroupLayout id="pgl1">
+                      <af:panelFormLayout
+                                          id="pfl2">
+                        <af:outputText value="#{node.FullNameChild}" id="ot3"
+                                       inlineStyle="font-size:18px;"/>
+                        <af:outputText value="#{node.ChildPosition}" id="ot4"
+                                       inlineStyle="font-size:17px;"/>
+                        <af:outputText value="#{node.EmailAddress}" id="ot5"
+                                       inlineStyle="font-size:15%;"/>
+                        <af:goLink text="Details" id="gl1"
+                                   destination="employee_information.jspx?emp_id=#{node.ChildPersonId}&amp;emp_name=#{node.FullNameChild}&amp;emp_position=#{node.ChildPosition}&amp;emp_parent=#{node.FullNameParent}"
+                                   inlineStyle="font-size:14px;"/>
+                      </af:panelFormLayout>
+                    </af:panelGroupLayout>
+                  </af:panelGroupLayout>
+                </f:facet>
+              </dvt:node>
+            </dvt:hierarchyViewer>
+          </f:facet>
+        </af:pageTemplate>
+      </af:form>
+    </af:document>
+  </f:view>
+</jsp:root>

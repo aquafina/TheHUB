@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="intercom_directoryPageDef"
+                Package="hub.nishat.net.view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="IntercomTypeLOV1" RangeSize="25"
+              DataControl="HubModuleDataControl" id="IntercomTypeLOV1Iterator"/>
+    <iterator Binds="VO_IntercomDir1" RangeSize="25"
+              DataControl="HubModuleDataControl" id="VO_IntercomDir1Iterator"/>
+    <searchRegion Binds="VO_IntercomDir1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="VO_IntercomDir1Query"/>
+  </executables>
+  <bindings>
+    <list IterBinding="IntercomTypeLOV1Iterator" StaticList="false"
+          Uses="LOV_Type" id="Type" DTSupportsMRU="false"/>
+    <attributeValues IterBinding="IntercomTypeLOV1Iterator" id="TrueFlag">
+      <AttrNames>
+        <Item Value="TrueFlag"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="VO_IntercomDir1Iterator" id="VO_IntercomDir1">
+      <nodeDefinition DefName="hub.nishat.net.model.VO.VO_IntercomDir"
+                      Name="VO_IntercomDir10">
+        <AttrNames>
+          <Item Value="PersonIdDepartment"/>
+          <Item Value="PersonId"/>
+          <Item Value="Email"/>
+          <Item Value="Name"/>
+          <Item Value="Intercom"/>
+          <Item Value="Department"/>
+          <Item Value="Designation"/>
+          <Item Value="Category"/>
+          <Item Value="IsHod"/>
+          <Item Value="IntercomType"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

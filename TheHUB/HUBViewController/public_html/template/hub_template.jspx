@@ -1,0 +1,233 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <af:pageTemplateDef var="attrs">
+    <af:panelStretchLayout id="pt_psl1" topHeight="4%" bottomHeight="3%"
+                           startWidth="21%">
+      <f:facet name="bottom">
+        <af:panelGroupLayout id="pgl2" layout="vertical"
+                             inlineStyle="background-color:#207ebc;"
+                             halign="center">
+          <af:outputText value="Copyrights reserved © Nishat Chunian Limited."
+                         id="ot2" inlineStyle="color:white;"/>
+          <af:popup id="p1" contentDelivery="immediate">
+            <af:dialog id="d2" type="none" title="Password Reset"
+                       closeIconVisible="false">
+              <af:panelGroupLayout id="pgl44" layout="vertical" halign="center">
+                <af:panelFormLayout id="pt_pfl1" rows="3">
+                  <f:facet name="footer">
+                    <af:panelGroupLayout id="pt_pgl3" layout="horizontal"
+                                         halign="center">
+                      <af:commandButton text="Submit" id="pt_cb1"
+                                        action="#{SettingsBean.changePassword}"/>
+                      <af:commandButton text="Cancel" id="pt_cb2"/>
+                    </af:panelGroupLayout>
+                  </f:facet>
+                  <af:inputText label="Old Password" id="pt_it3"
+                                binding="#{SettingsBean.oldPassword}"/>
+                  <af:inputText label="New Password" id="pt_it1"
+                                binding="#{SettingsBean.newPassword}"/>
+                  <af:inputText label="Re-enter Password" id="pt_it2"
+                                binding="#{SettingsBean.reEnterNew}"/>
+                </af:panelFormLayout>
+              </af:panelGroupLayout>
+            </af:dialog>
+          </af:popup>
+          
+        </af:panelGroupLayout>
+      </f:facet>
+      <f:facet name="center">
+        <af:facetRef facetName="content"/>
+      </f:facet>
+      <f:facet name="start">
+        <af:facetRef facetName="left"/>
+      </f:facet>
+      <f:facet name="top">
+        <af:panelSplitter id="pt_ps1" splitterPosition="200"
+                          inlineStyle="background-color:#207ebc;"
+                          disabled="true">
+          <f:facet name="first">
+            <af:panelGroupLayout id="pt_pgl2" layout="vertical">
+              <af:panelGroupLayout id="panelGroupLayout1" layout="horizontal">
+                <af:outputText value="T" id="ot1"
+                               inlineStyle="color:white; font-family:'Arial Black'; font-size:20px;"/>
+                <af:outputText value="HE" id="pt_ot1"
+                               inlineStyle="color:white; font-family:'Arial Black'; font-size:12.0px; vertical-align:baseline;"/>
+                <af:spacer width="10" height="10" id="pt_s1"/>
+                <af:outputText value="H" id="outputText1"
+                               inlineStyle="color:white; font-family:'Arial Black'; font-size:20px;"/>
+                <af:outputText value="UB" id="outputText2"
+                               inlineStyle="color:white; font-family:'Arial Black'; font-size:12.0px; vertical-align:baseline;"/>
+              </af:panelGroupLayout>
+            </af:panelGroupLayout>
+          </f:facet>
+          <f:facet name="second">
+            <af:panelGroupLayout id="pt_pgl1" layout="horizontal"
+                                 halign="right"
+                                 valign="top"
+                                 inlineStyle="padding-top:5px;"
+                                 rendered="#{sessionScope.userid != null ? 'true' : 'false'}">
+              <af:popup id="p3">
+                <af:dialog id="d3">
+                  <af:panelGroupLayout id="pgl13" halign="center"
+                                       layout="vertical">
+                    <af:image source="/images/chart.png" id="i1"/>
+                  </af:panelGroupLayout>
+                </af:dialog>
+              </af:popup>
+              <af:goButton text="All Employee" id="goButton3"
+                           destination="http://fmw.nishat.net:7003/TheHUB/faces/att_handle_NCEntertainment.jspx"
+                           rendered="#{sessionScope.userid == '4168' ? 'true' : 'false'}"/>
+              <af:goButton text="Home" id="pt_gb3"
+                           destination="http://fmw.nishat.net:7003/TheHUB/faces/employee_attendance.jspx"
+                           rendered="#{sessionScope.userid == '84' ? 'false' : 'true'}"/>
+              <af:goButton text="Manager Self Service" id="pt_gb4"
+                           destination="http://fmw.nishat.net:7003/TheHUB/faces/SupervisorView/supervisor_responsibilities.jspx"
+                           rendered="#{(sessionScope.access_level == 'HOD' or sessionScope.access_level == 'SUPERVISOR') and sessionScope.userid != 84 ?'true':'false'}"/>
+              <af:goButton text="All Approvals" id="goButton5"
+                           destination="http://fmw.nishat.net:7003/TheHUB/faces/SupervisorView/supervisor_responsibilities.jspx"
+                           rendered="#{(sessionScope.IS_AAT == 'Y' ) ?'true':'false'}"/>
+              <af:goButton text="Posting" id="pt_gb5"
+                           destination="http://fmw.nishat.net:7003/TheHUB/faces/HR/HROperations.jspx"
+                           rendered="#{sessionScope.is_hr == 'Y' ? 'true' : 'false'}"/>
+              <af:goButton text="All Employee" id="pt_gb6"
+                           destination="http://fmw.nishat.net:7003/TheHUB/faces/att_handle_NCEntertainment.jspx" rendered="#{sessionScope.userid == '4168' ? true : false}
+"/>
+              <af:goButton text="Setup" id="pt_gb7"
+                           destination="http://fmw.nishat.net:7003/TheHUB/faces/HR/emp_settings.jspx"
+                           rendered="#{sessionScope.is_hr == 'Y' ? 'true' : 'false'}"/>
+              <af:goButton text="Manual" id="goButton1"
+                           destination="http://fmw.nishat.net:7003/TheHUB/faces/files/HUBTrainingMannual.zip"
+                           rendered="#{sessionScope.username != null}"/>
+              <af:commandToolbarButton text="Employee Self Service" id="commandToolbarButton3"
+                                       rendered="#{sessionScope.username != null}">
+                <f:facet name="popup">
+                  <af:menu text="menu 1" id="menu3">
+                    <af:goButton text="Company Policies" id="goButton4"
+                                 inlineStyle='width:150px; background-color:white; background-image:url("../images/transparent.png");border:1px white solid'
+                                 destination="http://fmw.nishat.net:7003/TheHUB/faces/files/hrp.pdf"/>
+                    <af:commandButton text="Leave Deduction Policy Chart" id="commandButton1"
+                                      inlineStyle='width:150px; background-color:white; background-image:url("../images/transparent.png");border:1px white solid'>
+                      <af:showPopupBehavior popupId="p3"/>
+                    </af:commandButton>
+                    <af:goButton text="Intercom Directory" id="goButton6"
+                                 inlineStyle='width:150px; background-color:white; background-image:url("../images/transparent.png");border:1px white solid'
+                                 destination="http://fmw.nishat.net:7003/TheHUB/faces/intercom_directory.jspx"/>
+                  </af:menu>
+                </f:facet>
+              </af:commandToolbarButton>
+              <af:panelGridLayout id="pt_pgl4"
+                                  inlineStyle="background-color:black; vertical-align:top;"
+                                  rendered="false">
+                <af:gridRow marginTop="5px" marginBottom="5px" height="auto"
+                            id="pt_gr1">
+                  <af:gridCell marginStart="5px" width="50px" id="pt_gc7"
+                               rendered="#{sessionScope.userid == '84' ? 'false' : 'true'}"
+                               inlineStyle="margin-bottom:20px">
+                    <af:panelGroupLayout id="pt_pgl5" layout="vertical">
+                      <af:goLink text="Home" id="pt_gl4"
+                               inlineStyle="margin-left:10px; margin-right:10px; font-weight:bold;color:white"
+                               destination="http://fmw.nishat.net:7003/TheHUB/faces/employee_attendance.jspx"/>
+                    </af:panelGroupLayout>
+                  </af:gridCell>
+                  <af:gridCell marginStart="5px" width="130px" id="pt_gc1"
+                               marginEnd="5px"
+                               rendered="#{(sessionScope.access_level == 'HOD' or sessionScope.access_level == 'SUPERVISOR') and sessionScope.userid != 84 ?'true':'false'}">
+                    <af:goLink text="Manager Self Service" id="pt_gl1"
+                               inlineStyle="margin-left:10px; margin-right:10px; font-weight:bold;color:white"
+                               destination="http://fmw.nishat.net:7003/TheHUB/faces/SupervisorView/supervisor_responsibilities.jspx"/>
+                  </af:gridCell>
+                  <af:gridCell marginStart="5px" width="60px" id="pt_gc5"
+                               rendered="#{sessionScope.is_hr == 'Y' ? 'true' : 'false'}">
+                    <af:goLink text="Posting" id="pt_gl2"
+                               inlineStyle="margin-left:10px; margin-right:10px; font-weight:bold;color:white"
+                               destination="http://fmw.nishat.net:7003/TheHUB/faces/HR/HROperations.jspx"/>
+                  </af:gridCell>
+                  <af:gridCell marginStart="5px" width="150px" id="pt_gc6"
+                               rendered="#{sessionScope.userid == '4168' ? true : false}">
+                    <af:goLink text="All Employees" id="pt_gl5"
+                               destination="http://fmw.nishat.net:7003/TheHUB/faces/att_handle_NCEntertainment.jspx"
+                               inlineStyle="margin-left:10px; font-weight:bold;color:white;margin-right:10px"/>
+                  </af:gridCell>
+                  <af:gridCell marginStart="5px" width="50px" id="pt_gc2"
+                               rendered="#{sessionScope.is_hr == 'Y' ? 'true' : 'false'}">
+                    <af:goLink text="Setup" id="pt_gl3"
+                               inlineStyle="margin-left:10px; font-weight:bold;color:white;margin-right:10px"
+                               destination="http://fmw.nishat.net:7003/TheHUB/faces/HR/emp_settings.jspx"
+                               rendered="true"/>
+                  </af:gridCell>
+                </af:gridRow>
+              </af:panelGridLayout>
+              <af:commandToolbarButton text="Help"
+                                       id="commandToolbarButton2"
+                                       rendered="false">
+                <f:facet name="popup">
+                  <af:menu text="menu 1" id="menu2">
+                    <af:goButton text="Company Policies" id="goButton2"
+                                 inlineStyle='width:150px; background-color:white; background-image:url("../images/transparent.png");border:1px white solid'
+                                 destination="http://fmw.nishat.net:7003/TheHUB/faces/files/hrp.pdf"/>
+                    <af:commandButton text="Policy Chart" id="pt_cb3"
+                                      inlineStyle='width:150px; background-color:white; background-image:url("../images/transparent.png");border:1px white solid'>
+                      <af:showPopupBehavior popupId="p3"/>
+                    </af:commandButton>
+                  </af:menu>
+                </f:facet>
+              </af:commandToolbarButton>
+              <af:commandToolbarButton text="Requisitions"
+                                       id="commandToolbarButton1"
+                                       rendered="#{sessionScope.username != null}"
+                                       >
+                <f:facet name="popup">
+                  <af:menu text="menu 1" id="menu1">
+                    <af:goButton text="Stationary Requisition " id="pt_gb1"
+                                 inlineStyle="width:150px; background-color:white; background-image:url(&quot;../images/transparent.png&quot;);border:1px white solid"
+                                 destination="mailto:#{sessionScope.hod_email}?subject=Inventory Requisition&amp;body=Name:%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20Department:%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%0d%0a%0d%0aItem(s)Required%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20Quantity%20%20%20%20%20%0d%0a"/>
+                    <af:goButton text="Laptop Requisition" id="pt_gb2"
+                                 inlineStyle="width:150px; background-color:white; background-image:url(&quot;../images/transparent.png&quot;);border:1px white solid"
+                                 destination="mailto:#{sessionScope.hod_email}?subject=Inventory Requisition&amp;body=Name:%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%0d%0a%0d%0a-----------------------------------------------------------------------------------------------------------------------%0d%0a Name of the user:%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%0d%0a%0d%0a -----------------------------------------------------------------------------------------------------------------------%0d%0a Designation:%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%0d%0a%0d%0a -----------------------------------------------------------------------------------------------------------------------%0d%0a Department:%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%0d%0a%0d%0a -----------------------------------------------------------------------------------------------------------------------%0d%0a Division:%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%0d%0a%0d%0a -----------------------------------------------------------------------------------------------------------------------%0d%0a Occasion necessitating %0d%0a purchase( Initial / Periodic Replacement / Loss / Damage ):%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%0d%0a%0d%0a -----------------------------------------------------------------------------------------------------------------------%0d%0a Justification for Purchase: %20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%0d%0a%0d%0a -------------------------------------------- --------------------------------------------------------------------------%0d%0a Justification of Special requirements:%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%0d%0a%0d%0a -----------------------------------------------------------------------------------------------------------------------%0d%0a Initiated by: %20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%0d%0a%0d%0a "/>
+                  </af:menu>
+                </f:facet>
+              </af:commandToolbarButton>
+              <af:commandToolbarButton text="#{sessionScope.username}"
+                                       id="pt_ctb1">
+                <f:facet name="popup">
+                  <af:menu text="menu 1" id="pt_m1">
+                    <af:commandMenuItem text="Change Password" id="pt_cmi1">
+                      <af:showPopupBehavior popupId="p1" triggerType="action"/>
+                    </af:commandMenuItem>
+                    <af:commandMenuItem text="Settings" id="pt_cmi2"/>
+                    <af:commandMenuItem text="Logout" id="pt_cmi3"
+                                        action="#{LoginPageBean.proceedLogout}"/>
+                  </af:menu>
+                </f:facet>
+              </af:commandToolbarButton>
+              <af:toolbar id="pt_t1" rendered="false"
+                          inlineStyle="width:175.0px;"/>
+            </af:panelGroupLayout>
+          </f:facet>
+        </af:panelSplitter>
+      </f:facet>
+    </af:panelStretchLayout>
+    <af:xmlContent>
+      <component xmlns="http://xmlns.oracle.com/adf/faces/rich/component">
+        <display-name>hub_template</display-name>
+        <facet>
+          <facet-name>header</facet-name>
+        </facet>
+        <facet>
+          <facet-name>footer</facet-name>
+        </facet>
+        <facet>
+          <facet-name>left</facet-name>
+        </facet>
+        <facet>
+          <facet-name>content</facet-name>
+        </facet>
+      </component>
+    </af:xmlContent>
+  </af:pageTemplateDef>
+  <!--oracle-jdev-comment:preferred-managed-bean-name:SettingsBean-->
+</jsp:root>

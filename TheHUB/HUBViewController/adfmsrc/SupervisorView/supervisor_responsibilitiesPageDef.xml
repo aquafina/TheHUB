@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="supervisor_responsibilitiesPageDef"
+                Package="SupervisorView">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="VO_LeaveRequests1" RangeSize="25"
+              DataControl="HubModuleDataControl"
+              id="VO_LeaveRequests1Iterator"/>
+    <searchRegion Binds="VO_LeaveRequests1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="VO_LeaveRequests1Query"/>
+    <iterator Binds="VO_ExceptionReq1" RangeSize="25"
+              DataControl="HubModuleDataControl" id="VO_ExceptionReq1Iterator"/>
+    <searchRegion Binds="VO_ExceptionReq1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="VO_ExceptionReq1Query"/>
+    <iterator id="VO_Attendance2Iterator" Binds="VO_Attendance2"
+              DataControl="HubModuleDataControl" RangeSize="25"/>
+    <searchRegion Criteria="VO_ExceptionReqCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="VO_ExceptionReq1Iterator"
+                  id="VOExceptionReqCriteriaQuery"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="VO_LeaveRequests1Iterator" id="VO_LeaveRequests1">
+      <nodeDefinition DefName="hub.nishat.net.model.VO.Supervisor.VO_LeaveRequests"
+                      Name="VO_LeaveRequests10">
+        <AttrNames>
+          <Item Value="Type"/>
+          <Item Value="FullNameChild"/>
+          <Item Value="ParentPersonId"/>
+          <Item Value="ApprovalRequired"/>
+          <Item Value="AprovedFlag"/>
+          <Item Value="EndDate"/>
+          <Item Value="LeaveId"/>
+          <Item Value="LeaveType"/>
+          <Item Value="StartDate"/>
+          <Item Value="TotalLeaves"/>
+          <Item Value="UserId"/>
+          <Item Value="Remaining"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="VO_ExceptionReq1Iterator" id="VO_ExceptionReq1">
+      <nodeDefinition DefName="hub.nishat.net.model.VO.VO_ExceptionReq"
+                      Name="VO_ExceptionReq10">
+        <AttrNames>
+          <Item Value="ExceptionRequestId"/>
+          <Item Value="IrregularityId"/>
+          <Item Value="EmpAtdId"/>
+          <Item Value="AttendanceDate"/>
+          <Item Value="ExceptionRequestDate"/>
+          <Item Value="ExceptionCause"/>
+          <Item Value="ExceptionRemarks"/>
+          <Item Value="EmpId"/>
+          <Item Value="MissingMinutes"/>
+          <Item Value="FullNameChild"/>
+          <Item Value="Intime"/>
+          <Item Value="Outtime"/>
+          <Item Value="MissingTime"/>
+          <Item Value="LineManagerComments"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

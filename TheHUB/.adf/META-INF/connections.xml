@@ -1,0 +1,252 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<References xmlns="http://xmlns.oracle.com/adf/jndi">
+   <Reference name="SendEmail" className="oracle.adf.model.connection.webservice.impl.WebServiceConnectionImpl" xmlns="">
+      <Factory className="oracle.adf.model.connection.webservice.api.WebServiceConnectionFactory"/>
+      <RefAddresses>
+         <XmlRefAddr addrType="WebServiceConnection">
+            <Contents>
+               <wsconnection description="http://fmw.nishat.net:8001/soa-infra/services/default/SendMail/bp_sendmail_client_ep?WSDL" service="{http://xmlns.oracle.com/SendMail/SendMail/BP_SendMail}bp_sendmail_client_ep">
+                  <model name="{http://xmlns.oracle.com/SendMail/SendMail/BP_SendMail}BP_SendMail" xmlns="http://oracle.com/ws/model">
+                     <types xmlns="http://oracle.com/oracle/webservices/mdds">
+                        <types-in-elements/>
+                     </types>
+                     <service name="{http://xmlns.oracle.com/SendMail/SendMail/BP_SendMail}bp_sendmail_client_ep">
+                        <port name="execute_pt" binding="{http://xmlns.oracle.com/SendMail/SendMail/BP_SendMail}execute_pttBinding" portType="{http://xmlns.oracle.com/SendMail/SendMail/BP_SendMail}execute_ptt">
+                           <soap addressUrl="http://fmw.nishat.net:8001/soa-infra/services/default/SendMail/bp_sendmail_client_ep" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+                           <operation name="execute">
+                              <soap soapAction="execute" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+                              <input name="" message="{http://xmlns.oracle.com/SendMail/SendMail/BP_SendMail}requestMessage">
+                                 <message style="2" use="1" soapVersion="1" encodingStyle="" docLitWrapped="false" namespace="http://www.example.org" localPart="input_element" xmlns="http://oracle.com/oracle/webservices/mdds">
+                                    <part name="input" required="true" xmlns="">
+                                       <type>
+                                          <complexType elementQualified="true">
+                                             <sequence minOccurs="1" maxOccurs="1">
+                                                <part name="email_address" required="true" namespace="http://www.example.org" elementQualified="true">
+                                                   <type namespace="http://www.w3.org/2001/XMLSchema" localPart="string"/>
+                                                </part>
+                                                <part name="random_string" required="true" namespace="http://www.example.org" elementQualified="true">
+                                                   <type namespace="http://www.w3.org/2001/XMLSchema" localPart="string"/>
+                                                </part>
+                                             </sequence>
+                                          </complexType>
+                                       </type>
+                                    </part>
+                                 </message>
+                              </input>
+                              <output name="" message="{http://xmlns.oracle.com/SendMail/SendMail/BP_SendMail}replyMessage">
+                                 <message style="2" use="1" soapVersion="1" encodingStyle="" docLitWrapped="false" namespace="http://xmlns.oracle.com/singleString" localPart="singleString" xmlns="http://oracle.com/oracle/webservices/mdds">
+                                    <part name="output" required="true" xmlns="">
+                                       <type namespace="http://www.w3.org/2001/XMLSchema" localPart="string"/>
+                                    </part>
+                                 </message>
+                              </output>
+                              <fault name="executefault" message="{http://xmlns.oracle.com/SendMail/SendMail/BP_SendMail}faultMessage">
+                                 <message style="2" use="1" soapVersion="1" encodingStyle="" docLitWrapped="false" namespace="http://schemas.xmlsoap.org/soap/envelope/" localPart="Fault" xmlns="http://oracle.com/oracle/webservices/mdds">
+                                    <part name="fault" required="false" xmlns="">
+                                       <type>
+                                          <complexType elementQualified="true">
+                                             <part name="faultcode" required="false" nillable="true" namespace="http://schemas.xmlsoap.org/soap/envelope/" elementQualified="false">
+                                                <type namespace="http://www.w3.org/2001/XMLSchema" localPart="string"/>
+                                             </part>
+                                             <part name="faultstring" required="false" nillable="true" namespace="http://schemas.xmlsoap.org/soap/envelope/" elementQualified="false">
+                                                <type namespace="http://www.w3.org/2001/XMLSchema" localPart="string"/>
+                                             </part>
+                                             <part name="detail" required="false" nillable="true" namespace="http://schemas.xmlsoap.org/soap/envelope/" elementQualified="false">
+                                                <type>
+                                                   <complexType elementQualified="true">
+                                                      <part name="fault" required="true" elementQualified="false">
+                                                         <type namespace="http://www.w3.org/2001/XMLSchema" localPart="string"/>
+                                                      </part>
+                                                   </complexType>
+                                                </type>
+                                             </part>
+                                          </complexType>
+                                       </type>
+                                    </part>
+                                 </message>
+                              </fault>
+                           </operation>
+                        </port>
+                     </service>
+                  </model>
+               </wsconnection>
+            </Contents>
+         </XmlRefAddr>
+      </RefAddresses>
+   </Reference>
+   <Reference name="DC_SendEmail" className="oracle.adf.model.connection.webservice.impl.WebServiceConnectionImpl" xmlns="">
+      <Factory className="oracle.adf.model.connection.webservice.api.WebServiceConnectionFactory"/>
+      <RefAddresses>
+         <XmlRefAddr addrType="WebServiceConnection">
+            <Contents>
+               <wsconnection description="http://fmw.nishat.net:8001/soa-infra/services/default/SendMail/bp_sendmail_client_ep?WSDL" service="{http://xmlns.oracle.com/SendMail/SendMail/BP_SendMail}bp_sendmail_client_ep">
+                  <model name="{http://xmlns.oracle.com/SendMail/SendMail/BP_SendMail}BP_SendMail" xmlns="http://oracle.com/ws/model">
+                     <types xmlns="http://oracle.com/oracle/webservices/mdds">
+                        <types-in-elements/>
+                     </types>
+                     <service name="{http://xmlns.oracle.com/SendMail/SendMail/BP_SendMail}bp_sendmail_client_ep">
+                        <port name="execute_pt" binding="{http://xmlns.oracle.com/SendMail/SendMail/BP_SendMail}execute_pttBinding" portType="{http://xmlns.oracle.com/SendMail/SendMail/BP_SendMail}execute_ptt">
+                           <soap addressUrl="http://fmw.nishat.net:8001/soa-infra/services/default/SendMail/bp_sendmail_client_ep" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+                           <operation name="execute">
+                              <soap soapAction="execute" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+                              <input name="" message="{http://xmlns.oracle.com/SendMail/SendMail/BP_SendMail}requestMessage">
+                                 <message style="2" use="1" soapVersion="1" encodingStyle="" docLitWrapped="false" namespace="http://www.example.org" localPart="input_element" xmlns="http://oracle.com/oracle/webservices/mdds">
+                                    <part name="input" required="true" xmlns="">
+                                       <type>
+                                          <complexType elementQualified="true">
+                                             <sequence minOccurs="1" maxOccurs="1">
+                                                <part name="email_address" required="true" namespace="http://www.example.org" elementQualified="true">
+                                                   <type namespace="http://www.w3.org/2001/XMLSchema" localPart="string"/>
+                                                </part>
+                                                <part name="random_string" required="true" namespace="http://www.example.org" elementQualified="true">
+                                                   <type namespace="http://www.w3.org/2001/XMLSchema" localPart="string"/>
+                                                </part>
+                                             </sequence>
+                                          </complexType>
+                                       </type>
+                                    </part>
+                                 </message>
+                              </input>
+                              <output name="" message="{http://xmlns.oracle.com/SendMail/SendMail/BP_SendMail}replyMessage">
+                                 <message style="2" use="1" soapVersion="1" encodingStyle="" docLitWrapped="false" namespace="http://xmlns.oracle.com/singleString" localPart="singleString" xmlns="http://oracle.com/oracle/webservices/mdds">
+                                    <part name="output" required="true" xmlns="">
+                                       <type namespace="http://www.w3.org/2001/XMLSchema" localPart="string"/>
+                                    </part>
+                                 </message>
+                              </output>
+                              <fault name="executefault" message="{http://xmlns.oracle.com/SendMail/SendMail/BP_SendMail}faultMessage">
+                                 <message style="2" use="1" soapVersion="1" encodingStyle="" docLitWrapped="false" namespace="http://schemas.xmlsoap.org/soap/envelope/" localPart="Fault" xmlns="http://oracle.com/oracle/webservices/mdds">
+                                    <part name="fault" required="false" xmlns="">
+                                       <type>
+                                          <complexType elementQualified="true">
+                                             <part name="faultcode" required="false" nillable="true" namespace="http://schemas.xmlsoap.org/soap/envelope/" elementQualified="false">
+                                                <type namespace="http://www.w3.org/2001/XMLSchema" localPart="string"/>
+                                             </part>
+                                             <part name="faultstring" required="false" nillable="true" namespace="http://schemas.xmlsoap.org/soap/envelope/" elementQualified="false">
+                                                <type namespace="http://www.w3.org/2001/XMLSchema" localPart="string"/>
+                                             </part>
+                                             <part name="detail" required="false" nillable="true" namespace="http://schemas.xmlsoap.org/soap/envelope/" elementQualified="false">
+                                                <type>
+                                                   <complexType elementQualified="true">
+                                                      <part name="fault" required="true" elementQualified="false">
+                                                         <type namespace="http://www.w3.org/2001/XMLSchema" localPart="string"/>
+                                                      </part>
+                                                   </complexType>
+                                                </type>
+                                             </part>
+                                          </complexType>
+                                       </type>
+                                    </part>
+                                 </message>
+                              </fault>
+                           </operation>
+                        </port>
+                     </service>
+                  </model>
+               </wsconnection>
+            </Contents>
+         </XmlRefAddr>
+      </RefAddresses>
+   </Reference>
+   <Reference name="WS_DataControls" className="oracle.adf.model.connection.webservice.impl.WebServiceConnectionImpl" xmlns="">
+      <Factory className="oracle.adf.model.connection.webservice.api.WebServiceConnectionFactory"/>
+      <RefAddresses>
+         <XmlRefAddr addrType="WebServiceConnection">
+            <Contents>
+               <wsconnection description="http://fmw.nishat.net:8001/soa-infra/services/default/SendMail/bp_sendmail_client_ep?WSDL" service="{http://xmlns.oracle.com/SendMail/SendMail/BP_SendMail}bp_sendmail_client_ep">
+                  <model name="{http://xmlns.oracle.com/SendMail/SendMail/BP_SendMail}BP_SendMail" xmlns="http://oracle.com/ws/model">
+                     <types xmlns="http://oracle.com/oracle/webservices/mdds">
+                        <types-in-elements/>
+                     </types>
+                     <service name="{http://xmlns.oracle.com/SendMail/SendMail/BP_SendMail}bp_sendmail_client_ep">
+                        <port name="execute_pt" binding="{http://xmlns.oracle.com/SendMail/SendMail/BP_SendMail}execute_pttBinding" portType="{http://xmlns.oracle.com/SendMail/SendMail/BP_SendMail}execute_ptt">
+                           <soap addressUrl="http://fmw.nishat.net:8001/soa-infra/services/default/SendMail/bp_sendmail_client_ep" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+                           <operation name="execute">
+                              <soap soapAction="execute" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+                              <input name="" message="{http://xmlns.oracle.com/SendMail/SendMail/BP_SendMail}requestMessage">
+                                 <message style="2" use="1" soapVersion="1" encodingStyle="" docLitWrapped="false" namespace="http://www.example.org" localPart="input_element" xmlns="http://oracle.com/oracle/webservices/mdds">
+                                    <part name="input" required="true" xmlns="">
+                                       <type>
+                                          <complexType elementQualified="true">
+                                             <sequence minOccurs="1" maxOccurs="1">
+                                                <part name="email_address" required="true" namespace="http://www.example.org" elementQualified="true">
+                                                   <type namespace="http://www.w3.org/2001/XMLSchema" localPart="string"/>
+                                                </part>
+                                                <part name="random_string" required="true" namespace="http://www.example.org" elementQualified="true">
+                                                   <type namespace="http://www.w3.org/2001/XMLSchema" localPart="string"/>
+                                                </part>
+                                             </sequence>
+                                          </complexType>
+                                       </type>
+                                    </part>
+                                 </message>
+                              </input>
+                              <output name="" message="{http://xmlns.oracle.com/SendMail/SendMail/BP_SendMail}replyMessage">
+                                 <message style="2" use="1" soapVersion="1" encodingStyle="" docLitWrapped="false" namespace="http://xmlns.oracle.com/singleString" localPart="singleString" xmlns="http://oracle.com/oracle/webservices/mdds">
+                                    <part name="output" required="true" xmlns="">
+                                       <type namespace="http://www.w3.org/2001/XMLSchema" localPart="string"/>
+                                    </part>
+                                 </message>
+                              </output>
+                              <fault name="executefault" message="{http://xmlns.oracle.com/SendMail/SendMail/BP_SendMail}faultMessage">
+                                 <message style="2" use="1" soapVersion="1" encodingStyle="" docLitWrapped="false" namespace="http://schemas.xmlsoap.org/soap/envelope/" localPart="Fault" xmlns="http://oracle.com/oracle/webservices/mdds">
+                                    <part name="fault" required="false" xmlns="">
+                                       <type>
+                                          <complexType elementQualified="true">
+                                             <part name="faultcode" required="false" nillable="true" namespace="http://schemas.xmlsoap.org/soap/envelope/" elementQualified="false">
+                                                <type namespace="http://www.w3.org/2001/XMLSchema" localPart="string"/>
+                                             </part>
+                                             <part name="faultstring" required="false" nillable="true" namespace="http://schemas.xmlsoap.org/soap/envelope/" elementQualified="false">
+                                                <type namespace="http://www.w3.org/2001/XMLSchema" localPart="string"/>
+                                             </part>
+                                             <part name="detail" required="false" nillable="true" namespace="http://schemas.xmlsoap.org/soap/envelope/" elementQualified="false">
+                                                <type>
+                                                   <complexType elementQualified="true">
+                                                      <part name="fault" required="true" elementQualified="false">
+                                                         <type namespace="http://www.w3.org/2001/XMLSchema" localPart="string"/>
+                                                      </part>
+                                                   </complexType>
+                                                </type>
+                                             </part>
+                                          </complexType>
+                                       </type>
+                                    </part>
+                                 </message>
+                              </fault>
+                           </operation>
+                        </port>
+                     </service>
+                  </model>
+               </wsconnection>
+            </Contents>
+         </XmlRefAddr>
+      </RefAddresses>
+   </Reference>
+   <Reference name="xx_e_portal" className="oracle.jdeveloper.db.adapter.DatabaseProvider" credentialStoreKey="xx_e_portal" xmlns="">
+      <Factory className="oracle.jdeveloper.db.adapter.DatabaseProviderFactory"/>
+      <RefAddresses>
+         <StringRefAddr addrType="sid">
+            <Contents>prod</Contents>
+         </StringRefAddr>
+         <StringRefAddr addrType="subtype">
+            <Contents>oraJDBC</Contents>
+         </StringRefAddr>
+         <StringRefAddr addrType="port">
+            <Contents>1522</Contents>
+         </StringRefAddr>
+         <StringRefAddr addrType="hostname">
+            <Contents>192.168.0.31</Contents>
+         </StringRefAddr>
+         <StringRefAddr addrType="user">
+            <Contents>XX_E_PORTAL</Contents>
+         </StringRefAddr>
+         <SecureRefAddr addrType="password"/>
+         <StringRefAddr addrType="DeployPassword">
+            <Contents>true</Contents>
+         </StringRefAddr>
+         <StringRefAddr addrType="oraDriverType">
+            <Contents>thin</Contents>
+         </StringRefAddr>
+      </RefAddresses>
+   </Reference>
+</References>

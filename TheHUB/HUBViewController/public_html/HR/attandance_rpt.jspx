@@ -1,0 +1,181 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <f:view>
+    <af:document id="d1">
+      <af:messages id="m1"/>
+      <af:form id="f1">
+        <af:pageTemplate viewId="/template/hub_template.jspx" id="pt1">
+          <f:facet name="header"/>
+          <f:facet name="footer"/>
+          <f:facet name="left"/>
+          <f:facet name="content">
+            <af:panelGroupLayout id="pgl1" layout="vertical" halign="center">
+              <af:panelBox text="Late Sitting " id="pb1">
+                <f:facet name="toolbar"/>
+                <af:panelGroupLayout id="pgl3">
+                  <af:panelGroupLayout layout="vertical" id="pgl6">
+                    <af:query id="qryId2" headerText="Search"
+                              value="#{bindings.VORptLateSittingCriteriaQuery1.queryDescriptor}"
+                              model="#{bindings.VORptLateSittingCriteriaQuery1.queryModel}"
+                              queryListener="#{bindings.VORptLateSittingCriteriaQuery1.processQuery}"
+                              queryOperationListener="#{bindings.VORptLateSittingCriteriaQuery1.processQueryOperation}"
+                              resultComponentId="::resId2"
+                              saveQueryMode="hidden" disclosed="true"/>
+                    <af:table value="#{bindings.VO_RptLateSitting11.collectionModel}"
+                              var="row"
+                              rows="#{bindings.VO_RptLateSitting11.rangeSize}"
+                              emptyText="#{bindings.VO_RptLateSitting11.viewable ? 'No data to display.' : 'Access Denied.'}"
+                              fetchSize="#{bindings.VO_RptLateSitting11.rangeSize}"
+                              rowBandingInterval="0"
+                              filterModel="#{bindings.VORptLateSittingCriteriaQuery1.queryDescriptor}"
+                              queryListener="#{bindings.VORptLateSittingCriteriaQuery1.processQuery}"
+                              filterVisible="true" 
+                              selectedRowKeys="#{bindings.VO_RptLateSitting11.collectionModel.selectedRow}"
+                              selectionListener="#{bindings.VO_RptLateSitting11.collectionModel.makeCurrent}"
+                              rowSelection="single" id="resId2" width="100%">
+                      <af:column sortProperty="#{bindings.VO_RptLateSitting11.hints.HierarchyName.name}" sortable="true"
+                                 headerText="Deptt. Name"
+                                 id="resId2c1" width="300">
+                        <af:outputText value="#{row.HierarchyName}" id="ot8"/>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.VO_RptLateSitting11.hints.FullNameChild.name}" sortable="true"
+                                 headerText="Employee Name"
+                                 id="resId2c2">
+                        <af:outputText value="#{row.FullNameChild}" id="ot10"/>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.VO_RptLateSitting11.hints.AttendanceDate.name}" sortable="true"
+                                 headerText="In Time"
+                                 id="resId2c3">
+                        <af:outputText value="#{row.AttendanceDate}" id="ot11">
+                          <af:convertDateTime pattern="#{bindings.VO_RptLateSitting11.hints.AttendanceDate.format}"/>
+                        </af:outputText>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.VO_RptLateSitting11.hints.MaxOutTime.name}" sortable="true"
+                                 headerText="Out Time"
+                                 id="resId2c4">
+                        <af:outputText value="#{row.MaxOutTime}" id="ot9"/>
+                      </af:column>
+                    </af:table>
+                  </af:panelGroupLayout>
+                </af:panelGroupLayout>
+              </af:panelBox>
+              <af:panelBox text="Saturday Working" id="pb2">
+                <f:facet name="toolbar"/>
+                <af:panelGroupLayout id="pgl5">
+                  <af:panelGroupLayout layout="vertical" id="pgl4">
+                    <af:panelGroupLayout layout="vertical" id="pgl9">
+                      <af:query id="qryId1" headerText="Search" disclosed="true"
+                                value="#{bindings.VOSATWORKINGCriteria1Query.queryDescriptor}"
+                                model="#{bindings.VOSATWORKINGCriteria1Query.queryModel}"
+                                queryListener="#{bindings.VOSATWORKINGCriteria1Query.processQuery}"
+                                queryOperationListener="#{bindings.VOSATWORKINGCriteria1Query.processQueryOperation}"
+                                resultComponentId="::resId1"
+                                saveQueryMode="hidden"/>
+                      <af:table value="#{bindings.VO_SATWORKING1.collectionModel}"
+                                var="row"
+                                rows="#{bindings.VO_SATWORKING1.rangeSize}"
+                                emptyText="#{bindings.VO_SATWORKING1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                fetchSize="#{bindings.VO_SATWORKING1.rangeSize}"
+                                rowBandingInterval="0" id="resId1" width="100%">
+                        <af:column sortProperty="#{bindings.VO_SATWORKING1.hints.HierarchyName.name}"
+                                   sortable="false"
+                                   headerText="Deptt.Name"
+                                   id="resId1c1" width="300">
+                          <af:outputText value="#{row.HierarchyName}" id="ot5"/>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.VO_SATWORKING1.hints.FullNameChild.name}"
+                                   sortable="false"
+                                   headerText="Employee Name"
+                                   id="resId1c2" width="200">
+                          <af:outputText value="#{row.FullNameChild}" id="ot7"/>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.VO_SATWORKING1.hints.AttendanceDate.name}"
+                                   sortable="false"
+                                   headerText="#{bindings.VO_SATWORKING1.hints.AttendanceDate.label}"
+                                   id="resId1c3" rendered="false">
+                          <af:outputText value="#{row.AttendanceDate}" id="ot4">
+                            <af:convertDateTime pattern="#{bindings.VO_SATWORKING1.hints.AttendanceDate.format}"/>
+                          </af:outputText>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.VO_SATWORKING1.hints.MinInTime.name}"
+                                   sortable="false"
+                                   headerText="In Time"
+                                   id="resId1c4" width="200">
+                          <af:outputText value="#{row.MinInTime}" id="ot6"/>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.VO_SATWORKING1.hints.MaxOutTime.name}"
+                                   sortable="false"
+                                   headerText="Out Time"
+                                   id="resId1c5" width="200">
+                          <af:outputText value="#{row.MaxOutTime}" id="ot3"/>
+                        </af:column>
+                      </af:table>
+                    </af:panelGroupLayout>
+                  </af:panelGroupLayout>
+                </af:panelGroupLayout>
+              </af:panelBox>
+              <af:panelBox text="Sunday Working" id="pb3">
+                <f:facet name="toolbar"/>
+                <af:panelGroupLayout id="pgl7">
+                  <af:panelGroupLayout layout="vertical" id="pgl8">
+                    <af:query id="qryId3" headerText="Search" disclosed="true"
+                              value="#{bindings.VOSUNWORKINGCriteriaQuery.queryDescriptor}"
+                              model="#{bindings.VOSUNWORKINGCriteriaQuery.queryModel}"
+                              queryListener="#{bindings.VOSUNWORKINGCriteriaQuery.processQuery}"
+                              queryOperationListener="#{bindings.VOSUNWORKINGCriteriaQuery.processQueryOperation}"
+                              resultComponentId="::resId3"
+                              saveQueryMode="hidden"/>
+                    <af:table value="#{bindings.VO_SUNWORKING1.collectionModel}"
+                              var="row"
+                              rows="#{bindings.VO_SUNWORKING1.rangeSize}"
+                              emptyText="#{bindings.VO_SUNWORKING1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                              fetchSize="#{bindings.VO_SUNWORKING1.rangeSize}"
+                              rowBandingInterval="0"
+                              filterModel="#{bindings.VOSUNWORKINGCriteriaQuery.queryDescriptor}"
+                              queryListener="#{bindings.VOSUNWORKINGCriteriaQuery.processQuery}"
+                              filterVisible="true"
+                              selectedRowKeys="#{bindings.VO_SUNWORKING1.collectionModel.selectedRow}"
+                              selectionListener="#{bindings.VO_SUNWORKING1.collectionModel.makeCurrent}"
+                              rowSelection="single" id="resId3" width="100%">
+                      <af:column sortProperty="#{bindings.VO_SUNWORKING1.hints.HierarchyName.name}" sortable="true"
+                                 headerText="Deptt. Name"
+                                 id="resId3c1" width="300">
+                        <af:outputText value="#{row.HierarchyName}" id="ot16"/>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.VO_SUNWORKING1.hints.FullNameChild.name}" sortable="true"
+                                 headerText="Employee Name"
+                                 id="resId3c2">
+                        <af:outputText value="#{row.FullNameChild}" id="ot12"/>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.VO_SUNWORKING1.hints.AttendanceDate.name}" sortable="true"
+                                 headerText="#{bindings.VO_SUNWORKING1.hints.AttendanceDate.label}"
+                                 id="resId3c3" rendered="false">
+                        <af:outputText value="#{row.AttendanceDate}" id="ot14">
+                          <af:convertDateTime pattern="#{bindings.VO_SUNWORKING1.hints.AttendanceDate.format}"/>
+                        </af:outputText>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.VO_SUNWORKING1.hints.MinInTime.name}" sortable="true"
+                                 headerText="In Time"
+                                 id="resId3c4">
+                        <af:outputText value="#{row.MinInTime}" id="ot15"/>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.VO_SUNWORKING1.hints.MaxOutTime.name}" sortable="true"
+                                 headerText="Out Time"
+                                 id="resId3c5">
+                        <af:outputText value="#{row.MaxOutTime}" id="ot13"/>
+                      </af:column>
+                    </af:table>
+                  </af:panelGroupLayout>
+                </af:panelGroupLayout>
+              </af:panelBox>
+            </af:panelGroupLayout>
+          </f:facet>
+        </af:pageTemplate>
+      </af:form>
+    </af:document>
+  </f:view>
+</jsp:root>

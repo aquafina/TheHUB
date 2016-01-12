@@ -1,0 +1,232 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <f:view>
+    <af:document id="d1">
+      <af:messages id="m1"/>
+      <af:form id="f1">
+        <af:pageTemplate viewId="/template/hub_template.jspx" id="pt1">
+          <f:facet name="header"/>
+          <f:facet name="footer"/>
+          <f:facet name="left"/>
+          <f:facet name="content">
+            <af:group id="g1">
+              <af:panelSplitter id="ps1" splitterPosition="272"
+                                inlineStyle="width:inherit; height:inherit;">
+                <f:facet name="first">
+                  <af:panelGroupLayout id="pgl8"
+                                       layout="vertical" halign="center"
+                                       valign="bottom">
+                    <af:panelFormLayout id="pfl1">
+                      <af:selectOneChoice value="#{bindings.HoursFlexible.inputValue}"
+                                          label="#{bindings.HoursFlexible.label}"
+                                          required="#{bindings.HoursFlexible.hints.mandatory}"
+                                          shortDesc="#{bindings.HoursFlexible.hints.tooltip}"
+                                          id="soc2"
+                                          partialTriggers="fullNameChildId"
+                                          autoSubmit="true">
+                        <f:selectItems value="#{bindings.HoursFlexible.items}"
+                                       id="si2"/>
+                      </af:selectOneChoice>
+                      <af:inputText value="#{bindings.HoursFlexible1.inputValue}"
+                                    label="#{bindings.HoursFlexible1.hints.label}"
+                                    required="#{bindings.HoursFlexible1.hints.mandatory}"
+                                    columns="#{bindings.HoursFlexible1.hints.displayWidth}"
+                                    maximumLength="#{bindings.HoursFlexible1.hints.precision}"
+                                    shortDesc="#{bindings.HoursFlexible1.hints.tooltip}"
+                                    id="it6" visible="false">
+                        <f:validator binding="#{bindings.HoursFlexible1.validator}"/>
+                      </af:inputText>
+                      <af:inputListOfValues id="fullNameChildId"
+                                            popupTitle="Search and Select: #{bindings.FullNameChild.hints.label}"
+                                            value="#{bindings.FullNameChild.inputValue}"
+                                            label="Employee Name:"
+                                            model="#{bindings.FullNameChild.listOfValuesModel}"
+                                            required="#{bindings.FullNameChild.hints.mandatory}"
+                                            columns="25"
+                                            shortDesc="#{bindings.FullNameChild.hints.tooltip}"
+                                            autoSubmit="true">
+                        <f:validator binding="#{bindings.FullNameChild.validator}"/>
+                      </af:inputListOfValues>
+                      <af:inputText value="#{bindings.HierarchyName.inputValue}"
+                                    label="Department:"
+                                    required="#{bindings.HierarchyName.hints.mandatory}"
+                                    columns="25"
+                                    maximumLength="#{bindings.HierarchyName.hints.precision}"
+                                    shortDesc="#{bindings.HierarchyName.hints.tooltip}"
+                                    partialTriggers="fullNameChildId" id="it2"
+                                    readOnly="true">
+                        <f:validator binding="#{bindings.HierarchyName.validator}"/>
+                      </af:inputText>
+                      <af:selectOneChoice value="#{bindings.EmployeeType.inputValue}"
+                                          label="Employee Type:"
+                                          required="#{bindings.EmployeeType.hints.mandatory}"
+                                          shortDesc="#{bindings.EmployeeType.hints.tooltip}"
+                                          id="soc1" autoSubmit="true"
+                                          partialTriggers="fullNameChildId">
+                        <f:selectItems value="#{bindings.EmployeeType.items}"
+                                       id="si1"/>
+                      </af:selectOneChoice>
+                      <af:inputText value="#{bindings.PersonId.inputValue}"
+                                    label="#{bindings.PersonId.hints.label}"
+                                    required="#{bindings.PersonId.hints.mandatory}"
+                                    columns="#{bindings.PersonId.hints.displayWidth}"
+                                    maximumLength="#{bindings.PersonId.hints.precision}"
+                                    shortDesc="#{bindings.PersonId.hints.tooltip}"
+                                    id="it1" partialTriggers="fullNameChildId"
+                                    binding="#{HROperationBean.itPersonId}"
+                                    visible="false">
+                        <f:validator binding="#{bindings.PersonId.validator}"/>
+                        <af:convertNumber groupingUsed="false"
+                                          pattern="#{bindings.PersonId.format}"/>
+                      </af:inputText>
+                      <af:inputText value="#{bindings.Mins.inputValue}"
+                                    label="#{bindings.Mins.hints.label}"
+                                    required="#{bindings.Mins.hints.mandatory}"
+                                    columns="#{bindings.Mins.hints.displayWidth}"
+                                    maximumLength="#{bindings.Mins.hints.precision}"
+                                    shortDesc="#{bindings.Mins.hints.tooltip}"
+                                    id="it4"
+                                    partialTriggers="soc2 fullNameChildId"
+                                    binding="#{HROperationBean.itMins}"
+                                    visible="false">
+                        <f:validator binding="#{bindings.Mins.validator}"/>
+                      </af:inputText>
+                      <af:inputText value="#{bindings.EmpTypeId.inputValue}"
+                                    label="#{bindings.EmpTypeId.hints.label}"
+                                    required="#{bindings.EmpTypeId.hints.mandatory}"
+                                    columns="#{bindings.EmpTypeId.hints.displayWidth}"
+                                    maximumLength="#{bindings.EmpTypeId.hints.precision}"
+                                    shortDesc="#{bindings.EmpTypeId.hints.tooltip}"
+                                    id="it3" partialTriggers="soc1"
+                                    binding="#{HROperationBean.itPersonTypeId}"
+                                    visible="false">
+                        <f:validator binding="#{bindings.EmpTypeId.validator}"/>
+                        <af:convertNumber groupingUsed="false"
+                                          pattern="#{bindings.EmpTypeId.format}"/>
+                      </af:inputText>
+                      <af:inputText value="#{bindings.WorkingTime.inputValue}"
+                                    label="#{bindings.WorkingTime.hints.label}"
+                                    required="#{bindings.WorkingTime.hints.mandatory}"
+                                    columns="#{bindings.WorkingTime.hints.displayWidth}"
+                                    maximumLength="#{bindings.WorkingTime.hints.precision}"
+                                    shortDesc="#{bindings.WorkingTime.hints.tooltip}"
+                                    id="it5" partialTriggers="soc1"
+                                    binding="#{HROperationBean.itWorkingTime}"
+                                    visible="false">
+                        <f:validator binding="#{bindings.WorkingTime.validator}"/>
+                      </af:inputText>
+                      <f:facet name="footer">
+                        <af:panelGroupLayout layout="vertical" id="pgl4">
+                          <af:panelGroupLayout id="pgl7" layout="horizontal">
+                            <af:commandButton text="Save" id="cb5"
+                                              inlineStyle="width:100px; text-align:center;"
+                                              action="#{HROperationBean.saveSettings}"/>
+                          </af:panelGroupLayout>
+                        </af:panelGroupLayout>
+                      </f:facet>
+                    </af:panelFormLayout>
+                    <af:goLink text="Employee Joining Report" id="gl1"
+                               destination="fmw.nishat.net:7003/MIS_RPT-ViewController1-context-root/faces/joining.jspx"/>
+                    <af:goLink text="Employee Strength Report" id="gl2"
+                               destination="fmw.nishat.net:7003/MIS_RPT-ViewController1-context-root/faces/strength.jspx"/>
+                    <af:goLink text="Employee Joining Report" id="gl3"
+                               destination="fmw.nishat.net:7003/MIS_RPT-ViewController1-context-root/faces/propation.jspx"/>
+                    <af:goLink text="Employee Confirmation Report" id="gl4"
+                               destination="fmw.nishat.net:7003/MIS_RPT-ViewController1-context-root/faces/confirmation.jspx"/>
+                    <af:goLink text="Employee Attendance Reports" id="gl5"
+                               destination="fmw.nishat.net:7003/TheHUB/faces/HR/attandance_rpt.jspx"/>
+                  </af:panelGroupLayout>
+                </f:facet>
+                <f:facet name="second">
+                  <af:panelGroupLayout id="pgl1"
+                                       layout="vertical" halign="start">
+                    <af:commandButton actionListener="#{bindings.Commit.execute}"
+                                      text="Save"
+                                      id="cb1"/>
+                    <af:table value="#{bindings.VO_HolidayCalendar1.collectionModel}"
+                              var="row"
+                              rows="#{bindings.VO_HolidayCalendar1.rangeSize}"
+                              emptyText="#{bindings.VO_HolidayCalendar1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                              fetchSize="#{bindings.VO_HolidayCalendar1.rangeSize}"
+                              rowBandingInterval="0"
+                              filterModel="#{bindings.VO_HolidayCalendar1Query.queryDescriptor}"
+                              queryListener="#{bindings.VO_HolidayCalendar1Query.processQuery}"
+                              filterVisible="true" varStatus="vs"
+                              selectedRowKeys="#{bindings.VO_HolidayCalendar1.collectionModel.selectedRow}"
+                              selectionListener="#{bindings.VO_HolidayCalendar1.collectionModel.makeCurrent}"
+                              rowSelection="single" id="t1" width="100%"
+                              inlineStyle="height:500px">
+                      <af:column sortProperty="#{bindings.VO_HolidayCalendar1.hints.TransactionDate.name}"
+                                 filterable="true" sortable="false"
+                                 headerText="Date"
+                                 id="c3" align="center">
+                        <f:facet name="filter">
+                          <af:inputDate value="#{vs.filterCriteria.TransactionDate}"
+                                        id="id1"/>
+                        </f:facet>
+                        <af:inputDate value="#{row.bindings.TransactionDate.inputValue}"
+                                      label="#{bindings.VO_HolidayCalendar1.hints.TransactionDate.label}"
+                                      required="#{bindings.VO_HolidayCalendar1.hints.TransactionDate.mandatory}"
+                                      shortDesc="#{bindings.VO_HolidayCalendar1.hints.TransactionDate.tooltip}"
+                                      id="id2" readOnly="true">
+                          <f:validator binding="#{row.bindings.TransactionDate.validator}"/>
+                          <af:convertDateTime pattern="#{bindings.VO_HolidayCalendar1.hints.TransactionDate.format}"/>
+                        </af:inputDate>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.VO_HolidayCalendar1.hints.DayOfWeek.name}"
+                                 filterable="true" sortable="false"
+                                 headerText="Day"
+                                 id="c1" align="center"
+                                 inlineStyle="padding:5px"
+                                 filterFeatures="caseInsensitive">
+                        <af:inputText value="#{row.bindings.DayOfWeek.inputValue}"
+                                      label="#{bindings.VO_HolidayCalendar1.hints.DayOfWeek.label}"
+                                      required="#{bindings.VO_HolidayCalendar1.hints.DayOfWeek.mandatory}"
+                                      columns="#{bindings.VO_HolidayCalendar1.hints.DayOfWeek.displayWidth}"
+                                      maximumLength="#{bindings.VO_HolidayCalendar1.hints.DayOfWeek.precision}"
+                                      shortDesc="#{bindings.VO_HolidayCalendar1.hints.DayOfWeek.tooltip}"
+                                      id="it7" readOnly="true">
+                          <f:validator binding="#{row.bindings.DayOfWeek.validator}"/>
+                        </af:inputText>
+                      </af:column>
+                      <af:column id="c4" width="200"
+                                 headerText="Day Description" align="center">
+                        <af:selectOneChoice value="#{row.bindings.Description.inputValue}"
+                                            label="#{row.bindings.Description.label}"
+                                            required="#{bindings.VO_HolidayCalendar1.hints.Description.mandatory}"
+                                            shortDesc="#{bindings.VO_HolidayCalendar1.hints.Description.tooltip}"
+                                            id="soc3">
+                          <f:selectItems value="#{row.bindings.Description.items}"
+                                         id="si3"/>
+                        </af:selectOneChoice>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.VO_HolidayCalendar1.hints.Description.name}"
+                                 filterable="true" sortable="false"
+                                 headerText="#{bindings.VO_HolidayCalendar1.hints.Description.label}"
+                                 id="c2" width="300" rendered="false">
+                        <af:inputText value="#{row.bindings.Description.inputValue}"
+                                      label="#{bindings.VO_HolidayCalendar1.hints.Description.label}"
+                                      required="#{bindings.VO_HolidayCalendar1.hints.Description.mandatory}"
+                                      columns="300"
+                                      maximumLength="#{bindings.VO_HolidayCalendar1.hints.Description.precision}"
+                                      shortDesc="#{bindings.VO_HolidayCalendar1.hints.Description.tooltip}"
+                                      id="it8">
+                          <f:validator binding="#{row.bindings.Description.validator}"/>
+                        </af:inputText>
+                      </af:column>
+                    </af:table>
+                  </af:panelGroupLayout>
+                </f:facet>
+              </af:panelSplitter>
+            </af:group>
+          </f:facet>
+        </af:pageTemplate>
+      </af:form>
+    </af:document>
+  </f:view>
+  <!--oracle-jdev-comment:preferred-managed-bean-name:HROperationBean-->
+</jsp:root>

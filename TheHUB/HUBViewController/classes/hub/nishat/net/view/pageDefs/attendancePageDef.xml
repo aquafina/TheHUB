@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="attendancePageDef"
+                Package="hub.nishat.net.view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="VO_Attendance1" RangeSize="25"
+              DataControl="HubModuleDataControl" id="VO_Attendance1Iterator"/>
+    <searchRegion Binds="VO_Attendance1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="VO_Attendance1Query"/>
+    <searchRegion Criteria="VO_AttendanceCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="VO_Attendance1Iterator"
+                  id="VOAttendanceCriteriaQuery"/>
+    <iterator Binds="VO_LeaveTypes1" RangeSize="25"
+              DataControl="HubModuleDataControl" id="VO_LeaveTypes1Iterator"/>
+    <iterator id="VO_LeaveApproval1Iterator" Binds="VO_LeaveApproval1"
+              DataControl="HubModuleDataControl" RangeSize="25"/>
+    <iterator id="VO_EmpLeaveBalance1Iterator" Binds="VO_EmpLeaveBalance1"
+              DataControl="HubModuleDataControl" RangeSize="25"/>
+    <iterator Binds="VO_LeaveBalanceReport1" RangeSize="25"
+              DataControl="HubModuleDataControl"
+              id="VO_LeaveBalanceReport1Iterator"/>
+    <iterator id="VO_EmployeeLeaveBalance1Iterator"
+              Binds="VO_EmployeeLeaveBalance1"
+              DataControl="HubModuleDataControl" RangeSize="25"/>
+    <iterator id="VO_AtdPosting1Iterator" Binds="VO_AtdPosting1"
+              DataControl="HubModuleDataControl" RangeSize="25"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="VO_Attendance1Iterator" id="VO_Attendance1">
+      <nodeDefinition DefName="hub.nishat.net.model.VO.VO_Attendance"
+                      Name="VO_Attendance10">
+        <AttrNames>
+          <Item Value="EmpAtdId"/>
+          <Item Value="EmpId"/>
+          <Item Value="EmpName"/>
+          <Item Value="CardNum"/>
+          <Item Value="ExpectedWorkHours"/>
+          <Item Value="MinInTime"/>
+          <Item Value="MaxOutTime"/>
+          <Item Value="Outtime"/>
+          <Item Value="Intime"/>
+          <Item Value="EffectiveWorkedHours"/>
+          <Item Value="MaxStartTime"/>
+          <Item Value="MaxEndTime"/>
+          <Item Value="EndTime"/>
+          <Item Value="StartTime"/>
+          <Item Value="Day"/>
+          <Item Value="Today"/>
+          <Item Value="LateIn"/>
+          <Item Value="EarlyOut"/>
+          <Item Value="Month"/>
+          <Item Value="Year"/>
+          <Item Value="LeaveType"/>
+          <Item Value="LateSittingMinTiming"/>
+          <Item Value="Sysdate"/>
+          <Item Value="AttendanceDate"/>
+          <Item Value="DayStatus"/>
+          <Item Value="PolicyExceptionApprovedFlag"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="VO_Attendance1Iterator" id="MaxOutTime">
+      <AttrNames>
+        <Item Value="MaxOutTime"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_LeaveTypes1Iterator" id="LeaveTypeId">
+      <AttrNames>
+        <Item Value="LeaveTypeId"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="VO_LeaveTypes1Iterator" StaticList="false"
+          Uses="LOV_LeaveType" id="LeaveType" DTSupportsMRU="false"/>
+    <attributeValues IterBinding="VO_Attendance1Iterator" id="EmpAtdId">
+      <AttrNames>
+        <Item Value="EmpAtdId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_Attendance1Iterator" id="EmpId">
+      <AttrNames>
+        <Item Value="EmpId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_Attendance1Iterator" id="EmpName">
+      <AttrNames>
+        <Item Value="EmpName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_Attendance1Iterator" id="CardNum">
+      <AttrNames>
+        <Item Value="CardNum"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_Attendance1Iterator"
+                     id="ExpectedWorkHours">
+      <AttrNames>
+        <Item Value="ExpectedWorkHours"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_Attendance1Iterator" id="MinInTime">
+      <AttrNames>
+        <Item Value="MinInTime"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_Attendance1Iterator" id="Outtime">
+      <AttrNames>
+        <Item Value="Outtime"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_Attendance1Iterator" id="Intime">
+      <AttrNames>
+        <Item Value="Intime"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_Attendance1Iterator"
+                     id="EffectiveWorkedHours">
+      <AttrNames>
+        <Item Value="EffectiveWorkedHours"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_Attendance1Iterator" id="MaxStartTime">
+      <AttrNames>
+        <Item Value="MaxStartTime"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_Attendance1Iterator" id="MaxEndTime">
+      <AttrNames>
+        <Item Value="MaxEndTime"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_Attendance1Iterator" id="EndTime">
+      <AttrNames>
+        <Item Value="EndTime"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_Attendance1Iterator" id="StartTime">
+      <AttrNames>
+        <Item Value="StartTime"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_Attendance1Iterator" id="AttendanceDate">
+      <AttrNames>
+        <Item Value="AttendanceDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_Attendance1Iterator"
+                     id="LateSittingMinTiming">
+      <AttrNames>
+        <Item Value="LateSittingMinTiming"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_Attendance1Iterator" id="Day">
+      <AttrNames>
+        <Item Value="Day"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_Attendance1Iterator" id="Today">
+      <AttrNames>
+        <Item Value="Today"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_Attendance1Iterator" id="LateIn">
+      <AttrNames>
+        <Item Value="LateIn"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_Attendance1Iterator" id="EarlyOut">
+      <AttrNames>
+        <Item Value="EarlyOut"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_Attendance1Iterator" id="DayStatus">
+      <AttrNames>
+        <Item Value="DayStatus"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_Attendance1Iterator" id="Sysdate">
+      <AttrNames>
+        <Item Value="Sysdate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_LeaveBalanceReport1Iterator" id="UserId">
+      <AttrNames>
+        <Item Value="UserId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_LeaveBalanceReport1Iterator"
+                     id="TotalLeaves">
+      <AttrNames>
+        <Item Value="TotalLeaves"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_LeaveBalanceReport1Iterator"
+                     id="AvailedLeaves">
+      <AttrNames>
+        <Item Value="AvailedLeaves"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_LeaveBalanceReport1Iterator" id="Balance">
+      <AttrNames>
+        <Item Value="Balance"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_LeaveBalanceReport1Iterator" id="Year">
+      <AttrNames>
+        <Item Value="Year"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="VO_LeaveBalanceReport1Iterator" StaticList="false"
+          Uses="LOV_Year_Lov" id="Year_Lov" DTSupportsMRU="false"/>
+    <attributeValues IterBinding="VO_Attendance1Iterator" id="Month">
+      <AttrNames>
+        <Item Value="Month"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

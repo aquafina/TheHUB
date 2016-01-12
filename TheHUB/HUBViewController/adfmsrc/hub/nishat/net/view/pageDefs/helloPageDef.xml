@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="helloPageDef"
+                Package="hub.nishat.net.view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="VO_SupervisorOrgChart1" RangeSize="25"
+              DataControl="HubModuleDataControl"
+              id="VO_SupervisorOrgChart1Iterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="VO_SupervisorOrgChart1Iterator"
+          id="VO_SupervisorOrgChart1">
+      <nodeDefinition DefName="hub.nishat.net.model.VO.Supervisor.VO_SupervisorOrgChart"
+                      Name="VO_SupervisorOrgChart10">
+        <AttrNames>
+          <Item Value="HierarchyName"/>
+          <Item Value="ParentPersonId"/>
+          <Item Value="ParentPosition"/>
+          <Item Value="FullNameParent"/>
+          <Item Value="ParentPositionId"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="ChildPersonIdVO_SupervisorOrgChart"/>
+        </Accessors>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

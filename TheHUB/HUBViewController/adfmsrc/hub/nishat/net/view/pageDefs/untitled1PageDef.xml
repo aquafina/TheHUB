@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="untitled1PageDef"
+                Package="hub.nishat.net.view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="VO_Attendance1" RangeSize="25"
+              DataControl="HubModuleDataControl" id="VO_Attendance1Iterator"/>
+    <searchRegion Criteria="VO_AttendanceCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="VO_Attendance1Iterator"
+                  id="VOAttendanceCriteriaQuery"/>
+    <iterator Binds="VO_LeavesAndPolicyExceptions1" RangeSize="25"
+              DataControl="HubModuleDataControl"
+              id="VO_LeavesAndPolicyExceptions1Iterator"/>
+    <iterator Binds="VO_SupervisorOrgChart1" RangeSize="25"
+              DataControl="HubModuleDataControl"
+              id="VO_SupervisorOrgChart1Iterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="VO_LeavesAndPolicyExceptions1Iterator"
+          id="VO_LeavesAndPolicyExceptions1">
+      <nodeDefinition DefName="hub.nishat.net.model.VO.Supervisor.VO_LeavesAndPolicyExceptions"
+                      Name="VO_LeavesAndPolicyExceptions10">
+        <AttrNames>
+          <Item Value="ChildPersonId"/>
+          <Item Value="FullNameChild"/>
+          <Item Value="PolicyException"/>
+          <Item Value="EmpAtdId"/>
+          <Item Value="EffectiveWorkedHours"/>
+          <Item Value="AttendanceDate"/>
+          <Item Value="LeaveType"/>
+          <Item Value="LeaveTypeId"/>
+          <Item Value="Type"/>
+          <Item Value="PolicyExceptionApprovedFlag"/>
+          <Item Value="LeaveApprovedFlag"/>
+          <Item Value="RemainingAnnual"/>
+          <Item Value="RemainingCasual"/>
+          <Item Value="policy_exception_approved"/>
+          <Item Value="leave_approved_flag"/>
+          <Item Value="Approve"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="VO_SupervisorOrgChart1Iterator"
+          id="VO_SupervisorOrgChart1">
+      <nodeDefinition DefName="hub.nishat.net.model.VO.Supervisor.VO_SupervisorOrgChart"
+                      Name="VO_SupervisorOrgChart10">
+        <AttrNames>
+          <Item Value="HierarchyName"/>
+          <Item Value="ParentPersonId"/>
+          <Item Value="ParentPosition"/>
+          <Item Value="FullNameParent"/>
+          <Item Value="ParentPositionId"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="ChildPersonIdVO_SupervisorOrgChart"/>
+        </Accessors>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,461 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <f:view>
+    <af:document id="d1">
+      <af:messages id="m1"/>
+      <af:form id="f1">
+        <af:panelGroupLayout id="pgl1" layout="vertical">
+          <af:panelGroupLayout id="pgl2" layout="horizontal"
+                               inlineStyle="width:100%">
+            <af:outputText value="HUB System Admin" id="ot1"
+                           inlineStyle="color:black; font-size:medium;"/>
+          </af:panelGroupLayout>
+          <af:panelBox text="IRREGULARITIES" id="pb1" background="medium">
+            <f:facet name="toolbar">
+              <af:panelGroupLayout layout="vertical" id="pgl3"/>
+            </f:facet>
+            <af:query id="qryId1" headerText="Search" disclosed="false"
+                      value="#{bindings.VOADMINIRREGULARITIESCriteriaQuery.queryDescriptor}"
+                      model="#{bindings.VOADMINIRREGULARITIESCriteriaQuery.queryModel}"
+                      queryListener="#{bindings.VOADMINIRREGULARITIESCriteriaQuery.processQuery}"
+                      queryOperationListener="#{bindings.VOADMINIRREGULARITIESCriteriaQuery.processQueryOperation}"
+                      resultComponentId="::pc1:t1"
+                      inlineStyle="border-top:1px green solid;border-left:1px green solid;border-right:1px green solid;width:50%"
+                      modeButtonPosition="footer" modeChangeVisible="false"/>
+            <af:panelGroupLayout id="pgl4" layout="horizontal"
+                                 inlineStyle="width:100%">
+              <af:panelCollection id="pc1" inlineStyle="width:100%;">
+                <f:facet name="menus"/>
+                <f:facet name="toolbar">
+                  <af:toolbar id="t2">
+                    <af:commandButton actionListener="#{bindings.Commit.execute}"
+                                      text="Save" id="cb1"/>
+                    <af:commandButton actionListener="#{bindings.CreateInsert.execute}"
+                                      text="CreateInsert"
+                                      disabled="#{!bindings.CreateInsert.enabled}"
+                                      id="cb3"/>
+                    <af:commandButton actionListener="#{bindings.Delete.execute}"
+                                      text="Delete"
+                                      disabled="#{!bindings.Delete.enabled}"
+                                      id="cb2"/>
+                  </af:toolbar>
+                </f:facet>
+                <f:facet name="statusbar"/>
+                <af:table value="#{bindings.VO_ADMIN_IRREGULARITIES1.collectionModel}"
+                          var="row"
+                          rows="#{bindings.VO_ADMIN_IRREGULARITIES1.rangeSize}"
+                          emptyText="#{bindings.VO_ADMIN_IRREGULARITIES1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                          fetchSize="#{bindings.VO_ADMIN_IRREGULARITIES1.rangeSize}"
+                          rowBandingInterval="0"
+                          selectedRowKeys="#{bindings.VO_ADMIN_IRREGULARITIES1.collectionModel.selectedRow}"
+                          selectionListener="#{bindings.VO_ADMIN_IRREGULARITIES1.collectionModel.makeCurrent}"
+                          rowSelection="single" id="t1"
+                          partialTriggers="::cb1 ::cb2 :::cb1 ::cb3" width="100%">
+                  <af:column sortProperty="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.AttendanceDate.name}"
+                             sortable="true" headerText="Date" id="c10">
+                    <af:inputDate value="#{row.bindings.AttendanceDate.inputValue}"
+                                  label="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.AttendanceDate.label}"
+                                  required="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.AttendanceDate.mandatory}"
+                                  shortDesc="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.AttendanceDate.tooltip}"
+                                  id="id1">
+                      <f:validator binding="#{row.bindings.AttendanceDate.validator}"/>
+                      <af:convertDateTime pattern="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.AttendanceDate.format}"/>
+                    </af:inputDate>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.FullName.name}"
+                             sortable="true" headerText="Name" id="c4">
+                    <af:inputListOfValues id="fullNameId"
+                                          popupTitle="Search and Select: #{bindings.VO_ADMIN_IRREGULARITIES1.hints.FullName.label}"
+                                          value="#{row.bindings.FullName.inputValue}"
+                                          model="#{row.bindings.FullName.listOfValuesModel}"
+                                          required="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.FullName.mandatory}"
+                                          columns="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.FullName.displayWidth}"
+                                          shortDesc="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.FullName.tooltip}"
+                                          readOnly="false" autoSubmit="true">
+                      <f:validator binding="#{row.bindings.FullName.validator}"/>
+                    </af:inputListOfValues>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.EmailAddress.name}"
+                             sortable="true" headerText="User" id="c6"
+                             width="200">
+                    <af:inputText value="#{row.bindings.EmailAddress.inputValue}"
+                                  label="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.EmailAddress.label}"
+                                  required="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.EmailAddress.mandatory}"
+                                  columns="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.EmailAddress.displayWidth}"
+                                  maximumLength="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.EmailAddress.precision}"
+                                  shortDesc="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.EmailAddress.tooltip}"
+                                  id="it4" readOnly="true">
+                      <f:validator binding="#{row.bindings.EmailAddress.validator}"/>
+                    </af:inputText>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.Type.name}"
+                             sortable="true"
+                             headerText="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.Type.label}"
+                             id="c1">
+                    <af:selectOneChoice value="#{row.bindings.Type.inputValue}"
+                                        label="#{row.bindings.Type.label}"
+                                        required="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.Type.mandatory}"
+                                        shortDesc="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.Type.tooltip}"
+                                        id="soc3">
+                      <f:selectItems value="#{row.bindings.Type.items}"
+                                     id="si3"/>
+                    </af:selectOneChoice>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.MinutesMissing.name}"
+                             sortable="true" headerText="Missing Minutes"
+                             id="c2">
+                    <af:inputText value="#{row.bindings.MinutesMissing.inputValue}"
+                                  label="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.MinutesMissing.label}"
+                                  required="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.MinutesMissing.mandatory}"
+                                  columns="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.MinutesMissing.displayWidth}"
+                                  maximumLength="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.MinutesMissing.precision}"
+                                  shortDesc="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.MinutesMissing.tooltip}"
+                                  id="it2">
+                      <f:validator binding="#{row.bindings.MinutesMissing.validator}"/>
+                      <af:convertNumber groupingUsed="false"
+                                        pattern="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.MinutesMissing.format}"/>
+                    </af:inputText>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.ExceptionRemarks.name}"
+                             sortable="true" headerText="User Remarks" id="c7"
+                             width="200">
+                    <af:inputText value="#{row.bindings.ExceptionRemarks.inputValue}"
+                                  label="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.ExceptionRemarks.label}"
+                                  required="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.ExceptionRemarks.mandatory}"
+                                  columns="50"
+                                  maximumLength="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.ExceptionRemarks.precision}"
+                                  shortDesc="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.ExceptionRemarks.tooltip}"
+                                  id="it6" readOnly="true" rows="3">
+                      <f:validator binding="#{row.bindings.ExceptionRemarks.validator}"/>
+                    </af:inputText>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.LeaveType.name}"
+                             sortable="true" headerText="Leave Type" id="c8">
+                    <af:inputText value="#{row.bindings.LeaveType.inputValue}"
+                                  label="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.LeaveType.label}"
+                                  required="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.LeaveType.mandatory}"
+                                  columns="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.LeaveType.displayWidth}"
+                                  maximumLength="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.LeaveType.precision}"
+                                  shortDesc="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.LeaveType.tooltip}"
+                                  id="it7" readOnly="true">
+                      <f:validator binding="#{row.bindings.LeaveType.validator}"/>
+                    </af:inputText>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.IrregularityId.name}"
+                             sortable="true" headerText="Irregularity ID"
+                             id="c11">
+                    <af:inputText value="#{row.bindings.IrregularityId.inputValue}"
+                                  label="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.IrregularityId.label}"
+                                  columns="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.IrregularityId.displayWidth}"
+                                  maximumLength="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.IrregularityId.precision}"
+                                  shortDesc="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.IrregularityId.tooltip}"
+                                  id="it8" autoSubmit="true" readOnly="true">
+                      <f:validator binding="#{row.bindings.IrregularityId.validator}"/>
+                      <af:convertNumber groupingUsed="false"
+                                        pattern="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.IrregularityId.format}"/>
+                    </af:inputText>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.EmpAtdId.name}"
+                             sortable="true" headerText="Attendance ID" id="c9">
+                              <af:inputListOfValues id="empAtdId"
+                                          popupTitle="Search and Select: #{bindings.VO_ADMIN_IRREGULARITIES1.hints.FullName.label}"
+                                          value="#{row.bindings.EmpAtdId.inputValue}"
+                                          model="#{row.bindings.EmpAtdId.listOfValuesModel}"
+                                          required="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.EmpAtdId.mandatory}"
+                                          columns="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.FullName.displayWidth}"
+                                          shortDesc="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.FullName.tooltip}"
+                                          readOnly="false" autoSubmit="true">
+                    </af:inputListOfValues>
+                             </af:column>
+                  <af:column sortProperty="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.EmpId.name}"
+                             sortable="true" headerText="Employee ID" id="c5">
+                    <af:inputText value="#{row.bindings.EmpId.inputValue}"
+                                  label="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.EmpId.label}"
+                                  required="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.EmpId.mandatory}"
+                                  columns="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.EmpId.displayWidth}"
+                                  maximumLength="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.EmpId.precision}"
+                                  shortDesc="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.EmpId.tooltip}"
+                                  id="it3" partialTriggers="fullNameId">
+                      <f:validator binding="#{row.bindings.EmpId.validator}"/>
+                      <af:convertNumber groupingUsed="false"
+                                        pattern="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.EmpId.format}"/>
+                    </af:inputText>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.ExceptionApproved.name}"
+                             sortable="true" headerText="Exception Approved"
+                             id="c3">
+                    <af:inputText value="#{row.bindings.ExceptionApproved.inputValue}"
+                                  label="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.ExceptionApproved.label}"
+                                  required="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.ExceptionApproved.mandatory}"
+                                  columns="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.ExceptionApproved.displayWidth}"
+                                  maximumLength="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.ExceptionApproved.precision}"
+                                  shortDesc="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.ExceptionApproved.tooltip}"
+                                  id="it9" readOnly="true">
+                      <f:validator binding="#{row.bindings.ExceptionApproved.validator}"/>
+                    </af:inputText>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.Month.name}"
+                             sortable="true" headerText="Month" id="c12">
+                    <af:selectOneChoice value="#{row.bindings.Month.inputValue}"
+                                        label="#{row.bindings.Month.label}"
+                                        required="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.Month.mandatory}"
+                                        shortDesc="#{bindings.VO_ADMIN_IRREGULARITIES1.hints.Month.tooltip}"
+                                        id="soc1">
+                      <f:selectItems value="#{row.bindings.Month.items}"
+                                     id="si1"/>
+                    </af:selectOneChoice>
+                  </af:column>
+                  <f:facet name="header"/>
+                </af:table>
+              </af:panelCollection>
+            </af:panelGroupLayout>
+          </af:panelBox>
+          <af:panelBox text="Waive Off Requests" id="pb2" background="medium"
+                       disclosed="false">
+            <f:facet name="toolbar"/>
+            <af:query id="qryId2" headerText="Search" disclosed="false"
+                      value="#{bindings.VOWAIVEOFFREQCriteriaQuery.queryDescriptor}"
+                      model="#{bindings.VOWAIVEOFFREQCriteriaQuery.queryModel}"
+                      queryListener="#{bindings.VOWAIVEOFFREQCriteriaQuery.processQuery}"
+                      queryOperationListener="#{bindings.VOWAIVEOFFREQCriteriaQuery.processQueryOperation}"
+                      resultComponentId="::pc2:t3"
+                      inlineStyle="border-top:1px green solid;border-left:1px green solid;border-right:1px green solid;width:50%"
+                      modeChangeVisible="false"/>
+            <af:panelCollection id="pc2" inlineStyle="width:100%">
+              <f:facet name="menus"/>
+              <f:facet name="toolbar">
+                <af:toolbar id="t4">
+                  <af:commandButton actionListener="#{bindings.Delete1.execute}"
+                                    text="Delete"
+                                    disabled="#{!bindings.Delete1.enabled}"
+                                    id="cb4"/>
+                  <af:commandButton actionListener="#{bindings.Commit.execute}"
+                                    text="Save"
+                                    id="cb5"/>
+                </af:toolbar>
+              </f:facet>
+              <f:facet name="statusbar"/>
+              <af:table value="#{bindings.VO_WAIVEOFFREQ1.collectionModel}"
+                        var="row" rows="#{bindings.VO_WAIVEOFFREQ1.rangeSize}"
+                        emptyText="#{bindings.VO_WAIVEOFFREQ1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                        fetchSize="#{bindings.VO_WAIVEOFFREQ1.rangeSize}"
+                        rowBandingInterval="0"
+                        selectedRowKeys="#{bindings.VO_WAIVEOFFREQ1.collectionModel.selectedRow}"
+                        selectionListener="#{bindings.VO_WAIVEOFFREQ1.collectionModel.makeCurrent}"
+                        rowSelection="single" id="t3" width="100%"
+                        partialTriggers="::cb4">
+                <af:column sortProperty="#{bindings.VO_WAIVEOFFREQ1.hints.ExceptionRequestId.name}"
+                           sortable="false"
+                           headerText="#{bindings.VO_WAIVEOFFREQ1.hints.ExceptionRequestId.label}"
+                           id="c23">
+                  <af:inputText value="#{row.bindings.ExceptionRequestId.inputValue}"
+                                label="#{bindings.VO_WAIVEOFFREQ1.hints.ExceptionRequestId.label}"
+                                required="#{bindings.VO_WAIVEOFFREQ1.hints.ExceptionRequestId.mandatory}"
+                                columns="#{bindings.VO_WAIVEOFFREQ1.hints.ExceptionRequestId.displayWidth}"
+                                maximumLength="#{bindings.VO_WAIVEOFFREQ1.hints.ExceptionRequestId.precision}"
+                                shortDesc="#{bindings.VO_WAIVEOFFREQ1.hints.ExceptionRequestId.tooltip}"
+                                id="it19">
+                    <f:validator binding="#{row.bindings.ExceptionRequestId.validator}"/>
+                    <af:convertNumber groupingUsed="false"
+                                      pattern="#{bindings.VO_WAIVEOFFREQ1.hints.ExceptionRequestId.format}"/>
+                  </af:inputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.VO_WAIVEOFFREQ1.hints.IrregularityId.name}"
+                           sortable="false"
+                           headerText="#{bindings.VO_WAIVEOFFREQ1.hints.IrregularityId.label}"
+                           id="c25">
+                  <af:inputText value="#{row.bindings.IrregularityId.inputValue}"
+                                label="#{bindings.VO_WAIVEOFFREQ1.hints.IrregularityId.label}"
+                                required="#{bindings.VO_WAIVEOFFREQ1.hints.IrregularityId.mandatory}"
+                                columns="#{bindings.VO_WAIVEOFFREQ1.hints.IrregularityId.displayWidth}"
+                                maximumLength="#{bindings.VO_WAIVEOFFREQ1.hints.IrregularityId.precision}"
+                                shortDesc="#{bindings.VO_WAIVEOFFREQ1.hints.IrregularityId.tooltip}"
+                                id="it11">
+                    <f:validator binding="#{row.bindings.IrregularityId.validator}"/>
+                    <af:convertNumber groupingUsed="false"
+                                      pattern="#{bindings.VO_WAIVEOFFREQ1.hints.IrregularityId.format}"/>
+                  </af:inputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.VO_WAIVEOFFREQ1.hints.EmpAtdId.name}"
+                           sortable="false"
+                           headerText="#{bindings.VO_WAIVEOFFREQ1.hints.EmpAtdId.label}"
+                           id="c19">
+                  <af:inputText value="#{row.bindings.EmpAtdId.inputValue}"
+                                label="#{bindings.VO_WAIVEOFFREQ1.hints.EmpAtdId.label}"
+                                required="#{bindings.VO_WAIVEOFFREQ1.hints.EmpAtdId.mandatory}"
+                                columns="#{bindings.VO_WAIVEOFFREQ1.hints.EmpAtdId.displayWidth}"
+                                maximumLength="#{bindings.VO_WAIVEOFFREQ1.hints.EmpAtdId.precision}"
+                                shortDesc="#{bindings.VO_WAIVEOFFREQ1.hints.EmpAtdId.tooltip}"
+                                id="it13">
+                    <f:validator binding="#{row.bindings.EmpAtdId.validator}"/>
+                    <af:convertNumber groupingUsed="false"
+                                      pattern="#{bindings.VO_WAIVEOFFREQ1.hints.EmpAtdId.format}"/>
+                  </af:inputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.VO_WAIVEOFFREQ1.hints.AttendanceDate.name}"
+                           sortable="false"
+                           headerText="#{bindings.VO_WAIVEOFFREQ1.hints.AttendanceDate.label}"
+                           id="c17">
+                  <af:inputDate value="#{row.bindings.AttendanceDate.inputValue}"
+                                label="#{bindings.VO_WAIVEOFFREQ1.hints.AttendanceDate.label}"
+                                required="#{bindings.VO_WAIVEOFFREQ1.hints.AttendanceDate.mandatory}"
+                                shortDesc="#{bindings.VO_WAIVEOFFREQ1.hints.AttendanceDate.tooltip}"
+                                id="id3">
+                    <f:validator binding="#{row.bindings.AttendanceDate.validator}"/>
+                    <af:convertDateTime pattern="#{bindings.VO_WAIVEOFFREQ1.hints.AttendanceDate.format}"/>
+                  </af:inputDate>
+                </af:column>
+                <af:column sortProperty="#{bindings.VO_WAIVEOFFREQ1.hints.ExceptionRequestDate.name}"
+                           sortable="false"
+                           headerText="#{bindings.VO_WAIVEOFFREQ1.hints.ExceptionRequestDate.label}"
+                           id="c21">
+                  <af:inputDate value="#{row.bindings.ExceptionRequestDate.inputValue}"
+                                label="#{bindings.VO_WAIVEOFFREQ1.hints.ExceptionRequestDate.label}"
+                                required="#{bindings.VO_WAIVEOFFREQ1.hints.ExceptionRequestDate.mandatory}"
+                                shortDesc="#{bindings.VO_WAIVEOFFREQ1.hints.ExceptionRequestDate.tooltip}"
+                                id="id2">
+                    <f:validator binding="#{row.bindings.ExceptionRequestDate.validator}"/>
+                    <af:convertDateTime pattern="#{bindings.VO_WAIVEOFFREQ1.hints.ExceptionRequestDate.format}"/>
+                  </af:inputDate>
+                </af:column>
+                <af:column sortProperty="#{bindings.VO_WAIVEOFFREQ1.hints.ExceptionCause.name}"
+                           sortable="false"
+                           headerText="#{bindings.VO_WAIVEOFFREQ1.hints.ExceptionCause.label}"
+                           id="c20">
+                  <af:inputText value="#{row.bindings.ExceptionCause.inputValue}"
+                                label="#{bindings.VO_WAIVEOFFREQ1.hints.ExceptionCause.label}"
+                                required="#{bindings.VO_WAIVEOFFREQ1.hints.ExceptionCause.mandatory}"
+                                columns="#{bindings.VO_WAIVEOFFREQ1.hints.ExceptionCause.displayWidth}"
+                                maximumLength="#{bindings.VO_WAIVEOFFREQ1.hints.ExceptionCause.precision}"
+                                shortDesc="#{bindings.VO_WAIVEOFFREQ1.hints.ExceptionCause.tooltip}"
+                                id="it18">
+                    <f:validator binding="#{row.bindings.ExceptionCause.validator}"/>
+                  </af:inputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.VO_WAIVEOFFREQ1.hints.ExceptionRemarks.name}"
+                           sortable="false"
+                           headerText="#{bindings.VO_WAIVEOFFREQ1.hints.ExceptionRemarks.label}"
+                           id="c13">
+                  <af:inputText value="#{row.bindings.ExceptionRemarks.inputValue}"
+                                label="#{bindings.VO_WAIVEOFFREQ1.hints.ExceptionRemarks.label}"
+                                required="#{bindings.VO_WAIVEOFFREQ1.hints.ExceptionRemarks.mandatory}"
+                                columns="#{bindings.VO_WAIVEOFFREQ1.hints.ExceptionRemarks.displayWidth}"
+                                maximumLength="#{bindings.VO_WAIVEOFFREQ1.hints.ExceptionRemarks.precision}"
+                                shortDesc="#{bindings.VO_WAIVEOFFREQ1.hints.ExceptionRemarks.tooltip}"
+                                id="it12">
+                    <f:validator binding="#{row.bindings.ExceptionRemarks.validator}"/>
+                  </af:inputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.VO_WAIVEOFFREQ1.hints.EmpId.name}"
+                           sortable="false"
+                           headerText="#{bindings.VO_WAIVEOFFREQ1.hints.EmpId.label}"
+                           id="c14">
+                  <af:inputText value="#{row.bindings.EmpId.inputValue}"
+                                label="#{bindings.VO_WAIVEOFFREQ1.hints.EmpId.label}"
+                                required="#{bindings.VO_WAIVEOFFREQ1.hints.EmpId.mandatory}"
+                                columns="#{bindings.VO_WAIVEOFFREQ1.hints.EmpId.displayWidth}"
+                                maximumLength="#{bindings.VO_WAIVEOFFREQ1.hints.EmpId.precision}"
+                                shortDesc="#{bindings.VO_WAIVEOFFREQ1.hints.EmpId.tooltip}"
+                                id="it17">
+                    <f:validator binding="#{row.bindings.EmpId.validator}"/>
+                    <af:convertNumber groupingUsed="false"
+                                      pattern="#{bindings.VO_WAIVEOFFREQ1.hints.EmpId.format}"/>
+                  </af:inputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.VO_WAIVEOFFREQ1.hints.Approved.name}"
+                           sortable="false"
+                           headerText="#{bindings.VO_WAIVEOFFREQ1.hints.Approved.label}"
+                           id="c18">
+                  <af:inputText value="#{row.bindings.Approved.inputValue}"
+                                label="#{bindings.VO_WAIVEOFFREQ1.hints.Approved.label}"
+                                required="#{bindings.VO_WAIVEOFFREQ1.hints.Approved.mandatory}"
+                                columns="#{bindings.VO_WAIVEOFFREQ1.hints.Approved.displayWidth}"
+                                maximumLength="#{bindings.VO_WAIVEOFFREQ1.hints.Approved.precision}"
+                                shortDesc="#{bindings.VO_WAIVEOFFREQ1.hints.Approved.tooltip}"
+                                id="it10">
+                    <f:validator binding="#{row.bindings.Approved.validator}"/>
+                  </af:inputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.VO_WAIVEOFFREQ1.hints.MissingMinutes.name}"
+                           sortable="false"
+                           headerText="#{bindings.VO_WAIVEOFFREQ1.hints.MissingMinutes.label}"
+                           id="c15">
+                  <af:inputText value="#{row.bindings.MissingMinutes.inputValue}"
+                                label="#{bindings.VO_WAIVEOFFREQ1.hints.MissingMinutes.label}"
+                                required="#{bindings.VO_WAIVEOFFREQ1.hints.MissingMinutes.mandatory}"
+                                columns="#{bindings.VO_WAIVEOFFREQ1.hints.MissingMinutes.displayWidth}"
+                                maximumLength="#{bindings.VO_WAIVEOFFREQ1.hints.MissingMinutes.precision}"
+                                shortDesc="#{bindings.VO_WAIVEOFFREQ1.hints.MissingMinutes.tooltip}"
+                                id="it14">
+                    <f:validator binding="#{row.bindings.MissingMinutes.validator}"/>
+                    <af:convertNumber groupingUsed="false"
+                                      pattern="#{bindings.VO_WAIVEOFFREQ1.hints.MissingMinutes.format}"/>
+                  </af:inputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.VO_WAIVEOFFREQ1.hints.LineManagerComments.name}"
+                           sortable="false"
+                           headerText="#{bindings.VO_WAIVEOFFREQ1.hints.LineManagerComments.label}"
+                           id="c22">
+                  <af:inputText value="#{row.bindings.LineManagerComments.inputValue}"
+                                label="#{bindings.VO_WAIVEOFFREQ1.hints.LineManagerComments.label}"
+                                required="#{bindings.VO_WAIVEOFFREQ1.hints.LineManagerComments.mandatory}"
+                                columns="#{bindings.VO_WAIVEOFFREQ1.hints.LineManagerComments.displayWidth}"
+                                maximumLength="#{bindings.VO_WAIVEOFFREQ1.hints.LineManagerComments.precision}"
+                                shortDesc="#{bindings.VO_WAIVEOFFREQ1.hints.LineManagerComments.tooltip}"
+                                id="it15">
+                    <f:validator binding="#{row.bindings.LineManagerComments.validator}"/>
+                  </af:inputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.VO_WAIVEOFFREQ1.hints.FullName.name}"
+                           sortable="false"
+                           headerText="#{bindings.VO_WAIVEOFFREQ1.hints.FullName.label}"
+                           id="c26">
+                  <af:inputListOfValues id="inputListOfValues1"
+                                        popupTitle="Search and Select: #{bindings.VO_WAIVEOFFREQ1.hints.FullName.label}"
+                                        value="#{row.bindings.FullName.inputValue}"
+                                        model="#{row.bindings.FullName.listOfValuesModel}"
+                                        required="#{bindings.VO_WAIVEOFFREQ1.hints.FullName.mandatory}"
+                                        columns="#{bindings.VO_WAIVEOFFREQ1.hints.FullName.displayWidth}"
+                                        shortDesc="#{bindings.VO_WAIVEOFFREQ1.hints.FullName.tooltip}">
+                    <f:validator binding="#{row.bindings.FullName.validator}"/>
+                  </af:inputListOfValues>
+                </af:column>
+                <af:column sortProperty="#{bindings.VO_WAIVEOFFREQ1.hints.EmailAddress.name}"
+                           sortable="false"
+                           headerText="#{bindings.VO_WAIVEOFFREQ1.hints.EmailAddress.label}"
+                           id="c16">
+                  <af:inputText value="#{row.bindings.EmailAddress.inputValue}"
+                                label="#{bindings.VO_WAIVEOFFREQ1.hints.EmailAddress.label}"
+                                required="#{bindings.VO_WAIVEOFFREQ1.hints.EmailAddress.mandatory}"
+                                columns="#{bindings.VO_WAIVEOFFREQ1.hints.EmailAddress.displayWidth}"
+                                maximumLength="#{bindings.VO_WAIVEOFFREQ1.hints.EmailAddress.precision}"
+                                shortDesc="#{bindings.VO_WAIVEOFFREQ1.hints.EmailAddress.tooltip}"
+                                id="it16">
+                    <f:validator binding="#{row.bindings.EmailAddress.validator}"/>
+                  </af:inputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.VO_WAIVEOFFREQ1.hints.Month.name}"
+                           sortable="false"
+                           headerText="#{bindings.VO_WAIVEOFFREQ1.hints.Month.label}"
+                           id="c24">
+                  <af:selectOneChoice value="#{row.bindings.Month.inputValue}"
+                                      label="#{row.bindings.Month.label}"
+                                      required="#{bindings.VO_WAIVEOFFREQ1.hints.Month.mandatory}"
+                                      shortDesc="#{bindings.VO_WAIVEOFFREQ1.hints.Month.tooltip}"
+                                      id="soc2">
+                    <f:selectItems value="#{row.bindings.Month.items}"
+                                   id="si2"/>
+                  </af:selectOneChoice>
+                </af:column>
+              </af:table>
+            </af:panelCollection>
+          </af:panelBox>
+        </af:panelGroupLayout>
+      </af:form>
+    </af:document>
+  </f:view>
+</jsp:root>

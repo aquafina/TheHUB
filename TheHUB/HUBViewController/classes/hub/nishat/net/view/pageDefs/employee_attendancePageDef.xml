@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="employee_attendancePageDef"
+                Package="hub.nishat.net.view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="VO_Attendance2" RangeSize="25"
+              DataControl="HubModuleDataControl" id="VO_Attendance2Iterator"/>
+    <searchRegion Binds="VO_Attendance2Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="VO_Attendance2Query"/>
+    <iterator Binds="VO_AttendanceEvents2" RangeSize="25"
+              DataControl="HubModuleDataControl"
+              id="VO_AttendanceEvents2Iterator"/>
+    <searchRegion Criteria="VO_AttendanceCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="VO_Attendance2Iterator"
+                  id="VOAttendanceCriteriaQuery"/>
+    <iterator Binds="VO_LeaveTypes1" RangeSize="10"
+              DataControl="HubModuleDataControl" id="VO_LeaveTypes1Iterator"/>
+    <iterator Binds="MonthLov1" RangeSize="25"
+              DataControl="HubModuleDataControl" id="MonthLov1Iterator"/>
+    <iterator Binds="YearLov1" RangeSize="25" DataControl="HubModuleDataControl"
+              id="YearLov1Iterator"/>
+    <iterator Binds="root" RangeSize="25" DataControl="LeaveReport"
+              id="LeaveReportIterator"/>
+    <accessorIterator MasterBinding="LeaveReportIterator" Binds="recordList"
+                      RangeSize="-1" DataControl="LeaveReport"
+                      BeanClass="view.nishat.net.CustomDataControl.LeaveBalanceRec"
+                      id="recordListIterator"/>
+    <iterator Binds="root" RangeSize="25" DataControl="SalaryReport"
+              id="SalaryReportIterator" ChangeEventPolicy="ppr"/>
+    <accessorIterator MasterBinding="SalaryReportIterator" Binds="salaryReport"
+                      RangeSize="25" DataControl="SalaryReport"
+                      BeanClass="view.nishat.net.CustomDataControl.EmpPayHistory"
+                      id="salaryReportIterator" ChangeEventPolicy="ppr"/>
+    <iterator Binds="root" RangeSize="25" DataControl="LeaveDetails"
+              id="LeaveDetailsIterator"/>
+    <accessorIterator MasterBinding="LeaveDetailsIterator" Binds="list"
+                      RangeSize="25" DataControl="LeaveDetails"
+                      BeanClass="view.nishat.net.CustomDataControl.AnnualDeductedLeaveRptBean"
+                      id="listIterator"/>
+    <iterator Binds="root" RangeSize="25" DataControl="AnnualLeaveDetails"
+              id="AnnualLeaveDetailsIterator"/>
+    <accessorIterator MasterBinding="AnnualLeaveDetailsIterator" Binds="list"
+                      RangeSize="25" DataControl="AnnualLeaveDetails"
+                      BeanClass="view.nishat.net.CustomDataControl.AnnualDeductedLeaveRptBean"
+                      id="listIterator1"/>
+    <iterator Binds="root" RangeSize="25" DataControl="MonthlyDeductionsDetails"
+              id="MonthlyDeductionsDetailsIterator"/>
+    <accessorIterator MasterBinding="MonthlyDeductionsDetailsIterator"
+                      Binds="list" RangeSize="25"
+                      DataControl="MonthlyDeductionsDetails"
+                      BeanClass="view.nishat.net.CustomDataControl.AnnualDeductedLeaveRptBean"
+                      id="listIterator2"/>
+    <iterator Binds="VO_MISSING_MINUTES1" RangeSize="25"
+              DataControl="HubModuleDataControl"
+              id="VO_MISSING_MINUTES1Iterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="VO_Attendance2Iterator" id="VO_Attendance2">
+      <nodeDefinition DefName="hub.nishat.net.model.VO.VO_Attendance"
+                      Name="VO_Attendance20">
+        <AttrNames>
+          <Item Value="EmpAtdId"/>
+          <Item Value="EmpId"/>
+          <Item Value="EmpName"/>
+          <Item Value="CardNum"/>
+          <Item Value="ExpectedWorkHours"/>
+          <Item Value="MinInTime"/>
+          <Item Value="MaxOutTime"/>
+          <Item Value="PreviousDayOutTime"/>
+          <Item Value="PreviousDayEffectiveHours"/>
+          <Item Value="Outtime"/>
+          <Item Value="Intime"/>
+          <Item Value="EffectiveWorkedHours"/>
+          <Item Value="MaxStartTime"/>
+          <Item Value="MaxEndTime"/>
+          <Item Value="EndTime"/>
+          <Item Value="StartTime"/>
+          <Item Value="AttendanceDate"/>
+          <Item Value="LeaveTypeId"/>
+          <Item Value="LeaveApprovedFlag"/>
+          <Item Value="PolicyException"/>
+          <Item Value="LeaveToday"/>
+          <Item Value="IsHalf"/>
+          <Item Value="LeaveType"/>
+          <Item Value="PolicyExceptionApprovedFlag"/>
+          <Item Value="LateSittingMinTiming"/>
+          <Item Value="Day"/>
+          <Item Value="Today"/>
+          <Item Value="Month"/>
+          <Item Value="Year"/>
+          <Item Value="LateIn"/>
+          <Item Value="EarlyOut"/>
+          <Item Value="DayStatus"/>
+          <Item Value="Sysdate"/>
+          <Item Value="Description"/>
+          <Item Value="off_day_working_bool"/>
+          <Item Value="saturdayOrHoliday"/>
+          <Item Value="isSunday"/>
+          <Item Value="isLeave"/>
+          <Item Value="LeaveCancelled"/>
+          <Item Value="HoursMissing"/>
+          <Item Value="EmpType"/>
+          <Item Value="Total"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="VO_AttendanceEvents2Iterator" id="VO_AttendanceEvents2">
+      <nodeDefinition DefName="hub.nishat.net.model.VO.VO_AttendanceEvents"
+                      Name="VO_AttendanceEvents20">
+        <AttrNames>
+          <Item Value="IrregularityId"/>
+          <Item Value="EmpAtdId"/>
+          <Item Value="AttendanceDate"/>
+          <Item Value="Type"/>
+          <Item Value="ExceptionRemarks"/>
+          <Item Value="MinutesMissing"/>
+          <Item Value="ExceptionApproved"/>
+          <Item Value="LeaveType"/>
+          <Item Value="MissingTime"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="VO_LeaveTypes1Iterator" id="LeaveTypeId">
+      <AttrNames>
+        <Item Value="LeaveTypeId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_LeaveTypes1Iterator" id="LeaveType">
+      <AttrNames>
+        <Item Value="LeaveType"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="VO_LeaveTypes1Iterator" StaticList="false"
+          Uses="LOV_LeaveType" id="LeaveType1" DTSupportsMRU="true"/>
+    <list IterBinding="MonthLov1Iterator" StaticList="false" Uses="LOV_Month"
+          id="Month" DTSupportsMRU="true"/>
+    <list IterBinding="YearLov1Iterator" StaticList="false" Uses="LOV_Year"
+          id="Year" DTSupportsMRU="true"/>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction"
+            DataControl="HubModuleDataControl"/>
+    <pivotTable IterBinding="recordListIterator" id="recordList"
+                xmlns="http://xmlns.oracle.com/adfm/dvt">
+      <pivotTableDataMap>
+        <columns>
+          <data aggregateDuplicates="true" defaultAggregateType="SUM">
+            <item label="Available" value="leaveAvailable"/>
+            <item label="Availed" value="leaveAvailed"/>
+            <item label="Unpaid" value="unpaid"/>
+          </data>
+        </columns>
+        <rows>
+          <item value="leaveType" itemLabel="Type"/>
+        </rows>
+        <pages/>
+      </pivotTableDataMap>
+    </pivotTable>
+    <attributeValues IterBinding="VO_Attendance2Iterator" id="Month1">
+      <AttrNames>
+        <Item Value="Month"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="salaryReportIterator" id="empSalary">
+      <AttrNames>
+        <Item Value="empSalary"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="salaryReportIterator" id="month">
+      <AttrNames>
+        <Item Value="month"/>
+      </AttrNames>
+    </attributeValues>
+    <action IterBinding="salaryReportIterator" id="First"
+            RequiresUpdateModel="true" Action="first"/>
+    <action IterBinding="salaryReportIterator" id="Previous"
+            RequiresUpdateModel="true" Action="previous"/>
+    <action IterBinding="salaryReportIterator" id="Next"
+            RequiresUpdateModel="true" Action="next"/>
+    <action IterBinding="salaryReportIterator" id="Last"
+            RequiresUpdateModel="true" Action="last"/>
+    <attributeValues IterBinding="VO_Attendance2Iterator" id="AttendanceDate">
+      <AttrNames>
+        <Item Value="AttendanceDate"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="VO_AttendanceEvents2Iterator" StaticList="false"
+          Uses="LOV_LeaveType" id="LeaveType2" DTSupportsMRU="true"/>
+    <attributeValues IterBinding="VO_AttendanceEvents2Iterator"
+                     id="ExceptionApproved">
+      <AttrNames>
+        <Item Value="ExceptionApproved"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="listIterator" id="list">
+      <nodeDefinition DefName="view.nishat.net.CustomDataControl.AnnualDeductedLeaveRptBean"
+                      Name="list0">
+        <AttrNames>
+          <Item Value="leaveID"/>
+          <Item Value="leaveType"/>
+          <Item Value="leaveCause"/>
+          <Item Value="userID"/>
+          <Item Value="leaveDate"/>
+          <Item Value="jobStatus"/>
+          <Item Value="leaveTypeStr"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="VO_Attendance2Iterator" id="EmpType">
+      <AttrNames>
+        <Item Value="EmpType"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="listIterator1" id="list1">
+      <nodeDefinition DefName="view.nishat.net.CustomDataControl.AnnualDeductedLeaveRptBean"
+                      Name="list10">
+        <AttrNames>
+          <Item Value="leaveID"/>
+          <Item Value="leaveType"/>
+          <Item Value="leaveCause"/>
+          <Item Value="userID"/>
+          <Item Value="leaveDate"/>
+          <Item Value="jobStatus"/>
+          <Item Value="leaveTypeStr"/>
+          <Item Value="status"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="listIterator2" id="list2">
+      <nodeDefinition DefName="view.nishat.net.CustomDataControl.AnnualDeductedLeaveRptBean"
+                      Name="list20">
+        <AttrNames>
+          <Item Value="leaveID"/>
+          <Item Value="leaveType"/>
+          <Item Value="leaveCause"/>
+          <Item Value="userID"/>
+          <Item Value="leaveDate"/>
+          <Item Value="jobStatus"/>
+          <Item Value="leaveTypeStr"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="listIterator2" id="list3">
+      <nodeDefinition DefName="view.nishat.net.CustomDataControl.AnnualDeductedLeaveRptBean"
+                      Name="list30">
+        <AttrNames>
+          <Item Value="leaveID"/>
+          <Item Value="leaveType"/>
+          <Item Value="leaveCause"/>
+          <Item Value="userID"/>
+          <Item Value="leaveDate"/>
+          <Item Value="jobStatus"/>
+          <Item Value="leaveTypeStr"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="VO_Attendance2Iterator" id="MonthNumber">
+      <AttrNames>
+        <Item Value="MonthNumber"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_Attendance2Iterator" id="Year1">
+      <AttrNames>
+        <Item Value="Year"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="VO_MISSING_MINUTES1Iterator" id="VO_MISSING_MINUTES1">
+      <nodeDefinition DefName="hub.nishat.net.model.VO.VO_MISSING_MINUTES"
+                      Name="VO_MISSING_MINUTES10">
+        <AttrNames>
+          <Item Value="AttendanceDate"/>
+          <Item Value="MissingMinutes"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="VO_MISSING_MINUTES1Iterator" id="EmpId">
+      <AttrNames>
+        <Item Value="EmpId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_Attendance2Iterator" id="EmpId1">
+      <AttrNames>
+        <Item Value="EmpId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_MISSING_MINUTES1Iterator" id="EmpType1">
+      <AttrNames>
+        <Item Value="EmpType"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

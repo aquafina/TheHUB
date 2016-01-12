@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<JavaBean xmlns="http://xmlns.oracle.com/adfm/beanmodel" version="11.1.1.64.93"
+          id="LeaveBalanceRec" Package="view.nishat.net.CustomDataControl"
+          BeanClass="view.nishat.net.CustomDataControl.LeaveBalanceRec"
+          isJavaBased="true">
+  <Attribute Name="leaveType" Type="java.lang.String"/>
+  <Attribute Name="leaveAvailed" Type="float"/>
+  <Attribute Name="leaveAvailable" Type="float"/>
+  <Attribute Name="unpaid" Type="float"/>
+  <ConstructorMethod IsCollection="true"
+                     Type="view.nishat.net.CustomDataControl.LeaveBalanceRec"
+                     BeanClass="view.nishat.net.CustomDataControl.LeaveBalanceRec"
+                     id="LeaveBalanceRec"/>
+</JavaBean>

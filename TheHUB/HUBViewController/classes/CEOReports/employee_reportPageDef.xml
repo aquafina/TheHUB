@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="employee_reportPageDef"
+                Package="CEOReports">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="VO_Org1" RangeSize="25"
+              DataControl="CEOAppModuleDataControl" id="VO_Org1Iterator"/>
+    <searchRegion Criteria="VO_OrgCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="VO_Org1Iterator" id="VOOrgCriteriaQuery"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="VO_Org1Iterator" id="VO_Org1">
+      <nodeDefinition DefName="hub.nishat.net.model.VO.CEO.VO_Org"
+                      Name="VO_Org10">
+        <AttrNames>
+          <Item Value="SubordinatePositionId"/>
+          <Item Value="HierarchyName"/>
+          <Item Value="ParentPersonId"/>
+          <Item Value="ChildPosition"/>
+          <Item Value="ParentPosition"/>
+          <Item Value="FullNameParent"/>
+          <Item Value="ParentPositionId"/>
+          <Item Value="ChildPersonId"/>
+          <Item Value="EmailAddress"/>
+          <Item Value="EmpCode"/>
+          <Item Value="FullNameChild"/>
+          <Item Value="Joining"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="ChildPersonIdVO_Org"/>
+        </Accessors>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="VO_Org1Iterator" id="Execute"
+            RequiresUpdateModel="true" Action="iteratorExecute"/>
+  </bindings>
+</pageDefinition>

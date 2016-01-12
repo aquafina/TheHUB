@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="ADMIN_IRREGULARITIESPageDef"
+                Package="ADMIN">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="VO_ADMIN_IRREGULARITIES1" RangeSize="25"
+              DataControl="HubModuleDataControl"
+              id="VO_ADMIN_IRREGULARITIES1Iterator"/>
+    <searchRegion Criteria="VO_ADMIN_IRREGULARITIESCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="VO_ADMIN_IRREGULARITIES1Iterator"
+                  id="VOADMINIRREGULARITIESCriteriaQuery"/>
+    <iterator Binds="VO_WAIVEOFFREQ1" RangeSize="25"
+              DataControl="HubModuleDataControl" id="VO_WAIVEOFFREQ1Iterator"/>
+    <searchRegion Criteria="VO_WAIVEOFFREQCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="VO_WAIVEOFFREQ1Iterator"
+                  id="VOWAIVEOFFREQCriteriaQuery"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="VO_ADMIN_IRREGULARITIES1Iterator"
+          id="VO_ADMIN_IRREGULARITIES1">
+      <nodeDefinition DefName="hub.nishat.net.model.VO.SystemAdmin.VO_ADMIN_IRREGULARITIES"
+                      Name="VO_ADMIN_IRREGULARITIES10">
+        <AttrNames>
+          <Item Value="FullName"/>
+          <Item Value="EmailAddress"/>
+          <Item Value="IrregularityId"/>
+          <Item Value="EmpAtdId"/>
+          <Item Value="AttendanceDate"/>
+          <Item Value="Type"/>
+          <Item Value="ExceptionRemarks"/>
+          <Item Value="MinutesMissing"/>
+          <Item Value="EmpId"/>
+          <Item Value="ExceptionApproved"/>
+          <Item Value="LeaveType"/>
+          <Item Value="Month"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction"
+            DataControl="HubModuleDataControl"/>
+    <tree IterBinding="VO_WAIVEOFFREQ1Iterator" id="VO_WAIVEOFFREQ1">
+      <nodeDefinition DefName="hub.nishat.net.model.VO.SystemAdmin.VO_WAIVEOFFREQ"
+                      Name="VO_WAIVEOFFREQ10">
+        <AttrNames>
+          <Item Value="ExceptionRequestId"/>
+          <Item Value="IrregularityId"/>
+          <Item Value="EmpAtdId"/>
+          <Item Value="AttendanceDate"/>
+          <Item Value="ExceptionRequestDate"/>
+          <Item Value="ExceptionCause"/>
+          <Item Value="ExceptionRemarks"/>
+          <Item Value="EmpId"/>
+          <Item Value="Approved"/>
+          <Item Value="MissingMinutes"/>
+          <Item Value="LineManagerComments"/>
+          <Item Value="FullName"/>
+          <Item Value="EmailAddress"/>
+          <Item Value="Month"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="VO_WAIVEOFFREQ1Iterator"
+                     id="ExceptionRequestId">
+      <AttrNames>
+        <Item Value="ExceptionRequestId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_WAIVEOFFREQ1Iterator" id="IrregularityId">
+      <AttrNames>
+        <Item Value="IrregularityId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_WAIVEOFFREQ1Iterator" id="EmpAtdId">
+      <AttrNames>
+        <Item Value="EmpAtdId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_WAIVEOFFREQ1Iterator" id="AttendanceDate">
+      <AttrNames>
+        <Item Value="AttendanceDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_WAIVEOFFREQ1Iterator"
+                     id="ExceptionRequestDate">
+      <AttrNames>
+        <Item Value="ExceptionRequestDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_WAIVEOFFREQ1Iterator" id="ExceptionCause">
+      <AttrNames>
+        <Item Value="ExceptionCause"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_WAIVEOFFREQ1Iterator"
+                     id="ExceptionRemarks">
+      <AttrNames>
+        <Item Value="ExceptionRemarks"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_WAIVEOFFREQ1Iterator" id="EmpId">
+      <AttrNames>
+        <Item Value="EmpId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_WAIVEOFFREQ1Iterator" id="Approved">
+      <AttrNames>
+        <Item Value="Approved"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_WAIVEOFFREQ1Iterator" id="MissingMinutes">
+      <AttrNames>
+        <Item Value="MissingMinutes"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_WAIVEOFFREQ1Iterator"
+                     id="LineManagerComments">
+      <AttrNames>
+        <Item Value="LineManagerComments"/>
+      </AttrNames>
+    </attributeValues>
+    <listOfValues StaticList="false" IterBinding="VO_WAIVEOFFREQ1Iterator"
+                  Uses="LOV_FullName" id="FullName"/>
+    <attributeValues IterBinding="VO_WAIVEOFFREQ1Iterator" id="EmailAddress">
+      <AttrNames>
+        <Item Value="EmailAddress"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="VO_WAIVEOFFREQ1Iterator" StaticList="false"
+          Uses="LOV_Month" id="Month" DTSupportsMRU="false"/>
+    <action IterBinding="VO_ADMIN_IRREGULARITIES1Iterator" id="Delete"
+            RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <action IterBinding="VO_ADMIN_IRREGULARITIES1Iterator" id="CreateInsert"
+            RequiresUpdateModel="true" Action="createInsertRow"/>
+    <action IterBinding="VO_WAIVEOFFREQ1Iterator" id="Delete1"
+            RequiresUpdateModel="false" Action="removeCurrentRow"/>
+  </bindings>
+</pageDefinition>

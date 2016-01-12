@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="VO_EmptyAttendance"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full"
+  UseGlueCode="false">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="VarAccess"/>
+    <Attr Name="_isExpertMode" Value="true"/>
+  </DesignTime>
+  <Variable
+    Name="person_id"
+    Kind="where"
+    Type="java.lang.String"/>
+  <Variable
+    Name="postingDate"
+    Kind="where"
+    Type="java.lang.String"/>
+  <SQLQuery>
+    <![CDATA[SELECT EO_EmptyAttendance.PERSON_ID, 
+       EO_EmptyAttendance.FULL_NAME, 
+       EO_EmptyAttendance.ATTENDANCE_DATE, 
+       EO_EmptyAttendance.MAX_START_TIME, 
+       EO_EmptyAttendance.MAX_END_TIME, 
+       EO_EmptyAttendance.START_TIME, 
+       EO_EmptyAttendance.END_TIME, 
+       EO_EmptyAttendance.EXPECTED_WORK_HOURS
+FROM XX_E_PORTAL_EMP_EMPTY_ATD EO_EmptyAttendance
+where person_id = :person_id
+and attendance_date > add_months(to_date(:postingDate)-to_number(to_char(to_date(:postingDate),'DD')),2) and attendance_date < add_months(to_date(:postingDate)-to_number(to_char(to_date(:postingDate),'DD')),3)]]>
+  </SQLQuery>
+  <EntityUsage
+    Name="EO_EmptyAttendance"
+    Entity="hub.nishat.net.model.EO.EO_EmptyAttendance"/>
+  <ViewAttribute
+    Name="PersonId"
+    PrecisionRule="true"
+    EntityAttrName="PersonId"
+    EntityUsage="EO_EmptyAttendance"
+    AliasName="PERSON_ID"/>
+  <ViewAttribute
+    Name="FullName"
+    PrecisionRule="true"
+    EntityAttrName="FullName"
+    EntityUsage="EO_EmptyAttendance"
+    AliasName="FULL_NAME"/>
+  <ViewAttribute
+    Name="AttendanceDate"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="AttendanceDate"
+    EntityUsage="EO_EmptyAttendance"
+    AliasName="ATTENDANCE_DATE"/>
+  <ViewAttribute
+    Name="MaxStartTime"
+    PrecisionRule="true"
+    EntityAttrName="MaxStartTime"
+    EntityUsage="EO_EmptyAttendance"
+    AliasName="MAX_START_TIME"/>
+  <ViewAttribute
+    Name="MaxEndTime"
+    PrecisionRule="true"
+    EntityAttrName="MaxEndTime"
+    EntityUsage="EO_EmptyAttendance"
+    AliasName="MAX_END_TIME"/>
+  <ViewAttribute
+    Name="StartTime"
+    PrecisionRule="true"
+    EntityAttrName="StartTime"
+    EntityUsage="EO_EmptyAttendance"
+    AliasName="START_TIME"/>
+  <ViewAttribute
+    Name="EndTime"
+    PrecisionRule="true"
+    EntityAttrName="EndTime"
+    EntityUsage="EO_EmptyAttendance"
+    AliasName="END_TIME"/>
+  <ViewAttribute
+    Name="ExpectedWorkHours"
+    PrecisionRule="true"
+    EntityAttrName="ExpectedWorkHours"
+    EntityUsage="EO_EmptyAttendance"
+    AliasName="EXPECTED_WORK_HOURS"/>
+</ViewObject>

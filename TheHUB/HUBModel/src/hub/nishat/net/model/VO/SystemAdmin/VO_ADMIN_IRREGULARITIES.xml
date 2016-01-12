@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="VO_ADMIN_IRREGULARITIES"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full"
+  UseGlueCode="false">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="VarAccess"/>
+    <Attr Name="_isExpertMode" Value="true"/>
+  </DesignTime>
+  <Variable
+    Name="BND_EMAIL"
+    Kind="viewcriteria"
+    Type="java.lang.String"/>
+  <Variable
+    Name="BND_MONTH"
+    Kind="viewcriteria"
+    Type="java.lang.String"/>
+  <Variable
+    Name="BND_NAME"
+    Kind="viewcriteria"
+    Type="java.lang.String"/>
+  <ViewAccessor
+    Name="LOV_EMP1"
+    ViewObjectName="hub.nishat.net.model.VO.SystemAdmin.LOV_EMP"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="VO_Months1"
+    ViewObjectName="hub.nishat.net.model.VO.SearchVO.VO_Months"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="LOV_IRRTYPE1"
+    ViewObjectName="hub.nishat.net.model.VO.SystemAdmin.LOV_IRRTYPE"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="LOV_ATTENDANCE1"
+    ViewObjectName="hub.nishat.net.model.VO.SystemAdmin.LOV_ATTENDANCE"
+    RowLevelBinds="true"/>
+  <ListBinding
+    Name="LOV_FullName"
+    ListVOName="LOV_EMP1"
+    ListRangeSize="10"
+    NullValueFlag="none"
+    NullValueId="LOV_FullName_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="FullName"/>
+    </AttrArray>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="EmpId"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="LastName"/>
+      <Item Value="PersonId"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="LastName"/>
+    </AttrArray>
+    <DisplayCriteria
+      Name="LOV_EMPCriteria"
+      Hint="showAndExecute"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_Month"
+    ListVOName="VO_Months1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="Month"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Monthname"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Monthname"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_Type"
+    ListVOName="LOV_IRRTYPE1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="Type"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="IrrType"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="IrrType"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_EmpAtdId"
+    ListVOName="LOV_ATTENDANCE1"
+    ListRangeSize="10"
+    NullValueFlag="none"
+    NullValueId="LOV_EmpAtdId_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="EmpAtdId"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="EmpAtdId"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="EmpAtdId"/>
+      <Item Value="InTime"/>
+      <Item Value="OutTime"/>
+    </AttrArray>
+    <DisplayCriteria
+      Name="LOV_ATTENDANCECriteria"/>
+  </ListBinding>
+  <SQLQuery>
+    <![CDATA[SELECT
+PPF.full_name,
+PPF.email_address,
+ ADMIN_IRREGULARITIES.IRREGULARITY_ID, 
+       ADMIN_IRREGULARITIES.EMP_ATD_ID, 
+       ADMIN_IRREGULARITIES.ATTENDANCE_DATE, 
+       ADMIN_IRREGULARITIES.TYPE, 
+       ADMIN_IRREGULARITIES.EXCEPTION_REMARKS, 
+       ADMIN_IRREGULARITIES.MINUTES_MISSING, 
+       ADMIN_IRREGULARITIES.EMP_ID, 
+       ADMIN_IRREGULARITIES.EXCEPTION_APPROVED, 
+       ADMIN_IRREGULARITIES.LEAVE_TYPE
+       ,to_char(ADMIN_IRREGULARITIES.ATTENDANCE_DATE,'MON') month
+FROM XX_E_PORTAL_EMP_IRREGULARITIES ADMIN_IRREGULARITIES
+,PER_ALL_PEOPLE_F PPF
+where PPF.person_id = ADMIN_IRREGULARITIES.emp_id (+) 
+and sysdate between ppf.EFFECTIVE_START_DATE and ppf.EFFECTIVE_END_DATE
+order by ADMIN_IRREGULARITIES.EMP_ID,
+ ADMIN_IRREGULARITIES.ATTENDANCE_DATE]]>
+  </SQLQuery>
+  <EntityUsage
+    Name="ADMIN_IRREGULARITIES"
+    Entity="hub.nishat.net.model.EO.SystemAdmin.ADMIN_IRREGULARITIES"/>
+  <ViewAttribute
+    Name="FullName"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="FULL_NAME"
+    Expression="FULL_NAME"
+    SQLType="VARCHAR"
+    LOVName="LOV_FullName">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="240"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="input_text_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="EmailAddress"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="EMAIL_ADDRESS"
+    Expression="EMAIL_ADDRESS"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="240"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="IrregularityId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="IrregularityId"
+    EntityUsage="ADMIN_IRREGULARITIES"
+    AliasName="IRREGULARITY_ID"/>
+  <ViewAttribute
+    Name="EmpAtdId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="EmpAtdId"
+    EntityUsage="ADMIN_IRREGULARITIES"
+    AliasName="EMP_ATD_ID"
+    LOVName="LOV_EmpAtdId">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="input_text_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="AttendanceDate"
+    PrecisionRule="true"
+    EntityAttrName="AttendanceDate"
+    EntityUsage="ADMIN_IRREGULARITIES"
+    AliasName="ATTENDANCE_DATE"/>
+  <ViewAttribute
+    Name="Type"
+    PrecisionRule="true"
+    EntityAttrName="Type"
+    EntityUsage="ADMIN_IRREGULARITIES"
+    AliasName="TYPE"
+    LOVName="LOV_Type">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="ExceptionRemarks"
+    PrecisionRule="true"
+    EntityAttrName="ExceptionRemarks"
+    EntityUsage="ADMIN_IRREGULARITIES"
+    AliasName="EXCEPTION_REMARKS"/>
+  <ViewAttribute
+    Name="MinutesMissing"
+    PrecisionRule="true"
+    EntityAttrName="MinutesMissing"
+    EntityUsage="ADMIN_IRREGULARITIES"
+    AliasName="MINUTES_MISSING"/>
+  <ViewAttribute
+    Name="EmpId"
+    PrecisionRule="true"
+    EntityAttrName="EmpId"
+    EntityUsage="ADMIN_IRREGULARITIES"
+    AliasName="EMP_ID"/>
+  <ViewAttribute
+    Name="ExceptionApproved"
+    PrecisionRule="true"
+    EntityAttrName="ExceptionApproved"
+    EntityUsage="ADMIN_IRREGULARITIES"
+    AliasName="EXCEPTION_APPROVED"/>
+  <ViewAttribute
+    Name="LeaveType"
+    PrecisionRule="true"
+    EntityAttrName="LeaveType"
+    EntityUsage="ADMIN_IRREGULARITIES"
+    AliasName="LEAVE_TYPE"/>
+  <ViewAttribute
+    Name="Month"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="3"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="MONTH"
+    Expression="MONTH"
+    SQLType="VARCHAR"
+    LOVName="LOV_Month">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="3"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewCriteria
+    Name="VO_ADMIN_IRREGULARITIESCriteria"
+    ViewObjectName="hub.nishat.net.model.VO.SystemAdmin.VO_ADMIN_IRREGULARITIES"
+    Conjunction="AND">
+    <Properties>
+      <CustomProperties>
+        <Property
+          Name="displayOperators"
+          Value="InAdvancedMode"/>
+        <Property
+          Name="autoExecute"
+          Value="true"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="true"/>
+        <Property
+          Name="showInList"
+          Value="true"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="vcrow24"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="FullName"
+        ViewAttribute="FullName"
+        Operator="="
+        Conjunction="AND"
+        Value=":BND_NAME"
+        IsBindVarValue="true"
+        Required="Optional"/>
+      <ViewCriteriaItem
+        Name="EmailAddress"
+        ViewAttribute="EmailAddress"
+        Operator="CONTAINS"
+        Conjunction="AND"
+        Value=":BND_EMAIL"
+        IsBindVarValue="true"
+        Required="Optional"/>
+      <ViewCriteriaItem
+        Name="Month"
+        ViewAttribute="Month"
+        Operator="="
+        Conjunction="AND"
+        Value=":BND_MONTH"
+        IsBindVarValue="true"
+        Required="Optional"/>
+    </ViewCriteriaRow>
+  </ViewCriteria>
+  <LOVUIHints
+    ListType="105"
+    MRUCount="0"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    NullValueId="LOVUIHints_NullValueId">
+    <DisplayCriteria/>
+  </LOVUIHints>
+</ViewObject>

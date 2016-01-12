@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application"
+             version="11.1.1.64.93" id="DataBindings" SeparateXMLFiles="false"
+             Package="hub.nishat.net.view" ClientType="Generic">
+  <definitionFactories>
+    <factory nameSpace="http://xmlns.oracle.com/adfm/dvt"
+             className="oracle.adfinternal.view.faces.dvt.model.binding.FacesBindingFactory"/>
+  </definitionFactories>
+  <pageMap>
+    <page path="/attendance.jspx"
+          usageId="hub_nishat_net_view_attendancePageDef"/>
+    <page path="/untitled1.jspx"
+          usageId="hub_nishat_net_view_untitled1PageDef"/>
+    <page path="/test.jspx" usageId="hub_nishat_net_view_testPageDef"/>
+    <page path="/login_page.jspx"
+          usageId="hub_nishat_net_view_login_pagePageDef"/>
+    <page path="/untitled1.jspx"
+          usageId="hub_nishat_net_view_untitled1PageDef1"/>
+    <page path="/SupervisorView/emp_attendance_posting.jspx"
+          usageId="hub_nishat_net_view_emp_attendance_postingPageDef"/>
+    <page path="/SupervisorView/supervisor_approvals.jspx"
+          usageId="hub_nishat_net_view_supervisor_approvalsPageDef"/>
+    <page path="/HR/HROperations.jspx"
+          usageId="hub_nishat_net_view_HROperationsPageDef"/>
+    <page path="/HR/emp_settings.jspx"
+          usageId="hub_nishat_net_view_emp_settingsPageDef"/>
+    <page path="/SupervisorView/supervisor_responsibilities.jspx"
+          usageId="hub_nishat_net_view_supervisor_responsibilitiesPageDef"/>
+    <page path="/employee_attendance.jspx"
+          usageId="hub_nishat_net_view_employee_attendancePageDef"/>
+    <page path="/CEOReports/employee_report.jspx"
+          usageId="hub_nishat_net_view_employee_reportPageDef"/>
+    <page path="/CEOReports/employee_info.jspx"
+          usageId="hub_nishat_net_view_employee_infoPageDef"/>
+    <page path="/HR/attandance_rpt.jspx"
+          usageId="hub_nishat_net_view_attandance_rptPageDef"/>
+    <page path="/untitled2.jspx"
+          usageId="hub_nishat_net_view_untitled2PageDef"/>
+    <page path="/att_handle_NCEntertainment.jspx"
+          usageId="hub_nishat_net_view_att_handle_NCEntertainmentPageDef"/>
+    <page path="/hello.jsp" usageId="hub_nishat_net_view_helloPageDef"/>
+    <page path="/SupervisorView/my_hierarchy.jspx"
+          usageId="hub_nishat_net_view_my_hierarchyPageDef"/>
+    <page path="/error.jspx" usageId="hub_nishat_net_view_errorPageDef"/>
+    <page path="/SupervisorView/employee_information.jspx"
+          usageId="hub_nishat_net_view_employee_informationPageDef"/>
+    <page path="/intercom_directory.jspx"
+          usageId="hub_nishat_net_view_intercom_directoryPageDef"/>
+    <page path="/HR/OVERTIME_WORKING.jspx"
+          usageId="hub_nishat_net_view_OVERTIME_WORKINGPageDef"/>
+    <page path="/ADMIN/ADMIN_IRREGULARITIES.jspx"
+          usageId="hub_nishat_net_view_ADMIN_IRREGULARITIESPageDef"/>
+  </pageMap>
+  <pageDefinitionUsages>
+    <page id="hub_nishat_net_view_attendancePageDef"
+          path="hub.nishat.net.view.pageDefs.attendancePageDef"/>
+    <page id="hub_nishat_net_view_untitled1PageDef"
+          path="hub.nishat.net.view.pageDefs.untitled1PageDef"/>
+    <page id="hub_nishat_net_view_testPageDef"
+          path="hub.nishat.net.view.pageDefs.testPageDef"/>
+    <page id="hub_nishat_net_view_login_pagePageDef"
+          path="hub.nishat.net.view.pageDefs.login_pagePageDef"/>
+    <page id="hub_nishat_net_view_untitled1PageDef1"
+          path="hub.nishat.net.view.pageDefs.untitled1PageDef1"/>
+    <page id="hub_nishat_net_view_emp_attendance_postingPageDef"
+          path="SupervisorView.emp_attendance_postingPageDef"/>
+    <page id="hub_nishat_net_view_supervisor_approvalsPageDef"
+          path="SupervisorView.supervisor_approvalsPageDef"/>
+    <page id="hub_nishat_net_view_HROperationsPageDef"
+          path="HR.HROperationsPageDef"/>
+    <page id="hub_nishat_net_view_emp_settingsPageDef"
+          path="HR.emp_settingsPageDef"/>
+    <page id="hub_nishat_net_view_supervisor_responsibilitiesPageDef"
+          path="SupervisorView.supervisor_responsibilitiesPageDef"/>
+    <page id="hub_nishat_net_view_employee_attendancePageDef"
+          path="hub.nishat.net.view.pageDefs.employee_attendancePageDef"/>
+    <page id="hub_nishat_net_view_employee_reportPageDef"
+          path="CEOReports.employee_reportPageDef"/>
+    <page id="hub_nishat_net_view_employee_infoPageDef"
+          path="CEOReports.employee_infoPageDef"/>
+    <page id="hub_nishat_net_view_attandance_rptPageDef"
+          path="HR.attandance_rptPageDef"/>
+    <page id="hub_nishat_net_view_untitled2PageDef"
+          path="hub.nishat.net.view.pageDefs.untitled2PageDef"/>
+    <page id="hub_nishat_net_view_att_handle_NCEntertainmentPageDef"
+          path="hub.nishat.net.view.pageDefs.att_handle_NCEntertainmentPageDef"/>
+    <page id="hub_nishat_net_view_helloPageDef"
+          path="hub.nishat.net.view.pageDefs.helloPageDef"/>
+    <page id="hub_nishat_net_view_my_hierarchyPageDef"
+          path="SupervisorView.my_hierarchyPageDef"/>
+    <page id="hub_nishat_net_view_errorPageDef"
+          path="hub.nishat.net.view.pageDefs.errorPageDef"/>
+    <page id="hub_nishat_net_view_employee_informationPageDef"
+          path="SupervisorView.employee_informationPageDef"/>
+    <page id="hub_nishat_net_view_intercom_directoryPageDef"
+          path="hub.nishat.net.view.pageDefs.intercom_directoryPageDef"/>
+    <page id="hub_nishat_net_view_OVERTIME_WORKINGPageDef"
+          path="HR.OVERTIME_WORKINGPageDef"/>
+    <page id="hub_nishat_net_view_ADMIN_IRREGULARITIESPageDef"
+          path="ADMIN.ADMIN_IRREGULARITIESPageDef"/>
+  </pageDefinitionUsages>
+  <dataControlUsages>
+    <dc id="MonthlyDeductionsDetails"
+        path="hub.nishat.net.view.MonthlyDeductionsDetails"/>
+    <dc id="AnnualLeaveDetails" path="hub.nishat.net.view.AnnualLeaveDetails"/>
+    <dc id="LeaveDetails" path="hub.nishat.net.view.LeaveDetails"/>
+    <dc id="LeaveDetailsReport" path="hub.nishat.net.view.LeaveDetailsReport"/>
+    <dc id="SalaryReport" path="hub.nishat.net.view.SalaryReport"/>
+    <dc id="LeaveReport" path="hub.nishat.net.view.LeaveReport"/>
+    <dc id="NotificationTypes" path="hub.nishat.net.view.NotificationTypes"/>
+    <BC4JDataControl id="HubModuleDataControl" Package="hub.nishat.net.model.AM"
+                     FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl"
+                     SupportsTransactions="true" SupportsFindMode="true"
+                     SupportsRangesize="true" SupportsResetState="true"
+                     SupportsSortCollection="true"
+                     Configuration="HubModuleLocal" syncMode="Immediate"
+                     xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+    <BC4JDataControl id="TestModuleDataControl"
+                     Package="hub.nishat.net.model.AM"
+                     FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl"
+                     SupportsTransactions="true" SupportsFindMode="true"
+                     SupportsRangesize="true" SupportsResetState="true"
+                     SupportsSortCollection="true"
+                     Configuration="TestModuleLocal" syncMode="Immediate"
+                     xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+    <BC4JDataControl id="TestAppModuleDataControl"
+                     Package="hub.nishat.net.model.VO.Test"
+                     FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl"
+                     SupportsTransactions="true" SupportsFindMode="true"
+                     SupportsRangesize="true" SupportsResetState="true"
+                     SupportsSortCollection="true"
+                     Configuration="TestAppModuleLocal" syncMode="Immediate"
+                     xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+    <BC4JDataControl id="CEOAppModuleDataControl"
+                     Package="hub.nishat.net.model.VO.CEO.AM"
+                     FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl"
+                     SupportsTransactions="true" SupportsFindMode="true"
+                     SupportsRangesize="true" SupportsResetState="true"
+                     SupportsSortCollection="true"
+                     Configuration="CEOAppModuleLocal" syncMode="Immediate"
+                     xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+    <BC4JDataControl id="NCEHUBModuleDataControl"
+                     Package="hub.nishat.net.model.VO.NCE"
+                     FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl"
+                     SupportsTransactions="true" SupportsFindMode="true"
+                     SupportsRangesize="true" SupportsResetState="true"
+                     SupportsSortCollection="true"
+                     Configuration="NCEHUBModuleLocal" syncMode="Immediate"
+                     xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+  </dataControlUsages>
+</Application>

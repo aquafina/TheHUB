@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<JavaBean xmlns="http://xmlns.oracle.com/adfm/beanmodel" version="11.1.1.64.93"
+          id="AnnualLeaveDetails" Package="view.nishat.net.CustomDataControl"
+          BeanClass="view.nishat.net.CustomDataControl.AnnualLeaveDetails"
+          isJavaBased="true">
+  <AccessorAttribute id="list" IsCollection="true" Type="java.util.List"
+                     CollectionBeanClass="UpdateableCollection"
+                     BeanClass="view.nishat.net.CustomDataControl.AnnualDeductedLeaveRptBean">
+    <Attribute Name="element" Type="java.lang.String"/>
+  </AccessorAttribute>
+  <ConstructorMethod IsCollection="true"
+                     Type="view.nishat.net.CustomDataControl.AnnualLeaveDetails"
+                     BeanClass="view.nishat.net.CustomDataControl.AnnualLeaveDetails"
+                     id="AnnualLeaveDetails"/>
+</JavaBean>

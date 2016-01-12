@@ -1,0 +1,36 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<BC4JConfig version="11.1" xmlns="http://xmlns.oracle.com/bc4j/configuration">
+   <AppModuleConfigBag ApplicationName="hub.nishat.net.model.AM.HubModule">
+      <AppModuleConfig name="151CD224350" DeployPlatform="LOCAL" DBconnection="java:comp/env/jdbc/xx_e_portalDS" BC4JConfigName="HubModuleLocal" JDBCName="xx_e_portal" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory" IsLazyLoadingTrue="true" ApplicationName="hub.nishat.net.model.AM.HubModule" jbo.project="hub.nishat.net.model.HUBModel">
+         <AM-Pooling jbo.ampool.timetolive="120000" jbo.ampool.monitorsleepinterval="30000" jbo.ampool.maxinactiveage="60000"/>
+         <Database jbo.TypeMapEntries="Oracle" jbo.locking.mode="optimistic" jbo.SQLBuilder="Oracle"/>
+         <Security AppModuleJndiName="hub.nishat.net.model.AM.HubModule"/>
+         <Tester FullProxyInterfaceName="hub.nishat.net.model.AM.common.HubModule"/>
+         <Custom LastUsedConfiguration="HubModuleLocal" JDBCDataSource="java:comp/env/jdbc/xx_e_portalDS"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+   <AppModuleConfigBag ApplicationName="hub.nishat.net.model.VO.Test.TestAppModule">
+      <AppModuleConfig name="14E1A3FF766" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory" DBconnection="java:comp/env/jdbc/xx_e_portalDS" IsLazyLoadingTrue="true" JDBCName="xx_e_portal" jbo.project="hub.nishat.net.model.HUBModel" BC4JConfigName="TestAppModuleLocal" DeployPlatform="LOCAL" ApplicationName="hub.nishat.net.model.VO.Test.TestAppModule">
+         <Database jbo.SQLBuilder="Oracle" jbo.TypeMapEntries="Oracle"/>
+         <Security AppModuleJndiName="hub.nishat.net.model.VO.Test.TestAppModule"/>
+         <Tester FullProxyInterfaceName="hub.nishat.net.model.VO.Test.common.TestAppModule"/>
+         <Custom LastUsedConfiguration="TestAppModuleLocal" JDBCDataSource="java:comp/env/jdbc/xx_e_portalDS"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+   <AppModuleConfigBag ApplicationName="hub.nishat.net.model.VO.CEO.AM.CEOAppModule">
+      <AppModuleConfig name="14E76C2A332" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory" DBconnection="java:comp/env/jdbc/xx_e_portalDS" IsLazyLoadingTrue="true" JDBCName="xx_e_portal" jbo.project="hub.nishat.net.model.HUBModel" BC4JConfigName="CEOAppModuleLocal" DeployPlatform="LOCAL" ApplicationName="hub.nishat.net.model.VO.CEO.AM.CEOAppModule">
+         <Database jbo.SQLBuilder="Oracle" jbo.TypeMapEntries="Oracle"/>
+         <Security AppModuleJndiName="hub.nishat.net.model.VO.CEO.AM.CEOAppModule"/>
+         <Tester FullProxyInterfaceName="hub.nishat.net.model.VO.CEO.AM.common.CEOAppModule"/>
+         <Custom LastUsedConfiguration="CEOAppModuleLocal" JDBCDataSource="java:comp/env/jdbc/xx_e_portalDS"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+   <AppModuleConfigBag ApplicationName="hub.nishat.net.model.VO.NCE.NCEHUBModule">
+      <AppModuleConfig name="14EDCF71583" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory" DBconnection="java:comp/env/jdbc/xx_e_portalDS" IsLazyLoadingTrue="true" JDBCName="xx_e_portal" jbo.project="hub.nishat.net.model.HUBModel" BC4JConfigName="NCEHUBModuleLocal" DeployPlatform="LOCAL" ApplicationName="hub.nishat.net.model.VO.NCE.NCEHUBModule">
+         <Database jbo.SQLBuilder="Oracle" jbo.TypeMapEntries="Oracle"/>
+         <Security AppModuleJndiName="hub.nishat.net.model.VO.NCE.NCEHUBModule"/>
+         <Tester FullProxyInterfaceName="hub.nishat.net.model.VO.NCE.common.NCEHUBModule"/>
+         <Custom LastUsedConfiguration="NCEHUBModuleLocal" JDBCDataSource="java:comp/env/jdbc/xx_e_portalDS"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+</BC4JConfig>

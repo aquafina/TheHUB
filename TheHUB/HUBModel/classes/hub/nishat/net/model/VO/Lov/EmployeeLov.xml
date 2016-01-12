@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="EmployeeLov"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full"
+  UseGlueCode="false">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="hub.nishat.net.model.VO.Lov.EmployeeLov_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <Variable
+    Name="bv_child_name"
+    Kind="viewcriteria"
+    Type="java.lang.String"/>
+  <ViewAccessor
+    Name="EmployeeLov1"
+    ViewObjectName="hub.nishat.net.model.VO.Lov.EmployeeLov"
+    RowLevelBinds="true"/>
+  <ListBinding
+    Name="LOV_FullNameChild"
+    ListVOName="EmployeeLov1"
+    ListRangeSize="10"
+    NullValueFlag="none"
+    NullValueId="LOV_FullNameChild_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="FullNameChild"/>
+    </AttrArray>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="HierarchyName"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="FullNameChild"/>
+      <Item Value="HierarchyName"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="FullNameChild"/>
+    </AttrArray>
+    <DisplayCriteria
+      Name="EmployeeLovCriteria"/>
+  </ListBinding>
+  <SQLQuery>
+    <![CDATA[SELECT 
+hierarchy.child_person_id,
+(hub.get_sec(substr(flexi.MAX_START_TIME,0,4))-hub.get_sec('9:00'))/60||' Hr' hours_flexible,
+hierarchy.HIERARCHY_NAME,
+hierarchy.full_name_child,
+decode(type.emp_type,null,null, type.emp_type||' '||type.working_time||' Hours Policy') emp_type
+FROM XX_E_PORTAL_USERS EO_ActiveEmployees,
+           xx_employee_org_chart_v hierarchy,
+           xx_e_portal_emp_type type,
+           xx_e_portal_emp_flexi flexi
+where EO_ActiveEmployees.EMAIL_ADDRESS is not null
+and sysdate between EO_ActiveEmployees.EFFECTIVE_START_DATE and EO_ActiveEmployees.EFFECTIVE_END_DATE
+and hierarchy.child_person_id = EO_ActiveEmployees.PERSON_ID
+and EO_ActiveEmployees.EMP_TYPE = type.emp_type_id(+)
+and flexi.emp_id = EO_ActiveEmployees.person_id]]>
+  </SQLQuery>
+  <ViewAttribute
+    Name="ChildPersonId"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="10"
+    Scale="0"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="CHILD_PERSON_ID"
+    Expression="CHILD_PERSON_ID"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="11"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="HoursFlexible"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="44"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="HOURS_FLEXIBLE"
+    Expression="HOURS_FLEXIBLE"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="44"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="HierarchyName"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="30"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="HIERARCHY_NAME"
+    Expression="HIERARCHY_NAME"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="30"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="FullNameChild"
+    LOVName="LOV_FullNameChild"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="FULL_NAME_CHILD"
+    Expression="FULL_NAME_CHILD"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="240"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="input_text_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="EmpType"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="44"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="EMP_TYPE"
+    Expression="EMP_TYPE"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="44"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewCriteria
+    Name="EmployeeLovCriteria"
+    ViewObjectName="hub.nishat.net.model.VO.Lov.EmployeeLov"
+    Conjunction="AND">
+    <Properties>
+      <CustomProperties>
+        <Property
+          Name="displayOperators"
+          Value="Never"/>
+        <Property
+          Name="autoExecute"
+          Value="true"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="true"/>
+        <Property
+          Name="showInList"
+          Value="true"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="vcrow21"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="FullNameChild"
+        ViewAttribute="FullNameChild"
+        Operator="CONTAINS"
+        Conjunction="AND"
+        Value=":bv_child_name"
+        IsBindVarValue="true"
+        Required="Optional"/>
+    </ViewCriteriaRow>
+  </ViewCriteria>
+  <AttrArray Name="KeyAttributes">
+    <Item Value="ChildPersonId"/>
+  </AttrArray>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="hub.nishat.net.model.HUBModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

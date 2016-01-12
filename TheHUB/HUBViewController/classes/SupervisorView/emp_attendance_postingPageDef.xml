@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="emp_attendance_postingPageDef"
+                Package="SupervisorView">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="VO_EmpAttendance1" RangeSize="25"
+              DataControl="HubModuleDataControl"
+              id="VO_EmpAttendance1Iterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="VO_EmpAttendance1Iterator" id="VO_EmpAttendance1">
+      <nodeDefinition DefName="hub.nishat.net.model.VO.Supervisor.VO_EmpAttendance"
+                      Name="VO_EmpAttendance10">
+        <AttrNames>
+          <Item Value="EmpAtdId"/>
+          <Item Value="EmpId"/>
+          <Item Value="EmpName"/>
+          <Item Value="CardNum"/>
+          <Item Value="ExpectedWorkHours"/>
+          <Item Value="MinInTime"/>
+          <Item Value="MaxOutTime"/>
+          <Item Value="EffectiveWorkedHours"/>
+          <Item Value="MaxStartTime"/>
+          <Item Value="MaxEndTime"/>
+          <Item Value="EndTime"/>
+          <Item Value="StartTime"/>
+          <Item Value="AttendanceDate"/>
+          <Item Value="LeaveTypeId"/>
+          <Item Value="LeaveApprovedFlag"/>
+          <Item Value="PolicyException"/>
+          <Item Value="PolicyExceptionApprovedFlag"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

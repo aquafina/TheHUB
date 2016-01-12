@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="attandance_rptPageDef" Package="HR">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="VO_RptLateSitting1" RangeSize="25"
+              DataControl="HubModuleDataControl"
+              id="VO_RptLateSitting1Iterator"/>
+    <searchRegion Criteria="VO_RptLateSittingCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="VO_RptLateSitting1Iterator"
+                  id="VORptLateSittingCriteriaQuery"/>
+    <searchRegion Criteria="VO_RptLateSittingCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="VO_RptLateSitting1Iterator"
+                  id="VORptLateSittingCriteriaQuery1"/>
+    <iterator Binds="VO_SUNWORKING1" RangeSize="25"
+              DataControl="HubModuleDataControl" id="VO_SUNWORKING1Iterator"/>
+    <searchRegion Criteria="VO_SUNWORKINGCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="VO_SUNWORKING1Iterator"
+                  id="VOSUNWORKINGCriteriaQuery"/>
+    <iterator Binds="VO_SATWORKING1" RangeSize="25"
+              DataControl="HubModuleDataControl" id="VO_SATWORKING1Iterator"/>
+    <searchRegion Criteria="VO_SATWORKINGCriteria1"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="VO_SATWORKING1Iterator"
+                  id="VOSATWORKINGCriteria1Query"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="VO_RptLateSitting1Iterator" id="VO_RptLateSitting1">
+      <nodeDefinition DefName="hub.nishat.net.model.VO.ReportsVO.VO_RptLateSitting"
+                      Name="VO_RptLateSitting10">
+        <AttrNames>
+          <Item Value="HierarchyName"/>
+          <Item Value="FullNameChild"/>
+          <Item Value="AttendanceDate"/>
+          <Item Value="MaxOutTime"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="VO_RptLateSitting1Iterator" id="Execute"
+            RequiresUpdateModel="true" Action="iteratorExecute"/>
+    <tree IterBinding="VO_RptLateSitting1Iterator" id="VO_RptLateSitting11">
+      <nodeDefinition DefName="hub.nishat.net.model.VO.ReportsVO.VO_RptLateSitting"
+                      Name="VO_RptLateSitting110">
+        <AttrNames>
+          <Item Value="HierarchyName"/>
+          <Item Value="FullNameChild"/>
+          <Item Value="AttendanceDate"/>
+          <Item Value="MaxOutTime"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="VO_SUNWORKING1Iterator" id="VO_SUNWORKING1">
+      <nodeDefinition DefName="hub.nishat.net.model.VO.ReportsVO.VO_SUNWORKING"
+                      Name="VO_SUNWORKING10">
+        <AttrNames>
+          <Item Value="HierarchyName"/>
+          <Item Value="FullNameChild"/>
+          <Item Value="AttendanceDate"/>
+          <Item Value="MinInTime"/>
+          <Item Value="MaxOutTime"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="VO_SATWORKING1Iterator" id="VO_SATWORKING1">
+      <nodeDefinition DefName="hub.nishat.net.model.VO.ReportsVO.VO_SATWORKING"
+                      Name="VO_SATWORKING10">
+        <AttrNames>
+          <Item Value="HierarchyName"/>
+          <Item Value="FullNameChild"/>
+          <Item Value="AttendanceDate"/>
+          <Item Value="MinInTime"/>
+          <Item Value="MaxOutTime"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

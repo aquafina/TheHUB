@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="HROperationsPageDef" Package="HR">
+  <parameters/>
+  <executables>
+    <iterator Binds="VO_ActiveEmployees2" RangeSize="25"
+              DataControl="HubModuleDataControl"
+              id="VO_ActiveEmployees2Iterator"/>
+    <searchRegion Binds="VO_ActiveEmployees2Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="VO_ActiveEmployees2Query"/>
+    <iterator Binds="DepartmentLov3" RangeSize="25"
+              DataControl="HubModuleDataControl" id="DepartmentLov3Iterator"/>
+    <iterator Binds="VO_AttendanceHR3" RangeSize="25"
+              DataControl="HubModuleDataControl" id="VO_AttendanceHR3Iterator"/>
+    <iterator Binds="YearLov1" RangeSize="25" DataControl="HubModuleDataControl"
+              id="YearLov1Iterator"/>
+    <searchRegion Criteria="VO_AttendanceHRCriteria"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="VO_AttendanceHR3Iterator"
+                  id="VOAttendanceHRCriteriaQuery"/>
+    <iterator Binds="MonthLov1" RangeSize="25"
+              DataControl="HubModuleDataControl" id="MonthLov1Iterator"/>
+    <iterator Binds="VO_ConsumedLeaves1" RangeSize="25"
+              DataControl="HubModuleDataControl"
+              id="VO_ConsumedLeaves1Iterator"/>
+    <iterator Binds="VO_AttendanceHR2" RangeSize="25"
+              DataControl="HubModuleDataControl" id="VO_AttendanceHR2Iterator"/>
+    <iterator Binds="VO_ConsumedLeaves3" RangeSize="25"
+              DataControl="HubModuleDataControl"
+              id="VO_ConsumedLeaves3Iterator"/>
+    <iterator Binds="VO_EmpIRR2" RangeSize="25"
+              DataControl="HubModuleDataControl" id="VO_EmpIRR2Iterator"/>
+    <iterator Binds="VO_ActiveEmployees4" RangeSize="25"
+              DataControl="HubModuleDataControl"
+              id="VO_ActiveEmployees4Iterator"/>
+    <iterator Binds="VO_PARTTIMES2" RangeSize="25"
+              DataControl="HubModuleDataControl" id="VO_PARTTIMES2Iterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="VO_ActiveEmployees2Iterator" id="VO_ActiveEmployees2">
+      <nodeDefinition DefName="hub.nishat.net.model.VO.HR.VO_ActiveEmployees"
+                      Name="VO_ActiveEmployees20">
+        <AttrNames>
+          <Item Value="ChildPersonId"/>
+          <Item Value="HierarchyName"/>
+          <Item Value="FullNameChild"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <list IterBinding="DepartmentLov3Iterator" StaticList="false"
+          Uses="LOV_HierarchyName" id="HierarchyName1" DTSupportsMRU="true"/>
+    <tree IterBinding="VO_AttendanceHR3Iterator" id="VO_AttendanceHR3">
+      <nodeDefinition DefName="hub.nishat.net.model.VO.HR.VO_AttendanceHR"
+                      Name="VO_AttendanceHR30">
+        <AttrNames>
+          <Item Value="EmpAtdId"/>
+          <Item Value="EmpId"/>
+          <Item Value="EmpName"/>
+          <Item Value="CardNum"/>
+          <Item Value="ExpectedWorkHours"/>
+          <Item Value="MinInTime"/>
+          <Item Value="MaxOutTime"/>
+          <Item Value="EffectiveWorkedHours"/>
+          <Item Value="MaxStartTime"/>
+          <Item Value="MaxEndTime"/>
+          <Item Value="EndTime"/>
+          <Item Value="StartTime"/>
+          <Item Value="AttendanceDate"/>
+          <Item Value="LeaveTypeId"/>
+          <Item Value="LeaveApprovedFlag"/>
+          <Item Value="PolicyException"/>
+          <Item Value="PolicyExceptionApprovedFlag"/>
+          <Item Value="IsHalf"/>
+          <Item Value="ShortLeavesColumn"/>
+          <Item Value="HalfCasualApprovedColumn"/>
+          <Item Value="HalfCasualDisapprovedColumn"/>
+          <Item Value="HalfCasualPendingColumn"/>
+          <Item Value="CasualApprovedColumn"/>
+          <Item Value="CasualDisapprovedColumn"/>
+          <Item Value="CasualPendingColumn"/>
+          <Item Value="HalfAnnualApprovedColumn"/>
+          <Item Value="HalfAnnualDisapprovedColumn"/>
+          <Item Value="HalfAnnualPendingColumn"/>
+          <Item Value="AnnualApprovedColumn"/>
+          <Item Value="AnnualDisapprovedColumn"/>
+          <Item Value="AnnualPendingColumn"/>
+          <Item Value="ExceptionApprovedColumn"/>
+          <Item Value="ExceptionDisapprovedColumn"/>
+          <Item Value="ExceptionPendingColumn"/>
+          <Item Value="Intime"/>
+          <Item Value="Outtime"/>
+          <Item Value="Remarks"/>
+          <Item Value="saturdayOrHoliday"/>
+          <Item Value="isSunday"/>
+          <Item Value="isLeave"/>
+          <Item Value="LeaveCancelled"/>
+          <Item Value="WorkingTime"/>
+          <Item Value="EmpType"/>
+          <Item Value="Isexception"/>
+          <Item Value="MissingTime"/>
+          <Item Value="Total"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <list IterBinding="YearLov1Iterator" StaticList="false" Uses="LOV_Year"
+          id="Year" DTSupportsMRU="true"/>
+    <list IterBinding="MonthLov1Iterator" StaticList="false" Uses="LOV_Month"
+          id="Month" DTSupportsMRU="true"/>
+    <attributeValues IterBinding="VO_AttendanceHR3Iterator" id="EmpId">
+      <AttrNames>
+        <Item Value="EmpId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_AttendanceHR3Iterator" id="Month1">
+      <AttrNames>
+        <Item Value="Month"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_AttendanceHR3Iterator" id="Year1">
+      <AttrNames>
+        <Item Value="Year"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_ConsumedLeaves1Iterator"
+                     id="EffectiveWorkedHours">
+      <AttrNames>
+        <Item Value="EffectiveWorkedHours"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="VO_ConsumedLeaves3Iterator" id="VO_ConsumedLeaves3">
+      <nodeDefinition DefName="hub.nishat.net.model.VO.VO_ConsumedLeaves"
+                      Name="VO_ConsumedLeaves30">
+        <AttrNames>
+          <Item Value="LeaveCause"/>
+          <Item Value="Type"/>
+          <Item Value="EffectiveWorkedHours"/>
+          <Item Value="ConsumedLeavesId"/>
+          <Item Value="LeaveType"/>
+          <Item Value="Cause"/>
+          <Item Value="UserId"/>
+          <Item Value="LeaveDate"/>
+          <Item Value="JobStatus"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="VO_EmpIRR2Iterator" id="VO_EmpIRR2">
+      <nodeDefinition DefName="hub.nishat.net.model.VO.HR.VO_EmpIRR"
+                      Name="VO_EmpIRR20">
+        <AttrNames>
+          <Item Value="IrregularityId"/>
+          <Item Value="Type"/>
+          <Item Value="AttendanceDate"/>
+          <Item Value="ExceptionRemarks"/>
+          <Item Value="MinutesMissing"/>
+          <Item Value="EmpId"/>
+          <Item Value="MonthCode"/>
+          <Item Value="ExceptionApproved"/>
+          <Item Value="FullNameParent"/>
+          <Item Value="LineManagerComments"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="VO_ActiveEmployees4Iterator" id="VO_ActiveEmployees4">
+      <nodeDefinition DefName="hub.nishat.net.model.VO.HR.VO_ActiveEmployees"
+                      Name="VO_ActiveEmployees40">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="ChildPersonId"/>
+          <Item Value="FullNameChild"/>
+          <Item Value="HierarchyName"/>
+          <Item Value="EmpType"/>
+          <Item Value="PostingFlag"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="VO_AttendanceHR3Iterator" id="EmpType">
+      <AttrNames>
+        <Item Value="EmpType"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_ActiveEmployees4Iterator" id="EmpType1">
+      <AttrNames>
+        <Item Value="EmpType"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_PARTTIMES2Iterator" id="JoiningDate">
+      <AttrNames>
+        <Item Value="JoiningDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_PARTTIMES2Iterator" id="TotalWorked">
+      <AttrNames>
+        <Item Value="TotalWorked"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_PARTTIMES2Iterator" id="Total">
+      <AttrNames>
+        <Item Value="Total"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_PARTTIMES2Iterator" id="TotalMissed">
+      <AttrNames>
+        <Item Value="TotalMissed"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_PARTTIMES2Iterator" id="CalculatedLeaves">
+      <AttrNames>
+        <Item Value="CalculatedLeaves"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_PARTTIMES2Iterator" id="FinalMissed">
+      <AttrNames>
+        <Item Value="FinalMissed"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

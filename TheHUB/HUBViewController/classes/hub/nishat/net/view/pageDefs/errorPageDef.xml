@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="errorPageDef"
+                Package="hub.nishat.net.view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="DepartmentLov3" RangeSize="25"
+              DataControl="HubModuleDataControl" id="DepartmentLov3Iterator"/>
+    <iterator Binds="VO_ActiveEmployees4" RangeSize="25"
+              DataControl="HubModuleDataControl"
+              id="VO_ActiveEmployees4Iterator"/>
+  </executables>
+  <bindings>
+    <list IterBinding="DepartmentLov3Iterator" StaticList="false"
+          Uses="LOV_HierarchyName" id="HierarchyName" DTSupportsMRU="true"/>
+    <tree IterBinding="VO_ActiveEmployees4Iterator" id="VO_ActiveEmployees4">
+      <nodeDefinition DefName="hub.nishat.net.model.VO.HR.VO_ActiveEmployees"
+                      Name="VO_ActiveEmployees40">
+        <AttrNames>
+          <Item Value="ChildPersonId"/>
+          <Item Value="HierarchyName"/>
+          <Item Value="FullNameChild"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>
