@@ -1,7 +1,7 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <BC4JConfig version="11.1" xmlns="http://xmlns.oracle.com/bc4j/configuration">
    <AppModuleConfigBag ApplicationName="hub.nishat.net.model.AM.HubModule">
-      <AppModuleConfig name="151CD224350" DeployPlatform="LOCAL" DBconnection="java:comp/env/jdbc/xx_e_portalDS" BC4JConfigName="HubModuleLocal" JDBCName="xx_e_portal" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory" IsLazyLoadingTrue="true" ApplicationName="hub.nishat.net.model.AM.HubModule" jbo.project="hub.nishat.net.model.HUBModel">
+      <AppModuleConfig name="15239DAF671" DeployPlatform="LOCAL" DBconnection="java:comp/env/jdbc/xx_e_portalDS" BC4JConfigName="HubModuleLocal" JDBCName="xx_e_portal" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory" IsLazyLoadingTrue="true" ApplicationName="hub.nishat.net.model.AM.HubModule" jbo.project="hub.nishat.net.model.HUBModel">
          <AM-Pooling jbo.ampool.timetolive="120000" jbo.ampool.monitorsleepinterval="30000" jbo.ampool.maxinactiveage="60000"/>
          <Database jbo.TypeMapEntries="Oracle" jbo.locking.mode="optimistic" jbo.SQLBuilder="Oracle"/>
          <Security AppModuleJndiName="hub.nishat.net.model.AM.HubModule"/>

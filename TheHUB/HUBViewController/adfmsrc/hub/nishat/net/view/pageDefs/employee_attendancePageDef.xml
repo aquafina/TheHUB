@@ -140,6 +140,11 @@
           id="Month" DTSupportsMRU="true"/>
     <list IterBinding="YearLov1Iterator" StaticList="false" Uses="LOV_Year"
           id="Year" DTSupportsMRU="true"/>
+    <attributeValues IterBinding="VO_Attendance2Iterator" id="Month1">
+      <AttrNames>
+        <Item Value="Month"/>
+      </AttrNames>
+    </attributeValues>
     <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction"
             DataControl="HubModuleDataControl"/>
     <pivotTable IterBinding="recordListIterator" id="recordList"
@@ -158,11 +163,6 @@
         <pages/>
       </pivotTableDataMap>
     </pivotTable>
-    <attributeValues IterBinding="VO_Attendance2Iterator" id="Month1">
-      <AttrNames>
-        <Item Value="Month"/>
-      </AttrNames>
-    </attributeValues>
     <attributeValues IterBinding="salaryReportIterator" id="empSalary">
       <AttrNames>
         <Item Value="empSalary"/>
@@ -283,11 +283,6 @@
     <attributeValues IterBinding="VO_Attendance2Iterator" id="EmpId1">
       <AttrNames>
         <Item Value="EmpId"/>
-      </AttrNames>
-    </attributeValues>
-    <attributeValues IterBinding="VO_MISSING_MINUTES1Iterator" id="EmpType1">
-      <AttrNames>
-        <Item Value="EmpType"/>
       </AttrNames>
     </attributeValues>
   </bindings>

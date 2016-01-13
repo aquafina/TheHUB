@@ -72,7 +72,7 @@ public class VO_AttendanceImpl extends ViewObjectImpl {
         }else{
            return  CommonUtil.getSessionValue(Constants.SESSION_USERID).toString();
         }
-       //return "4588";
+       //return "2959";
     }
 
     /**

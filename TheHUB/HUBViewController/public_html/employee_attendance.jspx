@@ -188,20 +188,10 @@
                   <af:convertNumber groupingUsed="false"
                                     pattern="#{bindings.EmpId1.format}"/>
                 </af:inputText>
-                <af:inputText value="#{bindings.EmpType1.inputValue}"
-                              label="#{bindings.EmpType1.hints.label}"
-                              required="#{bindings.EmpType1.hints.mandatory}"
-                              columns="#{bindings.EmpType1.hints.displayWidth}"
-                              maximumLength="#{bindings.EmpType1.hints.precision}"
-                              shortDesc="#{bindings.EmpType1.hints.tooltip}"
-                              id="it46" visible="false">
-                  <f:validator binding="#{bindings.EmpType1.validator}"/>
-                  <af:convertNumber groupingUsed="false"
-                                    pattern="#{bindings.EmpType1.format}"/>
-                </af:inputText>
               </af:panelBox>
               <af:panelBox text="Missed Minutes" id="pb7"
-                           rendered="#{bindings.EmpType1.inputValue == '3'}">
+                           partialTriggers="soc3 soc4"
+                           rendered="#{bindings.EmpType.inputValue=='3'}">
                 <f:facet name="toolbar"/>
                 <af:table value="#{bindings.VO_MISSING_MINUTES1.collectionModel}"
                           var="row"
@@ -363,17 +353,6 @@
                   <af:outputText value="#{AttendanceBean.var_sal_netsalary} PKR" id="ot15"
                                  inlineStyle="color:black; font-weight:bold;"/>
                 </af:panelFormLayout>
-                <af:inputText value="#{bindings.EmpType.inputValue}"
-                              label="#{bindings.EmpType.hints.label}"
-                              required="#{bindings.EmpType.hints.mandatory}"
-                              columns="#{bindings.EmpType.hints.displayWidth}"
-                              maximumLength="#{bindings.EmpType.hints.precision}"
-                              shortDesc="#{bindings.EmpType.hints.tooltip}"
-                              id="it44">
-                  <f:validator binding="#{bindings.EmpType.validator}"/>
-                  <af:convertNumber groupingUsed="false"
-                                    pattern="#{bindings.EmpType.format}"/>
-                </af:inputText>
               </af:panelBox>
             </af:panelGroupLayout>
           </f:facet>
@@ -410,6 +389,15 @@
                                     visible="false">
                         <f:validator binding="#{bindings.Year1.validator}"/>
                       </af:inputText>
+                      <af:panelLabelAndMessage label="#{bindings.EmpType.hints.label}"
+                                               id="plam3" visible="false">
+                        <af:outputText value="#{bindings.EmpType.inputValue}"
+                                       id="ot47"
+                                       partialTriggers="soc3 soc4">
+                          <af:convertNumber groupingUsed="false"
+                                            pattern="#{bindings.EmpType.format}"/>
+                        </af:outputText>
+                      </af:panelLabelAndMessage>
                     </af:group>
                   </f:facet>
                   <af:panelCollection id="pc1"
@@ -685,16 +673,15 @@
                         </af:inputText>
                       </af:column>
                       <af:column id="c77" align="center"
-                                 headerText="Hours Worked"
-                                 rendered="#{bindings.EmpType1.inputValue == '3'}">
+                                 headerText="Hours Total"
+                                 visible="#{bindings.EmpType.inputValue == '3'}">
                         <af:outputText value="#{row.Total}" id="ot25"/>
                       </af:column>
                       <af:column sortProperty="#{bindings.VO_Attendance2.hints.EffectiveWorkedHours.name}"
                                  filterable="false" sortable="true"
                                  headerText="Hours Worked" id="c4"
                                  align="center"
-                                 rendered="#{bindings.EmpType1.inputValue != '3'}"
-                                 visible="true">
+                                 visible="#{bindings.EmpType.inputValue != '3'}">
                         <af:outputText
                                        shortDesc="#{bindings.VO_Attendance2.hints.EffectiveWorkedHours.tooltip}"
                                        id="it1ghf6"
@@ -705,7 +692,7 @@
                       </af:column>
                       <af:column id="c51" headerText="Missing Time"
                                  align="center"
-                                 rendered="#{bindings.EmpId.inputValue == '3'}">
+                                 rendered="#{bindings.EmpType.inputValue == '2'}">
                         <af:outputText value="#{ row.HoursMissing} " id="ot7"
                                        rendered="#{(row.EmpType == '2' or  row.EmpType == '3' ) ? 'true' : 'false' }"/>
                       </af:column>
@@ -935,7 +922,8 @@
                       </af:column>
                       <af:column sortProperty="#{bindings.VO_Attendance2.hints.LateIn.name}"
                                  filterable="false" sortable="true"
-                                 headerText="Late In" id="c24" align="center">
+                                 headerText="Late In" id="c24" align="center"
+                                 visible="#{bindings.EmpType.inputValue!='3'}">
                         <af:inputText value="#{row.bindings.LateIn.inputValue} "
                                       label="#{bindings.VO_Attendance2.hints.LateIn.label}"
                                       required="#{bindings.VO_Attendance2.hints.LateIn.mandatory}"
@@ -953,7 +941,8 @@
                                  visible="false"/>
                       <af:column sortProperty="#{bindings.VO_Attendance2.hints.EarlyOut.name}"
                                  filterable="false" sortable="true"
-                                 headerText="Early Out" id="c26" align="center">
+                                 headerText="Early Out" id="c26" align="center"
+                                 visible="#{bindings.EmpType.inputValue!='3'}">
                         <af:inputText value="#{row.bindings.EarlyOut.inputValue}"
                                       label="#{bindings.VO_Attendance2.hints.EarlyOut.label}"
                                       required="#{bindings.VO_Attendance2.hints.EarlyOut.mandatory}"

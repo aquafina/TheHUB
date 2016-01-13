@@ -856,7 +856,10 @@ public class VO_AttendanceRowImpl extends ViewRowImpl {
         String time = (String) getAttributeInternal(TOTAL);
         if (time!=null)
         {
-            if (time.split(":")[0].equals("08")) return "08:00";
+//            CommonUtil.showMessage(time_num+"", 112);
+//            return time_num+"";
+             int time_num = Integer.parseInt(time.split(":")[0]);
+            if (time_num > 7) return "08:00";
             else return time;
         }
         else return null;
