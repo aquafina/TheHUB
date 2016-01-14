@@ -387,7 +387,8 @@
                                     maximumLength="#{bindings.Year1.hints.precision}"
                                     shortDesc="#{bindings.Year1.hints.tooltip}"
                                     id="it16" partialTriggers="soc4"
-                                    visible="false">
+                                    visible="false"
+                                    binding="#{AttendanceBean.curr_Year}">
                         <f:validator binding="#{bindings.Year1.validator}"/>
                       </af:inputText>
                       <af:panelLabelAndMessage label="#{bindings.EmpType.hints.label}"

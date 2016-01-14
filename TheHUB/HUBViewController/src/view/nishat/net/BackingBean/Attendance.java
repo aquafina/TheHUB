@@ -155,8 +155,7 @@ public class Attendance {
     private String var_sal_total_deduction;
     private RichOutputText curr_month;
     private RichInputText postingMonth;
-
-
+    private RichInputText curr_Year;
     /*#######################################################*/
     /*#####################THE CONSTRUCTOR###################*/
     /*#######################################################*/
@@ -1077,10 +1076,9 @@ rsi.getNextRangeSet(); /**Test this statement by applying for just 1eave*/
         CommonUtil.createUserSession("yearmonth",
                                      CommonUtil.getMonthNumber(selectedMonth) +
                                      "-" + selectedYear);
-        CommonUtil.log(CommonUtil.getSessionValue("yearmonth").toString());
+        CommonUtil.log("yearmonth = "+CommonUtil.getSessionValue("yearmonth").toString());
         //MonthlyDeductionsDetails dc =  (MonthlyDeductionsDetails)CommonUtil.getCustomDataControl("MonthlyDeductionDetails")
 
-        //CommonUtil.log("Ullu: "+CommonUtil.getMonthNumber(selectedMonth)+selectedYear);
         filterAttenedance(selectedMonth, selectedYear);
     }
 
@@ -1092,6 +1090,7 @@ rsi.getNextRangeSet(); /**Test this statement by applying for just 1eave*/
             CommonUtil.getValueFrmExpression("#{bindings.Year.attributeValue}").toString();
         String selectedMonth =
             CommonUtil.getValueFrmExpression("#{bindings.Month.attributeValue}").toString();
+        CommonUtil.log("yearmonth = "+selectedMonth+"-"+selectedYear);
         filterAttenedance(selectedMonth, selectedYear);
     }
 
@@ -1248,20 +1247,15 @@ rsi.getNextRangeSet(); /**Test this statement by applying for just 1eave*/
     /** TASK Monthly Posting */
     public String post() {
 
-
+        System.out.println("Hello Selected yearmonth = "+ curr_month.getValue().toString()+"-"+curr_Year.getValue().toString());
         DateFormatSymbols d = new DateFormatSymbols();
         int monthNumber = Integer.parseInt(curr_month.getValue().toString());
         String postMonth = d.getShortMonths()[monthNumber - 1];
-        int postYear = Calendar.getInstance().get(Calendar.YEAR);
-        if (monthNumber == 12)
-        {
-            postYear = postYear - 1;
-        }
         String monthDate =
             ((Integer.parseInt(curr_month.getValue().toString()) <= 9) ?
              "0" + Integer.parseInt(curr_month.getValue().toString()) :
              "" + Integer.parseInt(curr_month.getValue().toString())) + "-" +
-            postYear;
+            curr_Year.getValue().toString();
 
 
         HubModuleImpl am = (HubModuleImpl)CommonUtil.getAppModule();
@@ -1273,7 +1267,7 @@ rsi.getNextRangeSet(); /**Test this statement by applying for just 1eave*/
 
         voPosting.setWhereClause(" user_id = " +
                                  CommonUtil.getSessionValue(Constants.SESSION_USERID) +
-                                 " and posting_year = "+postYear+" and posting_month = '" +
+                                 " and posting_year = "+Integer.parseInt(curr_Year.getValue().toString())+" and posting_month = '" +
                                  postMonth + "'");
 
         voPosting.executeQuery();
@@ -1299,7 +1293,7 @@ rsi.getNextRangeSet(); /**Test this statement by applying for just 1eave*/
         atdIRR.setWhereClause("emp_id = '" +
                               CommonUtil.getSessionValue(Constants.SESSION_USERID).toString() +
                               "' and to_char(attendance_date,'YYYYMON') = '" +
-                              postYear +
+                              curr_Year.getValue().toString() +
                               postMonth.toUpperCase() +
                               "' AND EXCEPTION_APPROVED = 'P'");
         atdIRR.executeQuery();
@@ -1334,7 +1328,7 @@ rsi.getNextRangeSet(); /**Test this statement by applying for just 1eave*/
                                " Leave Date:" + leave.getLeaveCause());
 
                 //                        /** Also log it in attendance table */
-                Calendar c2 = Calendar.getInstance();
+            Calendar c2 = Calendar.getInstance();
                 c2.setTime(leave.getLeaveDate());
                 int day = c2.get(Calendar.DAY_OF_MONTH);
                 int month = c2.get(Calendar.MONTH) + 1;
@@ -1433,16 +1427,12 @@ rsi.getNextRangeSet(); /**Test this statement by applying for just 1eave*/
         DateFormatSymbols d = new DateFormatSymbols();
         int monthNumber = Integer.parseInt(curr_month.getValue().toString());
         String postMonth = d.getShortMonths()[monthNumber - 1];
-        int postYear = Calendar.getInstance().get(Calendar.YEAR);
-        if (monthNumber == 12) {
-            postYear = postYear - 1;
-        }
         HubModuleImpl am = (HubModuleImpl)CommonUtil.getAppModule();
         ViewObjectImpl voPosting = am.getVO_AtdPosting1();
         String where =
             "user_id = '" + CommonUtil.getSessionValue(Constants.SESSION_USERID) +
             "' and posting_year = '" +
-            postYear +
+            curr_Year.getValue().toString() +
             "' and posting_month = '" + postMonth + "'";
         CommonUtil.log(where);
         voPosting.setWhereClause(where);
@@ -1463,8 +1453,9 @@ rsi.getNextRangeSet(); /**Test this statement by applying for just 1eave*/
                                        CommonUtil.getSessionValue(Constants.SESSION_USERID).toString());
             postingRecord.setAttribute("EmpPostedFlag", "Y");
             postingRecord.setAttribute("HrPostedFlag", null);
+            System.out.println("Posting Year = "+curr_Year.getValue().toString() );
             postingRecord.setAttribute("PostingYear",
-                                       postYear);
+                                       Integer.parseInt(curr_Year.getValue().toString()));
             postingRecord.setAttribute("PostingMonth", postMonth);
             postingRecord.setAttribute("PostingDate", new java.util.Date());
         } else {
@@ -1835,5 +1826,13 @@ rsi.getNextRangeSet(); /**Test this statement by applying for just 1eave*/
         RowSetIterator rsiRemainingLeaves =
             voRemainingLeaves.createRowSetIterator(null);
         return Integer.parseInt(rsiRemainingLeaves.getAllRowsInRange()[0].getAttribute("LeavesRemaining").toString());
+    }
+
+    public void setCurr_Year(RichInputText curr_Year) {
+        this.curr_Year = curr_Year;
+    }
+
+    public RichInputText getCurr_Year() {
+        return curr_Year;
     }
 }
