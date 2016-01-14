@@ -11,7 +11,7 @@ public class Constants {
     public static final String SESSION_EMP_CODE = "emp_code";
     public static final String SESSION_IS_HR = "is_hr";
     public static final String SESSION_IS_AAT = "IS_AAT";
-    
+    public static final String SESSION_EMP_TYPE = "EMP_TYPE";
     
     public static final String SESSION_CASUAL_AVAILED = "casual_availed";
     public static final String SESSION_ANNUAL_AVAILED = "annual_availed";

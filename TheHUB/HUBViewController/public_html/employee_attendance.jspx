@@ -190,8 +190,9 @@
                 </af:inputText>
               </af:panelBox>
               <af:panelBox text="Missed Minutes" id="pb7"
-                           partialTriggers="soc3 soc4"
-                           rendered="#{bindings.EmpType.inputValue=='3'}">
+                           partialTriggers="soc3 soc4 ot47"
+                           visible="#{sessionScope.EMP_TYPE=='3'}"
+                           persist="">
                 <f:facet name="toolbar"/>
                 <af:table value="#{bindings.VO_MISSING_MINUTES1.collectionModel}"
                           var="row"
@@ -392,8 +393,7 @@
                       <af:panelLabelAndMessage label="#{bindings.EmpType.hints.label}"
                                                id="plam3" visible="false">
                         <af:outputText value="#{bindings.EmpType.inputValue}"
-                                       id="ot47"
-                                       partialTriggers="soc3 soc4">
+                                       id="ot47" partialTriggers="pc1:t1:id6">
                           <af:convertNumber groupingUsed="false"
                                             pattern="#{bindings.EmpType.format}"/>
                         </af:outputText>

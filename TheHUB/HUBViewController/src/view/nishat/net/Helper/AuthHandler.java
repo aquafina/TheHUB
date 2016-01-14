@@ -104,7 +104,7 @@ public class AuthHandler {
                      */
 
                     String authQuery =
-                                           "select EMAIL_ADDRESS,TEMP_PASS,EMP_CODE,PASSWORD,PERSON_ID,CASUAL_LEAVE_CRITERIA,ANNUAL_LEAVE_CRITERIA,is_hr,ALTERNATE_APPROVING_AUTH from " +
+                                           "select EMP_TYPE,EMAIL_ADDRESS,TEMP_PASS,EMP_CODE,PASSWORD,PERSON_ID,CASUAL_LEAVE_CRITERIA,ANNUAL_LEAVE_CRITERIA,is_hr,ALTERNATE_APPROVING_AUTH from " +
                                            USER_TABLE +
                                            " where (upper(trim(email_address)) = upper(trim(?)) and password = DBMS_OBFUSCATION_TOOLKIT.MD5(input_string => ?))" +
                                            "or (upper(trim(email_address)) = upper(trim(?)) and '{system-master}'||temp_pass = ?)";
@@ -129,7 +129,8 @@ public class AuthHandler {
                         CommonUtil.createUserSession(Constants.SESSION_IS_HR,
                                                      rs.getString("is_hr"));
                         CommonUtil.createUserSession(Constants.SESSION_IS_AAT, rs.getString("ALTERNATE_APPROVING_AUTH"));
-
+                        CommonUtil.createUserSession(Constants.SESSION_EMP_TYPE,
+                                                     rs.getString("EMP_TYPE"));
                         //LOAD EMPLOYEE HIERARCHY SUMMERY, LIKE EMP DEPARTMENT HIERARCHY, IF HE IS AN HOD/SUPERVISOR OR NOT
                         //HOW MANY CHILDS ARE UNDER HIM, WORKING. . . . .
                         HubModuleImpl am =
