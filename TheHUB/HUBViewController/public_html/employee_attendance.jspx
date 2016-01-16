@@ -675,14 +675,14 @@
                       </af:column>
                       <af:column id="c77" align="center"
                                  headerText="Hours Total"
-                                 visible="#{bindings.EmpType.inputValue == '3'}">
+                                 visible="#{sessionScope.EMP_TYPE=='3'}">
                         <af:outputText value="#{row.Total}" id="ot25"/>
                       </af:column>
                       <af:column sortProperty="#{bindings.VO_Attendance2.hints.EffectiveWorkedHours.name}"
                                  filterable="false" sortable="true"
                                  headerText="Hours Worked" id="c4"
                                  align="center"
-                                 visible="#{bindings.EmpType.inputValue != '3'}">
+                                 visible="#{sessionScope.EMP_TYPE!='3'}">
                         <af:outputText
                                        shortDesc="#{bindings.VO_Attendance2.hints.EffectiveWorkedHours.tooltip}"
                                        id="it1ghf6"
@@ -924,7 +924,7 @@
                       <af:column sortProperty="#{bindings.VO_Attendance2.hints.LateIn.name}"
                                  filterable="false" sortable="true"
                                  headerText="Late In" id="c24" align="center"
-                                 visible="#{bindings.EmpType.inputValue!='3'}">
+                                 visible="#{sessionScope.EMP_TYPE!='3'}">
                         <af:inputText value="#{row.bindings.LateIn.inputValue} "
                                       label="#{bindings.VO_Attendance2.hints.LateIn.label}"
                                       required="#{bindings.VO_Attendance2.hints.LateIn.mandatory}"
@@ -943,7 +943,7 @@
                       <af:column sortProperty="#{bindings.VO_Attendance2.hints.EarlyOut.name}"
                                  filterable="false" sortable="true"
                                  headerText="Early Out" id="c26" align="center"
-                                 visible="#{bindings.EmpType.inputValue!='3'}">
+                                 visible="#{sessionScope.EMP_TYPE!='3'}">
                         <af:inputText value="#{row.bindings.EarlyOut.inputValue}"
                                       label="#{bindings.VO_Attendance2.hints.EarlyOut.label}"
                                       required="#{bindings.VO_Attendance2.hints.EarlyOut.mandatory}"
