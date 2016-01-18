@@ -230,6 +230,11 @@
                                     pattern="#{bindings.EmpId.format}"/>
                 </af:inputText>
               </af:panelBox>
+              <af:panelLabelAndMessage label="#{bindings.CalculatedLeaves.hints.label}"
+                                       id="plam4">
+                <af:outputText value="#{bindings.CalculatedLeaves.inputValue}"
+                               id="ot48"/>
+              </af:panelLabelAndMessage>
               <af:panelBox text="Salary" id="pb3" disclosed="false"
                            rendered="false">
                 <f:facet name="toolbar"/>
