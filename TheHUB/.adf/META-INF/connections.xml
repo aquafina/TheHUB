@@ -226,16 +226,16 @@
       <Factory className="oracle.jdeveloper.db.adapter.DatabaseProviderFactory"/>
       <RefAddresses>
          <StringRefAddr addrType="sid">
-            <Contents>erptest7</Contents>
+            <Contents>prod</Contents>
          </StringRefAddr>
          <StringRefAddr addrType="subtype">
             <Contents>oraJDBC</Contents>
          </StringRefAddr>
          <StringRefAddr addrType="port">
-            <Contents>1528</Contents>
+            <Contents>1522</Contents>
          </StringRefAddr>
          <StringRefAddr addrType="hostname">
-            <Contents>192.168.0.30</Contents>
+            <Contents>192.168.0.31</Contents>
          </StringRefAddr>
          <StringRefAddr addrType="user">
             <Contents>XX_E_PORTAL</Contents>
