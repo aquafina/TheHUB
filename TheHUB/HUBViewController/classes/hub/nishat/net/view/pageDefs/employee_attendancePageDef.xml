@@ -57,6 +57,8 @@
     <iterator Binds="VO_MISSING_MINUTES1" RangeSize="25"
               DataControl="HubModuleDataControl"
               id="VO_MISSING_MINUTES1Iterator"/>
+    <iterator Binds="VO_PARTTIMES3" RangeSize="25"
+              DataControl="HubModuleDataControl" id="VO_PARTTIMES3Iterator"/>
   </executables>
   <bindings>
     <tree IterBinding="VO_Attendance2Iterator" id="VO_Attendance2">
@@ -283,6 +285,11 @@
     <attributeValues IterBinding="VO_Attendance2Iterator" id="EmpId1">
       <AttrNames>
         <Item Value="EmpId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_PARTTIMES3Iterator" id="TotalMissed">
+      <AttrNames>
+        <Item Value="TotalMissed"/>
       </AttrNames>
     </attributeValues>
   </bindings>

@@ -658,4 +658,9 @@ order by Att.ATTENDANCE_DATE asc]]>
     ViewLink="hub.nishat.net.model.VO.VL.Missing_Minutes_VL"
     Type="oracle.jbo.RowIterator"
     IsUpdateable="false"/>
+  <ViewLinkAccessor
+    Name="VO_PARTTIMES"
+    ViewLink="hub.nishat.net.model.VO.VL.VL_PART_TIMES_ATD"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
 </ViewObject>

@@ -283,6 +283,12 @@
   <ViewUsage
     Name="VO_MISSING_MINUTES2"
     ViewObjectName="hub.nishat.net.model.VO.VO_MISSING_MINUTES"/>
+  <ViewUsage
+    Name="VO_Attendance5"
+    ViewObjectName="hub.nishat.net.model.VO.VO_Attendance"/>
+  <ViewUsage
+    Name="VO_PARTTIMES3"
+    ViewObjectName="hub.nishat.net.model.VO.HR.VO_PARTTIMES"/>
   <ViewLinkUsage
     Name="VL_Emp2Att"
     ViewLinkObjectName="hub.nishat.net.model.VO.HR.VL.VL_Emp2Att"
@@ -360,5 +366,11 @@
     ViewLinkObjectName="hub.nishat.net.model.VO.VL.Missing_Minutes_VL"
     SrcViewUsageName="hub.nishat.net.model.AM.HubModule.VO_Attendance2"
     DstViewUsageName="hub.nishat.net.model.AM.HubModule.VO_MISSING_MINUTES1"
+    Reversed="false"/>
+  <ViewLinkUsage
+    Name="VL_PART_TIMES_ATD"
+    ViewLinkObjectName="hub.nishat.net.model.VO.VL.VL_PART_TIMES_ATD"
+    SrcViewUsageName="hub.nishat.net.model.AM.HubModule.VO_Attendance2"
+    DstViewUsageName="hub.nishat.net.model.AM.HubModule.VO_PARTTIMES3"
     Reversed="false"/>
 </AppModule>

@@ -517,6 +517,16 @@ public class VO_AttendanceRowImpl extends ViewRowImpl {
             }
         }
         ,
+        VO_PARTTIMES {
+            public Object get(VO_AttendanceRowImpl obj) {
+                return obj.getVO_PARTTIMES();
+            }
+
+            public void put(VO_AttendanceRowImpl obj, Object value) {
+                obj.setAttributeInternal(index(), value);
+            }
+        }
+        ,
         VO_Months1 {
             public Object get(VO_AttendanceRowImpl obj) {
                 return obj.getVO_Months1();
@@ -614,6 +624,7 @@ public class VO_AttendanceRowImpl extends ViewRowImpl {
     public static final int HOURSMISSING = AttributesEnum.HoursMissing.index();
     public static final int VO_ATTENDANCEEVENTS = AttributesEnum.VO_AttendanceEvents.index();
     public static final int VO_MISSING_MINUTES = AttributesEnum.VO_MISSING_MINUTES.index();
+    public static final int VO_PARTTIMES = AttributesEnum.VO_PARTTIMES.index();
     public static final int VO_MONTHS1 = AttributesEnum.VO_Months1.index();
     public static final int VO_YEARS1 = AttributesEnum.VO_Years1.index();
 
@@ -1485,6 +1496,13 @@ public class VO_AttendanceRowImpl extends ViewRowImpl {
      */
     public RowIterator getVO_MISSING_MINUTES() {
         return (RowIterator)getAttributeInternal(VO_MISSING_MINUTES);
+    }
+
+    /**
+     * Gets the associated <code>RowIterator</code> using master-detail link VO_PARTTIMES.
+     */
+    public RowIterator getVO_PARTTIMES() {
+        return (RowIterator)getAttributeInternal(VO_PARTTIMES);
     }
 
     /**
