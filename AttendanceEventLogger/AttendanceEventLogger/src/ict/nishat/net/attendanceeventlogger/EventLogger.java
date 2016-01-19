@@ -22,7 +22,7 @@ public class EventLogger {
     private PreparedStatement pst;
     private PreparedStatement pstActualWorkedHours;
     private String selectUsersSql =
-        "select * from xx_e_portal_users where email_address is not null and emp_type is not null and person_id = '2959'";
+        "select * from xx_e_portal_users where email_address is not null and emp_type is not null and person_id is not null";
 
     public EventLogger() {
         dbH = new DatabaseHandler();
@@ -72,14 +72,15 @@ public class EventLogger {
                         ((pc.get(Calendar.DAY_OF_MONTH)) <= 9 ? "0" + (pc.get(Calendar.DAY_OF_MONTH)) :
                          (pc.get(Calendar.DAY_OF_MONTH))) + "-" +
                         pc.get(Calendar.YEAR);
-                    
+//                      int i = 18;
+//                    
 //                        String formattedDateParam =
 //                        "JAN" +
 //                        "-" +
 //                        (i <= 9 ? "0" + i :
 //                         i) + "-" +
 //                        "2016";
-                    
+//                    
 //                    Calendar pc = Calendar.getInstance();
 //                    pc.setTime(date.getTime());
 //                    //pc.add(Calendar.DAY_OF_MONTH, -1);
@@ -460,7 +461,7 @@ public class EventLogger {
         {
             return 60;
         }
-        else if (actualWorkedMinutes>=420 && actualWorkedMinutes<480)
+        else if (actualWorkedMinutes>=420 && actualWorkedMinutes<475)
         {
 //            System.out.println("Actual Worked Minutes bw 420 and 480");
             return (480-actualWorkedMinutes);
