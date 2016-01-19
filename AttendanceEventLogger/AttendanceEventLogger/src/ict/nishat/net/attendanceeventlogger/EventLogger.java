@@ -22,7 +22,7 @@ public class EventLogger {
     private PreparedStatement pst;
     private PreparedStatement pstActualWorkedHours;
     private String selectUsersSql =
-        "select * from xx_e_portal_users where email_address is not null and emp_type is not null and person_id is not null";
+        "select * from xx_e_portal_users where email_address is not null and emp_type is not null and person_id = '2331'";
 
     public EventLogger() {
         dbH = new DatabaseHandler();
@@ -56,40 +56,40 @@ public class EventLogger {
 //                    {
                     String getPreviousDayRec = "select (TO_CHAR(max_out_time, 'hh12:MI AM')) outtime from xx_e_portal_emp_atd where TO_CHAR (ATTENDANCE_DATE, 'MON-DD-YYYY') = ? and emp_id = ?";
                     
-                    String formattedDateParam =
-                        new DateFormatSymbols().getShortMonths()[date.get(Calendar.MONTH)].toUpperCase() +
-                        "-" +
-                        (date.get(Calendar.DAY_OF_MONTH) <= 9 ? "0" + date.get(Calendar.DAY_OF_MONTH) :
-                         date.get(Calendar.DAY_OF_MONTH)) + "-" +
-                        Calendar.getInstance().get(Calendar.YEAR);
-                    
-                    Calendar pc = Calendar.getInstance();
-                    pc.setTime(date.getTime());
-                    pc.add(Calendar.DAY_OF_MONTH, -1);
-                    String formattedPreviousDateParam =
-                        new DateFormatSymbols().getShortMonths()[pc.get(Calendar.MONTH)].toUpperCase() +
-                        "-" +
-                        ((pc.get(Calendar.DAY_OF_MONTH)) <= 9 ? "0" + (pc.get(Calendar.DAY_OF_MONTH)) :
-                         (pc.get(Calendar.DAY_OF_MONTH))) + "-" +
-                        pc.get(Calendar.YEAR);
-//                      int i = 18;
-//                    
-//                        String formattedDateParam =
-//                        "JAN" +
+//                    String formattedDateParam =
+//                        new DateFormatSymbols().getShortMonths()[date.get(Calendar.MONTH)].toUpperCase() +
 //                        "-" +
-//                        (i <= 9 ? "0" + i :
-//                         i) + "-" +
-//                        "2016";
+//                        (date.get(Calendar.DAY_OF_MONTH) <= 9 ? "0" + date.get(Calendar.DAY_OF_MONTH) :
+//                         date.get(Calendar.DAY_OF_MONTH)) + "-" +
+//                        Calendar.getInstance().get(Calendar.YEAR);
 //                    
 //                    Calendar pc = Calendar.getInstance();
 //                    pc.setTime(date.getTime());
-//                    //pc.add(Calendar.DAY_OF_MONTH, -1);
+//                    pc.add(Calendar.DAY_OF_MONTH, -1);
 //                    String formattedPreviousDateParam =
-//                        "JAN" +
+//                        new DateFormatSymbols().getShortMonths()[pc.get(Calendar.MONTH)].toUpperCase() +
 //                        "-" +
-//                        ((i-1) <= 9 ? "0" + (i-1) :
-//                         (i-1)) + "-" +
-//                        "2016";
+//                        ((pc.get(Calendar.DAY_OF_MONTH)) <= 9 ? "0" + (pc.get(Calendar.DAY_OF_MONTH)) :
+//                         (pc.get(Calendar.DAY_OF_MONTH))) + "-" +
+//                        pc.get(Calendar.YEAR);
+                      int i = 17;
+                    
+                        String formattedDateParam =
+                        "JAN" +
+                        "-" +
+                        (i <= 9 ? "0" + i :
+                         i) + "-" +
+                        "2016";
+                    
+                    Calendar pc = Calendar.getInstance();
+                    pc.setTime(date.getTime());
+                    //pc.add(Calendar.DAY_OF_MONTH, -1);
+                    String formattedPreviousDateParam =
+                        "JAN" +
+                        "-" +
+                        ((i-1) <= 9 ? "0" + (i-1) :
+                         (i-1)) + "-" +
+                        "2016";
                     
                     //GETTING PREVIOUS DAY OUT TIME
                     pst = ebsConn.prepareStatement(getPreviousDayRec);
@@ -126,16 +126,6 @@ public class EventLogger {
                             rsAttendance.getString("DESCRIPTION");
                         String dayDescription = rsAttendance.getString("DAY");
                         System.out.println("Day description = "+dayDescription);
-                        if (description==null && dayDescription.equals("SUNDAY   "))
-                        {
-                            description = "SUNDAY";
-                            System.out.println("Sunday noted");
-                        }
-                        else if (description==null && !dayDescription.equals("SUNDAY   "))
-                        {
-                            description = "REGULAR";
-                            System.out.println("Regular noted");
-                        }
                         System.out.println("Description: "+description);
                         l.logInfo("Description: "+description);
                         
@@ -187,17 +177,20 @@ public class EventLogger {
                             new DateFormatSymbols().getShortWeekdays()[c.get(Calendar.DAY_OF_WEEK)];
 
                         /** LOG ABSENT IF EMPLOYEE HASN'T SWIPED HIS CARD */
-                        if (effectiveWorkedHours == null) {
-                            if (description.equals("Independence Day") || description.equals("Eid Holiday") || description.equals("Public Holiday") || description.equals("SATURDAY_OFF") || description.equals("Ashura") || description.equals("SUNDAY")) {
+                        if (description.equals("Independence Day") || description.equals("Eid Holiday") || description.equals("Public Holiday") || description.equals("SATURDAY_OFF") || description.equals("Ashura") || description.trim().equals("SUNDAY")) {
                             System.out.println("It's not a regular day so not logging anything.");
                             l.logInfo("It's not a regular day so not logging anything.");
-                            } else {
-                                    System.out.println("inside else");
+                        }
+                        else
+                        {
+                        if (effectiveWorkedHours == null) 
+                        {
                                 int id = insertIntoIrregularities(ebsConn,atd_id,d, expectedHoursMins, empID,"ABSENT");
                                 //int id1 =  insertIntoMissingMinutes(ebsConn, atd_id, d, 60, empID, "ABSENT");
                                     l.logInfo("Absent logged");
-                            }
-                        } else {
+                            } 
+                        else 
+                        {
                             if (lateIn != null) {
                                 missingMinLateIn =
                                         (Integer.parseInt(lateIn.split(":")[0]) *
@@ -249,10 +242,8 @@ public class EventLogger {
                                 }
                             }
                         }
-                    }
                         System.out.println("#####################################################################################################");
                         l.logInfo("####################################################################");
-//                    }
                     rsAttendance.close();
                     pst.close();
                     System.out.println("#####################################################################################################");
@@ -261,7 +252,9 @@ public class EventLogger {
 
             }
             rsUsers.close();
-        } catch (Exception ex) {
+        }
+    }
+        }catch (Exception ex) {
             ex.printStackTrace();
         }
     }
