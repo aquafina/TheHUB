@@ -287,16 +287,7 @@
         <Item Value="EmpId"/>
       </AttrNames>
     </attributeValues>
-<<<<<<< HEAD
-    <attributeValues IterBinding="VO_PARTTIMES1Iterator" id="JoiningDate">
-      <AttrNames>
-        <Item Value="JoiningDate"/>
-      </AttrNames>
-    </attributeValues>
-    <attributeValues IterBinding="VO_PARTTIMES1Iterator" id="TotalMissed">
-=======
     <attributeValues IterBinding="VO_PARTTIMES3Iterator" id="TotalMissed">
->>>>>>> feature_part_time7
       <AttrNames>
         <Item Value="TotalMissed"/>
       </AttrNames>
