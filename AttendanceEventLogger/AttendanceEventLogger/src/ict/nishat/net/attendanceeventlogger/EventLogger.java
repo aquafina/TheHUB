@@ -129,10 +129,12 @@ public class EventLogger {
                         if (description==null && dayDescription.equals("SUNDAY   "))
                         {
                             description = "SUNDAY";
+                            System.out.println("Sunday noted");
                         }
                         else if (description==null && !dayDescription.equals("SUNDAY   "))
                         {
                             description = "REGULAR";
+                            System.out.println("Regular noted");
                         }
                         System.out.println("Description: "+description);
                         l.logInfo("Description: "+description);
