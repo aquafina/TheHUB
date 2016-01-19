@@ -230,28 +230,18 @@
                                     pattern="#{bindings.EmpId.format}"/>
                 </af:inputText>
               </af:panelBox>
-              <af:panelGridLayout id="pgl15">
-                <af:gridRow marginTop="5px" height="auto" id="gr2">
-                  <af:gridCell marginStart="5px" width="50%" id="gc3">
-                    <af:panelLabelAndMessage label="#{bindings.JoiningDate.hints.label}"
+              <af:panelGridLayout id="pgl15"
+                                  visible="#{sessionScope.EMP_TYPE=='3'}"
+                                  partialTriggers="pc1:t1">
+                <af:gridRow marginTop="5px" height="auto" id="gr1">
+                  <af:gridCell marginStart="5px" width="50%" id="gc4">
+                    <af:panelLabelAndMessage label="Total Missed Time"
                                              id="plam4"/>
                   </af:gridCell>
                   <af:gridCell marginStart="5px" marginEnd="5px" width="50%"
-                               id="gc4">
-                    <af:outputText value="#{bindings.JoiningDate.inputValue}"
-                                   id="ot48"/>
-                  </af:gridCell>
-                </af:gridRow>
-                <af:gridRow marginTop="5px" marginBottom="5px" height="auto"
-                            id="gr1">
-                  <af:gridCell marginStart="5px" width="50%" id="gc2">
-                    <af:panelLabelAndMessage label="#{bindings.TotalMissed.hints.label}"
-                                             id="plam5"/>
-                  </af:gridCell>
-                  <af:gridCell marginStart="5px" marginEnd="5px" width="50%"
-                               id="gc1">
+                               id="gc2">
                     <af:outputText value="#{bindings.TotalMissed.inputValue}"
-                                   id="ot49"/>
+                                   id="ot48"/>
                   </af:gridCell>
                 </af:gridRow>
               </af:panelGridLayout>

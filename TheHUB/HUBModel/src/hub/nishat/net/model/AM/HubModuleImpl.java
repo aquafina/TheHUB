@@ -988,4 +988,28 @@ public class HubModuleImpl extends ApplicationModuleImpl {
     public ViewLinkImpl getMissing_Minutes_VL1() {
         return (ViewLinkImpl)findViewLink("Missing_Minutes_VL1");
     }
+
+    /**
+     * Container's getter for VO_Attendance5.
+     * @return VO_Attendance5
+     */
+    public VO_AttendanceImpl getVO_Attendance5() {
+        return (VO_AttendanceImpl)findViewObject("VO_Attendance5");
+    }
+
+    /**
+     * Container's getter for VO_PARTTIMES3.
+     * @return VO_PARTTIMES3
+     */
+    public ViewObjectImpl getVO_PARTTIMES3() {
+        return (ViewObjectImpl)findViewObject("VO_PARTTIMES3");
+    }
+
+    /**
+     * Container's getter for VL_PART_TIMES_ATD.
+     * @return VL_PART_TIMES_ATD
+     */
+    public ViewLinkImpl getVL_PART_TIMES_ATD() {
+        return (ViewLinkImpl)findViewLink("VL_PART_TIMES_ATD");
+    }
 }
