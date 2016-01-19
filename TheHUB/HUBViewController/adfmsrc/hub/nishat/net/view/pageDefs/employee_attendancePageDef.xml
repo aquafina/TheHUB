@@ -57,13 +57,8 @@
     <iterator Binds="VO_MISSING_MINUTES1" RangeSize="25"
               DataControl="HubModuleDataControl"
               id="VO_MISSING_MINUTES1Iterator"/>
-<<<<<<< HEAD
-    <iterator Binds="VO_PARTTIMES1" RangeSize="25"
-              DataControl="HubModuleDataControl" id="VO_PARTTIMES1Iterator"/>
-=======
     <iterator Binds="VO_PARTTIMES3" RangeSize="25"
               DataControl="HubModuleDataControl" id="VO_PARTTIMES3Iterator"/>
->>>>>>> feature_part_time7
   </executables>
   <bindings>
     <tree IterBinding="VO_Attendance2Iterator" id="VO_Attendance2">
