@@ -4,7 +4,7 @@
           xmlns:h="http://java.sun.com/jsf/html"
           xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
           xmlns:dvt="http://xmlns.oracle.com/dss/adf/faces">
-  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+<jsp:directive.page contentType="text/html;charset=UTF-8"/>
   <f:view>
     <af:document id="d1">
       <af:messages id="m1"/>
@@ -240,8 +240,17 @@
                   </af:gridCell>
                   <af:gridCell marginStart="5px" marginEnd="5px" width="50%"
                                id="gc2">
-                    <af:outputText value="#{bindings.TotalMissed.inputValue}"
+                    <af:outputText value="#{bindings.FinalMissed.inputValue}"
                                    id="ot48"/>
+                  </af:gridCell>
+                </af:gridRow>
+                <af:gridRow id="gr2">
+                  <af:gridCell id="gc1">
+                    <af:panelLabelAndMessage label="Monthly Leaves" id="plam5"/>
+                  </af:gridCell>
+                  <af:gridCell id="gc3">
+                    <af:outputText value="#{bindings.CalculatedLeaves.inputValue}"
+                                   id="ot49"/>
                   </af:gridCell>
                 </af:gridRow>
               </af:panelGridLayout>
@@ -1335,5 +1344,4 @@
       </af:form>
     </af:document>
   </f:view>
-  <!--oracle-jdev-comment:preferred-managed-bean-name:AttendanceBean-->
 </jsp:root>

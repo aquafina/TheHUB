@@ -287,9 +287,14 @@
         <Item Value="EmpId"/>
       </AttrNames>
     </attributeValues>
-    <attributeValues IterBinding="VO_PARTTIMES3Iterator" id="TotalMissed">
+    <attributeValues IterBinding="VO_PARTTIMES3Iterator" id="CalculatedLeaves">
       <AttrNames>
-        <Item Value="TotalMissed"/>
+        <Item Value="CalculatedLeaves"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_PARTTIMES3Iterator" id="FinalMissed">
+      <AttrNames>
+        <Item Value="FinalMissed"/>
       </AttrNames>
     </attributeValues>
   </bindings>

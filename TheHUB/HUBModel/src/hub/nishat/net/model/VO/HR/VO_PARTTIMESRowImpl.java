@@ -416,6 +416,7 @@ public class VO_PARTTIMESRowImpl extends ViewRowImpl {
                 minutesAfterWaiveOff = totalMinutesAfterWaiveOff%60;
             }
             return (int)hoursAfterWaiveOff +":"+(int)minutesAfterWaiveOff;
+//            return "16:0";
         }
         else return "";
     }

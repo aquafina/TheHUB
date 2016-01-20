@@ -156,6 +156,7 @@ public class Attendance {
     private RichOutputText curr_month;
     private RichInputText postingMonth;
     private RichInputText curr_Year;
+    private RichOutputText totalMissedTimeStr;
     /*#######################################################*/
     /*#####################THE CONSTRUCTOR###################*/
     /*#######################################################*/
@@ -1834,5 +1835,13 @@ rsi.getNextRangeSet(); /**Test this statement by applying for just 1eave*/
 
     public RichInputText getCurr_Year() {
         return curr_Year;
+    }
+
+    public void setTotalMissedTimeStr(RichOutputText totalMissedTimeStr) {
+        this.totalMissedTimeStr = totalMissedTimeStr;
+    }
+
+    public RichOutputText getTotalMissedTimeStr() {
+        return totalMissedTimeStr;
     }
 }
