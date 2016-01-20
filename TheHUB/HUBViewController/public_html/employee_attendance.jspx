@@ -229,31 +229,32 @@
                   <af:convertNumber groupingUsed="false"
                                     pattern="#{bindings.EmpId.format}"/>
                 </af:inputText>
+                <af:panelGridLayout id="pgl15"
+                                    visible="#{sessionScope.EMP_TYPE=='3'}"
+                                    partialTriggers="pc1:t1">
+                  <af:gridRow marginTop="5px" height="auto" id="gr1">
+                    <af:gridCell marginStart="5px" width="50%" id="gc4">
+                      <af:panelLabelAndMessage label="Total Missed Time"
+                                               id="plam4"/>
+                    </af:gridCell>
+                    <af:gridCell marginStart="5px" marginEnd="5px" width="50%"
+                                 id="gc2">
+                      <af:outputText value="#{bindings.FinalMissed.inputValue}"
+                                     id="ot48"/>
+                    </af:gridCell>
+                  </af:gridRow>
+                  <af:gridRow id="gr2">
+                    <af:gridCell id="gc1">
+                      <af:panelLabelAndMessage label="Monthly Leaves"
+                                               id="plam5"/>
+                    </af:gridCell>
+                    <af:gridCell id="gc3">
+                      <af:outputText value="#{bindings.CalculatedLeaves.inputValue}"
+                                     id="ot49"/>
+                    </af:gridCell>
+                  </af:gridRow>
+                </af:panelGridLayout>
               </af:panelBox>
-              <af:panelGridLayout id="pgl15"
-                                  visible="#{sessionScope.EMP_TYPE=='3'}"
-                                  partialTriggers="pc1:t1">
-                <af:gridRow marginTop="5px" height="auto" id="gr1">
-                  <af:gridCell marginStart="5px" width="50%" id="gc4">
-                    <af:panelLabelAndMessage label="Total Missed Time"
-                                             id="plam4"/>
-                  </af:gridCell>
-                  <af:gridCell marginStart="5px" marginEnd="5px" width="50%"
-                               id="gc2">
-                    <af:outputText value="#{bindings.FinalMissed.inputValue}"
-                                   id="ot48"/>
-                  </af:gridCell>
-                </af:gridRow>
-                <af:gridRow id="gr2">
-                  <af:gridCell id="gc1">
-                    <af:panelLabelAndMessage label="Monthly Leaves" id="plam5"/>
-                  </af:gridCell>
-                  <af:gridCell id="gc3">
-                    <af:outputText value="#{bindings.CalculatedLeaves.inputValue}"
-                                   id="ot49"/>
-                  </af:gridCell>
-                </af:gridRow>
-              </af:panelGridLayout>
               <af:panelBox text="Salary" id="pb3" disclosed="false"
                            rendered="false">
                 <f:facet name="toolbar"/>
