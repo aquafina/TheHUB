@@ -16,7 +16,7 @@ public class Job implements org.quartz.Job{
         *          EVENT LOGGING AND LEAVES DEDUCTION      *
         ****************************************************/
         Calendar date = Calendar.getInstance();
-        date.add(Calendar.DAY_OF_MONTH,0); //14 
+        date.add(Calendar.DAY_OF_MONTH,-1); //14 
         EventLogger evLogger = new EventLogger();
         evLogger.logEvents(date);
     }
