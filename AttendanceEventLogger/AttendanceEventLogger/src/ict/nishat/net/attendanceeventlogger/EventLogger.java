@@ -116,6 +116,7 @@ public class EventLogger {
                         String lateIn = null;
                         String earlyOut = null;
                         String missedMinutes7 = null;
+                        String missedMinutes4 = null;
                         String expectedWorkHours = rsAttendance.getString("EXPECTED_WORK_HOURS");
                         String effectiveWorkHours = rsAttendance.getString("EFFECTIVE_WORKED_HOURS") ==
                                           null ? "0:00" :
