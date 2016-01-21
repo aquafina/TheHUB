@@ -12,8 +12,8 @@ import javax.servlet.http.HttpSession;
 
 
 public class Logger {
-//    String rootFolderPath = "//home//oracle//Desktop//AttendaceIrregularities";
-    String rootFolderPath = "C://AttendanceIrregularities";
+    String rootFolderPath = "//home//oracle//Desktop//AttendaceIrregularities";
+//    String rootFolderPath = "C://AttendanceIrregularities";
     File rootFolder;
     PrintWriter pw ;
     
