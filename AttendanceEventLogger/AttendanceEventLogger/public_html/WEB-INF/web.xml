@@ -7,7 +7,7 @@
     <servlet-class>ict.nishat.net.Servlet.JobServlet</servlet-class>
     <init-param>
       <param-name>cronExpr </param-name>
-      <param-value>0 5 0 1/1  * ? *</param-value>
+      <param-value>0 0/1 * 1/1 * ? *</param-value>
     </init-param>
     <load-on-startup>0</load-on-startup>
   </servlet>
