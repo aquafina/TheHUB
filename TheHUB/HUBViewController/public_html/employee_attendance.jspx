@@ -231,7 +231,7 @@
                 </af:inputText>
                 <af:panelGridLayout id="pgl15"
                                     visible="#{sessionScope.EMP_TYPE=='3'}"
-                                    partialTriggers="pc1:t1">
+                                    partialTriggers="pc1:t1" rendered="true">
                   <af:gridRow marginTop="5px" height="auto" id="gr1">
                     <af:gridCell marginStart="5px" width="50%" id="gc4">
                       <af:panelLabelAndMessage label="Total Missed Time"
