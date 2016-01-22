@@ -458,12 +458,14 @@
                                           rendered="false"/>
                         <af:commandButton text="Post" id="cb5"
                                           action="#{AttendanceBean.post}"
-                                          disabled="#{TestBean.year > bindings.Year.attributeValue ? 'false': 'true'}"
-                                          partialTriggers="::soc3 ::soc4"/>
+                                          partialTriggers="::soc3 ::soc4"
+                                          disabled="#{AttendanceBean.postingFlag}"/>
                         <af:commandButton actionListener="#{bindings.Commit.execute}"
                                           text="Save" id="cb6"
                                           rendered="false"/>
-                        
+                        <af:outputText value="#{AttendanceBean.postingFlag}" id="ot50"
+                                       partialTriggers="::soc3 ::soc4"
+                                       visible="false"/>
                       </af:toolbar>
                     </f:facet>
                     <f:facet name="statusbar"/>

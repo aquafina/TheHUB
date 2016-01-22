@@ -157,6 +157,8 @@ public class Attendance {
     private RichInputText postingMonth;
     private RichInputText curr_Year;
     private RichOutputText totalMissedTimeStr;
+    private boolean postingFlag;
+    private String postMonth;
     /*#######################################################*/
     /*#####################THE CONSTRUCTOR###################*/
     /*#######################################################*/
@@ -1079,6 +1081,8 @@ rsi.getNextRangeSet(); /**Test this statement by applying for just 1eave*/
                                      "-" + selectedYear);
         CommonUtil.log("yearmonth = "+CommonUtil.getSessionValue("yearmonth").toString());
         //MonthlyDeductionsDetails dc =  (MonthlyDeductionsDetails)CommonUtil.getCustomDataControl("MonthlyDeductionDetails")
+        //check if this month's attendance has been posted or not
+        postingFlag = checkPosting();
 
         filterAttenedance(selectedMonth, selectedYear);
     }
@@ -1092,6 +1096,10 @@ rsi.getNextRangeSet(); /**Test this statement by applying for just 1eave*/
         String selectedMonth =
             CommonUtil.getValueFrmExpression("#{bindings.Month.attributeValue}").toString();
         CommonUtil.log("yearmonth = "+selectedMonth+"-"+selectedYear);
+        
+        //check if this year's attendance has been posted or not
+        postingFlag = checkPosting();
+        
         filterAttenedance(selectedMonth, selectedYear);
     }
 
@@ -1251,7 +1259,7 @@ rsi.getNextRangeSet(); /**Test this statement by applying for just 1eave*/
         System.out.println("Hello Selected yearmonth = "+ curr_month.getValue().toString()+"-"+curr_Year.getValue().toString());
         DateFormatSymbols d = new DateFormatSymbols();
         int monthNumber = Integer.parseInt(curr_month.getValue().toString());
-        String postMonth = d.getShortMonths()[monthNumber - 1];
+        postMonth = d.getShortMonths()[monthNumber - 1];
         String monthDate =
             ((Integer.parseInt(curr_month.getValue().toString()) <= 9) ?
              "0" + Integer.parseInt(curr_month.getValue().toString()) :
@@ -1427,7 +1435,7 @@ rsi.getNextRangeSet(); /**Test this statement by applying for just 1eave*/
     private void updatePostingFlag() {
         DateFormatSymbols d = new DateFormatSymbols();
         int monthNumber = Integer.parseInt(curr_month.getValue().toString());
-        String postMonth = d.getShortMonths()[monthNumber - 1];
+        postMonth = d.getShortMonths()[monthNumber - 1];
         HubModuleImpl am = (HubModuleImpl)CommonUtil.getAppModule();
         ViewObjectImpl voPosting = am.getVO_AtdPosting1();
         String where =
@@ -1624,7 +1632,38 @@ rsi.getNextRangeSet(); /**Test this statement by applying for just 1eave*/
             e.printStackTrace();
         }
     }
+    
+    //It checks if the attendance of selected month and Year has been posted or not
+    public boolean checkPosting() 
+    {
+        HubModuleImpl am = (HubModuleImpl)CommonUtil.getAppModule();
 
+
+        ViewObjectImpl voPosting = (ViewObjectImpl)am.getVO_AtdPosting1();
+
+        CommonUtil.resetWhereClause(voPosting);
+        DateFormatSymbols d = new DateFormatSymbols();
+        postMonth = d.getShortMonths()[Integer.parseInt(curr_month.getValue().toString())  - 1];
+        String whereClause = " user_id = " +
+                                 CommonUtil.getSessionValue(Constants.SESSION_USERID) +
+                                 " and posting_year = "+curr_Year.getValue().toString()+" and posting_month = '" +
+                                 postMonth + "'";
+        
+        System.out.println("Check Posting query where clause "+whereClause);
+        voPosting.setWhereClause(" user_id = " +
+                                 CommonUtil.getSessionValue(Constants.SESSION_USERID) +
+                                 " and posting_year = "+curr_Year.getValue().toString()+" and posting_month = '" +
+                                 postMonth + "'");
+
+        voPosting.executeQuery();    
+        
+        int pageCount = voPosting.getEstimatedRangePageCount();
+        if (pageCount == 0) 
+        {
+            return false;    
+        }
+        else return true;
+    }
     public void setSal_monthLov(RichSelectOneChoice sal_monthLov) {
         this.sal_monthLov = sal_monthLov;
     }
@@ -1843,5 +1882,13 @@ rsi.getNextRangeSet(); /**Test this statement by applying for just 1eave*/
 
     public RichOutputText getTotalMissedTimeStr() {
         return totalMissedTimeStr;
+    }
+
+    public void setPostingFlag(boolean postingFlag) {
+        this.postingFlag = postingFlag;
+    }
+
+    public boolean isPostingFlag() {
+        return postingFlag;
     }
 }
