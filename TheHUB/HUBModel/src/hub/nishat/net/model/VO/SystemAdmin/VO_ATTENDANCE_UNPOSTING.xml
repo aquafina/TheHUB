@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="VO_ATTENDANCE_UNPOSTING"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full"
+  UseGlueCode="false">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="hub.nishat.net.model.VO.SystemAdmin.VO_ATTENDANCE_UNPOSTING_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewAccessor
+    Name="VO_Attendance1"
+    ViewObjectName="hub.nishat.net.model.VO.VO_Attendance"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="VO_AtdPosting1"
+    ViewObjectName="hub.nishat.net.model.VO.VO_AtdPosting"
+    RowLevelBinds="true"/>
+  <ListBinding
+    Name="LOV_EmpName"
+    ListVOName="VO_Attendance1"
+    ListRangeSize="10"
+    NullValueFlag="none"
+    NullValueId="LOV_EmpName_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="EmpName"/>
+    </AttrArray>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="EmpId"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="EmpName"/>
+      <Item Value="EmpId"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="EmpName"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_PostingMonth"
+    ListVOName="VO_AtdPosting1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="PostingMonth"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="PostingMonth"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="PostingMonth"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_PostingYear"
+    ListVOName="VO_AtdPosting1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="PostingYear"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="PostingYear"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="PostingYear"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <SQLQuery>
+    <![CDATA[SELECT 
+    EO_AtdPosting.USER_ID, 
+    EO_AtdPosting.ATD_POST_ID, 
+    EO_AtdPosting.POSTING_MONTH, 
+    EO_AtdPosting.POSTING_YEAR, 
+    EO_AtdPosting.POSTING_DATE, 
+    EO_Attendance.ATTENDANCE_DATE, 
+    EO_Attendance.EMP_ATD_ID, 
+    EO_Attendance.EMP_ID, 
+    EO_Attendance.EMP_TYPE, 
+    EO_Attendance.LEAVE_TODAY, 
+    EO_Attendance.LEAVE_TYPE_ID, 
+    EO_Attendance.TYPE_OF_LEAVE, 
+    EO_ConsumedLeaves.CAUSE, 
+    EO_ConsumedLeaves.CONSUMED_LEAVES_ID, 
+    EO_ConsumedLeaves.LEAVE_TYPE, 
+    EO_ConsumedLeaves.USER_ID AS USER_ID1, 
+    EO_ConsumedLeaves.LEAVE_DATE, 
+    EO_Attendance.EMP_NAME 
+FROM 
+    XX_E_PORTAL_ATD_POSTING EO_AtdPosting, 
+    XX_E_PORTAL_EMP_ATD EO_Attendance, 
+    XX_E_PORTAL_CONSUMED_LEAVES EO_ConsumedLeaves]]>
+  </SQLQuery>
+  <EntityUsage
+    Name="EO_AtdPosting"
+    Entity="hub.nishat.net.model.EO.EO_AtdPosting"/>
+  <EntityUsage
+    Name="EO_Attendance"
+    Entity="hub.nishat.net.model.EO.EO_Attendance"
+    SourceUsage="hub.nishat.net.model.VO.SystemAdmin.VO_ATTENDANCE_UNPOSTING.EO_AtdPosting"
+    ReadOnly="true"
+    Reference="true"
+    DeleteParticipant="false"/>
+  <EntityUsage
+    Name="EO_ConsumedLeaves"
+    Entity="hub.nishat.net.model.EO.EO_ConsumedLeaves"
+    SourceUsage="hub.nishat.net.model.VO.SystemAdmin.VO_ATTENDANCE_UNPOSTING.EO_Attendance"
+    ReadOnly="true"
+    Reference="true"
+    DeleteParticipant="false"/>
+  <ViewAttribute
+    Name="AtdPosting_UserId"
+    PrecisionRule="true"
+    EntityAttrName="UserId"
+    EntityUsage="EO_AtdPosting"
+    AliasName="USER_ID"/>
+  <ViewAttribute
+    Name="AtdPostId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="AtdPostId"
+    EntityUsage="EO_AtdPosting"
+    AliasName="ATD_POST_ID"/>
+  <ViewAttribute
+    Name="PostingMonth"
+    PrecisionRule="true"
+    EntityAttrName="PostingMonth"
+    EntityUsage="EO_AtdPosting"
+    AliasName="POSTING_MONTH"
+    LOVName="LOV_PostingMonth">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PostingYear"
+    PrecisionRule="true"
+    EntityAttrName="PostingYear"
+    EntityUsage="EO_AtdPosting"
+    AliasName="POSTING_YEAR"
+    LOVName="LOV_PostingYear">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PostingDate"
+    PrecisionRule="true"
+    EntityAttrName="PostingDate"
+    EntityUsage="EO_AtdPosting"
+    AliasName="POSTING_DATE"/>
+  <ViewAttribute
+    Name="AttendanceDate"
+    PrecisionRule="true"
+    EntityAttrName="AttendanceDate"
+    EntityUsage="EO_Attendance"
+    AliasName="ATTENDANCE_DATE"/>
+  <ViewAttribute
+    Name="EmpAtdId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="EmpAtdId"
+    EntityUsage="EO_Attendance"
+    AliasName="EMP_ATD_ID"/>
+  <ViewAttribute
+    Name="EmpId"
+    PrecisionRule="true"
+    EntityAttrName="EmpId"
+    EntityUsage="EO_Attendance"
+    AliasName="EMP_ID"/>
+  <ViewAttribute
+    Name="EmpType"
+    PrecisionRule="true"
+    EntityAttrName="EmpType"
+    EntityUsage="EO_Attendance"
+    AliasName="EMP_TYPE"/>
+  <ViewAttribute
+    Name="LeaveToday"
+    PrecisionRule="true"
+    EntityAttrName="LeaveToday"
+    EntityUsage="EO_Attendance"
+    AliasName="LEAVE_TODAY"/>
+  <ViewAttribute
+    Name="LeaveTypeId"
+    PrecisionRule="true"
+    EntityAttrName="LeaveTypeId"
+    EntityUsage="EO_Attendance"
+    AliasName="LEAVE_TYPE_ID"/>
+  <ViewAttribute
+    Name="TypeOfLeave"
+    PrecisionRule="true"
+    EntityAttrName="TypeOfLeave"
+    EntityUsage="EO_Attendance"
+    AliasName="TYPE_OF_LEAVE"/>
+  <ViewAttribute
+    Name="Cause"
+    PrecisionRule="true"
+    EntityAttrName="Cause"
+    EntityUsage="EO_ConsumedLeaves"
+    AliasName="CAUSE"/>
+  <ViewAttribute
+    Name="ConsumedLeavesId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="ConsumedLeavesId"
+    EntityUsage="EO_ConsumedLeaves"
+    AliasName="CONSUMED_LEAVES_ID"/>
+  <ViewAttribute
+    Name="LeaveType"
+    PrecisionRule="true"
+    EntityAttrName="LeaveType"
+    EntityUsage="EO_ConsumedLeaves"
+    AliasName="LEAVE_TYPE"/>
+  <ViewAttribute
+    Name="Consumed_Leaves_UserId"
+    PrecisionRule="true"
+    EntityAttrName="UserId"
+    EntityUsage="EO_ConsumedLeaves"
+    AliasName="USER_ID1"/>
+  <ViewAttribute
+    Name="LeaveDate"
+    PrecisionRule="true"
+    EntityAttrName="LeaveDate"
+    EntityUsage="EO_ConsumedLeaves"
+    AliasName="LEAVE_DATE"/>
+  <ViewAttribute
+    Name="EmpName"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="100"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="EMP_NAME"
+    Expression="EMP_NAME"
+    SQLType="VARCHAR"
+    LOVName="LOV_EmpName">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="100"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="input_text_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="hub.nishat.net.model.HUBModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

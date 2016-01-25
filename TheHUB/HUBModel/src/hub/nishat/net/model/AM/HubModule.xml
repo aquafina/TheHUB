@@ -289,6 +289,9 @@
   <ViewUsage
     Name="VO_PARTTIMES3"
     ViewObjectName="hub.nishat.net.model.VO.HR.VO_PARTTIMES"/>
+  <ViewUsage
+    Name="VO_ATTENDANCE_UNPOSTING1"
+    ViewObjectName="hub.nishat.net.model.VO.SystemAdmin.VO_ATTENDANCE_UNPOSTING"/>
   <ViewLinkUsage
     Name="VL_Emp2Att"
     ViewLinkObjectName="hub.nishat.net.model.VO.HR.VL.VL_Emp2Att"

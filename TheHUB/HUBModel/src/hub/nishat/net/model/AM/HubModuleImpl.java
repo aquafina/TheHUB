@@ -1012,4 +1012,12 @@ public class HubModuleImpl extends ApplicationModuleImpl {
     public ViewLinkImpl getVL_PART_TIMES_ATD() {
         return (ViewLinkImpl)findViewLink("VL_PART_TIMES_ATD");
     }
+
+    /**
+     * Container's getter for VO_ATTENDANCE_UNPOSTING1.
+     * @return VO_ATTENDANCE_UNPOSTING1
+     */
+    public ViewObjectImpl getVO_ATTENDANCE_UNPOSTING1() {
+        return (ViewObjectImpl)findViewObject("VO_ATTENDANCE_UNPOSTING1");
+    }
 }
