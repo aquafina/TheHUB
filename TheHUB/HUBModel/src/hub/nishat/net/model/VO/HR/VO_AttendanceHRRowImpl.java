@@ -341,6 +341,16 @@ public class VO_AttendanceHRRowImpl extends ViewRowImpl {
             }
         }
         ,
+        Monthnumber {
+            public Object get(VO_AttendanceHRRowImpl obj) {
+                return obj.getMonthnumber();
+            }
+
+            public void put(VO_AttendanceHRRowImpl obj, Object value) {
+                obj.setMonthnumber((String)value);
+            }
+        }
+        ,
         Year {
             public Object get(VO_AttendanceHRRowImpl obj) {
                 return obj.getYear();
@@ -712,6 +722,7 @@ public class VO_AttendanceHRRowImpl extends ViewRowImpl {
     public static final int EMPTYPE = AttributesEnum.EmpType.index();
     public static final int WORKINGTIME = AttributesEnum.WorkingTime.index();
     public static final int MONTH = AttributesEnum.Month.index();
+    public static final int MONTHNUMBER = AttributesEnum.Monthnumber.index();
     public static final int YEAR = AttributesEnum.Year.index();
     public static final int MONTHCODE = AttributesEnum.MonthCode.index();
     public static final int SHORTLEAVESCOLUMN = AttributesEnum.ShortLeavesColumn.index();
@@ -1198,6 +1209,22 @@ public class VO_AttendanceHRRowImpl extends ViewRowImpl {
      */
     public void setMonth(String value) {
         setAttributeInternal(MONTH, value);
+    }
+
+    /**
+     * Gets the attribute value for the calculated attribute Monthnumber.
+     * @return the Monthnumber
+     */
+    public String getMonthnumber() {
+        return (String) getAttributeInternal(MONTHNUMBER);
+    }
+
+    /**
+     * Sets <code>value</code> as the attribute value for the calculated attribute Monthnumber.
+     * @param value value to set the  Monthnumber
+     */
+    public void setMonthnumber(String value) {
+        setAttributeInternal(MONTHNUMBER, value);
     }
 
     /**

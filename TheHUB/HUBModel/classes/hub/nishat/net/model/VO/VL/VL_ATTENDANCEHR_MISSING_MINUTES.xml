@@ -26,7 +26,7 @@
     </DesignTime>
     <AttrArray Name="Attributes">
       <Item Value="hub.nishat.net.model.VO.HR.VO_AttendanceHR.EmpId"/>
-      <Item Value="hub.nishat.net.model.VO.HR.VO_AttendanceHR.Month"/>
+      <Item Value="hub.nishat.net.model.VO.HR.VO_AttendanceHR.Monthnumber"/>
     </AttrArray>
   </ViewLinkDefEnd>
   <ViewLinkDefEnd
