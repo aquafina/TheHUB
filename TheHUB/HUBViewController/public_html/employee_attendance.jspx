@@ -190,9 +190,9 @@
                 </af:inputText>
               </af:panelBox>
               <af:panelBox text="Missed Minutes" id="pb7"
-                           visible="#{sessionScope.EMP_TYPE=='3'}"
+                           visible="#{sessionScope.EMP_TYPE=='3' or sessionScope.EMP_TYPE=='2'}"
                            persist="" partialTriggers="pc1:t1" type="flow"
-                           disclosed="false">
+                           disclosed="false" showDisclosure="true">
                 <f:facet name="toolbar"/>
                 <af:table value="#{bindings.VO_MISSING_MINUTES1.collectionModel}"
                           var="row"
