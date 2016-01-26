@@ -39,6 +39,11 @@
     <iterator Binds="VO_MISSING_MINUTES1" RangeSize="25"
               DataControl="HubModuleDataControl"
               id="VO_MISSING_MINUTES1Iterator"/>
+    <iterator Binds="VO_Attendance2" RangeSize="25"
+              DataControl="HubModuleDataControl" id="VO_Attendance2Iterator"/>
+    <iterator Binds="VO_MISSING_MINUTES4" RangeSize="25"
+              DataControl="HubModuleDataControl"
+              id="VO_MISSING_MINUTES4Iterator"/>
   </executables>
   <bindings>
     <tree IterBinding="VO_ActiveEmployees2Iterator" id="VO_ActiveEmployees2">
@@ -217,9 +222,19 @@
         <Item Value="FinalMissed"/>
       </AttrNames>
     </attributeValues>
-    <tree IterBinding="VO_MISSING_MINUTES1Iterator" id="VO_MISSING_MINUTES1">
+    <attributeValues IterBinding="VO_MISSING_MINUTES1Iterator" id="EmpType2">
+      <AttrNames>
+        <Item Value="EmpType"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_Attendance2Iterator" id="EmpType3">
+      <AttrNames>
+        <Item Value="EmpType"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="VO_MISSING_MINUTES4Iterator" id="VO_MISSING_MINUTES4">
       <nodeDefinition DefName="hub.nishat.net.model.VO.VO_MISSING_MINUTES"
-                      Name="VO_MISSING_MINUTES10">
+                      Name="VO_MISSING_MINUTES40">
         <AttrNames>
           <Item Value="AttendanceDate"/>
           <Item Value="MissingMinutes"/>

@@ -752,4 +752,9 @@ order by attendance_date asc]]>
     ViewLink="hub.nishat.net.model.VO.HR.VL.VL_ATDPARTTIME"
     Type="oracle.jbo.RowIterator"
     IsUpdateable="false"/>
+  <ViewLinkAccessor
+    Name="VO_MISSING_MINUTES"
+    ViewLink="hub.nishat.net.model.VO.VL.VL_ATTENDANCEHR_MISSING_MINUTES"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
 </ViewObject>
