@@ -297,5 +297,62 @@
         <Item Value="FinalMissed"/>
       </AttrNames>
     </attributeValues>
+    <tree IterBinding="VO_PARTTIMES3Iterator" id="VO_PARTTIMES3">
+      <nodeDefinition DefName="hub.nishat.net.model.VO.HR.VO_PARTTIMES"
+                      Name="VO_PARTTIMES30">
+        <AttrNames>
+          <Item Value="TotalMissed"/>
+          <Item Value="JoiningDate"/>
+          <Item Value="TotalWorked"/>
+          <Item Value="Total"/>
+          <Item Value="EmpId"/>
+          <Item Value="EmpType"/>
+          <Item Value="Day"/>
+          <Item Value="Month"/>
+          <Item Value="FinalMissed"/>
+          <Item Value="CalculatedLeaves"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="VO_PARTTIMES3Iterator" id="TotalMissed">
+      <AttrNames>
+        <Item Value="TotalMissed"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_PARTTIMES3Iterator" id="JoiningDate">
+      <AttrNames>
+        <Item Value="JoiningDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_PARTTIMES3Iterator" id="TotalWorked">
+      <AttrNames>
+        <Item Value="TotalWorked"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_PARTTIMES3Iterator" id="Total">
+      <AttrNames>
+        <Item Value="Total"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_PARTTIMES3Iterator" id="EmpId2">
+      <AttrNames>
+        <Item Value="EmpId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_PARTTIMES3Iterator" id="EmpType1">
+      <AttrNames>
+        <Item Value="EmpType"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_PARTTIMES3Iterator" id="Day">
+      <AttrNames>
+        <Item Value="Day"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_PARTTIMES3Iterator" id="Month2">
+      <AttrNames>
+        <Item Value="Month"/>
+      </AttrNames>
+    </attributeValues>
   </bindings>
 </pageDefinition>

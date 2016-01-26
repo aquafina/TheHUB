@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="attendance_unpostingPageDef"
+                Package="hub.nishat.net.view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="VO_ATTENDANCE_UNPOSTING1" RangeSize="25"
+              DataControl="HubModuleDataControl"
+              id="VO_ATTENDANCE_UNPOSTING1Iterator"/>
+  </executables>
+  <bindings>
+    <listOfValues StaticList="false"
+                  IterBinding="VO_ATTENDANCE_UNPOSTING1Iterator"
+                  Uses="LOV_EmpName" id="EmpName"/>
+    <attributeValues IterBinding="VO_ATTENDANCE_UNPOSTING1Iterator"
+                     id="EmpName1">
+      <AttrNames>
+        <Item Value="EmpName"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>
