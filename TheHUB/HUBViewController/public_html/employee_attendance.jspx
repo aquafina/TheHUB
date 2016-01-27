@@ -221,7 +221,7 @@
                 </af:table>
                 <af:panelFormLayout id="pfl4" partialTriggers="t8">
                   <af:inputText value="#{bindings.FinalMissed.inputValue}"
-                                label="#{bindings.FinalMissed.hints.label}"
+                                label="Final Missed Time"
                                 required="#{bindings.FinalMissed.hints.mandatory}"
                                 columns="#{bindings.FinalMissed.hints.displayWidth}"
                                 maximumLength="#{bindings.FinalMissed.hints.precision}"
@@ -230,7 +230,7 @@
                     <f:validator binding="#{bindings.FinalMissed.validator}"/>
                   </af:inputText>
                   <af:inputText value="#{bindings.CalculatedLeaves.inputValue}"
-                                label="#{bindings.CalculatedLeaves.hints.label}"
+                                label="Monthly Calculated Leaves"
                                 required="#{bindings.CalculatedLeaves.hints.mandatory}"
                                 columns="#{bindings.CalculatedLeaves.hints.displayWidth}"
                                 maximumLength="#{bindings.CalculatedLeaves.hints.precision}"
