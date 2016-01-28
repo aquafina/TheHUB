@@ -341,6 +341,16 @@ public class VO_AttendanceHRRowImpl extends ViewRowImpl {
             }
         }
         ,
+        Monthnumber {
+            public Object get(VO_AttendanceHRRowImpl obj) {
+                return obj.getMonthnumber();
+            }
+
+            public void put(VO_AttendanceHRRowImpl obj, Object value) {
+                obj.setMonthnumber((String)value);
+            }
+        }
+        ,
         Year {
             public Object get(VO_AttendanceHRRowImpl obj) {
                 return obj.getYear();
@@ -611,6 +621,16 @@ public class VO_AttendanceHRRowImpl extends ViewRowImpl {
             }
         }
         ,
+        VO_MISSING_MINUTES {
+            public Object get(VO_AttendanceHRRowImpl obj) {
+                return obj.getVO_MISSING_MINUTES();
+            }
+
+            public void put(VO_AttendanceHRRowImpl obj, Object value) {
+                obj.setAttributeInternal(index(), value);
+            }
+        }
+        ,
         YearLov1 {
             public Object get(VO_AttendanceHRRowImpl obj) {
                 return obj.getYearLov1();
@@ -702,6 +722,7 @@ public class VO_AttendanceHRRowImpl extends ViewRowImpl {
     public static final int EMPTYPE = AttributesEnum.EmpType.index();
     public static final int WORKINGTIME = AttributesEnum.WorkingTime.index();
     public static final int MONTH = AttributesEnum.Month.index();
+    public static final int MONTHNUMBER = AttributesEnum.Monthnumber.index();
     public static final int YEAR = AttributesEnum.Year.index();
     public static final int MONTHCODE = AttributesEnum.MonthCode.index();
     public static final int SHORTLEAVESCOLUMN = AttributesEnum.ShortLeavesColumn.index();
@@ -729,6 +750,7 @@ public class VO_AttendanceHRRowImpl extends ViewRowImpl {
     public static final int VO_CONSUMEDLEAVES = AttributesEnum.VO_ConsumedLeaves.index();
     public static final int VO_EMPIRR = AttributesEnum.VO_EmpIRR.index();
     public static final int VO_PARTTIMES = AttributesEnum.VO_PARTTIMES.index();
+    public static final int VO_MISSING_MINUTES = AttributesEnum.VO_MISSING_MINUTES.index();
     public static final int YEARLOV1 = AttributesEnum.YearLov1.index();
     public static final int VO_MONTHS1 = AttributesEnum.VO_Months1.index();
     public static final int VO_YEARS1 = AttributesEnum.VO_Years1.index();
@@ -1187,6 +1209,22 @@ public class VO_AttendanceHRRowImpl extends ViewRowImpl {
      */
     public void setMonth(String value) {
         setAttributeInternal(MONTH, value);
+    }
+
+    /**
+     * Gets the attribute value for the calculated attribute Monthnumber.
+     * @return the Monthnumber
+     */
+    public String getMonthnumber() {
+        return (String) getAttributeInternal(MONTHNUMBER);
+    }
+
+    /**
+     * Sets <code>value</code> as the attribute value for the calculated attribute Monthnumber.
+     * @param value value to set the  Monthnumber
+     */
+    public void setMonthnumber(String value) {
+        setAttributeInternal(MONTHNUMBER, value);
     }
 
     /**
@@ -2047,6 +2085,13 @@ public class VO_AttendanceHRRowImpl extends ViewRowImpl {
      */
     public RowIterator getVO_PARTTIMES() {
         return (RowIterator)getAttributeInternal(VO_PARTTIMES);
+    }
+
+    /**
+     * Gets the associated <code>RowIterator</code> using master-detail link VO_MISSING_MINUTES.
+     */
+    public RowIterator getVO_MISSING_MINUTES() {
+        return (RowIterator)getAttributeInternal(VO_MISSING_MINUTES);
     }
 
     /**

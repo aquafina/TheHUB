@@ -13,5 +13,11 @@
     <listOfValues StaticList="false"
                   IterBinding="VO_ATTENDANCE_UNPOSTING1Iterator"
                   Uses="LOV_EmpName" id="EmpName"/>
+    <attributeValues IterBinding="VO_ATTENDANCE_UNPOSTING1Iterator"
+                     id="EmpName1">
+      <AttrNames>
+        <Item Value="EmpName"/>
+      </AttrNames>
+    </attributeValues>
   </bindings>
 </pageDefinition>

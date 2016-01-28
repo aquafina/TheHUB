@@ -15,10 +15,13 @@ import java.util.List;
 
 import javax.faces.application.FacesMessage;
 
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
 import oracle.adf.model.binding.DCIteratorBinding;
 import oracle.adf.view.rich.component.rich.input.RichInputText;
+
+import oracle.dms.http.HttpRequest;
 
 import oracle.javatools.parser.java.v2.common.CommonUtilities;
 
@@ -240,6 +243,10 @@ public class LoginPage {
 
     public String proceedLogout() {
         CommonUtil.destroySession();
+
+        //Object object = (Object)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+//        object.getParameter("contextPath");
+        //CommonUtil.log(object.toString());
         CommonUtil.redirect("http://fmw.nishat.net:7003/TheHUB/faces/login_page.jspx");
         return null;
     }

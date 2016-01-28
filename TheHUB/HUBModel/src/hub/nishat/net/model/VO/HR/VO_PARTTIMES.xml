@@ -36,7 +36,7 @@ floor(sum(to_number(to_char(to_date(nvl(atd.effective_worked_hours,'00:00'),'hh2
 ,floor((to_char(last_day(atd.attendance_Date)-6,'dd')*8*60)/60)||':'||mod((to_char(last_day(atd.attendance_Date)-6,'dd')*8*60),60) total
 ,atd.emp_id
 ,users_table.emp_type
-,to_char(atd.attendance_Date,'mm') DAY
+,to_number(to_char(atd.attendance_Date,'mm')) DAY
 ,to_char(atd.attendance_Date,'MON') MONTH
 from xx_e_portal_emp_atd atd
 ,xx_e_portal_leave_calander cal

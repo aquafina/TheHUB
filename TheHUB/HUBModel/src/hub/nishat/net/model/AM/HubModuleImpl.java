@@ -1014,10 +1014,26 @@ public class HubModuleImpl extends ApplicationModuleImpl {
     }
 
     /**
-     * Container's getter for VO_ATTENDANCE_UNPOSTING1.
-     * @return VO_ATTENDANCE_UNPOSTING1
+     * Container's getter for VO_AttendanceHR9.
+     * @return VO_AttendanceHR9
      */
-    public ViewObjectImpl getVO_ATTENDANCE_UNPOSTING1() {
-        return (ViewObjectImpl)findViewObject("VO_ATTENDANCE_UNPOSTING1");
+    public VO_AttendanceHRImpl getVO_AttendanceHR9() {
+        return (VO_AttendanceHRImpl)findViewObject("VO_AttendanceHR9");
+    }
+
+    /**
+     * Container's getter for VO_MISSING_MINUTES4.
+     * @return VO_MISSING_MINUTES4
+     */
+    public VO_MISSING_MINUTESImpl getVO_MISSING_MINUTES4() {
+        return (VO_MISSING_MINUTESImpl)findViewObject("VO_MISSING_MINUTES4");
+    }
+
+    /**
+     * Container's getter for VL_ATTENDANCEHR_MISSING_MINUTES.
+     * @return VL_ATTENDANCEHR_MISSING_MINUTES
+     */
+    public ViewLinkImpl getVL_ATTENDANCEHR_MISSING_MINUTES() {
+        return (ViewLinkImpl)findViewLink("VL_ATTENDANCEHR_MISSING_MINUTES");
     }
 }

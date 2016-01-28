@@ -297,5 +297,10 @@
         <Item Value="FinalMissed"/>
       </AttrNames>
     </attributeValues>
+    <attributeValues IterBinding="VO_PARTTIMES3Iterator" id="Day">
+      <AttrNames>
+        <Item Value="Day"/>
+      </AttrNames>
+    </attributeValues>
   </bindings>
 </pageDefinition>

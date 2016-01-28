@@ -12,7 +12,7 @@
           <f:facet name="header"/>
           <f:facet name="footer"/>
           <f:facet name="left">
-            <af:panelGroupLayout id="pgl3" layout="vertical"
+            <af:panelGroupLayout id="pgl3" layout="scroll"
                                  inlineStyle="background-color:white;padding-top:10px"
                                  halign="center">
               <af:goLink text="Hierarchy Link" id="gl1"
@@ -79,6 +79,36 @@
                 <af:convertNumber groupingUsed="false"
                                   pattern="#{bindings.EmpType1.format}"/>
               </af:outputText>
+              <af:panelBox text="Missing Minutes" id="pb1"
+                           disclosed="false"
+                           visible="#{bindings.EmpType1.inputValue=='2' or bindings.EmpType1.inputValue=='3'}"
+                           partialTriggers="t1">
+                <f:facet name="toolbar"/>
+                <af:table value="#{bindings.VO_MISSING_MINUTES4.collectionModel}"
+                          var="row"
+                          rows="#{bindings.VO_MISSING_MINUTES4.rangeSize}"
+                          emptyText="#{bindings.VO_MISSING_MINUTES4.viewable ? 'No data to display.' : 'Access Denied.'}"
+                          fetchSize="#{bindings.VO_MISSING_MINUTES4.rangeSize}"
+                          rowBandingInterval="0" id="t5" width="222">
+                  <af:column sortProperty="#{bindings.VO_MISSING_MINUTES4.hints.AttendanceDate.name}"
+                             sortable="false"
+                             headerText="#{bindings.VO_MISSING_MINUTES4.hints.AttendanceDate.label}"
+                             id="c68" align="center">
+                    <af:outputText value="#{row.AttendanceDate}" id="ot30">
+                      <af:convertDateTime pattern="#{bindings.VO_MISSING_MINUTES4.hints.AttendanceDate.format}"/>
+                    </af:outputText>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_MISSING_MINUTES4.hints.MissingMinutes.name}"
+                             sortable="false"
+                             headerText="#{bindings.VO_MISSING_MINUTES4.hints.MissingMinutes.label}"
+                             id="c69" align="center">
+                    <af:outputText value="#{row.MissingMinutes}" id="ot29">
+                      <af:convertNumber groupingUsed="false"
+                                        pattern="#{bindings.VO_MISSING_MINUTES4.hints.MissingMinutes.format}"/>
+                    </af:outputText>
+                  </af:column>
+                </af:table>
+              </af:panelBox>
               <af:panelGridLayout id="pgl11"
                                   visible="#{bindings.EmpType1.inputValue=='2' or bindings.EmpType1.inputValue=='3'}"
                                   partialTriggers="ot21">

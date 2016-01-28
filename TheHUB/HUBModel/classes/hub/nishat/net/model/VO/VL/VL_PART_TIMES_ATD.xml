@@ -26,7 +26,7 @@
     </DesignTime>
     <AttrArray Name="Attributes">
       <Item Value="hub.nishat.net.model.VO.VO_Attendance.EmpId"/>
-      <Item Value="hub.nishat.net.model.VO.VO_Attendance.Month"/>
+      <Item Value="hub.nishat.net.model.VO.VO_Attendance.MonthNumber"/>
     </AttrArray>
   </ViewLinkDefEnd>
   <ViewLinkDefEnd
@@ -39,7 +39,7 @@
     </DesignTime>
     <AttrArray Name="Attributes">
       <Item Value="hub.nishat.net.model.VO.HR.VO_PARTTIMES.EmpId"/>
-      <Item Value="hub.nishat.net.model.VO.HR.VO_PARTTIMES.Month"/>
+      <Item Value="hub.nishat.net.model.VO.HR.VO_PARTTIMES.Day"/>
     </AttrArray>
   </ViewLinkDefEnd>
   <ResourceBundle>

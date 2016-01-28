@@ -109,7 +109,8 @@
                 <af:showPopupBehavior popupId="::p4" triggerType="action"/>
               </af:commandButton>
               <af:panelBox text="Leave Details" id="pb5"
-                           rendered="#{bindings.EmpType.inputValue == '5' ? 'false' : 'true'}">
+                           rendered="#{bindings.EmpType.inputValue == '5' ? 'false' : 'true'}"
+                           partialTriggers="pc1:t1">
                 <f:facet name="toolbar"/>
                 <af:panelGroupLayout id="pgl14" layout="vertical">
                   <af:panelHeader text=" " id="ph1">
@@ -190,9 +191,9 @@
                 </af:inputText>
               </af:panelBox>
               <af:panelBox text="Missed Minutes" id="pb7"
-                           partialTriggers="soc3 soc4 ot47"
-                           visible="#{sessionScope.EMP_TYPE=='3'}"
-                           persist="">
+                           visible="#{sessionScope.EMP_TYPE=='3' or sessionScope.EMP_TYPE=='2'}"
+                           persist="" partialTriggers="pc1:t1" type="flow"
+                           disclosed="false" showDisclosure="true">
                 <f:facet name="toolbar"/>
                 <af:table value="#{bindings.VO_MISSING_MINUTES1.collectionModel}"
                           var="row"
@@ -219,6 +220,26 @@
                     </af:outputText>
                   </af:column>
                 </af:table>
+                <af:panelFormLayout id="pfl4" partialTriggers="t8">
+                  <af:inputText value="#{bindings.FinalMissed.inputValue}"
+                                label="Final Missed Time"
+                                required="#{bindings.FinalMissed.hints.mandatory}"
+                                columns="#{bindings.FinalMissed.hints.displayWidth}"
+                                maximumLength="#{bindings.FinalMissed.hints.precision}"
+                                shortDesc="#{bindings.FinalMissed.hints.tooltip}"
+                                id="it62" partialTriggers="t8">
+                    <f:validator binding="#{bindings.FinalMissed.validator}"/>
+                  </af:inputText>
+                  <af:inputText value="#{bindings.CalculatedLeaves.inputValue}"
+                                label="Monthly Calculated Leaves"
+                                required="#{bindings.CalculatedLeaves.hints.mandatory}"
+                                columns="#{bindings.CalculatedLeaves.hints.displayWidth}"
+                                maximumLength="#{bindings.CalculatedLeaves.hints.precision}"
+                                shortDesc="#{bindings.CalculatedLeaves.hints.tooltip}"
+                                id="it68" partialTriggers="t8">
+                    <f:validator binding="#{bindings.CalculatedLeaves.validator}"/>
+                  </af:inputText>
+                </af:panelFormLayout>
                 <af:inputText value="#{bindings.EmpId.inputValue}"
                               required="#{bindings.EmpId.hints.mandatory}"
                               columns="#{bindings.EmpId.hints.displayWidth}"
@@ -229,31 +250,6 @@
                   <af:convertNumber groupingUsed="false"
                                     pattern="#{bindings.EmpId.format}"/>
                 </af:inputText>
-                <af:panelGridLayout id="pgl15"
-                                    visible="#{sessionScope.EMP_TYPE=='3'}"
-                                    partialTriggers="pc1:t1" rendered="true">
-                  <af:gridRow marginTop="5px" height="auto" id="gr1">
-                    <af:gridCell marginStart="5px" width="50%" id="gc4">
-                      <af:panelLabelAndMessage label="Total Missed Time"
-                                               id="plam4"/>
-                    </af:gridCell>
-                    <af:gridCell marginStart="5px" marginEnd="5px" width="50%"
-                                 id="gc2">
-                      <af:outputText value="#{bindings.FinalMissed.inputValue}"
-                                     id="ot48"/>
-                    </af:gridCell>
-                  </af:gridRow>
-                  <af:gridRow id="gr2">
-                    <af:gridCell id="gc1">
-                      <af:panelLabelAndMessage label="Monthly Leaves"
-                                               id="plam5"/>
-                    </af:gridCell>
-                    <af:gridCell id="gc3">
-                      <af:outputText value="#{bindings.CalculatedLeaves.inputValue}"
-                                     id="ot49"/>
-                    </af:gridCell>
-                  </af:gridRow>
-                </af:panelGridLayout>
               </af:panelBox>
               <af:panelBox text="Salary" id="pb3" disclosed="false"
                            rendered="false">
@@ -383,7 +379,7 @@
             </af:panelGroupLayout>
           </f:facet>
           <f:facet name="content">
-            <af:panelGroupLayout id="pgl1" layout="vertical"
+            <af:panelGroupLayout id="pgl1" layout="scroll"
                                  inlineStyle="background-color:#eaedee;"
                                  halign="center">
               <af:panelGroupLayout id="pgl10" layout="vertical"
@@ -458,7 +454,7 @@
                                           rendered="false"/>
                         <af:commandButton text="Post" id="cb5"
                                           action="#{AttendanceBean.post}"
-                                          partialTriggers="::soc3 ::soc4"
+                                          partialTriggers="t1"
                                           disabled="#{AttendanceBean.postingFlag}"/>
                         <af:commandButton actionListener="#{bindings.Commit.execute}"
                                           text="Save" id="cb6"

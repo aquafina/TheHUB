@@ -112,6 +112,7 @@ EO_AttendanceHR.EMP_ATD_ID,
        EO_AttendanceHR.emp_type,
        emp_type.working_time,
        to_char(EO_AttendanceHR.ATTENDANCE_DATE,'MON') month,
+       to_char(EO_AttendanceHR.ATTENDANCE_DATE,'MM') monthnumber,
        to_char(EO_AttendanceHR.ATTENDANCE_DATE,'YYYY') year, to_char(EO_AttendanceHR.ATTENDANCE_DATE,'MM')||to_char(EO_AttendanceHR.ATTENDANCE_DATE,'yyyy') month_code
 FROM XX_E_PORTAL_EMP_ATD EO_AttendanceHR,
          xx_e_portal_emp_atd_v EO_AttendanceHR_V,
@@ -441,6 +442,21 @@ order by attendance_date asc]]>
     </Properties>
   </ViewAttribute>
   <ViewAttribute
+    Name="Monthnumber"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="2"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="MONTHNUMBER"
+    Expression="MONTHNUMBER"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="2"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
     Name="Year"
     IsUpdateable="false"
     IsPersistent="false"
@@ -750,6 +766,11 @@ order by attendance_date asc]]>
   <ViewLinkAccessor
     Name="VO_PARTTIMES"
     ViewLink="hub.nishat.net.model.VO.HR.VL.VL_ATDPARTTIME"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <ViewLinkAccessor
+    Name="VO_MISSING_MINUTES"
+    ViewLink="hub.nishat.net.model.VO.VL.VL_ATTENDANCEHR_MISSING_MINUTES"
     Type="oracle.jbo.RowIterator"
     IsUpdateable="false"/>
 </ViewObject>
