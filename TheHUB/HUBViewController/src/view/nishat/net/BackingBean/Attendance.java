@@ -170,6 +170,7 @@ public class Attendance {
         leaves.put(CASUAL_LEAVE, 1);
         leaves.put(ANNUAL_LEAVE, 2);
         leaves.put(TRAVEL_LEAVE, 7);
+//        postingFlag = checkPosting();
     }
 
     /*##################################################################
@@ -1637,6 +1638,8 @@ rsi.getNextRangeSet(); /**Test this statement by applying for just 1eave*/
     //It checks if the attendance of selected month and Year has been posted or not
     public boolean checkPosting() 
     {
+        
+        
         HubModuleImpl am = (HubModuleImpl)CommonUtil.getAppModule();
 
 
@@ -1645,6 +1648,16 @@ rsi.getNextRangeSet(); /**Test this statement by applying for just 1eave*/
         CommonUtil.resetWhereClause(voPosting);
         DateFormatSymbols d = new DateFormatSymbols();
         postMonth = d.getShortMonths()[Integer.parseInt(curr_month.getValue().toString())  - 1];
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MMM/dd HH:mm:ss");
+        String cyear = dateFormat.format(Calendar.getInstance().getTime()).split("/")[0];
+        String cmonth = dateFormat.format(Calendar.getInstance().getTime()).split("/")[1];
+        CommonUtil.log("post month = "+postMonth);
+        CommonUtil.log("post month = "+postMonth);
+        //If the user is trying to post the attendance for current month return false
+        if (postMonth.equals(cmonth) && curr_Year.getValue().toString().equals(cyear+""))
+            return true;
+        else
+        {
         String whereClause = " user_id = " +
                                  CommonUtil.getSessionValue(Constants.SESSION_USERID) +
                                  " and posting_year = "+curr_Year.getValue().toString()+" and posting_month = '" +
@@ -1656,14 +1669,15 @@ rsi.getNextRangeSet(); /**Test this statement by applying for just 1eave*/
                                  " and posting_year = "+curr_Year.getValue().toString()+" and posting_month = '" +
                                  postMonth + "'");
 
-        voPosting.executeQuery();    
-        
-        int pageCount = voPosting.getEstimatedRangePageCount();
-        if (pageCount == 0) 
-        {
-            return false;    
+            voPosting.executeQuery();    
+            
+            int pageCount = voPosting.getEstimatedRangePageCount();
+            if (pageCount == 0) 
+            {
+                return false;    
+            }
+            else return true;
         }
-        else return true;
     }
     public void setSal_monthLov(RichSelectOneChoice sal_monthLov) {
         this.sal_monthLov = sal_monthLov;
@@ -1890,6 +1904,6 @@ rsi.getNextRangeSet(); /**Test this statement by applying for just 1eave*/
     }
 
     public boolean isPostingFlag() {
-        return postingFlag;
+        return checkPosting();
     }
 }

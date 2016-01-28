@@ -454,8 +454,8 @@
                                           rendered="false"/>
                         <af:commandButton text="Post" id="cb5"
                                           action="#{AttendanceBean.post}"
-                                          partialTriggers="t1"
-                                          disabled="#{AttendanceBean.postingFlag}"/>
+                                          disabled="#{AttendanceBean.postingFlag}"
+                                          partialTriggers="cb5 ::soc3 ::soc4"/>
                         <af:commandButton actionListener="#{bindings.Commit.execute}"
                                           text="Save" id="cb6"
                                           rendered="false"/>

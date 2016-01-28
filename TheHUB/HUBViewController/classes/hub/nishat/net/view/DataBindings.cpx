@@ -50,6 +50,8 @@
           usageId="hub_nishat_net_view_OVERTIME_WORKINGPageDef"/>
     <page path="/ADMIN/ADMIN_IRREGULARITIES.jspx"
           usageId="hub_nishat_net_view_ADMIN_IRREGULARITIESPageDef"/>
+    <page path="/attendance_unposting.jspx"
+          usageId="hub_nishat_net_view_attendance_unpostingPageDef"/>
   </pageMap>
   <pageDefinitionUsages>
     <page id="hub_nishat_net_view_attendancePageDef"
@@ -98,6 +100,8 @@
           path="HR.OVERTIME_WORKINGPageDef"/>
     <page id="hub_nishat_net_view_ADMIN_IRREGULARITIESPageDef"
           path="ADMIN.ADMIN_IRREGULARITIESPageDef"/>
+    <page id="hub_nishat_net_view_attendance_unpostingPageDef"
+          path="hub.nishat.net.view.pageDefs.attendance_unpostingPageDef"/>
   </pageDefinitionUsages>
   <dataControlUsages>
     <dc id="MonthlyDeductionsDetails"
