@@ -1097,7 +1097,7 @@ rsi.getNextRangeSet(); /**Test this statement by applying for just 1eave*/
             CommonUtil.getValueFrmExpression("#{bindings.Month.attributeValue}").toString();
         CommonUtil.log("yearmonth = "+selectedMonth+"-"+selectedYear);
         
-        //check if this year's attendance has been posted or not
+        //check if this month and year attendance has been posted or not
         postingFlag = checkPosting();
         
         filterAttenedance(selectedMonth, selectedYear);
@@ -1596,6 +1596,7 @@ rsi.getNextRangeSet(); /**Test this statement by applying for just 1eave*/
                 monthCode = (Calendar.getInstance().get(Calendar.YEAR))-1 + mC;
             }
             else monthCode = Calendar.getInstance().get(Calendar.YEAR) + mC;
+            CommonUtil.log("monthCode = "+monthCode);
             String empCode =
                 "00"+CommonUtil.getSessionValue(Constants.SESSION_EMP_CODE).toString();
             list = ph.getPayHistory(empCode, monthCode);
