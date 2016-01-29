@@ -362,6 +362,7 @@ public class CommonUtil {
         DCIteratorBinding iterBind = (DCIteratorBinding)dcBindings.get(voName);
         iterBind.executeQuery();
         iterBind.refresh(DCIteratorBinding.RANGESIZE_UNLIMITED);
+//        iterBind.refresh(31);
     }
 
     public static DCIteratorBinding getIterator(String iteratorName) {

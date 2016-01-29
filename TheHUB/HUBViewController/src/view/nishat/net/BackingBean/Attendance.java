@@ -1125,9 +1125,9 @@ rsi.getNextRangeSet(); /**Test this statement by applying for just 1eave*/
         ViewObjectImpl voAttendance = am.getVO_Attendance2();
         //CommonUtil.resetWhereClause(voAttendance);
         CommonUtil.refreshVO("VO_Attendance2Iterator");
-        voAttendance.setNamedWhereClauseParam("bv_month", null);
-        voAttendance.setNamedWhereClauseParam("bv_year", null);
-        voAttendance.executeQuery();
+//        voAttendance.setNamedWhereClauseParam("bv_month", null);
+//        voAttendance.setNamedWhereClauseParam("bv_year", null);
+//        voAttendance.executeQuery();
 
         //        String whereClause =
         //            "to_char(attendance_date,'MONYYYY') = '" + selectedMonth.toUpperCase() +
