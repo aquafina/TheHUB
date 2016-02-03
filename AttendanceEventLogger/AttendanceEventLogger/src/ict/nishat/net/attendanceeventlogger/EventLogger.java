@@ -52,7 +52,7 @@ public class EventLogger {
                     
                     String actualWorkedHoursQuery = "select total from xx_e_portal_emp_atd_v atd_v where emp_id = ?  and TO_CHAR(atd_v.in_time,'MON-DD-YYYY') =?";
                     ResultSet rsAttendance = null;
-                    for (int i=1; i<= 31; i++)
+                    for (int i=1; i<= 26; i++)
                     {
                     String getPreviousDayRec = "select (TO_CHAR(max_out_time, 'hh12:MI AM')) outtime from xx_e_portal_emp_atd where TO_CHAR (ATTENDANCE_DATE, 'MON-DD-YYYY') = ? and emp_id = ?";
 //                    
@@ -75,21 +75,21 @@ public class EventLogger {
 //                      int i = 18;
 //                    
                         String formattedDateParam =
-                        "JAN" +
+                        "OCT" +
                         "-" +
                         (i <= 9 ? "0" + i :
                          i) + "-" +
-                        "2016";
+                        "2015";
                     
                     Calendar pc = Calendar.getInstance();
                     pc.setTime(date.getTime());
                     //pc.add(Calendar.DAY_OF_MONTH, -1);
                     String formattedPreviousDateParam =
-                        "JAN" +
+                        "OCT" +
                         "-" +
                         ((i-1) <= 9 ? "0" + (i-1) :
                          (i-1)) + "-" +
-                        "2016";
+                        "2015";
                     
                     //GETTING PREVIOUS DAY OUT TIME
                     pst = ebsConn.prepareStatement(getPreviousDayRec);
