@@ -52,8 +52,8 @@ public class EventLogger {
                     
                     String actualWorkedHoursQuery = "select total from xx_e_portal_emp_atd_v atd_v where emp_id = ?  and TO_CHAR(atd_v.in_time,'MON-DD-YYYY') =?";
                     ResultSet rsAttendance = null;
-                    for (int i=1; i<= 26; i++)
-                    {
+//                    for (int i=1; i<= 26; i++)
+//                    {
                     String getPreviousDayRec = "select (TO_CHAR(max_out_time, 'hh12:MI AM')) outtime from xx_e_portal_emp_atd where TO_CHAR (ATTENDANCE_DATE, 'MON-DD-YYYY') = ? and emp_id = ?";
 //                    
 //                    String formattedDateParam =
@@ -72,24 +72,24 @@ public class EventLogger {
 //                        ((pc.get(Calendar.DAY_OF_MONTH)) <= 9 ? "0" + (pc.get(Calendar.DAY_OF_MONTH)) :
 //                         (pc.get(Calendar.DAY_OF_MONTH))) + "-" +
 //                        pc.get(Calendar.YEAR);
-//                      int i = 18;
-//                    
+                        int i = 6;
+                    
                         String formattedDateParam =
-                        "OCT" +
+                        "JAN" +
                         "-" +
                         (i <= 9 ? "0" + i :
                          i) + "-" +
-                        "2015";
+                        "2016";
                     
                     Calendar pc = Calendar.getInstance();
                     pc.setTime(date.getTime());
                     //pc.add(Calendar.DAY_OF_MONTH, -1);
                     String formattedPreviousDateParam =
-                        "OCT" +
+                        "JAN" +
                         "-" +
                         ((i-1) <= 9 ? "0" + (i-1) :
                          (i-1)) + "-" +
-                        "2015";
+                        "2016";
                     
                     //GETTING PREVIOUS DAY OUT TIME
                     pst = ebsConn.prepareStatement(getPreviousDayRec);
@@ -287,7 +287,7 @@ public class EventLogger {
                     pst.close();
                     System.out.println("#####################################################################################################");
                     l.logInfo("####################################################################");
-                }
+//                }
                 }
             }
             rsUsers.close();
