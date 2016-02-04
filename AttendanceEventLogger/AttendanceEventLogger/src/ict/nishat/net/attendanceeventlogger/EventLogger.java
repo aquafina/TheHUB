@@ -52,7 +52,7 @@ public class EventLogger {
                     
                     String actualWorkedHoursQuery = "select total from xx_e_portal_emp_atd_v atd_v where emp_id = ?  and TO_CHAR(atd_v.in_time,'MON-DD-YYYY') =?";
                     ResultSet rsAttendance = null;
-                    //for (int i=1; i<= 31; i++)
+//                    for (int i=1; i<=31; i++)
 //                    {
                     String getPreviousDayRec = "select (TO_CHAR(max_out_time, 'hh12:MI AM')) outtime from xx_e_portal_emp_atd where TO_CHAR (ATTENDANCE_DATE, 'MON-DD-YYYY') = ? and emp_id = ?";
                     
@@ -72,10 +72,10 @@ public class EventLogger {
                         ((pc.get(Calendar.DAY_OF_MONTH)) <= 9 ? "0" + (pc.get(Calendar.DAY_OF_MONTH)) :
                          (pc.get(Calendar.DAY_OF_MONTH))) + "-" +
                         pc.get(Calendar.YEAR);
-//                      int i = 18;
-//                    
+                        //int i = 1;
+                    
 //                        String formattedDateParam =
-//                        "JAN" +
+//                        "FEB" +
 //                        "-" +
 //                        (i <= 9 ? "0" + i :
 //                         i) + "-" +
@@ -85,7 +85,7 @@ public class EventLogger {
 //                    pc.setTime(date.getTime());
 //                    //pc.add(Calendar.DAY_OF_MONTH, -1);
 //                    String formattedPreviousDateParam =
-//                        "JAN" +
+//                        "FEB" +
 //                        "-" +
 //                        ((i-1) <= 9 ? "0" + (i-1) :
 //                         (i-1)) + "-" +
@@ -116,6 +116,7 @@ public class EventLogger {
                         String lateIn = null;
                         String earlyOut = null;
                         String missedMinutes7 = null;
+                        String missedMinutes4 = null;
                         String expectedWorkHours = rsAttendance.getString("EXPECTED_WORK_HOURS");
                         String effectiveWorkHours = rsAttendance.getString("EFFECTIVE_WORKED_HOURS") ==
                                           null ? "0:00" :
@@ -148,6 +149,10 @@ public class EventLogger {
                         if (empType==3)
                         {
                                 missedMinutes7 = getMissedMinutes7(empType,expectedWorkHours,effectiveWorkHours);
+                        }
+                        else if (empType == 2) 
+                        {
+                            //Do nothing    
                         }
                         else
                         {
@@ -242,12 +247,35 @@ public class EventLogger {
                                 ResultSet rsActualWorkedHours = pstActualWorkedHours.executeQuery();
                                 rsActualWorkedHours.next();
                                 int actualWorkedMinutes = CommonUtil.convertTimeToMinutes(rsActualWorkedHours.getString(1));
-                                int missingMinutesOutOf8 = getMissingMinutesOutOf8(actualWorkedMinutes);
+                                int missingMinutesOutOf8 = getMissingMinutesOutOf8PartTime7(actualWorkedMinutes);
                                 System.out.println("actualWorkedMinutes= "+actualWorkedMinutes);
                                 if (missingMinutesOutOf8!=0)
                                 {
                                     int id1 =  insertIntoMissingMinutes(ebsConn, atd_id, d, missingMinutesOutOf8, empID, "MISSED_MINUTES_7");
                                     System.out.println("MissedMinutesOutOf8 logged: " + missingMinutesOutOf8);
+                                }
+                            }
+                            else if (empType == 2) 
+                            {
+                                pstActualWorkedHours = ebsConn.prepareStatement(actualWorkedHoursQuery);
+                                pstActualWorkedHours.setString(1, userID);
+                                pstActualWorkedHours.setString(2, formattedDateParam);
+                                ResultSet rsActualWorkedHours = pstActualWorkedHours.executeQuery();
+                                rsActualWorkedHours.next();
+                                int actualWorkedMinutes = CommonUtil.convertTimeToMinutes(rsActualWorkedHours.getString(1));
+                                if (actualWorkedMinutes < 240) 
+                                {
+                                    int id1 = insertIntoIrregularities(ebsConn, atd_id, d, 480-actualWorkedMinutes, empID, "ABSENT");
+                                }
+                                else
+                                {
+                                    int missingMinutesOutOf8 = getMissingMinutesOutOf8PartTime4(actualWorkedMinutes);
+                                    System.out.println("actualWorkedMinutes= "+actualWorkedMinutes);
+                                    if (missingMinutesOutOf8!=0)
+                                    {
+                                        int id1 =  insertIntoMissingMinutes(ebsConn, atd_id, d, missingMinutesOutOf8, empID, "MISSED_MINUTES_4");
+                                        System.out.println("MissedMinutesOutOf8 logged: " + missingMinutesOutOf8);
+                                    }    
                                 }
                             }
                         }
@@ -259,6 +287,7 @@ public class EventLogger {
                     pst.close();
                     System.out.println("#####################################################################################################");
                     l.logInfo("####################################################################");
+//                }
                 }
             }
             rsUsers.close();
@@ -444,9 +473,6 @@ public class EventLogger {
             return null;
         }
         else {
-//           String expectedEffectiveDiffStr = CommonUtil.limitSubtractTime(String.valueOf(Integer.parseInt(expectedWorkHours.split(":")[0]) * 60 +
-//             Integer.parseInt(expectedWorkHours.split(":")[1])),String.valueOf(Integer.parseInt(effectiveWorkHours.split(":")[0]) * 60 +
-//             Integer.parseInt(effectiveWorkHours.split(":")[1])));
             System.out.println(expectedEffectiveDiff/60+":"+ expectedEffectiveDiff%60);
             return expectedEffectiveDiff/60+":"+ expectedEffectiveDiff%60;
         }
@@ -454,7 +480,7 @@ public class EventLogger {
     
     //HR leave calculation for 7 hour part time employees
     //It returns 60 if the actual worked hours are less than or equal to 7 and the amount of minutes less than 8 if actual worked hours greater than 7
-    public int getMissingMinutesOutOf8(int actualWorkedMinutes) 
+    public int getMissingMinutesOutOf8PartTime7(int actualWorkedMinutes) 
     {
         if (actualWorkedMinutes<330) 
         {
@@ -467,6 +493,17 @@ public class EventLogger {
         else if (actualWorkedMinutes>=420 && actualWorkedMinutes<475)
         {
 //            System.out.println("Actual Worked Minutes bw 420 and 480");
+            return (480-actualWorkedMinutes);
+        }
+        else  
+        {
+            return 0;    
+        }
+    }
+    public int getMissingMinutesOutOf8PartTime4(int actualWorkedMinutes) 
+    {
+        if (actualWorkedMinutes>=240 && actualWorkedMinutes<480)
+        {
             return (480-actualWorkedMinutes);
         }
         else  
