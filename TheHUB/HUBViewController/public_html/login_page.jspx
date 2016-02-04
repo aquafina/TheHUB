@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <f:view>
+    <af:document id="d1">
+      <af:messages id="m1"/>
+      <af:form id="f1">
+        <af:pageTemplate viewId="/template/hub_template.jspx" id="pt1">
+          <f:facet name="left">
+            <af:panelGroupLayout id="pgl4" layout="vertical"
+                                 inlineStyle="background-color:white;"/>
+          </f:facet>
+          <f:facet name="content">
+            <af:group id="g1">
+              <af:panelStretchLayout id="psl1" topHeight="33%"
+                                     bottomHeight="35%" startWidth="33%"
+                                     endWidth="43%"
+                                     inlineStyle="background-color:#eaedee;">
+                <f:facet name="bottom">
+                  <af:panelGroupLayout id="pgl6"/>
+                </f:facet>
+                <f:facet name="center">
+                  <af:panelHeader text=" " id="ph1" icon="/images/lock.png"
+                                  inlineStyle="border:1px #c7c8c9 solid">
+                    <f:facet name="context"/>
+                    <f:facet name="menuBar"/>
+                    <f:facet name="toolbar"/>
+                    <f:facet name="legend"/>
+                    <f:facet name="info"/>
+                    <af:popup id="pop1" contentDelivery="immediate">
+                      <af:dialog id="dialog2" type="none" title="Password Reset"
+                                 closeIconVisible="false">
+                        <af:panelGroupLayout id="pgl4ss4" layout="vertical"
+                                             halign="center">
+                          <af:panelFormLayout id="pfdfl2">
+                            <f:facet name="footer">
+                              <af:commandButton text="Reset" id="c34b2"
+                                                action="#{SettingsBean.resetPassword}"/>
+                            </f:facet>
+                            <af:inputText label="Enter Email Address" id="pt_ist3"
+                                          binding="#{SettingsBean.recoveryEmail}"/>
+                          </af:panelFormLayout>
+                        </af:panelGroupLayout>
+                      </af:dialog>
+                    </af:popup>
+                    <af:panelFormLayout id="pfl1" rows="2" maxColumns="2">
+                      <f:facet name="footer">
+                        <af:panelGroupLayout id="pgl8" layout="vertical"
+                                             halign="center">
+                          <af:commandButton text="Login" id="cb1"
+                                            inlineStyle="color:#8a5600;"
+                                            action="#{LoginPageBean.proceedLogin}"/>
+                          <af:spacer width="10" height="10" id="s1"/>
+                          <af:commandLink text="Forgot Password?" id="cl1"
+                                          inlineStyle="color:#207ebc;">
+                            <af:showPopupBehavior popupId="pop1"
+                                                  triggerType="action"/>
+                          </af:commandLink>
+                        </af:panelGroupLayout>
+                      </f:facet>
+                      <af:inputText label="Username:" id="it1"
+                                    contentStyle="color:black;"
+                                    binding="#{LoginPageBean.username}"/>
+                      <af:inputText label="Password:" id="it2"
+                                    contentStyle="color:black;" secret="true"
+                                    binding="#{LoginPageBean.password}"
+                                    required="false"/>
+                    </af:panelFormLayout>
+                  </af:panelHeader>
+                </f:facet>
+                <f:facet name="start">
+                  <af:panelGroupLayout id="pgl3">
+                    <af:table value="#{bindings.VO_Years1.collectionModel}"
+                              var="row" rows="#{bindings.VO_Years1.rangeSize}"
+                              emptyText="#{bindings.VO_Years1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                              fetchSize="#{bindings.VO_Years1.rangeSize}"
+                              rowBandingInterval="0" id="t1" rendered="false">
+                      <af:column sortProperty="#{bindings.VO_Years1.hints.Year.name}"
+                                 sortable="false"
+                                 headerText="#{bindings.VO_Years1.hints.Year.label}"
+                                 id="c1">
+                        <af:inputText value="#{row.bindings.Year.inputValue}"
+                                      label="#{bindings.VO_Years1.hints.Year.label}"
+                                      required="#{bindings.VO_Years1.hints.Year.mandatory}"
+                                      columns="#{bindings.VO_Years1.hints.Year.displayWidth}"
+                                      maximumLength="#{bindings.VO_Years1.hints.Year.precision}"
+                                      shortDesc="#{bindings.VO_Years1.hints.Year.tooltip}"
+                                      id="it3">
+                          <f:validator binding="#{row.bindings.Year.validator}"/>
+                        </af:inputText>
+                      </af:column>
+                    </af:table>
+                  </af:panelGroupLayout>
+                </f:facet>
+                <f:facet name="end">
+                  <af:panelGroupLayout id="pgl7"/>
+                </f:facet>
+                <f:facet name="top">
+                  <af:panelGroupLayout id="pgl5"/>
+                </f:facet>
+              </af:panelStretchLayout>
+            </af:group>
+          </f:facet>
+        </af:pageTemplate>
+      </af:form>
+    </af:document>
+  </f:view>
+  <!--oracle-jdev-comment:preferred-managed-bean-name:SettingsBean-->
+</jsp:root>

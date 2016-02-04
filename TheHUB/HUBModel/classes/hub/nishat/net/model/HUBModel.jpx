@@ -1,0 +1,184 @@
+<?xml version='1.0' encoding='windows-1252' ?>
+<!DOCTYPE JboProject SYSTEM "jbo_03_01.dtd">
+<!---->
+
+<JboProject
+   xmlns="http://xmlns.oracle.com/bc4j"
+   Name="HUBModel"
+   Version="11.1.1.64.93"
+   SeparateXMLFiles="true"
+   PackageName="hub.nishat.net.model" >
+   <DesignTime>
+      <Attr Name="_appModuleNames3" Value="hub.nishat.net.model.VO.NCE.NCEHUBModule" />
+      <Attr Name="_appModuleNames2" Value="hub.nishat.net.model.VO.CEO.AM.CEOAppModule" />
+      <Attr Name="_jprName" Value="../../../../../HUBModel.jpr" />
+      <Attr Name="_appModuleNames1" Value="hub.nishat.net.model.VO.Test.TestAppModule" />
+      <Attr Name="_appModuleNames0" Value="hub.nishat.net.model.AM.HubModule" />
+      <Attr Name="_NamedConnection" Value="xx_e_portal" />
+   </DesignTime>
+   <Containee
+      Name="AM"
+      ObjectType="JboPackage"
+      PackageName="hub.nishat.net.model.AM" >
+      <DesignTime>
+         <Attr Name="_AM" Value="true" />
+      </DesignTime>
+   </Containee>
+   <Containee
+      Name="EO"
+      ObjectType="JboPackage"
+      PackageName="hub.nishat.net.model.EO" >
+      <DesignTime>
+         <Attr Name="_EO" Value="true" />
+      </DesignTime>
+   </Containee>
+   <Containee
+      Name="HR"
+      ObjectType="JboPackage"
+      PackageName="hub.nishat.net.model.EO.HR" >
+      <DesignTime>
+         <Attr Name="_EO" Value="true" />
+      </DesignTime>
+   </Containee>
+   <Containee
+      Name="Supervisor"
+      ObjectType="JboPackage"
+      PackageName="hub.nishat.net.model.EO.Supervisor" >
+      <DesignTime>
+         <Attr Name="_EO" Value="true" />
+      </DesignTime>
+   </Containee>
+   <Containee
+      Name="SystemAdmin"
+      PackageName="hub.nishat.net.model.EO.SystemAdmin"
+      ObjectType="JboPackage">
+      <DesignTime>
+         <Attr Name="_EO" Value="true"/>
+      </DesignTime>
+   </Containee>
+   <Containee
+      Name="AM"
+      ObjectType="JboPackage"
+      PackageName="hub.nishat.net.model.VO.CEO.AM" >
+      <DesignTime>
+         <Attr Name="_AM" Value="true" />
+      </DesignTime>
+   </Containee>
+   <Containee
+      Name="CEO"
+      ObjectType="JboPackage"
+      PackageName="hub.nishat.net.model.VO.CEO" >
+      <DesignTime>
+         <Attr Name="_VO" Value="true" />
+         <Attr Name="_VL" Value="true" />
+      </DesignTime>
+   </Containee>
+   <Containee
+      Name="General"
+      ObjectType="JboPackage"
+      PackageName="hub.nishat.net.model.VO.General" >
+      <DesignTime>
+         <Attr Name="_VO" Value="true" />
+      </DesignTime>
+   </Containee>
+   <Containee
+      Name="General"
+      ObjectType="JboPackage"
+      PackageName="hub.nishat.net.model.VO.HR.General" >
+      <DesignTime>
+         <Attr Name="_VO" Value="true" />
+      </DesignTime>
+   </Containee>
+   <Containee
+      Name="HR"
+      ObjectType="JboPackage"
+      PackageName="hub.nishat.net.model.VO.HR" >
+      <DesignTime>
+         <Attr Name="_VO" Value="true" />
+      </DesignTime>
+   </Containee>
+   <Containee
+      Name="VL"
+      ObjectType="JboPackage"
+      PackageName="hub.nishat.net.model.VO.HR.VL" >
+      <DesignTime>
+         <Attr Name="_VL" Value="true" />
+      </DesignTime>
+   </Containee>
+   <Containee
+      Name="Lov"
+      ObjectType="JboPackage"
+      PackageName="hub.nishat.net.model.VO.Lov" >
+      <DesignTime>
+         <Attr Name="_VO" Value="true" />
+      </DesignTime>
+   </Containee>
+   <Containee
+      Name="NCE"
+      ObjectType="JboPackage"
+      PackageName="hub.nishat.net.model.VO.NCE" >
+      <DesignTime>
+         <Attr Name="_VO" Value="true" />
+         <Attr Name="_AM" Value="true" />
+         <Attr Name="_VL" Value="true" />
+      </DesignTime>
+   </Containee>
+   <Containee
+      Name="ReportsVO"
+      ObjectType="JboPackage"
+      PackageName="hub.nishat.net.model.VO.ReportsVO" >
+      <DesignTime>
+         <Attr Name="_VO" Value="true" />
+      </DesignTime>
+   </Containee>
+   <Containee
+      Name="SearchVO"
+      ObjectType="JboPackage"
+      PackageName="hub.nishat.net.model.VO.SearchVO" >
+      <DesignTime>
+         <Attr Name="_VO" Value="true" />
+      </DesignTime>
+   </Containee>
+   <Containee
+      Name="Supervisor"
+      ObjectType="JboPackage"
+      PackageName="hub.nishat.net.model.VO.Supervisor" >
+      <DesignTime>
+         <Attr Name="_VO" Value="true" />
+         <Attr Name="_VL" Value="true" />
+      </DesignTime>
+   </Containee>
+   <Containee
+      Name="SystemAdmin"
+      PackageName="hub.nishat.net.model.VO.SystemAdmin"
+      ObjectType="JboPackage">
+      <DesignTime>
+         <Attr Name="_VO" Value="true"/>
+      </DesignTime>
+   </Containee>
+   <Containee
+      Name="Test"
+      ObjectType="JboPackage"
+      PackageName="hub.nishat.net.model.VO.Test" >
+      <DesignTime>
+         <Attr Name="_VO" Value="true" />
+         <Attr Name="_AM" Value="true" />
+      </DesignTime>
+   </Containee>
+   <Containee
+      Name="VL"
+      ObjectType="JboPackage"
+      PackageName="hub.nishat.net.model.VO.VL" >
+      <DesignTime>
+         <Attr Name="_VL" Value="true" />
+      </DesignTime>
+   </Containee>
+   <Containee
+      Name="VO"
+      ObjectType="JboPackage"
+      PackageName="hub.nishat.net.model.VO" >
+      <DesignTime>
+         <Attr Name="_VO" Value="true" />
+      </DesignTime>
+   </Containee>
+</JboProject>

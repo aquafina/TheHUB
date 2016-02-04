@@ -1,0 +1,450 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <f:view>
+    <af:document id="d1">
+      <af:messages id="m1"/>
+      <af:form id="f1">
+        <af:pageTemplate viewId="/template/hub_template.jspx" id="pt1">
+          <f:facet name="header"/>
+          <f:facet name="footer"/>
+          <f:facet name="left">
+            <af:panelGroupLayout id="pgl6" layout="vertical">
+              <af:panelBox text="Overtime Details" id="pb4">
+                <f:facet name="toolbar"/>
+                <af:table value="#{bindings.VO_OVERTIME_DETAILS2.collectionModel}"
+                          var="row"
+                          rows="#{bindings.VO_OVERTIME_DETAILS2.rangeSize}"
+                          emptyText="#{bindings.VO_OVERTIME_DETAILS2.viewable ? 'No data to display.' : 'Access Denied.'}"
+                          fetchSize="#{bindings.VO_OVERTIME_DETAILS2.rangeSize}"
+                          rowBandingInterval="0"
+                          filterModel="#{bindings.VO_OVERTIME_DETAILS2Query.queryDescriptor}"
+                          queryListener="#{bindings.VO_OVERTIME_DETAILS2Query.processQuery}"
+                          filterVisible="true" varStatus="vs"
+                          selectedRowKeys="#{bindings.VO_OVERTIME_DETAILS2.collectionModel.selectedRow}"
+                          selectionListener="#{bindings.VO_OVERTIME_DETAILS2.collectionModel.makeCurrent}"
+                          rowSelection="single" id="t2" width="100%">
+                  <af:column sortProperty="#{bindings.VO_OVERTIME_DETAILS2.hints.AttendanceDate.name}"
+                             filterable="true" sortable="true"
+                             headerText="Date"
+                             id="c32">
+                    <f:facet name="filter">
+                      <af:inputDate value="#{vs.filterCriteria.AttendanceDate}"
+                                    id="id5"/>
+                    </f:facet>
+                    <af:inputDate value="#{row.bindings.AttendanceDate.inputValue}"
+                                  label="#{bindings.VO_OVERTIME_DETAILS2.hints.AttendanceDate.label}"
+                                  required="#{bindings.VO_OVERTIME_DETAILS2.hints.AttendanceDate.mandatory}"
+                                  shortDesc="#{bindings.VO_OVERTIME_DETAILS2.hints.AttendanceDate.tooltip}"
+                                  id="id2">
+                      <f:validator binding="#{row.bindings.AttendanceDate.validator}"/>
+                      <af:convertDateTime pattern="#{bindings.VO_OVERTIME_DETAILS2.hints.AttendanceDate.format}"/>
+                    </af:inputDate>
+                    <f:facet name="footer">
+                      <af:outputText value="Total Days: #{bindings.VO_OVERTIME_DETAILS2Iterator.estimatedRowCount}"
+                                     id="ot28" inlineStyle="color:red;"/>
+                    </f:facet>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_OVERTIME_DETAILS2.hints.EmpAtdId.name}"
+                             filterable="true" sortable="true"
+                             headerText="#{bindings.VO_OVERTIME_DETAILS2.hints.EmpAtdId.label}"
+                             id="c29" rendered="false">
+                    <af:inputText value="#{row.bindings.EmpAtdId.inputValue}"
+                                  label="#{bindings.VO_OVERTIME_DETAILS2.hints.EmpAtdId.label}"
+                                  required="#{bindings.VO_OVERTIME_DETAILS2.hints.EmpAtdId.mandatory}"
+                                  columns="#{bindings.VO_OVERTIME_DETAILS2.hints.EmpAtdId.displayWidth}"
+                                  maximumLength="#{bindings.VO_OVERTIME_DETAILS2.hints.EmpAtdId.precision}"
+                                  shortDesc="#{bindings.VO_OVERTIME_DETAILS2.hints.EmpAtdId.tooltip}"
+                                  id="it4">
+                      <f:validator binding="#{row.bindings.EmpAtdId.validator}"/>
+                      <af:convertNumber groupingUsed="false"
+                                        pattern="#{bindings.VO_OVERTIME_DETAILS2.hints.EmpAtdId.format}"/>
+                    </af:inputText>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_OVERTIME_DETAILS2.hints.EmpId.name}"
+                             filterable="true" sortable="true"
+                             headerText="#{bindings.VO_OVERTIME_DETAILS2.hints.EmpId.label}"
+                             id="c33" rendered="false">
+                    <af:inputText value="#{row.bindings.EmpId.inputValue}"
+                                  label="#{bindings.VO_OVERTIME_DETAILS2.hints.EmpId.label}"
+                                  required="#{bindings.VO_OVERTIME_DETAILS2.hints.EmpId.mandatory}"
+                                  columns="#{bindings.VO_OVERTIME_DETAILS2.hints.EmpId.displayWidth}"
+                                  maximumLength="#{bindings.VO_OVERTIME_DETAILS2.hints.EmpId.precision}"
+                                  shortDesc="#{bindings.VO_OVERTIME_DETAILS2.hints.EmpId.tooltip}"
+                                  id="it2">
+                      <f:validator binding="#{row.bindings.EmpId.validator}"/>
+                      <af:convertNumber groupingUsed="false"
+                                        pattern="#{bindings.VO_OVERTIME_DETAILS2.hints.EmpId.format}"/>
+                    </af:inputText>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_OVERTIME_DETAILS2.hints.EmpName.name}"
+                             filterable="true" sortable="true"
+                             headerText="#{bindings.VO_OVERTIME_DETAILS2.hints.EmpName.label}"
+                             id="c34" rendered="false">
+                    <af:inputText value="#{row.bindings.EmpName.inputValue}"
+                                  label="#{bindings.VO_OVERTIME_DETAILS2.hints.EmpName.label}"
+                                  required="#{bindings.VO_OVERTIME_DETAILS2.hints.EmpName.mandatory}"
+                                  columns="#{bindings.VO_OVERTIME_DETAILS2.hints.EmpName.displayWidth}"
+                                  maximumLength="#{bindings.VO_OVERTIME_DETAILS2.hints.EmpName.precision}"
+                                  shortDesc="#{bindings.VO_OVERTIME_DETAILS2.hints.EmpName.tooltip}"
+                                  id="it7">
+                      <f:validator binding="#{row.bindings.EmpName.validator}"/>
+                    </af:inputText>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_OVERTIME_DETAILS2.hints.MaxOutTime.name}"
+                             filterable="true" sortable="true"
+                             headerText="#{bindings.VO_OVERTIME_DETAILS2.hints.MaxOutTime.label}"
+                             id="c25" rendered="false">
+                    <f:facet name="filter">
+                    </f:facet>
+                    <af:inputDate value="#{row.bindings.MaxOutTime.inputValue}"
+                                  label="#{bindings.VO_OVERTIME_DETAILS2.hints.MaxOutTime.label}"
+                                  required="#{bindings.VO_OVERTIME_DETAILS2.hints.MaxOutTime.mandatory}"
+                                  shortDesc="#{bindings.VO_OVERTIME_DETAILS2.hints.MaxOutTime.tooltip}"
+                                  id="id6">
+                      <f:validator binding="#{row.bindings.MaxOutTime.validator}"/>
+                      <af:convertDateTime pattern="#{bindings.VO_OVERTIME_DETAILS2.hints.MaxOutTime.format}"/>
+                    </af:inputDate>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_OVERTIME_DETAILS2.hints.MinInTime.name}"
+                             filterable="true" sortable="true"
+                             headerText="#{bindings.VO_OVERTIME_DETAILS2.hints.MinInTime.label}"
+                             id="c26" rendered="false">
+                    <f:facet name="filter">
+                    </f:facet>
+                    <af:inputDate value="#{row.bindings.MinInTime.inputValue}"
+                                  label="#{bindings.VO_OVERTIME_DETAILS2.hints.MinInTime.label}"
+                                  required="#{bindings.VO_OVERTIME_DETAILS2.hints.MinInTime.mandatory}"
+                                  shortDesc="#{bindings.VO_OVERTIME_DETAILS2.hints.MinInTime.tooltip}"
+                                  id="id3">
+                      <f:validator binding="#{row.bindings.MinInTime.validator}"/>
+                      <af:convertDateTime pattern="#{bindings.VO_OVERTIME_DETAILS2.hints.MinInTime.format}"/>
+                    </af:inputDate>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_OVERTIME_DETAILS2.hints.Description.name}"
+                             filterable="true" sortable="true"
+                             headerText="#{bindings.VO_OVERTIME_DETAILS2.hints.Description.label}"
+                             id="c30" rendered="false">
+                    <af:inputText value="#{row.bindings.Description.inputValue}"
+                                  label="#{bindings.VO_OVERTIME_DETAILS2.hints.Description.label}"
+                                  required="#{bindings.VO_OVERTIME_DETAILS2.hints.Description.mandatory}"
+                                  columns="#{bindings.VO_OVERTIME_DETAILS2.hints.Description.displayWidth}"
+                                  maximumLength="#{bindings.VO_OVERTIME_DETAILS2.hints.Description.precision}"
+                                  shortDesc="#{bindings.VO_OVERTIME_DETAILS2.hints.Description.tooltip}"
+                                  id="it5">
+                      <f:validator binding="#{row.bindings.Description.validator}"/>
+                    </af:inputText>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_OVERTIME_DETAILS2.hints.DayOfWeek.name}"
+                             filterable="true" sortable="true"
+                             headerText="#{bindings.VO_OVERTIME_DETAILS2.hints.DayOfWeek.label}"
+                             id="c31" rendered="false">
+                    <af:inputText value="#{row.bindings.DayOfWeek.inputValue}"
+                                  label="#{bindings.VO_OVERTIME_DETAILS2.hints.DayOfWeek.label}"
+                                  required="#{bindings.VO_OVERTIME_DETAILS2.hints.DayOfWeek.mandatory}"
+                                  columns="#{bindings.VO_OVERTIME_DETAILS2.hints.DayOfWeek.displayWidth}"
+                                  maximumLength="#{bindings.VO_OVERTIME_DETAILS2.hints.DayOfWeek.precision}"
+                                  shortDesc="#{bindings.VO_OVERTIME_DETAILS2.hints.DayOfWeek.tooltip}"
+                                  id="it1">
+                      <f:validator binding="#{row.bindings.DayOfWeek.validator}"/>
+                    </af:inputText>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_OVERTIME_DETAILS2.hints.MonthNumber.name}"
+                             filterable="true" sortable="true"
+                             headerText="#{bindings.VO_OVERTIME_DETAILS2.hints.MonthNumber.label}"
+                             id="c28" rendered="false">
+                    <af:inputText value="#{row.bindings.MonthNumber.inputValue}"
+                                  label="#{bindings.VO_OVERTIME_DETAILS2.hints.MonthNumber.label}"
+                                  required="#{bindings.VO_OVERTIME_DETAILS2.hints.MonthNumber.mandatory}"
+                                  columns="#{bindings.VO_OVERTIME_DETAILS2.hints.MonthNumber.displayWidth}"
+                                  maximumLength="#{bindings.VO_OVERTIME_DETAILS2.hints.MonthNumber.precision}"
+                                  shortDesc="#{bindings.VO_OVERTIME_DETAILS2.hints.MonthNumber.tooltip}"
+                                  id="it6">
+                      <f:validator binding="#{row.bindings.MonthNumber.validator}"/>
+                    </af:inputText>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_OVERTIME_DETAILS2.hints.TimeWorked.name}"
+                             filterable="true" sortable="true"
+                             headerText="Time Worked (hours)"
+                             id="c27">
+                    <af:inputText value="#{row.bindings.TimeWorked.inputValue}"
+                                  label="#{bindings.VO_OVERTIME_DETAILS2.hints.TimeWorked.label}"
+                                  required="#{bindings.VO_OVERTIME_DETAILS2.hints.TimeWorked.mandatory}"
+                                  columns="#{bindings.VO_OVERTIME_DETAILS2.hints.TimeWorked.displayWidth}"
+                                  maximumLength="#{bindings.VO_OVERTIME_DETAILS2.hints.TimeWorked.precision}"
+                                  shortDesc="#{bindings.VO_OVERTIME_DETAILS2.hints.TimeWorked.tooltip}"
+                                  id="it3">
+                      <f:validator binding="#{row.bindings.TimeWorked.validator}"/>
+                    </af:inputText>
+                  </af:column>
+                  <af:column id="c37" headerText="In Time">
+                    <af:outputText value="#{row.InTime}" id="ot31"/>
+                  </af:column>
+                  <af:column id="c38" headerText="Out Time">
+                    <af:outputText value="#{row.OutTime}" id="ot32"/>
+                  </af:column>
+                  <f:facet name="footer"/>
+                </af:table>
+              </af:panelBox>
+            </af:panelGroupLayout>
+          </f:facet>
+          <f:facet name="content">
+            <af:panelGroupLayout id="pgl1" layout="scroll">
+              <af:panelGroupLayout layout="vertical" id="pgl3">
+                <af:panelGroupLayout id="pgl5" layout="horizontal"
+                                     inlineStyle="width:100%" halign="left">
+                  <af:panelBox text="Select Employee" id="pb1"
+                               inlineStyle="width:50%;">
+                    <f:facet name="toolbar"/>
+                    <af:panelFormLayout id="pfl1">
+                      <af:panelLabelAndMessage label="#{bindings.PersonId.hints.label}"
+                                               id="plam2">
+                        <af:outputText value="#{bindings.PersonId.inputValue}"
+                                       id="ot23" partialTriggers="soc1">
+                          <af:convertNumber groupingUsed="false"
+                                            pattern="#{bindings.PersonId.format}"/>
+                        </af:outputText>
+                      </af:panelLabelAndMessage>
+                      <af:selectOneChoice value="#{bindings.FullName1.inputValue}"
+                                          label="#{bindings.FullName1.label}"
+                                          required="#{bindings.FullName1.hints.mandatory}"
+                                          shortDesc="#{bindings.FullName1.hints.tooltip}"
+                                          id="soc1" autoSubmit="true">
+                        <f:selectItems value="#{bindings.FullName1.items}"
+                                       id="si1"/>
+                      </af:selectOneChoice>
+                      <f:facet name="footer">
+                        <af:panelGroupLayout layout="horizontal" id="pgl4">
+                          <af:commandButton actionListener="#{bindings.First.execute}"
+                                            text="First"
+                                            disabled="#{!bindings.First.enabled}"
+                                            partialSubmit="true" id="cb4"/>
+                          <af:commandButton actionListener="#{bindings.Previous.execute}"
+                                            text="Previous"
+                                            disabled="#{!bindings.Previous.enabled}"
+                                            partialSubmit="true" id="cb2"/>
+                          <af:commandButton actionListener="#{bindings.Next.execute}"
+                                            text="Next"
+                                            disabled="#{!bindings.Next.enabled}"
+                                            partialSubmit="true" id="cb3"/>
+                          <af:commandButton actionListener="#{bindings.Last.execute}"
+                                            text="Last"
+                                            disabled="#{!bindings.Last.enabled}"
+                                            partialSubmit="true" id="cb1"/>
+                        </af:panelGroupLayout>
+                      </f:facet>
+                    </af:panelFormLayout>
+                  </af:panelBox>
+                  <af:panelBox text="Select Date" id="pb2"
+                               inlineStyle="width:50%;">
+                    <f:facet name="toolbar">
+                      <af:commandButton actionListener="#{bindings.Execute.execute}"
+                                        text="Search"
+                                        id="cb5"/>
+                    </f:facet>
+                    <af:query id="qryId1" headerText="Search" disclosed="true"
+                              value="#{bindings.VOOVERTIMEATTENDANCECriteriaQuery.queryDescriptor}"
+                              model="#{bindings.VOOVERTIMEATTENDANCECriteriaQuery.queryModel}"
+                              queryListener="#{bindings.VOOVERTIMEATTENDANCECriteriaQuery.processQuery}"
+                              queryOperationListener="#{bindings.VOOVERTIMEATTENDANCECriteriaQuery.processQueryOperation}"
+                              resultComponentId="::t1" displayMode="simple"/>
+                  </af:panelBox>
+                </af:panelGroupLayout>
+                <af:panelBox text="Attendance" id="pb3">
+                  <f:facet name="toolbar"/>
+                  <af:table rows="#{bindings.VO_OVERTIME_ATTENDANCE1.rangeSize}"
+                            fetchSize="#{bindings.VO_OVERTIME_ATTENDANCE1.rangeSize}"
+                            emptyText="#{bindings.VO_OVERTIME_ATTENDANCE1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                            var="row"
+                            value="#{bindings.VO_OVERTIME_ATTENDANCE1.collectionModel}"
+                            rowBandingInterval="0"
+                            selectedRowKeys="#{bindings.VO_OVERTIME_ATTENDANCE1.collectionModel.selectedRow}"
+                            selectionListener="#{bindings.VO_OVERTIME_ATTENDANCE1.collectionModel.makeCurrent}"
+                            rowSelection="single" id="t1" width="100%"
+                            contentDelivery="immediate" autoHeightRows="25"
+                            partialTriggers="::cb5">
+                    <af:column headerText="Date"
+                               sortProperty="#{bindings.VO_OVERTIME_ATTENDANCE1.hints.AttendanceDate.name}"
+                               sortable="false" id="c18" width="200">
+                      <af:outputText value="#{row.AttendanceDate}" id="ot20">
+                        <af:convertDateTime pattern="#{bindings.VO_OVERTIME_ATTENDANCE1.hints.AttendanceDate.format}"
+                                            dateStyle="full"/>
+                      </af:outputText>
+                    </af:column>
+                    <af:column id="c35" headerText="In Time">
+                      <af:outputText value="#{row.InTime}" id="ot29"/>
+                    </af:column>
+                    <af:column id="c36" headerText="Out Time">
+                      <af:outputText value="#{row.OutTime}" id="ot30"/>
+                    </af:column>
+                    <af:column id="c24" headerText="Time Worked (Hours)">
+                      <af:outputText value="#{row.TimeWorked}" id="ot3"/>
+                    </af:column>
+                     
+                    <af:column headerText="#{bindings.VO_OVERTIME_ATTENDANCE1.hints.CardNum.label}"
+                               sortProperty="#{bindings.VO_OVERTIME_ATTENDANCE1.hints.CardNum.name}"
+                               sortable="false" id="c1" rendered="false">
+                      <af:outputText value="#{row.CardNum}" id="ot24"/>
+                    </af:column>
+                     
+                    <af:column headerText="#{bindings.VO_OVERTIME_ATTENDANCE1.hints.EffectiveWorkedHours.label}"
+                               sortProperty="#{bindings.VO_OVERTIME_ATTENDANCE1.hints.EffectiveWorkedHours.name}"
+                               sortable="false" id="c11" rendered="false">
+                      <af:outputText value="#{row.EffectiveWorkedHours}"
+                                     id="ot10"/>
+                    </af:column>
+                     
+                    <af:column headerText="#{bindings.VO_OVERTIME_ATTENDANCE1.hints.EmpAtdId.label}"
+                               sortProperty="#{bindings.VO_OVERTIME_ATTENDANCE1.hints.EmpAtdId.name}"
+                               sortable="false" id="c17" rendered="false">
+                      <af:outputText value="#{row.EmpAtdId}" id="ot4">
+                        <af:convertNumber groupingUsed="false"
+                                          pattern="#{bindings.VO_OVERTIME_ATTENDANCE1.hints.EmpAtdId.format}"/>
+                      </af:outputText>
+                    </af:column>
+                     
+                    <af:column headerText="#{bindings.VO_OVERTIME_ATTENDANCE1.hints.EmpId.label}"
+                               sortProperty="#{bindings.VO_OVERTIME_ATTENDANCE1.hints.EmpId.name}"
+                               sortable="false" id="c13" rendered="false">
+                      <af:outputText value="#{row.EmpId}" id="ot14">
+                        <af:convertNumber groupingUsed="false"
+                                          pattern="#{bindings.VO_OVERTIME_ATTENDANCE1.hints.EmpId.format}"/>
+                      </af:outputText>
+                    </af:column>
+                     
+                    <af:column headerText="#{bindings.VO_OVERTIME_ATTENDANCE1.hints.EmpName.label}"
+                               sortProperty="#{bindings.VO_OVERTIME_ATTENDANCE1.hints.EmpName.name}"
+                               sortable="false" id="c20" rendered="false">
+                      <af:outputText value="#{row.EmpName}" id="ot13"/>
+                    </af:column>
+                     
+                    <af:column headerText="#{bindings.VO_OVERTIME_ATTENDANCE1.hints.EmpType.label}"
+                               sortProperty="#{bindings.VO_OVERTIME_ATTENDANCE1.hints.EmpType.name}"
+                               sortable="false" id="c3" rendered="false">
+                      <af:outputText value="#{row.EmpType}" id="ot7">
+                        <af:convertNumber groupingUsed="false"
+                                          pattern="#{bindings.VO_OVERTIME_ATTENDANCE1.hints.EmpType.format}"/>
+                      </af:outputText>
+                    </af:column>
+                     
+                    <af:column headerText="#{bindings.VO_OVERTIME_ATTENDANCE1.hints.EndTime.label}"
+                               sortProperty="#{bindings.VO_OVERTIME_ATTENDANCE1.hints.EndTime.name}"
+                               sortable="false" id="c15" rendered="false">
+                      <af:outputText value="#{row.EndTime}" id="ot22"/>
+                    </af:column>
+                     
+                    <af:column headerText="#{bindings.VO_OVERTIME_ATTENDANCE1.hints.ExpectedWorkHours.label}"
+                               sortProperty="#{bindings.VO_OVERTIME_ATTENDANCE1.hints.ExpectedWorkHours.name}"
+                               sortable="false" id="c22" rendered="false">
+                      <af:outputText value="#{row.ExpectedWorkHours}"
+                                     id="ot25"/>
+                    </af:column>
+                     
+                    <af:column headerText="#{bindings.VO_OVERTIME_ATTENDANCE1.hints.IsHalf.label}"
+                               sortProperty="#{bindings.VO_OVERTIME_ATTENDANCE1.hints.IsHalf.name}"
+                               sortable="false" id="c23" rendered="false">
+                      <af:outputText value="#{row.IsHalf}" id="ot11"/>
+                    </af:column>
+                     
+                    <af:column headerText="#{bindings.VO_OVERTIME_ATTENDANCE1.hints.LeaveApprovedFlag.label}"
+                               sortProperty="#{bindings.VO_OVERTIME_ATTENDANCE1.hints.LeaveApprovedFlag.name}"
+                               sortable="false" id="c4" rendered="false">
+                      <af:outputText value="#{row.LeaveApprovedFlag}"
+                                     id="ot17"/>
+                    </af:column>
+                     
+                    <af:column headerText="#{bindings.VO_OVERTIME_ATTENDANCE1.hints.LeaveCancelled.label}"
+                               sortProperty="#{bindings.VO_OVERTIME_ATTENDANCE1.hints.LeaveCancelled.name}"
+                               sortable="false" id="c7" rendered="false">
+                      <af:outputText value="#{row.LeaveCancelled}" id="ot21"/>
+                    </af:column>
+                     
+                    <af:column headerText="#{bindings.VO_OVERTIME_ATTENDANCE1.hints.LeaveToday.label}"
+                               sortProperty="#{bindings.VO_OVERTIME_ATTENDANCE1.hints.LeaveToday.name}"
+                               sortable="false" id="c6" rendered="false">
+                      <af:outputText value="#{row.LeaveToday}" id="ot6"/>
+                    </af:column>
+                     
+                    <af:column headerText="#{bindings.VO_OVERTIME_ATTENDANCE1.hints.LeaveTypeId.label}"
+                               sortProperty="#{bindings.VO_OVERTIME_ATTENDANCE1.hints.LeaveTypeId.name}"
+                               sortable="false" id="c16" rendered="false">
+                      <af:outputText value="#{row.LeaveTypeId}" id="ot16">
+                        <af:convertNumber groupingUsed="false"
+                                          pattern="#{bindings.VO_OVERTIME_ATTENDANCE1.hints.LeaveTypeId.format}"/>
+                      </af:outputText>
+                    </af:column>
+                     
+                    <af:column headerText="#{bindings.VO_OVERTIME_ATTENDANCE1.hints.MaxEndTime.label}"
+                               sortProperty="#{bindings.VO_OVERTIME_ATTENDANCE1.hints.MaxEndTime.name}"
+                               sortable="false" id="c10" rendered="false">
+                      <af:outputText value="#{row.MaxEndTime}" id="ot26"/>
+                    </af:column>
+                     
+                    <af:column headerText="#{bindings.VO_OVERTIME_ATTENDANCE1.hints.MaxOutTime.label}"
+                               sortProperty="#{bindings.VO_OVERTIME_ATTENDANCE1.hints.MaxOutTime.name}"
+                               sortable="false" id="c21" rendered="false">
+                      <af:outputText value="#{row.MaxOutTime}" id="ot12">
+                        <af:convertDateTime pattern="#{bindings.VO_OVERTIME_ATTENDANCE1.hints.MaxOutTime.format}"/>
+                      </af:outputText>
+                    </af:column>
+                     
+                    <af:column headerText="#{bindings.VO_OVERTIME_ATTENDANCE1.hints.MaxStartTime.label}"
+                               sortProperty="#{bindings.VO_OVERTIME_ATTENDANCE1.hints.MaxStartTime.name}"
+                               sortable="false" id="c8" rendered="false">
+                      <af:outputText value="#{row.MaxStartTime}" id="ot18"/>
+                    </af:column>
+                     
+                    <af:column headerText="#{bindings.VO_OVERTIME_ATTENDANCE1.hints.MinInTime.label}"
+                               sortProperty="#{bindings.VO_OVERTIME_ATTENDANCE1.hints.MinInTime.name}"
+                               sortable="false" id="c9" rendered="false">
+                      <af:outputText value="#{row.MinInTime}" id="ot9">
+                        <af:convertDateTime pattern="#{bindings.VO_OVERTIME_ATTENDANCE1.hints.MinInTime.format}"/>
+                      </af:outputText>
+                    </af:column>
+                     
+                    <af:column headerText="#{bindings.VO_OVERTIME_ATTENDANCE1.hints.OffDayWorking.label}"
+                               sortProperty="#{bindings.VO_OVERTIME_ATTENDANCE1.hints.OffDayWorking.name}"
+                               sortable="false" id="c14" rendered="false">
+                      <af:outputText value="#{row.OffDayWorking}" id="ot8"/>
+                    </af:column>
+                     
+                    <af:column headerText="#{bindings.VO_OVERTIME_ATTENDANCE1.hints.PolicyException.label}"
+                               sortProperty="#{bindings.VO_OVERTIME_ATTENDANCE1.hints.PolicyException.name}"
+                               sortable="false" id="c2" rendered="false">
+                      <af:outputText value="#{row.PolicyException}" id="ot5"/>
+                    </af:column>
+                     
+                    <af:column headerText="#{bindings.VO_OVERTIME_ATTENDANCE1.hints.PolicyExceptionApprovedFlag.label}"
+                               sortProperty="#{bindings.VO_OVERTIME_ATTENDANCE1.hints.PolicyExceptionApprovedFlag.name}"
+                               sortable="false" id="c12" rendered="false">
+                      <af:outputText value="#{row.PolicyExceptionApprovedFlag}"
+                                     id="ot19"/>
+                    </af:column>
+                     
+                    <af:column headerText="#{bindings.VO_OVERTIME_ATTENDANCE1.hints.StartTime.label}"
+                               sortProperty="#{bindings.VO_OVERTIME_ATTENDANCE1.hints.StartTime.name}"
+                               sortable="false" id="c5" rendered="false">
+                      <af:outputText value="#{row.StartTime}" id="ot15"/>
+                    </af:column>
+                     
+                    <af:column headerText="#{bindings.VO_OVERTIME_ATTENDANCE1.hints.TypeOfLeave.label}"
+                               sortProperty="#{bindings.VO_OVERTIME_ATTENDANCE1.hints.TypeOfLeave.name}"
+                               sortable="false" id="c19" rendered="false">
+                      <af:outputText value="#{row.TypeOfLeave}" id="ot27">
+                        <af:convertNumber groupingUsed="false"
+                                          pattern="#{bindings.VO_OVERTIME_ATTENDANCE1.hints.TypeOfLeave.format}"/>
+                      </af:outputText>
+                    </af:column>
+                  </af:table>
+                </af:panelBox>
+              </af:panelGroupLayout>
+            </af:panelGroupLayout>
+          </f:facet>
+        </af:pageTemplate>
+      </af:form>
+    </af:document>
+  </f:view>
+</jsp:root>

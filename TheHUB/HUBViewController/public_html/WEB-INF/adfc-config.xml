@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <view id="reset_password">
+    <page>/reset_password.jspx</page>
+    <input-page-parameter>
+      <from-value>#{param.email}</from-value>
+      <to-value>#{sessionScope.email}</to-value>
+    </input-page-parameter>
+  </view>
+  <managed-bean id="__3">
+    <managed-bean-name id="__4">LoginPageBean</managed-bean-name>
+    <managed-bean-class id="__2">view.nishat.net.BackingBean.LoginPage</managed-bean-class>
+    <managed-bean-scope id="__1">request</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__7">
+    <managed-bean-name id="__8">confirm_password_page_bean</managed-bean-name>
+    <managed-bean-class id="__6">view.nishat.net.BackingBean.ConfirmPasswordPage</managed-bean-class>
+    <managed-bean-scope id="__5">request</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__11">
+    <managed-bean-name id="__12">SettingsBean</managed-bean-name>
+    <managed-bean-class id="__9">view.nishat.net.BackingBean.Setting</managed-bean-class>
+    <managed-bean-scope id="__10">request</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__15">
+    <managed-bean-name id="__16">ResetPasswordBean</managed-bean-name>
+    <managed-bean-class id="__14">view.nishat.net.BackingBean.ResetPassword</managed-bean-class>
+    <managed-bean-scope id="__13">request</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__20">
+    <managed-bean-name id="__18">AttendanceBean</managed-bean-name>
+    <managed-bean-class id="__19">view.nishat.net.BackingBean.Attendance</managed-bean-class>
+    <managed-bean-scope id="__17">request</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__24">
+    <managed-bean-name id="__22">TestBean</managed-bean-name>
+    <managed-bean-class id="__21">TestBean</managed-bean-class>
+    <managed-bean-scope id="__23">request</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__27">
+    <managed-bean-name id="__28">SupervisorApprovalsBean</managed-bean-name>
+    <managed-bean-class id="__25">view.nishat.net.BackingBean.SupervisorApproval</managed-bean-class>
+    <managed-bean-scope id="__26">request</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__30">
+    <managed-bean-name id="__31">HROperationBean</managed-bean-name>
+    <managed-bean-class id="__32">view.nishat.net.BackingBean.HROperation</managed-bean-class>
+    <managed-bean-scope id="__29">request</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__36">
+    <managed-bean-name id="__35">SupervisorResponsibilityBean</managed-bean-name>
+    <managed-bean-class id="__34">view.nishat.net.BackingBean.SupervisorResponsibility</managed-bean-class>
+    <managed-bean-scope id="__33">request</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__37">
+    <managed-bean-name id="__39">CEOReportBean</managed-bean-name>
+    <managed-bean-class id="__40">CEOReport</managed-bean-class>
+    <managed-bean-scope id="__38">request</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__42">
+    <managed-bean-name id="__43">CEORptBean</managed-bean-name>
+    <managed-bean-class id="__41">view.nishat.net.BackingBean.CeoRpt</managed-bean-class>
+    <managed-bean-scope id="__44">request</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__47">
+    <managed-bean-name id="__46">NCEBean</managed-bean-name>
+    <managed-bean-class id="__48">view.nishat.net.BackingBean.NCEAttendance</managed-bean-class>
+    <managed-bean-scope id="__45">request</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__50">
+    <managed-bean-name id="__49">EmployeeInfo4SupervisorBean</managed-bean-name>
+    <managed-bean-class id="__51">view.nishat.net.BackingBean.EmployeeInfo4Supervisor</managed-bean-class>
+    <managed-bean-scope id="__52">request</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__53">
+    <managed-bean-name id="__56">IntercomDirBean</managed-bean-name>
+    <managed-bean-class id="__55">view.nishat.net.BackingBean.IntercomDir</managed-bean-class>
+    <managed-bean-scope id="__54">request</managed-bean-scope>
+  </managed-bean>
+</adfc-config>

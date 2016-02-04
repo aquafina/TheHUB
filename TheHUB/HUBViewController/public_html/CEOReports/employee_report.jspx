@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:dvt="http://xmlns.oracle.com/dss/adf/faces">
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <f:view>
+    <af:document id="d1">
+      <af:messages id="m1"/>
+      <af:form id="f1">
+        <af:pageTemplate viewId="/template/hub_template.jspx" id="pt1">
+          <f:facet name="header"/>
+          <f:facet name="footer"/>
+          <f:facet name="left"/>
+          <f:facet name="content">
+            <af:group id="g1">
+              <af:panelSplitter id="ps1" orientation="vertical"
+                                splitterPosition="1"
+                                rendered="#{sessionScope.userid != null}">
+                <f:facet name="first">
+                  <af:panelGroupLayout layout="horizontal" id="pgl1">
+                    <af:query id="qryId1" headerText="Search" disclosed="true"
+                              value="#{bindings.VOOrgCriteriaQuery.queryDescriptor}"
+                              model="#{bindings.VOOrgCriteriaQuery.queryModel}"
+                              queryListener="#{bindings.VOOrgCriteriaQuery.processQuery}"
+                              queryOperationListener="#{bindings.VOOrgCriteriaQuery.processQueryOperation}"
+                              displayMode="simple" visible="false"/>
+                    <af:commandButton actionListener="#{bindings.Execute.execute}"
+                                      text="Search"
+                                      disabled="#{!bindings.Execute.enabled}"
+                                      id="cb1" rendered="false"/>
+                  </af:panelGroupLayout>
+                </f:facet>
+                <f:facet name="second">
+                  <dvt:hierarchyViewer id="hv1" var="node"
+                                       value="#{bindings.VO_Org1.treeModel}"
+                                       selectionListener="#{bindings.VO_Org1.treeModel.makeCurrent}"
+                                       layout="hier_vert_top"
+                                       levelFetchSize="#{bindings.VO_Org1.rangeSize}"
+                                       styleClass="AFStretchWidth"
+                                       inlineStyle="height:inherit;">
+                    <dvt:link linkType="orthogonalRounded" id="l1"/>
+                    <dvt:node type="hub.nishat.net.model.VO.CEO.VO_Org"
+                              width="270" height="350" id="n1">
+                      <f:facet name="zoom100">
+                        <af:panelGroupLayout styleClass="AFStretchWidth AFHVNodeStretchHeight AFHVNodePadding"
+                                             layout="vertical" id="pgl3"
+                                             halign="center">
+                          <af:panelGroupLayout layout="vertical" id="pgl4">
+                            <af:panelGroupLayout id="pgl6">
+                              <af:image id="i1"
+                                        source="/imageparser?person_id=#{node.ChildPersonId}"/>
+                            </af:panelGroupLayout>
+                            <af:spacer width="5" height="5" id="s1"/>
+                          </af:panelGroupLayout>
+                          <dvt:panelCard effect="slide_horz"
+                                         styleClass="AFHVNodePadding" id="pc1">
+                            <af:showDetailItem text="Information" id="sdi2">
+                              <af:panelFormLayout styleClass="AFStretchWidth AFHVNodeStretchHeight AFHVNodePadding"
+                                                  id="pfl2">
+                                <af:outputText value="#{node.FullNameChild}" id="ot3"
+                                               inlineStyle="font-size:medium; font-weight:bold;"/>
+                                <af:outputText value="#{node.ChildPosition}" id="ot4"
+                                               inlineStyle="font-weight:bold; font-size:medium;"/>
+                                <af:goLink text="View Data" id="gl1"
+                                           destination="employee_info.jspx?emp_id=#{node.ChildPersonId}&amp;emp_name=#{node.FullNameChild}&amp;emp_position=#{node.ChildPosition}&amp;emp_parent=#{node.FullNameParent}"
+                                           inlineStyle="font-size:30px;"/>
+                              </af:panelFormLayout>
+                            </af:showDetailItem>
+                          </dvt:panelCard>
+                        </af:panelGroupLayout>
+                      </f:facet>
+                    </dvt:node>
+                  </dvt:hierarchyViewer>
+                </f:facet>
+              </af:panelSplitter>
+              <af:panelGroupLayout id="pgl5" layout="vertical" halign="center"
+                                   rendered="#{sessionScope.userid == null}">
+                <af:goLink text="Please Login" id="gl2"
+                           rendered="#{sessionScope.userid == null}"
+                           inlineStyle="font-size:medium;"
+                           destination="http://http://fmw.nishat.net:7003/TheHUB/faces/login_page.jspx"/>
+              </af:panelGroupLayout>
+            </af:group>
+          </f:facet>
+        </af:pageTemplate>
+      </af:form>
+    </af:document>
+  </f:view>
+</jsp:root>

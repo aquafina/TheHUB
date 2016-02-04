@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<BC4JConfig version="11.1" xmlns="http://xmlns.oracle.com/bc4j/configuration">
+   <AppModuleConfigBag ApplicationName="hub.nishat.net.model.AM.HubModule">
+      <AppModuleConfig DeployPlatform="LOCAL" jbo.project="hub.nishat.net.model.HUBModel" name="HubModuleLocal" ApplicationName="hub.nishat.net.model.AM.HubModule">
+         <AM-Pooling jbo.ampool.timetolive="120000" jbo.ampool.maxinactiveage="60000" jbo.ampool.monitorsleepinterval="30000"/>
+         <Database jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="hub.nishat.net.model.AM.HubModule"/>
+         <Custom JDBCDataSource="java:comp/env/jdbc/xx_e_portalDS"/>
+      </AppModuleConfig>
+      <AppModuleConfig DeployPlatform="LOCAL" jbo.project="hub.nishat.net.model.HUBModel" name="HubModuleShared" ApplicationName="hub.nishat.net.model.AM.HubModule">
+         <AM-Pooling jbo.ampool.dynamicjdbccredentials="false" jbo.ampool.isuseexclusive="false" jbo.ampool.maxpoolsize="1" jbo.ampool.resetnontransactionalstate="false"/>
+         <Database jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="hub.nishat.net.model.AM.HubModule"/>
+         <Custom JDBCDataSource="java:comp/env/jdbc/xx_e_portalDS"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+   <AppModuleConfigBag ApplicationName="hub.nishat.net.model.AM.TestModule"/>
+</BC4JConfig>

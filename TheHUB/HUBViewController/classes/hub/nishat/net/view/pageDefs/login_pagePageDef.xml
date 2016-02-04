@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="login_pagePageDef"
+                Package="hub.nishat.net.view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="VO_Years1" RangeSize="25"
+              DataControl="HubModuleDataControl" id="VO_Years1Iterator"/>
+    <iterator id="VO_LeaveCriteria1Iterator" Binds="VO_LeaveCriteria1"
+              DataControl="HubModuleDataControl" RangeSize="25"/>
+    <iterator id="VO_LateSitting1Iterator" Binds="VO_LateSitting1"
+              DataControl="HubModuleDataControl" RangeSize="25"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="VO_Years1Iterator" id="VO_Years1">
+      <nodeDefinition DefName="hub.nishat.net.model.VO.SearchVO.VO_Years"
+                      Name="VO_Years10">
+        <AttrNames>
+          <Item Value="Year"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

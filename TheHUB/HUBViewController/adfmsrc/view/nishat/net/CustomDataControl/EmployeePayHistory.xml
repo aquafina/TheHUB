@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<JavaBean xmlns="http://xmlns.oracle.com/adfm/beanmodel" version="11.1.1.64.93"
+          id="EmployeePayHistory" Package="view.nishat.net.CustomDataControl"
+          BeanClass=""
+          isJavaBased="true">
+  <Attribute Name="salary" Type="java.lang.String"/>
+  <Attribute Name="month" Type="java.lang.String"/>
+  <ConstructorMethod IsCollection="true"
+                     Type=""
+                     BeanClass=""
+                     id="EmployeePayHistory"/>
+</JavaBean>

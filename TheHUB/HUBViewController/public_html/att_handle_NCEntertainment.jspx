@@ -1,0 +1,435 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <f:view>
+    <af:document id="d1">
+      <af:messages id="m1"/>
+      <af:form id="f1">
+        <af:pageTemplate viewId="/template/hub_template.jspx" id="pt1">
+          <f:facet name="header"/>
+          <f:facet name="footer"/>
+          <f:facet name="left"/>
+          <f:facet name="content">
+            <af:group id="g1">
+              <af:panelGroupLayout id="pgl1">
+                <af:panelFormLayout id="pfl1">
+                  <af:inputText value="#{bindings.PersonId.inputValue}"
+                                label="#{bindings.PersonId.hints.label}"
+                                required="#{bindings.PersonId.hints.mandatory}"
+                                columns="#{bindings.PersonId.hints.displayWidth}"
+                                maximumLength="#{bindings.PersonId.hints.precision}"
+                                shortDesc="#{bindings.PersonId.hints.tooltip}"
+                                id="it4" visible="false">
+                    <f:validator binding="#{bindings.PersonId.validator}"/>
+                    <af:convertNumber groupingUsed="false"
+                                      pattern="#{bindings.PersonId.format}"/>
+                  </af:inputText>
+                  <af:inputText value="#{bindings.EmailAddress.inputValue}"
+                                label="#{bindings.EmailAddress.hints.label}"
+                                required="#{bindings.EmailAddress.hints.mandatory}"
+                                columns="#{bindings.EmailAddress.hints.displayWidth}"
+                                maximumLength="#{bindings.EmailAddress.hints.precision}"
+                                shortDesc="#{bindings.EmailAddress.hints.tooltip}"
+                                id="it9" visible="false">
+                    <f:validator binding="#{bindings.EmailAddress.validator}"/>
+                  </af:inputText>
+                  <af:inputText value="#{bindings.TempPass.inputValue}"
+                                label="#{bindings.TempPass.hints.label}"
+                                required="#{bindings.TempPass.hints.mandatory}"
+                                columns="#{bindings.TempPass.hints.displayWidth}"
+                                maximumLength="#{bindings.TempPass.hints.precision}"
+                                shortDesc="#{bindings.TempPass.hints.tooltip}"
+                                id="it5" visible="false">
+                    <f:validator binding="#{bindings.TempPass.validator}"/>
+                  </af:inputText>
+                  <af:inputDate value="#{bindings.LastUpdatedDate.inputValue}"
+                                label="#{bindings.LastUpdatedDate.hints.label}"
+                                required="#{bindings.LastUpdatedDate.hints.mandatory}"
+                                shortDesc="#{bindings.LastUpdatedDate.hints.tooltip}"
+                                id="id3" visible="false">
+                    <f:validator binding="#{bindings.LastUpdatedDate.validator}"/>
+                    <af:convertDateTime pattern="#{bindings.LastUpdatedDate.format}"/>
+                  </af:inputDate>
+                  <af:inputText value="#{bindings.LastUpdatedBy.inputValue}"
+                                label="#{bindings.LastUpdatedBy.hints.label}"
+                                required="#{bindings.LastUpdatedBy.hints.mandatory}"
+                                columns="#{bindings.LastUpdatedBy.hints.displayWidth}"
+                                maximumLength="#{bindings.LastUpdatedBy.hints.precision}"
+                                shortDesc="#{bindings.LastUpdatedBy.hints.tooltip}"
+                                id="it10" visible="false">
+                    <f:validator binding="#{bindings.LastUpdatedBy.validator}"/>
+                    <af:convertNumber groupingUsed="false"
+                                      pattern="#{bindings.LastUpdatedBy.format}"/>
+                  </af:inputText>
+                  <af:inputText value="#{bindings.Password.inputValue}"
+                                label="#{bindings.Password.hints.label}"
+                                required="#{bindings.Password.hints.mandatory}"
+                                columns="#{bindings.Password.hints.displayWidth}"
+                                maximumLength="#{bindings.Password.hints.precision}"
+                                shortDesc="#{bindings.Password.hints.tooltip}"
+                                id="it6" visible="false">
+                    <f:validator binding="#{bindings.Password.validator}"/>
+                  </af:inputText>
+                  <af:inputText value="#{bindings.AnnualLeaveCriteria.inputValue}"
+                                label="#{bindings.AnnualLeaveCriteria.hints.label}"
+                                required="#{bindings.AnnualLeaveCriteria.hints.mandatory}"
+                                columns="#{bindings.AnnualLeaveCriteria.hints.displayWidth}"
+                                maximumLength="#{bindings.AnnualLeaveCriteria.hints.precision}"
+                                shortDesc="#{bindings.AnnualLeaveCriteria.hints.tooltip}"
+                                id="it1" visible="false">
+                    <f:validator binding="#{bindings.AnnualLeaveCriteria.validator}"/>
+                    <af:convertNumber groupingUsed="false"
+                                      pattern="#{bindings.AnnualLeaveCriteria.format}"/>
+                  </af:inputText>
+                  <af:inputText value="#{bindings.CasualLeaveCriteria.inputValue}"
+                                label="#{bindings.CasualLeaveCriteria.hints.label}"
+                                required="#{bindings.CasualLeaveCriteria.hints.mandatory}"
+                                columns="#{bindings.CasualLeaveCriteria.hints.displayWidth}"
+                                maximumLength="#{bindings.CasualLeaveCriteria.hints.precision}"
+                                shortDesc="#{bindings.CasualLeaveCriteria.hints.tooltip}"
+                                id="it8" visible="false">
+                    <f:validator binding="#{bindings.CasualLeaveCriteria.validator}"/>
+                    <af:convertNumber groupingUsed="false"
+                                      pattern="#{bindings.CasualLeaveCriteria.format}"/>
+                  </af:inputText>
+                  <af:inputText value="#{bindings.LateSittingCriteria.inputValue}"
+                                label="#{bindings.LateSittingCriteria.hints.label}"
+                                required="#{bindings.LateSittingCriteria.hints.mandatory}"
+                                columns="#{bindings.LateSittingCriteria.hints.displayWidth}"
+                                maximumLength="#{bindings.LateSittingCriteria.hints.precision}"
+                                shortDesc="#{bindings.LateSittingCriteria.hints.tooltip}"
+                                id="it7" visible="false">
+                    <f:validator binding="#{bindings.LateSittingCriteria.validator}"/>
+                  </af:inputText>
+                  <af:inputDate value="#{bindings.EffectiveStartDate.inputValue}"
+                                label="#{bindings.EffectiveStartDate.hints.label}"
+                                required="#{bindings.EffectiveStartDate.hints.mandatory}"
+                                shortDesc="#{bindings.EffectiveStartDate.hints.tooltip}"
+                                id="id2" visible="false">
+                    <f:validator binding="#{bindings.EffectiveStartDate.validator}"/>
+                    <af:convertDateTime pattern="#{bindings.EffectiveStartDate.format}"/>
+                  </af:inputDate>
+                  <af:inputDate value="#{bindings.EffectiveEndDate.inputValue}"
+                                label="#{bindings.EffectiveEndDate.hints.label}"
+                                required="#{bindings.EffectiveEndDate.hints.mandatory}"
+                                shortDesc="#{bindings.EffectiveEndDate.hints.tooltip}"
+                                id="id1" visible="false">
+                    <f:validator binding="#{bindings.EffectiveEndDate.validator}"/>
+                    <af:convertDateTime pattern="#{bindings.EffectiveEndDate.format}"/>
+                  </af:inputDate>
+                  <af:inputText value="#{bindings.EmpType.inputValue}"
+                                label="#{bindings.EmpType.hints.label}"
+                                required="#{bindings.EmpType.hints.mandatory}"
+                                columns="#{bindings.EmpType.hints.displayWidth}"
+                                maximumLength="#{bindings.EmpType.hints.precision}"
+                                shortDesc="#{bindings.EmpType.hints.tooltip}"
+                                id="it3" visible="false">
+                    <f:validator binding="#{bindings.EmpType.validator}"/>
+                    <af:convertNumber groupingUsed="false"
+                                      pattern="#{bindings.EmpType.format}"/>
+                  </af:inputText>
+                  <af:inputText value="#{bindings.EmpCode.inputValue}"
+                                label="#{bindings.EmpCode.hints.label}"
+                                required="#{bindings.EmpCode.hints.mandatory}"
+                                columns="#{bindings.EmpCode.hints.displayWidth}"
+                                maximumLength="#{bindings.EmpCode.hints.precision}"
+                                shortDesc="#{bindings.EmpCode.hints.tooltip}"
+                                id="it11" visible="false">
+                    <f:validator binding="#{bindings.EmpCode.validator}"/>
+                  </af:inputText>
+                  <af:inputText value="#{bindings.IsHr.inputValue}"
+                                label="#{bindings.IsHr.hints.label}"
+                                required="#{bindings.IsHr.hints.mandatory}"
+                                columns="#{bindings.IsHr.hints.displayWidth}"
+                                maximumLength="#{bindings.IsHr.hints.precision}"
+                                shortDesc="#{bindings.IsHr.hints.tooltip}"
+                                id="it2" visible="false">
+                    <f:validator binding="#{bindings.IsHr.validator}"/>
+                  </af:inputText>
+                </af:panelFormLayout>
+                <af:panelCollection id="pc1"
+                                    inlineStyle="width:inherit; height:700px;">
+                  <f:facet name="menus"/>
+                  <f:facet name="toolbar">
+                    <af:toolbar id="t2">
+                      <af:selectOneChoice value="#{bindings.FullName.inputValue}"
+                                          label="#{bindings.FullName.label}"
+                                          required="#{bindings.FullName.hints.mandatory}"
+                                          shortDesc="#{bindings.FullName.hints.tooltip}"
+                                          id="soc1" autoSubmit="true">
+                        <f:selectItems value="#{bindings.FullName.items}"
+                                       id="si1"/>
+                      </af:selectOneChoice>
+                    </af:toolbar>
+                  </f:facet>
+                  <f:facet name="statusbar"/>
+                  <af:table value="#{bindings.VO_NCEAttendance2.collectionModel}"
+                            var="row"
+                            rows="#{bindings.VO_NCEAttendance2.rangeSize}"
+                            emptyText="#{bindings.VO_NCEAttendance2.viewable ? 'No data to display.' : 'Access Denied.'}"
+                            fetchSize="#{bindings.VO_NCEAttendance2.rangeSize}"
+                            rowBandingInterval="0"
+                            selectedRowKeys="#{bindings.VO_NCEAttendance2.collectionModel.selectedRow}"
+                            selectionListener="#{bindings.VO_NCEAttendance2.collectionModel.makeCurrent}"
+                            rowSelection="single" id="t1"
+                            partialTriggers="::soc1"
+                            inlineStyle="height:500px;">
+                    <af:column sortProperty="#{bindings.VO_NCEAttendance2.hints.EmpAtdId.name}"
+                               sortable="false"
+                               headerText="#{bindings.VO_NCEAttendance2.hints.EmpAtdId.label}"
+                               id="c35" rendered="false">
+                      <af:outputText value="#{row.EmpAtdId}" id="ot30">
+                        <af:convertNumber groupingUsed="false"
+                                          pattern="#{bindings.VO_NCEAttendance2.hints.EmpAtdId.format}"/>
+                      </af:outputText>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.VO_NCEAttendance2.hints.Description.name}"
+                               sortable="false"
+                               headerText="#{bindings.VO_NCEAttendance2.hints.Description.label}"
+                               id="c17" rendered="false">
+                      <af:outputText value="#{row.Description}" id="ot20"/>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.VO_NCEAttendance2.hints.EmpId.name}"
+                               sortable="false"
+                               headerText="#{bindings.VO_NCEAttendance2.hints.EmpId.label}"
+                               id="c19" rendered="false">
+                      <af:outputText value="#{row.EmpId}" id="ot7">
+                        <af:convertNumber groupingUsed="false"
+                                          pattern="#{bindings.VO_NCEAttendance2.hints.EmpId.format}"/>
+                      </af:outputText>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.VO_NCEAttendance2.hints.AttendanceDate.name}"
+                               sortable="false"
+                               headerText="#{bindings.VO_NCEAttendance2.hints.AttendanceDate.label}"
+                               id="c26" align="center" width="200">
+                      <af:outputText value="#{row.AttendanceDate}" id="ot11">
+                        <af:convertDateTime pattern="#{bindings.VO_NCEAttendance2.hints.AttendanceDate.format}"/>
+                      </af:outputText>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.VO_NCEAttendance2.hints.EmpName.name}"
+                               sortable="false"
+                               headerText="#{bindings.VO_NCEAttendance2.hints.EmpName.label}"
+                               id="c23" align="center" width="200">
+                      <af:outputText value="#{row.EmpName}" id="ot33"/>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.VO_NCEAttendance2.hints.CardNum.name}"
+                               sortable="false"
+                               headerText="#{bindings.VO_NCEAttendance2.hints.CardNum.label}"
+                               id="c1" rendered="false">
+                      <af:outputText value="#{row.CardNum}" id="ot35"/>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.VO_NCEAttendance2.hints.LeaveCancelled.name}"
+                               sortable="false"
+                               headerText="#{bindings.VO_NCEAttendance2.hints.LeaveCancelled.label}"
+                               id="c4" rendered="false">
+                      <af:outputText value="#{row.LeaveCancelled}" id="ot18"/>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.VO_NCEAttendance2.hints.ExpectedWorkHours.name}"
+                               sortable="false"
+                               headerText="#{bindings.VO_NCEAttendance2.hints.ExpectedWorkHours.label}"
+                               id="c24" rendered="false">
+                      <af:outputText value="#{row.ExpectedWorkHours}"
+                                     id="ot25"/>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.VO_NCEAttendance2.hints.MinInTime.name}"
+                               sortable="false"
+                               headerText="#{bindings.VO_NCEAttendance2.hints.MinInTime.label}"
+                               id="c10" rendered="false">
+                      <af:outputText value="#{row.MinInTime}" id="ot29">
+                        <af:convertDateTime pattern="#{bindings.VO_NCEAttendance2.hints.MinInTime.format}"/>
+                      </af:outputText>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.VO_NCEAttendance2.hints.MaxOutTime.name}"
+                               sortable="false"
+                               headerText="#{bindings.VO_NCEAttendance2.hints.MaxOutTime.label}"
+                               id="c7" rendered="false">
+                      <af:outputText value="#{row.MaxOutTime}" id="ot15">
+                        <af:convertDateTime pattern="#{bindings.VO_NCEAttendance2.hints.MaxOutTime.format}"/>
+                      </af:outputText>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.VO_NCEAttendance2.hints.PreviousDayOutTime.name}"
+                               sortable="false"
+                               headerText="#{bindings.VO_NCEAttendance2.hints.PreviousDayOutTime.label}"
+                               id="c31" rendered="false">
+                      <af:outputText value="#{row.PreviousDayOutTime}"
+                                     id="ot19"/>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.VO_NCEAttendance2.hints.PreviousDayEffectiveHours.name}"
+                               sortable="false"
+                               headerText="#{bindings.VO_NCEAttendance2.hints.PreviousDayEffectiveHours.label}"
+                               id="c9" rendered="false">
+                      <af:outputText value="#{row.PreviousDayEffectiveHours}"
+                                     id="ot34"/>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.VO_NCEAttendance2.hints.Outtime.name}"
+                               sortable="false"
+                               headerText="#{bindings.VO_NCEAttendance2.hints.Outtime.label}"
+                               id="c12" align="center">
+                      <af:outputText value="#{row.Outtime}" id="ot13"/>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.VO_NCEAttendance2.hints.Intime.name}"
+                               sortable="false"
+                               headerText="#{bindings.VO_NCEAttendance2.hints.Intime.label}"
+                               id="c14" align="center">
+                      <af:outputText value="#{row.Intime}" id="ot4"/>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.VO_NCEAttendance2.hints.EffectiveWorkedHours.name}"
+                               sortable="false"
+                               headerText="#{bindings.VO_NCEAttendance2.hints.EffectiveWorkedHours.label}"
+                               id="c6" rendered="false">
+                      <af:outputText value="#{row.EffectiveWorkedHours}"
+                                     id="ot31"/>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.VO_NCEAttendance2.hints.MaxStartTime.name}"
+                               sortable="false"
+                               headerText="#{bindings.VO_NCEAttendance2.hints.MaxStartTime.label}"
+                               id="c8" rendered="false">
+                      <af:outputText value="#{row.MaxStartTime}" id="ot16"/>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.VO_NCEAttendance2.hints.MaxEndTime.name}"
+                               sortable="false"
+                               headerText="#{bindings.VO_NCEAttendance2.hints.MaxEndTime.label}"
+                               id="c2" rendered="false">
+                      <af:outputText value="#{row.MaxEndTime}" id="ot24"/>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.VO_NCEAttendance2.hints.EndTime.name}"
+                               sortable="false"
+                               headerText="#{bindings.VO_NCEAttendance2.hints.EndTime.label}"
+                               id="c27" rendered="false">
+                      <af:outputText value="#{row.EndTime}" id="ot32"/>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.VO_NCEAttendance2.hints.StartTime.name}"
+                               sortable="false"
+                               headerText="#{bindings.VO_NCEAttendance2.hints.StartTime.label}"
+                               id="c11" rendered="false">
+                      <af:outputText value="#{row.StartTime}" id="ot26"/>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.VO_NCEAttendance2.hints.LeaveTypeId.name}"
+                               sortable="false"
+                               headerText="#{bindings.VO_NCEAttendance2.hints.LeaveTypeId.label}"
+                               id="c33" rendered="false">
+                      <af:outputText value="#{row.LeaveTypeId}" id="ot8">
+                        <af:convertNumber groupingUsed="false"
+                                          pattern="#{bindings.VO_NCEAttendance2.hints.LeaveTypeId.format}"/>
+                      </af:outputText>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.VO_NCEAttendance2.hints.LeaveApprovedFlag.name}"
+                               sortable="false"
+                               headerText="#{bindings.VO_NCEAttendance2.hints.LeaveApprovedFlag.label}"
+                               id="c18" rendered="false">
+                      <af:outputText value="#{row.LeaveApprovedFlag}" id="ot5"/>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.VO_NCEAttendance2.hints.TypeOfLeave.name}"
+                               sortable="false"
+                               headerText="#{bindings.VO_NCEAttendance2.hints.TypeOfLeave.label}"
+                               id="c28" rendered="false">
+                      <af:outputText value="#{row.TypeOfLeave}" id="ot14">
+                        <af:convertNumber groupingUsed="false"
+                                          pattern="#{bindings.VO_NCEAttendance2.hints.TypeOfLeave.format}"/>
+                      </af:outputText>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.VO_NCEAttendance2.hints.PolicyException.name}"
+                               sortable="false"
+                               headerText="#{bindings.VO_NCEAttendance2.hints.PolicyException.label}"
+                               id="c15" rendered="false">
+                      <af:outputText value="#{row.PolicyException}" id="ot10"/>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.VO_NCEAttendance2.hints.LeaveToday.name}"
+                               sortable="false"
+                               headerText="#{bindings.VO_NCEAttendance2.hints.LeaveToday.label}"
+                               id="c25" rendered="false">
+                      <af:outputText value="#{row.LeaveToday}" id="ot6"/>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.VO_NCEAttendance2.hints.IsHalf.name}"
+                               sortable="false"
+                               headerText="#{bindings.VO_NCEAttendance2.hints.IsHalf.label}"
+                               id="c21" rendered="false">
+                      <af:outputText value="#{row.IsHalf}" id="ot21"/>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.VO_NCEAttendance2.hints.WorkingTime.name}"
+                               sortable="false"
+                               headerText="#{bindings.VO_NCEAttendance2.hints.WorkingTime.label}"
+                               id="c22" rendered="false">
+                      <af:outputText value="#{row.WorkingTime}" id="ot23"/>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.VO_NCEAttendance2.hints.LeaveType.name}"
+                               sortable="false"
+                               headerText="#{bindings.VO_NCEAttendance2.hints.LeaveType.label}"
+                               id="c13" rendered="false">
+                      <af:outputText value="#{row.LeaveType}" id="ot22"/>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.VO_NCEAttendance2.hints.PolicyExceptionApprovedFlag.name}"
+                               sortable="false"
+                               headerText="#{bindings.VO_NCEAttendance2.hints.PolicyExceptionApprovedFlag.label}"
+                               id="c30" rendered="false">
+                      <af:outputText value="#{row.PolicyExceptionApprovedFlag}"
+                                     id="ot17"/>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.VO_NCEAttendance2.hints.LateSittingMinTiming.name}"
+                               sortable="false"
+                               headerText="#{bindings.VO_NCEAttendance2.hints.LateSittingMinTiming.label}"
+                               id="c5" rendered="false">
+                      <af:outputText value="#{row.LateSittingMinTiming}"
+                                     id="ot38"/>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.VO_NCEAttendance2.hints.Day.name}"
+                               sortable="false"
+                               headerText="#{bindings.VO_NCEAttendance2.hints.Day.label}"
+                               id="c34" rendered="false">
+                      <af:outputText value="#{row.Day}" id="ot12"/>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.VO_NCEAttendance2.hints.Today.name}"
+                               sortable="false"
+                               headerText="#{bindings.VO_NCEAttendance2.hints.Today.label}"
+                               id="c29" rendered="false">
+                      <af:outputText value="#{row.Today}" id="ot37"/>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.VO_NCEAttendance2.hints.Month.name}"
+                               sortable="false"
+                               headerText="#{bindings.VO_NCEAttendance2.hints.Month.label}"
+                               id="c20" rendered="false">
+                      <af:outputText value="#{row.Month}" id="ot36"/>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.VO_NCEAttendance2.hints.MonthNumber.name}"
+                               sortable="false"
+                               headerText="#{bindings.VO_NCEAttendance2.hints.MonthNumber.label}"
+                               id="c32" rendered="false">
+                      <af:outputText value="#{row.MonthNumber}" id="ot3">
+                        <af:convertNumber groupingUsed="false"
+                                          pattern="#{bindings.VO_NCEAttendance2.hints.MonthNumber.format}"/>
+                      </af:outputText>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.VO_NCEAttendance2.hints.Year.name}"
+                               sortable="false"
+                               headerText="#{bindings.VO_NCEAttendance2.hints.Year.label}"
+                               id="c3" rendered="false">
+                      <af:outputText value="#{row.Year}" id="ot9"/>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.VO_NCEAttendance2.hints.OffDayWorking.name}"
+                               sortable="false"
+                               headerText="#{bindings.VO_NCEAttendance2.hints.OffDayWorking.label}"
+                               id="c36" rendered="false">
+                      <af:outputText value="#{row.OffDayWorking}" id="ot28"/>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.VO_NCEAttendance2.hints.EmpType.name}"
+                               sortable="false"
+                               headerText="#{bindings.VO_NCEAttendance2.hints.EmpType.label}"
+                               id="c16" rendered="false">
+                      <af:outputText value="#{row.EmpType}" id="ot27">
+                        <af:convertNumber groupingUsed="false"
+                                          pattern="#{bindings.VO_NCEAttendance2.hints.EmpType.format}"/>
+                      </af:outputText>
+                    </af:column>
+                  </af:table>
+                </af:panelCollection>
+              </af:panelGroupLayout>
+            </af:group>
+          </f:facet>
+        </af:pageTemplate>
+      </af:form>
+    </af:document>
+  </f:view>
+</jsp:root>

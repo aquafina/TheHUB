@@ -1,0 +1,200 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:dvt="http://xmlns.oracle.com/dss/adf/faces">
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <f:view>
+    <af:document id="d1">
+      <af:messages id="m1"/>
+      <af:form id="f1">
+        <af:pageTemplate viewId="/template/hub_template.jspx" id="pt1">
+          <f:facet name="header"/>
+          <f:facet name="footer"/>
+          <f:facet name="left">
+            <af:panelGridLayout id="pgl3">
+              <af:gridRow marginTop="5px" height="auto" id="gr1">
+                <af:gridCell marginStart="5px" width="50%" id="gc2">
+                  <af:panelLabelAndMessage label="Label 1" id="plam1"/>
+                </af:gridCell>
+                <af:gridCell marginStart="5px" marginEnd="5px" width="50%"
+                             id="gc1">
+                  <af:panelLabelAndMessage label="Label 2" id="plam2"/>
+                </af:gridCell>
+              </af:gridRow>
+              <af:gridRow marginTop="5px" marginBottom="5px" height="auto"
+                          id="gr2">
+                <af:gridCell marginStart="5px" width="50%" id="gc3">
+                  <af:panelLabelAndMessage label="Label 3" id="plam3"/>
+                </af:gridCell>
+                <af:gridCell marginStart="5px" marginEnd="5px" width="50%"
+                             id="gc4"/>
+              </af:gridRow>
+            </af:panelGridLayout>
+          </f:facet>
+          <f:facet name="content">
+            <af:panelGroupLayout id="pgl1" layout="vertical">
+              <af:table value="#{bindings.VO_IntercomDir1.collectionModel}"
+                        var="row" rows="#{bindings.VO_IntercomDir1.rangeSize}"
+                        emptyText="#{bindings.VO_IntercomDir1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                        fetchSize="#{bindings.VO_IntercomDir1.rangeSize}"
+                        rowBandingInterval="0"
+                        filterModel="#{bindings.VO_IntercomDir1Query.queryDescriptor}"
+                        queryListener="#{bindings.VO_IntercomDir1Query.processQuery}"
+                        filterVisible="true" varStatus="vs"
+                        selectedRowKeys="#{bindings.VO_IntercomDir1.collectionModel.selectedRow}"
+                        selectionListener="#{bindings.VO_IntercomDir1.collectionModel.makeCurrent}"
+                        rowSelection="single" id="t1"
+                        contentDelivery="immediate" autoHeightRows="25">
+                <af:column sortProperty="#{bindings.VO_IntercomDir1.hints.PersonIdDepartment.name}"
+                           filterable="true" sortable="true"
+                           headerText="#{bindings.VO_IntercomDir1.hints.PersonIdDepartment.label}"
+                           id="c1">
+                  <af:inputText value="#{row.bindings.PersonIdDepartment.inputValue}"
+                                label="#{bindings.VO_IntercomDir1.hints.PersonIdDepartment.label}"
+                                required="#{bindings.VO_IntercomDir1.hints.PersonIdDepartment.mandatory}"
+                                columns="#{bindings.VO_IntercomDir1.hints.PersonIdDepartment.displayWidth}"
+                                maximumLength="#{bindings.VO_IntercomDir1.hints.PersonIdDepartment.precision}"
+                                shortDesc="#{bindings.VO_IntercomDir1.hints.PersonIdDepartment.tooltip}"
+                                id="it7">
+                    <f:validator binding="#{row.bindings.PersonIdDepartment.validator}"/>
+                  </af:inputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.VO_IntercomDir1.hints.PersonId.name}"
+                           filterable="true" sortable="true"
+                           headerText="#{bindings.VO_IntercomDir1.hints.PersonId.label}"
+                           id="c10">
+                  <af:inputText value="#{row.bindings.PersonId.inputValue}"
+                                label="#{bindings.VO_IntercomDir1.hints.PersonId.label}"
+                                required="#{bindings.VO_IntercomDir1.hints.PersonId.mandatory}"
+                                columns="#{bindings.VO_IntercomDir1.hints.PersonId.displayWidth}"
+                                maximumLength="#{bindings.VO_IntercomDir1.hints.PersonId.precision}"
+                                shortDesc="#{bindings.VO_IntercomDir1.hints.PersonId.tooltip}"
+                                id="it10">
+                    <f:validator binding="#{row.bindings.PersonId.validator}"/>
+                    <af:convertNumber groupingUsed="false"
+                                      pattern="#{bindings.VO_IntercomDir1.hints.PersonId.format}"/>
+                  </af:inputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.VO_IntercomDir1.hints.Email.name}"
+                           filterable="true" sortable="true"
+                           headerText="#{bindings.VO_IntercomDir1.hints.Email.label}"
+                           id="c9">
+                  <af:inputText value="#{row.bindings.Email.inputValue}"
+                                label="#{bindings.VO_IntercomDir1.hints.Email.label}"
+                                required="#{bindings.VO_IntercomDir1.hints.Email.mandatory}"
+                                columns="#{bindings.VO_IntercomDir1.hints.Email.displayWidth}"
+                                maximumLength="#{bindings.VO_IntercomDir1.hints.Email.precision}"
+                                shortDesc="#{bindings.VO_IntercomDir1.hints.Email.tooltip}"
+                                id="it4">
+                    <f:validator binding="#{row.bindings.Email.validator}"/>
+                  </af:inputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.VO_IntercomDir1.hints.Name.name}"
+                           filterable="true" sortable="true"
+                           headerText="#{bindings.VO_IntercomDir1.hints.Name.label}"
+                           id="c4">
+                  <af:inputText value="#{row.bindings.Name.inputValue}"
+                                label="#{bindings.VO_IntercomDir1.hints.Name.label}"
+                                required="#{bindings.VO_IntercomDir1.hints.Name.mandatory}"
+                                columns="#{bindings.VO_IntercomDir1.hints.Name.displayWidth}"
+                                maximumLength="#{bindings.VO_IntercomDir1.hints.Name.precision}"
+                                shortDesc="#{bindings.VO_IntercomDir1.hints.Name.tooltip}"
+                                id="it3">
+                    <f:validator binding="#{row.bindings.Name.validator}"/>
+                  </af:inputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.VO_IntercomDir1.hints.Intercom.name}"
+                           filterable="true" sortable="true"
+                           headerText="#{bindings.VO_IntercomDir1.hints.Intercom.label}"
+                           id="c5">
+                  <af:inputText value="#{row.bindings.Intercom.inputValue}"
+                                label="#{bindings.VO_IntercomDir1.hints.Intercom.label}"
+                                required="#{bindings.VO_IntercomDir1.hints.Intercom.mandatory}"
+                                columns="#{bindings.VO_IntercomDir1.hints.Intercom.displayWidth}"
+                                maximumLength="#{bindings.VO_IntercomDir1.hints.Intercom.precision}"
+                                shortDesc="#{bindings.VO_IntercomDir1.hints.Intercom.tooltip}"
+                                id="it8">
+                    <f:validator binding="#{row.bindings.Intercom.validator}"/>
+                  </af:inputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.VO_IntercomDir1.hints.Department.name}"
+                           filterable="true" sortable="true"
+                           headerText="#{bindings.VO_IntercomDir1.hints.Department.label}"
+                           id="c8">
+                  <af:inputText value="#{row.bindings.Department.inputValue}"
+                                label="#{bindings.VO_IntercomDir1.hints.Department.label}"
+                                required="#{bindings.VO_IntercomDir1.hints.Department.mandatory}"
+                                columns="#{bindings.VO_IntercomDir1.hints.Department.displayWidth}"
+                                maximumLength="#{bindings.VO_IntercomDir1.hints.Department.precision}"
+                                shortDesc="#{bindings.VO_IntercomDir1.hints.Department.tooltip}"
+                                id="it9">
+                    <f:validator binding="#{row.bindings.Department.validator}"/>
+                  </af:inputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.VO_IntercomDir1.hints.Designation.name}"
+                           filterable="true" sortable="true"
+                           headerText="#{bindings.VO_IntercomDir1.hints.Designation.label}"
+                           id="c6">
+                  <af:inputText value="#{row.bindings.Designation.inputValue}"
+                                label="#{bindings.VO_IntercomDir1.hints.Designation.label}"
+                                required="#{bindings.VO_IntercomDir1.hints.Designation.mandatory}"
+                                columns="#{bindings.VO_IntercomDir1.hints.Designation.displayWidth}"
+                                maximumLength="#{bindings.VO_IntercomDir1.hints.Designation.precision}"
+                                shortDesc="#{bindings.VO_IntercomDir1.hints.Designation.tooltip}"
+                                id="it1">
+                    <f:validator binding="#{row.bindings.Designation.validator}"/>
+                  </af:inputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.VO_IntercomDir1.hints.Category.name}"
+                           filterable="true" sortable="true"
+                           headerText="#{bindings.VO_IntercomDir1.hints.Category.label}"
+                           id="c3">
+                  <af:inputText value="#{row.bindings.Category.inputValue}"
+                                label="#{bindings.VO_IntercomDir1.hints.Category.label}"
+                                required="#{bindings.VO_IntercomDir1.hints.Category.mandatory}"
+                                columns="#{bindings.VO_IntercomDir1.hints.Category.displayWidth}"
+                                maximumLength="#{bindings.VO_IntercomDir1.hints.Category.precision}"
+                                shortDesc="#{bindings.VO_IntercomDir1.hints.Category.tooltip}"
+                                id="it6">
+                    <f:validator binding="#{row.bindings.Category.validator}"/>
+                  </af:inputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.VO_IntercomDir1.hints.IsHod.name}"
+                           filterable="true" sortable="true"
+                           headerText="#{bindings.VO_IntercomDir1.hints.IsHod.label}"
+                           id="c2">
+                  <af:inputText value="#{row.bindings.IsHod.inputValue}"
+                                label="#{bindings.VO_IntercomDir1.hints.IsHod.label}"
+                                required="#{bindings.VO_IntercomDir1.hints.IsHod.mandatory}"
+                                columns="#{bindings.VO_IntercomDir1.hints.IsHod.displayWidth}"
+                                maximumLength="#{bindings.VO_IntercomDir1.hints.IsHod.precision}"
+                                shortDesc="#{bindings.VO_IntercomDir1.hints.IsHod.tooltip}"
+                                id="it2">
+                    <f:validator binding="#{row.bindings.IsHod.validator}"/>
+                  </af:inputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.VO_IntercomDir1.hints.IntercomType.name}"
+                           filterable="true" sortable="true"
+                           headerText="#{bindings.VO_IntercomDir1.hints.IntercomType.label}"
+                           id="c7">
+                  <af:inputText value="#{row.bindings.IntercomType.inputValue}"
+                                label="#{bindings.VO_IntercomDir1.hints.IntercomType.label}"
+                                required="#{bindings.VO_IntercomDir1.hints.IntercomType.mandatory}"
+                                columns="#{bindings.VO_IntercomDir1.hints.IntercomType.displayWidth}"
+                                maximumLength="#{bindings.VO_IntercomDir1.hints.IntercomType.precision}"
+                                shortDesc="#{bindings.VO_IntercomDir1.hints.IntercomType.tooltip}"
+                                id="it5">
+                    <f:validator binding="#{row.bindings.IntercomType.validator}"/>
+                  </af:inputText>
+                </af:column>
+              </af:table>
+            </af:panelGroupLayout>
+          </f:facet>
+        </af:pageTemplate>
+      </af:form>
+    </af:document>
+  </f:view>
+  <!--oracle-jdev-comment:preferred-managed-bean-name:TestBean-->
+</jsp:root>

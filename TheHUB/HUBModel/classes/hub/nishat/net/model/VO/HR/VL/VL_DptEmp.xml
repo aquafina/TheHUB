@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="VL_DptEmp"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true">
+  <DesignTime>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="hub.nishat.net.model.VO.HR.VL.VL_DptEmp_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewLinkDefEnd
+    Name="DepartmentLov"
+    Cardinality="1"
+    Owner="hub.nishat.net.model.VO.Lov.DepartmentLov"
+    Source="true">
+    <DesignTime>
+      <Attr Name="_accessor" Value="true"/>
+      <Attr Name="_finderName" Value="DepartmentLov"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="hub.nishat.net.model.VO.Lov.DepartmentLov.HierarchyName"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="EmployeeLov"
+    Cardinality="-1"
+    Owner="hub.nishat.net.model.VO.Lov.EmployeeLov">
+    <DesignTime>
+      <Attr Name="_finderName" Value="EmployeeLov"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="hub.nishat.net.model.VO.Lov.EmployeeLov.HierarchyName"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="hub.nishat.net.model.HUBModelBundle"/>
+  </ResourceBundle>
+</ViewLink>

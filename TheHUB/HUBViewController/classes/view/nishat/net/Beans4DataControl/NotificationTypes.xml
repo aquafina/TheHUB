@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<JavaBean xmlns="http://xmlns.oracle.com/adfm/beanmodel" version="11.1.1.64.93"
+          id="NotificationTypes" Package="view.nishat.net.Beans4DataControl"
+          BeanClass="view.nishat.net.Beans4DataControl.NotificationTypes"
+          isJavaBased="true">
+  <AccessorAttribute id="notificationTypes" IsCollection="true"
+                     Type="java.lang.String[]"
+                     CollectionBeanClass="UpdateableCollection">
+    <Attribute Name="element" Type="java.lang.String"/>
+  </AccessorAttribute>
+  <ConstructorMethod IsCollection="true"
+                     Type="view.nishat.net.Beans4DataControl.NotificationTypes"
+                     BeanClass="view.nishat.net.Beans4DataControl.NotificationTypes"
+                     id="NotificationTypes"/>
+</JavaBean>

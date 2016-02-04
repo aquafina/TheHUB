@@ -1,0 +1,14 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<BC4JConfig version="11.1" xmlns="http://xmlns.oracle.com/bc4j/configuration">
+   <AppModuleConfigBag ApplicationName="hub.nishat.net.model.VO.CEO.AM.CEOAppModule">
+      <AppModuleConfig name="CEOAppModuleLocal" ApplicationName="hub.nishat.net.model.VO.CEO.AM.CEOAppModule" DeployPlatform="LOCAL" jbo.project="hub.nishat.net.model.HUBModel">
+         <Security AppModuleJndiName="hub.nishat.net.model.VO.CEO.AM.CEOAppModule"/>
+         <Custom JDBCDataSource="java:comp/env/jdbc/xx_e_portalDS"/>
+      </AppModuleConfig>
+      <AppModuleConfig name="CEOAppModuleShared" ApplicationName="hub.nishat.net.model.VO.CEO.AM.CEOAppModule" DeployPlatform="LOCAL" jbo.project="hub.nishat.net.model.HUBModel">
+         <AM-Pooling jbo.ampool.maxpoolsize="1" jbo.ampool.isuseexclusive="false"/>
+         <Security AppModuleJndiName="hub.nishat.net.model.VO.CEO.AM.CEOAppModule"/>
+         <Custom JDBCDataSource="java:comp/env/jdbc/xx_e_portalDS"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+</BC4JConfig>

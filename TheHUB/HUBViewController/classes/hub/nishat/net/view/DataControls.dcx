@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<DataControlConfigs xmlns="http://xmlns.oracle.com/adfm/configuration"
+                    version="11.1.1.64.93" id="DataControls"
+                    Package="hub.nishat.net.view">
+  <AdapterDataControl id="LeaveReport"
+                      FactoryClass="oracle.adf.model.adapter.bean.BeanDCFactoryImpl"
+                      ImplDef="oracle.adf.model.adapter.bean.BeanDefinition"
+                      SupportsTransactions="false" SupportsSortCollection="true"
+                      SupportsResetState="false" SupportsRangesize="false"
+                      SupportsFindMode="false" SupportsUpdates="true"
+                      Definition="view.nishat.net.CustomDataControl.LeaveReport"
+                      BeanClass="view.nishat.net.CustomDataControl.LeaveReport"
+                      xmlns="http://xmlns.oracle.com/adfm/datacontrol">
+    <CreatableTypes>
+      <TypeInfo FullName="view.nishat.net.CustomDataControl.LeaveBalanceRec"/>
+      <TypeInfo FullName="view.nishat.net.CustomDataControl.LeaveReport"/>
+    </CreatableTypes>
+    <Source>
+      <bean-definition BeanClass="view.nishat.net.CustomDataControl.LeaveReport"
+                       xmlns="http://xmlns.oracle.com/adfm/adapter/bean"/>
+    </Source>
+  </AdapterDataControl>
+  <AdapterDataControl id="SalaryReport"
+                      FactoryClass="oracle.adf.model.adapter.bean.BeanDCFactoryImpl"
+                      ImplDef="oracle.adf.model.adapter.bean.BeanDefinition"
+                      SupportsTransactions="false" SupportsSortCollection="true"
+                      SupportsResetState="false" SupportsRangesize="false"
+                      SupportsFindMode="false" SupportsUpdates="true"
+                      Definition="view.nishat.net.CustomDataControl.SalaryReport"
+                      BeanClass="view.nishat.net.CustomDataControl.SalaryReport"
+                      xmlns="http://xmlns.oracle.com/adfm/datacontrol">
+    <CreatableTypes>
+      <TypeInfo FullName="view.nishat.net.CustomDataControl.EmpPayHistory"/>
+      <TypeInfo FullName="view.nishat.net.CustomDataControl.SalaryReport"/>
+    </CreatableTypes>
+    <Source>
+      <bean-definition BeanClass="view.nishat.net.CustomDataControl.SalaryReport"
+                       xmlns="http://xmlns.oracle.com/adfm/adapter/bean"/>
+    </Source>
+  </AdapterDataControl>
+  <AdapterDataControl id="AnnualLeaveDetails"
+                      FactoryClass="oracle.adf.model.adapter.bean.BeanDCFactoryImpl"
+                      ImplDef="oracle.adf.model.adapter.bean.BeanDefinition"
+                      SupportsTransactions="false" SupportsSortCollection="true"
+                      SupportsResetState="false" SupportsRangesize="false"
+                      SupportsFindMode="false" SupportsUpdates="true"
+                      Definition="view.nishat.net.CustomDataControl.AnnualLeaveDetails"
+                      BeanClass="view.nishat.net.CustomDataControl.AnnualLeaveDetails"
+                      xmlns="http://xmlns.oracle.com/adfm/datacontrol">
+    <CreatableTypes>
+      <TypeInfo FullName="view.nishat.net.CustomDataControl.AnnualLeaveDetails"/>
+      <TypeInfo FullName="view.nishat.net.CustomDataControl.AnnualDeductedLeaveRptBean"/>
+    </CreatableTypes>
+    <Source>
+      <bean-definition BeanClass="view.nishat.net.CustomDataControl.AnnualLeaveDetails"
+                       xmlns="http://xmlns.oracle.com/adfm/adapter/bean"/>
+    </Source>
+  </AdapterDataControl>
+  <AdapterDataControl id="MonthlyDeductionsDetails"
+                      FactoryClass="oracle.adf.model.adapter.bean.BeanDCFactoryImpl"
+                      ImplDef="oracle.adf.model.adapter.bean.BeanDefinition"
+                      SupportsTransactions="false" SupportsSortCollection="true"
+                      SupportsResetState="false" SupportsRangesize="false"
+                      SupportsFindMode="false" SupportsUpdates="true"
+                      Definition="view.nishat.net.CustomDataControl.MonthlyDeductionsDetails"
+                      BeanClass="view.nishat.net.CustomDataControl.MonthlyDeductionsDetails"
+                      xmlns="http://xmlns.oracle.com/adfm/datacontrol">
+    <CreatableTypes>
+      <TypeInfo FullName="view.nishat.net.CustomDataControl.AnnualDeductedLeaveRptBean"/>
+      <TypeInfo FullName="view.nishat.net.CustomDataControl.MonthlyDeductionsDetails"/>
+    </CreatableTypes>
+    <Source>
+      <bean-definition BeanClass="view.nishat.net.CustomDataControl.MonthlyDeductionsDetails"
+                       xmlns="http://xmlns.oracle.com/adfm/adapter/bean"/>
+    </Source>
+  </AdapterDataControl>
+</DataControlConfigs>

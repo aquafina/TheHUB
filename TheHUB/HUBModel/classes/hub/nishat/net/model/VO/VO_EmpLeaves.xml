@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="VO_EmpLeaves"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true"
+  SelectList="EO_EmpLeaves.LEAVE_ID, 
+       EO_EmpLeaves.LEAVE_TYPE, 
+       EO_EmpLeaves.APROVED_FLAG, 
+       EO_EmpLeaves.APPROVAL_REQUIRED, 
+       EO_EmpLeaves.USER_ID, 
+       EO_EmpLeaves.START_DATE, 
+       EO_EmpLeaves.TOTAL_LEAVES, 
+       EO_EmpLeaves.END_DATE"
+  FromList="XX_E_PORTAL_EMP_LEAVES EO_EmpLeaves"
+  BindingStyle="OracleName"
+  CustomQuery="false"
+  PageIterMode="Full"
+  UseGlueCode="false">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="VarAccess"/>
+  </DesignTime>
+  <EntityUsage
+    Name="EO_EmpLeaves"
+    Entity="hub.nishat.net.model.EO.EO_EmpLeaves"/>
+  <ViewAttribute
+    Name="LeaveId"
+    IsUnique="true"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="LeaveId"
+    EntityUsage="EO_EmpLeaves"
+    AliasName="LEAVE_ID"/>
+  <ViewAttribute
+    Name="LeaveType"
+    PrecisionRule="true"
+    EntityAttrName="LeaveType"
+    EntityUsage="EO_EmpLeaves"
+    AliasName="LEAVE_TYPE"/>
+  <ViewAttribute
+    Name="AprovedFlag"
+    PrecisionRule="true"
+    EntityAttrName="AprovedFlag"
+    EntityUsage="EO_EmpLeaves"
+    AliasName="APROVED_FLAG"/>
+  <ViewAttribute
+    Name="ApprovalRequired"
+    PrecisionRule="true"
+    EntityAttrName="ApprovalRequired"
+    EntityUsage="EO_EmpLeaves"
+    AliasName="APPROVAL_REQUIRED"/>
+  <ViewAttribute
+    Name="UserId"
+    PrecisionRule="true"
+    EntityAttrName="UserId"
+    EntityUsage="EO_EmpLeaves"
+    AliasName="USER_ID"/>
+  <ViewAttribute
+    Name="StartDate"
+    PrecisionRule="true"
+    EntityAttrName="StartDate"
+    EntityUsage="EO_EmpLeaves"
+    AliasName="START_DATE"/>
+  <ViewAttribute
+    Name="TotalLeaves"
+    PrecisionRule="true"
+    EntityAttrName="TotalLeaves"
+    EntityUsage="EO_EmpLeaves"
+    AliasName="TOTAL_LEAVES"/>
+  <ViewAttribute
+    Name="EndDate"
+    PrecisionRule="true"
+    EntityAttrName="EndDate"
+    EntityUsage="EO_EmpLeaves"
+    AliasName="END_DATE"/>
+</ViewObject>

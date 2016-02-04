@@ -1,0 +1,324 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <f:view>
+    <af:document id="d1">
+      <af:messages id="m1"/>
+      <af:form id="f1">
+        <af:pageTemplate viewId="/template/hub_template.jspx" id="pt1">
+          <f:facet name="header"/>
+          <f:facet name="footer"/>
+          <f:facet name="left">
+            <af:panelGroupLayout id="pgl3"
+                                 inlineStyle="background-color:white;"
+                                 layout="vertical"/>
+          </f:facet>
+          <f:facet name="content">
+            <af:panelGroupLayout id="pgl1" layout="vertical" halign="center"
+                                 inlineStyle="background-color:#eaedee; width:inherit;">
+              <af:spacer width="10" height="30" id="s1"/>
+              <af:outputText value="Leave and Policy Exception Notifications" id="ot5"
+                             inlineStyle="font-weight:bold;" rendered="false"/>
+              <af:panelCollection id="pc1" inlineStyle="width:inherit;"
+                                  rendered="false">
+                <f:facet name="toolbar">
+                  <af:toolbar id="t3"/>
+                </f:facet>
+                <f:facet name="statusbar">
+                  <af:toolbar id="t2"/>
+                </f:facet>
+                <f:facet name="secondaryToolbar"/>
+                <f:facet name="afterToolbar"/>
+              </af:panelCollection>
+              <af:panelHeader text="Notifications       " id="ph1" size="1">
+                <f:facet name="context">
+                  <af:selectOneChoice id="soc1"
+                                      binding="#{SupervisorApprovalsBean.lovNotificationType}"
+                                      valueChangeListener="#{SupervisorApprovalsBean.searchNotificationLovChange}"
+                                      autoSubmit="true" value="U"
+                                      inlineStyle="height:15px">
+                    <af:selectItem label="Approved" value="Y" id="si3"/>
+                    <af:selectItem label="Disapproved" value="N" id="si1"/>
+                    <af:selectItem label="Unprocessed" value="U" id="si2"/>
+                    <af:selectItem label="All" value="A" id="si4"/>
+                  </af:selectOneChoice>
+                </f:facet>
+                <f:facet name="menuBar">
+                  <af:panelFormLayout id="pfl1" partialTriggers="t1"
+                                      maxColumns="3" rows="1">
+                    <af:outputText value="Remaining leaves of #{bindings.FullNameChild.inputValue}:"
+                                   id="ot6" noWrap="true"
+                                   rendered="#{bindings.FullNameChild.inputValue == null ? false : true}"/>
+                    <af:inputText value="#{bindings.RemainingCasual.inputValue}"
+                                  label=" Casual"
+                                  required="#{bindings.RemainingCasual.hints.mandatory}"
+                                  columns="5"
+                                  maximumLength="#{bindings.RemainingCasual.hints.precision}"
+                                  shortDesc="#{bindings.RemainingCasual.hints.tooltip}"
+                                  id="it17" disabled="true"
+                                  rendered="#{bindings.FullNameChild.inputValue == null ? false : true}">
+                      <f:validator binding="#{bindings.RemainingCasual.validator}"/>
+                      <af:convertNumber groupingUsed="false"
+                                        pattern="#{bindings.RemainingCasual.format}"/>
+                    </af:inputText>
+                    <af:inputText value="#{bindings.RemainingAnnual.inputValue}"
+                                  label="Annual"
+                                  required="#{bindings.RemainingAnnual.hints.mandatory}"
+                                  columns="5"
+                                  maximumLength="#{bindings.RemainingAnnual.hints.precision}"
+                                  shortDesc="#{bindings.RemainingAnnual.hints.tooltip}"
+                                  id="it19" disabled="true"
+                                  rendered="#{bindings.FullNameChild.inputValue == null ? false : true}">
+                      <f:validator binding="#{bindings.RemainingAnnual.validator}"/>
+                      <af:convertNumber groupingUsed="false"
+                                        pattern="#{bindings.RemainingAnnual.format}"/>
+                    </af:inputText>
+                  </af:panelFormLayout>
+                </f:facet>
+                <f:facet name="toolbar"/>
+                <f:facet name="legend"/>
+                <f:facet name="info"/>
+                <af:table value="#{bindings.VO_LeavesAndPolicyExceptions1.collectionModel}"
+                          var="row"
+                          rows="#{bindings.VO_LeavesAndPolicyExceptions1.rangeSize}"
+                          emptyText="#{bindings.VO_LeavesAndPolicyExceptions1.viewable ? 'No Unprocessed Leave or Policy Exception requests.' : 'Access Denied, Contact MIS.'}"
+                          fetchSize="#{bindings.VO_LeavesAndPolicyExceptions1.rangeSize}"
+                          rowBandingInterval="0"
+                          filterModel="#{bindings.VO_LeavesAndPolicyExceptions1Query.queryDescriptor}"
+                          queryListener="#{bindings.VO_LeavesAndPolicyExceptions1Query.processQuery}"
+                          filterVisible="true" varStatus="vs" id="t1"
+                          selectedRowKeys="#{bindings.VO_LeavesAndExceptions1.collectionModel.selectedRow}"
+                          selectionListener="#{bindings.VO_LeavesAndPolicyExceptions1.collectionModel.makeCurrent}"
+                          partialTriggers="::soc1" rowSelection="single"
+                          binding="#{SupervisorApprovalsBean.approvalTable}"
+                          width="100%">
+                  <af:column sortProperty="#{bindings.VO_LeavesAndPolicyExceptions1.hints.ChildPersonId.name}"
+                             filterable="true" sortable="false"
+                             headerText="#{bindings.VO_LeavesAndPolicyExceptions1.hints.ChildPersonId.label}"
+                             id="c4" rendered="false">
+                    <af:inputText value="#{row.bindings.ChildPersonId.inputValue}"
+                                  label="#{bindings.VO_LeavesAndPolicyExceptions1.hints.ChildPersonId.label}"
+                                  required="#{bindings.VO_LeavesAndPolicyExceptions1.hints.ChildPersonId.mandatory}"
+                                  columns="#{bindings.VO_LeavesAndPolicyExceptions1.hints.ChildPersonId.displayWidth}"
+                                  maximumLength="#{bindings.VO_LeavesAndPolicyExceptions1.hints.ChildPersonId.precision}"
+                                  shortDesc="#{bindings.VO_LeavesAndPolicyExceptions1.hints.ChildPersonId.tooltip}"
+                                  id="it10">
+                      <f:validator binding="#{row.bindings.ChildPersonId.validator}"/>
+                      <af:convertNumber groupingUsed="false"
+                                        pattern="#{bindings.VO_LeavesAndPolicyExceptions1.hints.ChildPersonId.format}"/>
+                    </af:inputText>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_LeavesAndPolicyExceptions1.hints.FullNameChild.name}"
+                             filterable="true" sortable="false"
+                             headerText="Employee Name" id="c8">
+                    <af:inputText value="#{row.bindings.FullNameChild.inputValue}"
+                                  label="#{bindings.VO_LeavesAndPolicyExceptions1.hints.FullNameChild.label}"
+                                  required="#{bindings.VO_LeavesAndPolicyExceptions1.hints.FullNameChild.mandatory}"
+                                  columns="#{bindings.VO_LeavesAndPolicyExceptions1.hints.FullNameChild.displayWidth}"
+                                  maximumLength="#{bindings.VO_LeavesAndPolicyExceptions1.hints.FullNameChild.precision}"
+                                  shortDesc="#{bindings.VO_LeavesAndPolicyExceptions1.hints.FullNameChild.tooltip}"
+                                  id="it11">
+                      <f:validator binding="#{row.bindings.FullNameChild.validator}"/>
+                    </af:inputText>
+                  </af:column>
+                  <af:column id="c15" rendered="true">
+                    <af:inputText value="#{row.bindings.IsHalf.inputValue}"
+                                  simple="true"
+                                  required="#{bindings.VO_LeavesAndPolicyExceptions1.hints.IsHalf.mandatory}"
+                                  columns="#{bindings.VO_LeavesAndPolicyExceptions1.hints.IsHalf.displayWidth}"
+                                  maximumLength="#{bindings.VO_LeavesAndPolicyExceptions1.hints.IsHalf.precision}"
+                                  shortDesc="#{bindings.VO_LeavesAndPolicyExceptions1.hints.IsHalf.tooltip}"
+                                  id="it1">
+                      <f:validator binding="#{row.bindings.IsHalf.validator}"/>
+                    </af:inputText>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_LeavesAndPolicyExceptions1.hints.Type.name}"
+                             filterable="true" sortable="false"
+                             headerText="Notification Type" id="c3">
+                    <af:inputText value="#{row.bindings.Type.inputValue}"
+                                  label="#{bindings.VO_LeavesAndPolicyExceptions1.hints.Type.label}"
+                                  required="#{bindings.VO_LeavesAndPolicyExceptions1.hints.Type.mandatory}"
+                                  columns="#{bindings.VO_LeavesAndPolicyExceptions1.hints.Type.displayWidth}"
+                                  maximumLength="#{bindings.VO_LeavesAndPolicyExceptions1.hints.Type.precision}"
+                                  shortDesc="#{bindings.VO_LeavesAndPolicyExceptions1.hints.Type.tooltip}"
+                                  id="it6">
+                      <f:validator binding="#{row.bindings.Type.validator}"/>
+                    </af:inputText>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_LeavesAndPolicyExceptions1.hints.AttendanceDate.name}"
+                             filterable="false" sortable="false"
+                             headerText="Leave/Exception Date" id="c5">
+                    <f:facet name="filter">
+                      <af:inputDate value="#{vs.filterCriteria.AttendanceDate}"
+                                    id="id2"/>
+                    </f:facet>
+                    <af:inputDate value="#{row.bindings.AttendanceDate.inputValue}"
+                                  label="#{bindings.VO_LeavesAndPolicyExceptions1.hints.AttendanceDate.label}"
+                                  required="#{bindings.VO_LeavesAndPolicyExceptions1.hints.AttendanceDate.mandatory}"
+                                  shortDesc="#{bindings.VO_LeavesAndPolicyExceptions1.hints.AttendanceDate.tooltip}"
+                                  id="id1" readOnly="true">
+                      <f:validator binding="#{row.bindings.AttendanceDate.validator}"/>
+                      <af:convertDateTime pattern="#{bindings.VO_LeavesAndPolicyExceptions1.hints.AttendanceDate.format}"
+                                          dateStyle="long"/>
+                    </af:inputDate>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_LeavesAndPolicyExceptions1.hints.EffectiveWorkedHours.name}"
+                             filterable="false" sortable="false"
+                             headerText="Effective Worked Hours" id="c1"
+                             rendered="false">
+                    <af:inputText value="#{row.bindings.EffectiveWorkedHours.inputValue}"
+                                  label="#{bindings.VO_LeavesAndPolicyExceptions1.hints.EffectiveWorkedHours.label}"
+                                  required="#{bindings.VO_LeavesAndPolicyExceptions1.hints.EffectiveWorkedHours.mandatory}"
+                                  columns="#{bindings.VO_LeavesAndPolicyExceptions1.hints.EffectiveWorkedHours.displayWidth}"
+                                  maximumLength="#{bindings.VO_LeavesAndPolicyExceptions1.hints.EffectiveWorkedHours.precision}"
+                                  shortDesc="#{bindings.VO_LeavesAndPolicyExceptions1.hints.EffectiveWorkedHours.tooltip}"
+                                  id="it2" readOnly="true">
+                      <f:validator binding="#{row.bindings.EffectiveWorkedHours.validator}"/>
+                    </af:inputText>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_LeavesAndPolicyExceptions1.hints.LeaveType.name}"
+                             filterable="true" sortable="false"
+                             headerText="Leave Type" id="c10" rendered="true">
+                    <af:inputText value="#{row.bindings.IsHalf.inputValue=='Y' ? 'Half ':''}#{row.bindings.LeaveType.inputValue}"
+                                  label="#{bindings.VO_LeavesAndPolicyExceptions1.hints.LeaveType.label}"
+                                  required="#{bindings.VO_LeavesAndPolicyExceptions1.hints.LeaveType.mandatory}"
+                                  columns="#{bindings.VO_LeavesAndPolicyExceptions1.hints.LeaveType.displayWidth}"
+                                  maximumLength="#{bindings.VO_LeavesAndPolicyExceptions1.hints.LeaveType.precision}"
+                                  shortDesc="#{bindings.VO_LeavesAndPolicyExceptions1.hints.LeaveType.tooltip}"
+                                  id="it12" readOnly="true">
+                      <f:validator binding="#{row.bindings.LeaveType.validator}"/>
+                    </af:inputText>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_LeavesAndPolicyExceptions1.hints.PolicyException.name}"
+                             filterable="false" sortable="false"
+                             headerText="Policy Exception Remarks" id="c2"
+                             width="300" rendered="true">
+                    <af:inputText value="#{row.bindings.PolicyException.inputValue}"
+                                  label="#{bindings.VO_LeavesAndPolicyExceptions1.hints.PolicyException.label}"
+                                  required="#{bindings.VO_LeavesAndPolicyExceptions1.hints.PolicyException.mandatory}"
+                                  columns="#{bindings.VO_LeavesAndPolicyExceptions1.hints.PolicyException.displayWidth}"
+                                  maximumLength="#{bindings.VO_LeavesAndPolicyExceptions1.hints.PolicyException.precision}"
+                                  shortDesc="#{bindings.VO_LeavesAndPolicyExceptions1.hints.PolicyException.tooltip}"
+                                  id="it4" readOnly="true">
+                      <f:validator binding="#{row.bindings.PolicyException.validator}"/>
+                    </af:inputText>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_LeavesAndPolicyExceptions1.hints.EmpAtdId.name}"
+                             filterable="true" sortable="false"
+                             headerText="#{bindings.VO_LeavesAndPolicyExceptions1.hints.EmpAtdId.label}"
+                             id="c13" rendered="false">
+                    <af:inputText value="#{row.bindings.EmpAtdId.inputValue}"
+                                  label="#{bindings.VO_LeavesAndPolicyExceptions1.hints.EmpAtdId.label}"
+                                  required="#{bindings.VO_LeavesAndPolicyExceptions1.hints.EmpAtdId.mandatory}"
+                                  columns="#{bindings.VO_LeavesAndPolicyExceptions1.hints.EmpAtdId.displayWidth}"
+                                  maximumLength="#{bindings.VO_LeavesAndPolicyExceptions1.hints.EmpAtdId.precision}"
+                                  shortDesc="#{bindings.VO_LeavesAndPolicyExceptions1.hints.EmpAtdId.tooltip}"
+                                  id="it8">
+                      <f:validator binding="#{row.bindings.EmpAtdId.validator}"/>
+                      <af:convertNumber groupingUsed="false"
+                                        pattern="#{bindings.VO_LeavesAndPolicyExceptions1.hints.EmpAtdId.format}"/>
+                    </af:inputText>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_LeavesAndPolicyExceptions1.hints.LeaveTypeId.name}"
+                             filterable="true" sortable="false"
+                             headerText="#{bindings.VO_LeavesAndPolicyExceptions1.hints.LeaveTypeId.label}"
+                             id="c6" rendered="false">
+                    <af:inputText value="#{row.bindings.LeaveTypeId.inputValue}"
+                                  label="#{bindings.VO_LeavesAndPolicyExceptions1.hints.LeaveTypeId.label}"
+                                  required="#{bindings.VO_LeavesAndPolicyExceptions1.hints.LeaveTypeId.mandatory}"
+                                  columns="#{bindings.VO_LeavesAndPolicyExceptions1.hints.LeaveTypeId.displayWidth}"
+                                  maximumLength="#{bindings.VO_LeavesAndPolicyExceptions1.hints.LeaveTypeId.precision}"
+                                  shortDesc="#{bindings.VO_LeavesAndPolicyExceptions1.hints.LeaveTypeId.tooltip}"
+                                  id="it7">
+                      <f:validator binding="#{row.bindings.LeaveTypeId.validator}"/>
+                      <af:convertNumber groupingUsed="false"
+                                        pattern="#{bindings.VO_LeavesAndPolicyExceptions1.hints.LeaveTypeId.format}"/>
+                    </af:inputText>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_LeavesAndPolicyExceptions1.hints.PolicyExceptionApprovedFlag.name}"
+                             filterable="true" sortable="false"
+                             headerText="#{bindings.VO_LeavesAndPolicyExceptions1.hints.PolicyExceptionApprovedFlag.label}"
+                             id="c9" rendered="false">
+                    <af:inputText value="#{row.bindings.PolicyExceptionApprovedFlag.inputValue}"
+                                  label="#{bindings.VO_LeavesAndPolicyExceptions1.hints.PolicyExceptionApprovedFlag.label}"
+                                  required="#{bindings.VO_LeavesAndPolicyExceptions1.hints.PolicyExceptionApprovedFlag.mandatory}"
+                                  columns="#{bindings.VO_LeavesAndPolicyExceptions1.hints.PolicyExceptionApprovedFlag.displayWidth}"
+                                  maximumLength="#{bindings.VO_LeavesAndPolicyExceptions1.hints.PolicyExceptionApprovedFlag.precision}"
+                                  shortDesc="#{bindings.VO_LeavesAndPolicyExceptions1.hints.PolicyExceptionApprovedFlag.tooltip}"
+                                  id="it3">
+                      <f:validator binding="#{row.bindings.PolicyExceptionApprovedFlag.validator}"/>
+                    </af:inputText>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_LeavesAndPolicyExceptions1.hints.LeaveApprovedFlag.name}"
+                             filterable="true" sortable="false"
+                             headerText="#{bindings.VO_LeavesAndPolicyExceptions1.hints.LeaveApprovedFlag.label}"
+                             id="c12" rendered="false">
+                    <af:inputText value="#{row.bindings.LeaveApprovedFlag.inputValue}"
+                                  label="#{bindings.VO_LeavesAndPolicyExceptions1.hints.LeaveApprovedFlag.label}"
+                                  required="#{bindings.VO_LeavesAndPolicyExceptions1.hints.LeaveApprovedFlag.mandatory}"
+                                  columns="#{bindings.VO_LeavesAndPolicyExceptions1.hints.LeaveApprovedFlag.displayWidth}"
+                                  maximumLength="#{bindings.VO_LeavesAndPolicyExceptions1.hints.LeaveApprovedFlag.precision}"
+                                  shortDesc="#{bindings.VO_LeavesAndPolicyExceptions1.hints.LeaveApprovedFlag.tooltip}"
+                                  id="it9">
+                      <f:validator binding="#{row.bindings.LeaveApprovedFlag.validator}"/>
+                    </af:inputText>
+                  </af:column>
+                  <af:column id="c11" rendered="false">
+                    <af:selectBooleanCheckbox value="#{row.bindings.Approve.inputValue}"
+                                              simple="true"
+                                              required="#{bindings.VO_LeavesAndPolicyExceptions1.hints.Approve.mandatory}"
+                                              shortDesc="#{bindings.VO_LeavesAndPolicyExceptions1.hints.Approve.tooltip}"
+                                              id="it5"
+                                              text=" #{row.bindings.PolicyExceptionApprovedFlag.inputValue == 'Y' or row.bindings.LeaveApprovedFlag.inputValue == 'Y' ? 'Approved' : row.bindings.PolicyExceptionApprovedFlag.inputValue == 'U' or row.bindings.LeaveApprovedFlag.inputValue == 'U' ? 'Unprocessed' : 'Disapproved'}"
+                                              contentStyle="#{row.bindings.PolicyExceptionApprovedFlag.inputValue == 'Y' or row.bindings.LeaveApprovedFlag.inputValue == 'Y' ? 'color:green;' : 'color:red'}"
+                                              label="Label 2">
+                      <f:validator binding="#{row.bindings.Approve.validator}"/>
+                    </af:selectBooleanCheckbox>
+                  </af:column>
+                  <af:column id="c14" headerText="Remaining Leaves" width="150"
+                             rendered="false">
+                    <af:panelGroupLayout id="pgl5" layout="vertical"
+                                         halign="center">
+                      <af:panelLabelAndMessage label="#{bindings.VO_LeavesAndPolicyExceptions1.hints.RemainingCasual.label}"
+                                               id="plam2">
+                        <af:outputText value="#{row.RemainingCasual}" id="ot4">
+                          <af:convertNumber groupingUsed="false"
+                                            pattern="#{bindings.VO_LeavesAndPolicyExceptions1.hints.RemainingCasual.format}"/>
+                        </af:outputText>
+                      </af:panelLabelAndMessage>
+                      <af:panelLabelAndMessage label="#{bindings.VO_LeavesAndPolicyExceptions1.hints.RemainingAnnual.label}"
+                                               id="plam1">
+                        <af:outputText value="#{row.RemainingAnnual}" id="ot3">
+                          <af:convertNumber groupingUsed="false"
+                                            pattern="#{bindings.VO_LeavesAndPolicyExceptions1.hints.RemainingAnnual.format}"/>
+                        </af:outputText>
+                      </af:panelLabelAndMessage>
+                    </af:panelGroupLayout>
+                  </af:column>
+                  <af:column id="c7" width="150" headerText="Actions">
+                    <af:panelGroupLayout id="pgl4" layout="horizontal">
+                      <af:commandButton text="Approve" id="cb2"
+                                        action="#{SupervisorApprovalsBean.approve}"
+                                        binding="#{SupervisorApprovalsBean.bapproveDisapprove}"
+                                        rendered="#{row.bindings.LeaveApprovedFlag.inputValue == 'N' or row.bindings.PolicyExceptionApprovedFlag.inputValue == 'N' ? 'true' : row.bindings.LeaveApprovedFlag.inputValue == 'U' or row.bindings.PolicyExceptionApprovedFlag.inputValue == 'U' ? 'true' : 'false'}"
+                                        inlineStyle="width:70px;color:green"/>
+                      <af:commandButton text="Disapprove" id="cb1"
+                                        action="#{SupervisorApprovalsBean.disapprove}"
+                                        rendered="#{row.bindings.LeaveApprovedFlag.inputValue == 'Y' or row.bindings.PolicyExceptionApprovedFlag.inputValue == 'Y' ? 'true' : row.bindings.LeaveApprovedFlag.inputValue == 'U' or row.bindings.PolicyExceptionApprovedFlag.inputValue == 'U' ? 'true' : 'false'}"
+                                        inlineStyle="width:70px;color:red"/>
+                    </af:panelGroupLayout>
+                  </af:column>
+                  <f:facet name="bodyContextMenu"/>
+                </af:table>
+              </af:panelHeader>
+            </af:panelGroupLayout>
+          </f:facet>
+        </af:pageTemplate>
+      </af:form>
+    </af:document>
+  </f:view>
+  <!--oracle-jdev-comment:preferred-managed-bean-name:SupervisorApprovalsBean-->
+</jsp:root>

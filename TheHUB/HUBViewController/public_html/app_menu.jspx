@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <f:view>
+    <af:document id="d1">
+      <af:form id="f1">
+        <af:pageTemplate viewId="/template/hub_template.jspx" id="pt1">
+          <f:facet name="header"/>
+          <f:facet name="footer"/>
+          <f:facet name="left"/>
+          <f:facet name="content">
+            <af:group id="g1">
+              <af:panelStretchLayout id="psl1" topHeight="33%"
+                                     bottomHeight="46%" startWidth="33%"
+                                     endWidth="43%"
+                                     inlineStyle="background-color:#eaedee;">
+                <f:facet name="bottom">
+                  <af:panelGroupLayout id="pgl6"/>
+                </f:facet>
+                <f:facet name="center">
+                  <af:panelHeader text=" " id="ph1" icon="/images/menu.png"
+                                  inlineStyle="border:1px #c7c8c9 solid">
+                    <f:facet name="context"/>
+                    <f:facet name="menuBar"/>
+                    <f:facet name="toolbar"/>
+                    <f:facet name="legend"/>
+                    <f:facet name="info"/>
+                    <af:panelGroupLayout id="pgl1" layout="vertical"
+                                         halign="center">
+                      <af:goLink text="Attendance #{sessionScope.is_hr}" id="gl1"
+                                 destination="employee_attendance.jspx"
+                                 inlineStyle="color:#207ebc; font-size:medium; font-weight:bold;"/>
+                      <af:goLink text="Approvals" id="gl2"
+                                 destination="SupervisorView/supervisor_responsibilities.jspx"
+                                 rendered="#{sessionScope.access_level == 'HOD' or sessionScope.access_level == 'SUPERVISOR' ?'true':'false'}"
+                                 inlineStyle="color:#207ebc; margin-top:10px; font-size:medium; font-weight:bold;"/>
+                    </af:panelGroupLayout>
+                  </af:panelHeader>
+                </f:facet>
+                <f:facet name="start">
+                  <af:panelGroupLayout id="pgl3">
+                    
+                  </af:panelGroupLayout>
+                </f:facet>
+                <f:facet name="end">
+                  <af:panelGroupLayout id="pgl7"/>
+                </f:facet>
+                <f:facet name="top">
+                  <af:panelGroupLayout id="pgl5"/>
+                </f:facet>
+              </af:panelStretchLayout>
+            </af:group>
+          </f:facet>
+        </af:pageTemplate>
+      </af:form>
+    </af:document>
+  </f:view>
+</jsp:root>

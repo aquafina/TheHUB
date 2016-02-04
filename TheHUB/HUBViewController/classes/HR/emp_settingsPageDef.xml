@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="emp_settingsPageDef" Package="HR">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="VO_EmpFlexi1" RangeSize="25"
+              DataControl="HubModuleDataControl" id="VO_EmpFlexi1Iterator"
+              ChangeEventPolicy="ppr"/>
+    <iterator Binds="VO_HolidayCalendar1" RangeSize="25"
+              DataControl="HubModuleDataControl"
+              id="VO_HolidayCalendar1Iterator"/>
+    <searchRegion Binds="VO_HolidayCalendar1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="VO_HolidayCalendar1Query"/>
+  </executables>
+  <bindings>
+    <listOfValues StaticList="false" IterBinding="VO_EmpFlexi1Iterator"
+                  Uses="LOV_FullNameChild" id="FullNameChild"/>
+    <attributeValues IterBinding="VO_EmpFlexi1Iterator" id="PersonId">
+      <AttrNames>
+        <Item Value="PersonId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_EmpFlexi1Iterator" id="EmpTypeId">
+      <AttrNames>
+        <Item Value="EmpTypeId"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="VO_EmpFlexi1Iterator" StaticList="false"
+          Uses="LOV_EmployeeType" id="EmployeeType" DTSupportsMRU="false"/>
+    <attributeValues IterBinding="VO_EmpFlexi1Iterator" id="HierarchyName">
+      <AttrNames>
+        <Item Value="HierarchyName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_EmpFlexi1Iterator" id="Mins">
+      <AttrNames>
+        <Item Value="Mins"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_EmpFlexi1Iterator" id="WorkingTime">
+      <AttrNames>
+        <Item Value="WorkingTime"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VO_EmpFlexi1Iterator" id="HoursFlexible1">
+      <AttrNames>
+        <Item Value="HoursFlexible"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="VO_EmpFlexi1Iterator" StaticList="false"
+          Uses="LOV_HoursFlexible" id="HoursFlexible" DTSupportsMRU="true"/>
+    <tree IterBinding="VO_HolidayCalendar1Iterator" id="VO_HolidayCalendar1">
+      <nodeDefinition DefName="hub.nishat.net.model.VO.HR.VO_HolidayCalendar"
+                      Name="VO_HolidayCalendar10">
+        <AttrNames>
+          <Item Value="TransactionDate"/>
+          <Item Value="DayOfWeek"/>
+          <Item Value="Description"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction"
+            DataControl="HubModuleDataControl"/>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<JavaBean xmlns="http://xmlns.oracle.com/adfm/beanmodel" version="11.1.1.64.93"
+          id="SalaryReport" Package="view.nishat.net.CustomDataControl"
+          BeanClass="view.nishat.net.CustomDataControl.SalaryReport"
+          isJavaBased="true">
+  <AccessorAttribute id="salaryReport" IsCollection="true"
+                     BeanClass="view.nishat.net.CustomDataControl.EmpPayHistory"
+                     CollectionBeanClass="UpdateableCollection"/>
+  <ConstructorMethod IsCollection="true"
+                     Type="view.nishat.net.CustomDataControl.SalaryReport"
+                     BeanClass="view.nishat.net.CustomDataControl.SalaryReport"
+                     id="SalaryReport"/>
+</JavaBean>

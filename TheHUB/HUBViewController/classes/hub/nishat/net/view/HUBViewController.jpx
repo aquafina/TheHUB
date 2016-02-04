@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE JboProject SYSTEM "jbo_03_01.dtd">
+<!---->
+<JboProject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="HUBViewController"
+  Version="11.1.1.64.93"
+  SeparateXMLFiles="true"
+  PackageName="hub.nishat.net.view"
+  ExportIntfPackage="">
+  <DesignTime>
+    <Attr Name="_jprName" Value="../../../../../HUBViewController.jpr"/>
+    <Attr Name="_NamedConnection" Value="xx_e_portal"/>
+  </DesignTime>
+</JboProject>

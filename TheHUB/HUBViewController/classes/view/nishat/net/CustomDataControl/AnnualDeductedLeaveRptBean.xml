@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<JavaBean xmlns="http://xmlns.oracle.com/adfm/beanmodel" version="11.1.1.64.93"
+          id="AnnualDeductedLeaveRptBean"
+          Package="view.nishat.net.CustomDataControl"
+          BeanClass="view.nishat.net.CustomDataControl.AnnualDeductedLeaveRptBean"
+          isJavaBased="true">
+  <Attribute Name="leaveID" Type="java.lang.String"/>
+  <Attribute Name="leaveType" Type="int"/>
+  <Attribute Name="leaveCause" Type="int"/>
+  <Attribute Name="userID" Type="int"/>
+  <Attribute Name="leaveDate" Type="java.util.Date"/>
+  <Attribute Name="jobStatus" Type="java.lang.String"/>
+  <Attribute Name="leaveTypeStr" Type="java.lang.String"/>
+  <Attribute Name="status" Type="java.lang.String"/>
+  <MethodAccessor IsCollection="false" Type="java.lang.String" id="toString"
+                  ReturnNodeName="Return"/>
+  <ConstructorMethod IsCollection="true"
+                     Type="view.nishat.net.CustomDataControl.AnnualDeductedLeaveRptBean"
+                     BeanClass="view.nishat.net.CustomDataControl.AnnualDeductedLeaveRptBean"
+                     id="AnnualDeductedLeaveRptBean"/>
+</JavaBean>

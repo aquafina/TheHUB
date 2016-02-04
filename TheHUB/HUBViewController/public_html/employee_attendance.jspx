@@ -1,0 +1,1334 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:dvt="http://xmlns.oracle.com/dss/adf/faces">
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <f:view>
+    <af:document id="d1">
+      <af:messages id="m1"/>
+      <af:form id="f1">
+        <af:pageTemplate viewId="/template/hub_template.jspx" id="pt1">
+          <f:facet name="header"/>
+          <f:facet name="footer"/>
+          <f:facet name="left">
+            <af:panelGroupLayout id="pgl3" layout="scroll"
+                                 inlineStyle="background-color:white;"
+                                 halign="center"
+                                 rendered="#{sessionScope.userid != null}">
+              <af:panelGroupLayout id="pgl5" layout="horizontal" halign="center"
+                                   inlineStyle="background-color:#eaedee;width:350px;">
+                   
+                <af:selectOneChoice value="#{bindings.Month.inputValue}"
+                                    label="#{bindings.Month.label}"
+                                    required="#{bindings.Month.hints.mandatory}"
+                                    shortDesc="#{bindings.Month.hints.tooltip}"
+                                    id="soc3"
+                                    valueChangeListener="#{AttendanceBean.monthChangedListener}"
+                                    autoSubmit="true"
+                                    binding="#{AttendanceBean.monthLov}">
+                  <f:selectItems value="#{bindings.Month.items}" id="si4"/>
+                </af:selectOneChoice>
+                <af:selectOneChoice value="#{bindings.Year.inputValue}"
+                                    label="#{bindings.Year.label}"
+                                    required="#{bindings.Year.hints.mandatory}"
+                                    shortDesc="#{bindings.Year.hints.tooltip}"
+                                    id="soc4"
+                                    valueChangeListener="#{AttendanceBean.yearChangedListener}"
+                                    binding="#{AttendanceBean.yearLOV}"
+                                    autoSubmit="true">
+                  <f:selectItems value="#{bindings.Year.items}" id="si5"/>
+                </af:selectOneChoice>
+              </af:panelGroupLayout>
+              <dvt:pivotTable id="pivotTable1" summary="Employee Leave Report"
+                              value="#{bindings.recordList.pivotTableModel}"
+                              sizing="fixed"
+                              inlineStyle="width:246px; height:81px;margin-bottom:5px;margin-top:7px"
+                              autoIndent="3"
+                              rendered="#{bindings.EmpType.inputValue == '5' ? 'false' : 'true'}"/>
+              <af:panelBox text="PanelBox2" id="pb6" rendered="false">
+                <f:facet name="toolbar"/>
+                <af:table value="#{bindings.list2.collectionModel}" var="row"
+                          rows="#{bindings.list2.rangeSize}"
+                          emptyText="#{bindings.list2.viewable ? 'No data to display.' : 'Access Denied.'}"
+                          fetchSize="#{bindings.list2.rangeSize}"
+                          rowBandingInterval="0"
+                          selectedRowKeys="#{bindings.list2.collectionModel.selectedRow}"
+                          selectionListener="#{bindings.list2.collectionModel.makeCurrent}"
+                          rowSelection="single" id="t6"
+                          partialTriggers="::soc3" contentDelivery="immediate">
+                  <af:column sortProperty="#{bindings.list2.hints.leaveID.name}"
+                             sortable="false"
+                             headerText="#{bindings.list2.hints.leaveID.label}"
+                             id="c59">
+                    <af:outputText value="#{row.leaveID}" id="ot30"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.list2.hints.leaveType.name}"
+                             sortable="false"
+                             headerText="#{bindings.list2.hints.leaveType.label}"
+                             id="c61">
+                    <af:outputText value="#{row.leaveType}" id="ot33"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.list2.hints.leaveCause.name}"
+                             sortable="false"
+                             headerText="#{bindings.list2.hints.leaveCause.label}"
+                             id="c65">
+                    <af:outputText value="#{row.leaveCause}" id="ot29"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.list2.hints.userID.name}"
+                             sortable="false"
+                             headerText="#{bindings.list2.hints.userID.label}"
+                             id="c62">
+                    <af:outputText value="#{row.userID}" id="ot32"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.list2.hints.leaveDate.name}"
+                             sortable="false"
+                             headerText="#{bindings.list2.hints.leaveDate.label}"
+                             id="c63">
+                    <af:outputText value="#{row.leaveDate}" id="ot31">
+                      <af:convertDateTime pattern="#{bindings.list2.hints.leaveDate.format}"/>
+                    </af:outputText>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.list2.hints.jobStatus.name}"
+                             sortable="false"
+                             headerText="#{bindings.list2.hints.jobStatus.label}"
+                             id="c60">
+                    <af:outputText value="#{row.jobStatus}" id="ot27"/>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.list2.hints.leaveTypeStr.name}"
+                             sortable="false"
+                             headerText="#{bindings.list2.hints.leaveTypeStr.label}"
+                             id="c64">
+                    <af:outputText value="#{row.leaveTypeStr}" id="ot28"/>
+                  </af:column>
+                </af:table>
+              </af:panelBox>
+              <af:commandButton text="Leaves to be deducted on July" id="cb7"
+                                rendered="false">
+                <af:showPopupBehavior popupId="::p4" triggerType="action"/>
+              </af:commandButton>
+              <af:panelBox text="Leave Details" id="pb5"
+                           rendered="#{bindings.EmpType.inputValue == '5' ? 'false' : 'true'}">
+                <f:facet name="toolbar"/>
+                <af:panelGroupLayout id="pgl14" layout="vertical">
+                  <af:panelHeader text=" " id="ph1">
+                    <f:facet name="context"/>
+                    <f:facet name="menuBar"/>
+                    <f:facet name="toolbar"/>
+                    <f:facet name="legend"/>
+                    <f:facet name="info"/>
+                    <af:table value="#{bindings.list1.collectionModel}"
+                              var="row" rows="#{bindings.list1.rangeSize}"
+                              emptyText="#{bindings.list1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                              fetchSize="#{bindings.list1.rangeSize}"
+                              rowBandingInterval="0"
+                              selectedRowKeys="#{bindings.list1.collectionModel.selectedRow}"
+                              selectionListener="#{bindings.list1.collectionModel.makeCurrent}"
+                              rowSelection="single" id="t4" width="100%">
+                      <af:column sortProperty="#{bindings.list1.hints.leaveID.name}"
+                                 sortable="false"
+                                 headerText="#{bindings.list1.hints.leaveID.label}"
+                                 id="c54" rendered="false">
+                        <af:outputText value="#{row.leaveID}" id="ot23"/>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.list1.hints.leaveType.name}"
+                                 sortable="false"
+                                 headerText="#{bindings.list1.hints.leaveType.label}"
+                                 id="c55" rendered="false">
+                        <af:outputText value="#{row.leaveType}" id="ot19"/>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.list1.hints.leaveCause.name}"
+                                 sortable="false"
+                                 headerText="#{bindings.list1.hints.leaveCause.label}"
+                                 id="c58" rendered="false">
+                        <af:outputText value="#{row.leaveCause}" id="ot22"/>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.list1.hints.userID.name}"
+                                 sortable="false"
+                                 headerText="#{bindings.list1.hints.userID.label}"
+                                 id="c45" rendered="false">
+                        <af:outputText value="#{row.userID}" id="ot21"/>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.list1.hints.leaveTypeStr.name}"
+                                 sortable="false"
+                                 headerText="Leave Type"
+                                 id="c53" rendered="true" align="center">
+                        <af:outputText value="#{row.leaveTypeStr}" id="ot18"/>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.list1.hints.leaveDate.name}"
+                                 sortable="false"
+                                 headerText="Date"
+                                 id="c56" align="center" width="60">
+                        <af:outputText value="#{row.leaveDate}" id="ot24">
+                          <af:convertDateTime pattern="#{bindings.list1.hints.leaveDate.format}"/>
+                        </af:outputText>
+                      </af:column>
+                      <af:column id="c73" headerText="Status" align="center">
+                        <af:outputText id="ot42"
+                                       value="#{row.status}"/>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.list1.hints.jobStatus.name}"
+                                 sortable="false"
+                                 headerText="#{bindings.list1.hints.jobStatus.label}"
+                                 id="c57" rendered="false">
+                        <af:outputText value="#{row.jobStatus}" id="ot20"/>
+                      </af:column>
+                    </af:table>
+                  </af:panelHeader>
+                </af:panelGroupLayout>
+                <af:inputText value="#{bindings.EmpId1.inputValue}"
+                              label="#{bindings.EmpId1.hints.label}"
+                              required="#{bindings.EmpId1.hints.mandatory}"
+                              columns="#{bindings.EmpId1.hints.displayWidth}"
+                              maximumLength="#{bindings.EmpId1.hints.precision}"
+                              shortDesc="#{bindings.EmpId1.hints.tooltip}"
+                              id="it45" visible="false">
+                  <f:validator binding="#{bindings.EmpId1.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.EmpId1.format}"/>
+                </af:inputText>
+                <af:inputText value="#{bindings.EmpType1.inputValue}"
+                              label="#{bindings.EmpType1.hints.label}"
+                              required="#{bindings.EmpType1.hints.mandatory}"
+                              columns="#{bindings.EmpType1.hints.displayWidth}"
+                              maximumLength="#{bindings.EmpType1.hints.precision}"
+                              shortDesc="#{bindings.EmpType1.hints.tooltip}"
+                              id="it46" visible="false">
+                  <f:validator binding="#{bindings.EmpType1.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.EmpType1.format}"/>
+                </af:inputText>
+              </af:panelBox>
+              <af:panelBox text="Missed Minutes" id="pb7"
+                           rendered="#{bindings.EmpType1.inputValue == '3'}">
+                <f:facet name="toolbar"/>
+                <af:table value="#{bindings.VO_MISSING_MINUTES1.collectionModel}"
+                          var="row"
+                          rows="#{bindings.VO_MISSING_MINUTES1.rangeSize}"
+                          emptyText="#{bindings.VO_MISSING_MINUTES1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                          fetchSize="#{bindings.VO_MISSING_MINUTES1.rangeSize}"
+                          rowBandingInterval="0" id="t8"
+                          partialTriggers="::soc3 ::soc4">
+                  <af:column sortProperty="#{bindings.VO_MISSING_MINUTES1.hints.AttendanceDate.name}"
+                             sortable="false"
+                             headerText="#{bindings.VO_MISSING_MINUTES1.hints.AttendanceDate.label}"
+                             id="c76">
+                    <af:outputText value="#{row.AttendanceDate}" id="ot46">
+                      <af:convertDateTime pattern="#{bindings.VO_MISSING_MINUTES1.hints.AttendanceDate.format}"/>
+                    </af:outputText>
+                  </af:column>
+                  <af:column sortProperty="#{bindings.VO_MISSING_MINUTES1.hints.MissingMinutes.name}"
+                             sortable="false"
+                             headerText="#{bindings.VO_MISSING_MINUTES1.hints.MissingMinutes.label}"
+                             id="c75">
+                    <af:outputText value="#{row.MissingMinutes}" id="ot45">
+                      <af:convertNumber groupingUsed="false"
+                                        pattern="#{bindings.VO_MISSING_MINUTES1.hints.MissingMinutes.format}"/>
+                    </af:outputText>
+                  </af:column>
+                </af:table>
+                <af:inputText value="#{bindings.EmpId.inputValue}"
+                              required="#{bindings.EmpId.hints.mandatory}"
+                              columns="#{bindings.EmpId.hints.displayWidth}"
+                              maximumLength="#{bindings.EmpId.hints.precision}"
+                              shortDesc="#{bindings.EmpId.hints.tooltip}"
+                              id="it43" visible="false">
+                  <f:validator binding="#{bindings.EmpId.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.EmpId.format}"/>
+                </af:inputText>
+              </af:panelBox>
+              <af:panelBox text="Salary" id="pb3" disclosed="false"
+                           rendered="false">
+                <f:facet name="toolbar"/>
+                <af:panelFormLayout id="pfl2">
+                  <af:panelLabelAndMessage label="#{bindings.empSalary.hints.label}"
+                                           id="plam1">
+                    <af:outputText value="#{bindings.empSalary.inputValue}"
+                                   id="ot10"/>
+                  </af:panelLabelAndMessage>
+                  <af:panelLabelAndMessage label="#{bindings.month.hints.label}"
+                                           id="plam2">
+                    <af:outputText value="#{bindings.month.inputValue}"
+                                   id="ot9"/>
+                  </af:panelLabelAndMessage>
+                  <f:facet name="footer">
+                    <af:panelGroupLayout layout="horizontal" id="pgl9">
+                      <af:commandButton actionListener="#{bindings.First.execute}"
+                                        text="First"
+                                        disabled="#{!bindings.First.enabled}"
+                                        partialSubmit="true" id="cb9"/>
+                      <af:commandButton actionListener="#{bindings.Previous.execute}"
+                                        text="Previous"
+                                        disabled="#{!bindings.Previous.enabled}"
+                                        partialSubmit="true" id="cb12"/>
+                      <af:commandButton actionListener="#{bindings.Next.execute}"
+                                        text="Next"
+                                        disabled="#{!bindings.Next.enabled}"
+                                        partialSubmit="true" id="cb11"/>
+                      <af:commandButton actionListener="#{bindings.Last.execute}"
+                                        text="Last"
+                                        disabled="#{!bindings.Last.enabled}"
+                                        partialSubmit="true" id="cb10"/>
+                    </af:panelGroupLayout>
+                  </f:facet>
+                </af:panelFormLayout>
+              </af:panelBox>
+              <af:outputText value="#{bindings.MonthNumber.inputValue}"
+                             id="ot41" visible="false">
+                <af:convertNumber groupingUsed="false"
+                                  pattern="#{bindings.MonthNumber.format}"/>
+              </af:outputText>
+              <af:panelBox text="Salary" id="pb4"
+                           disclosureListener="#{AttendanceBean.salaryBoxListener}"
+                           disclosed="false"
+                           rendered="#{bindings.EmpType.inputValue == '5' ? 'false' : 'true'}">
+                <f:facet name="toolbar">
+                  <af:group id="g1">
+                    <af:panelGroupLayout id="pgl11" layout="horizontal">
+                      <af:selectOneChoice label="Month" id="soc6"
+                                          binding="#{AttendanceBean.sal_monthLov}">
+                        <af:selectItem label="January" value="01" id="si12"/>
+                        <af:selectItem label="February" value="02" id="si20"/>
+                        <af:selectItem label="March" value="03" id="si15"/>
+                        <af:selectItem label="April" value="04" id="si14"/>
+                        <af:selectItem label="May" value="05" id="si21"/>
+                        <af:selectItem label="June" value="06" id="si22"/>
+                        <af:selectItem label="July" value="07" id="si16"/>
+                        <af:selectItem label="August" value="08" id="si19"/>
+                        <af:selectItem label="September" value="09" id="si17"/>
+                        <af:selectItem label="October" value="10" id="si13"/>
+                        <af:selectItem label="November" value="11" id="si18"/>
+                        <af:selectItem label="December" value="12" id="si23"/>
+                      </af:selectOneChoice>
+                      <af:selectOneChoice label="Year" id="soc5"
+                                          binding="#{AttendanceBean.sal_yearLov}">
+                        <af:selectItem label="2014" value="2014" id="si87"/>
+                        <af:selectItem label="2015" value="2015" id="si9"/>
+                        <af:selectItem label="2016" value="2016" id="si11"/>
+                        <af:selectItem label="2017" value="2017" id="si6"/>
+                        <af:selectItem label="2018" value="2018" id="si8"/>
+                        <af:selectItem label="2019" value="2019" id="si10"/>
+                        <af:selectItem label="2020" value="2020" id="si7"/>
+                      </af:selectOneChoice>
+                    </af:panelGroupLayout>
+                  </af:group>
+                </f:facet>
+                <af:panelFormLayout id="pfl3">
+                  <f:facet name="footer">
+                    <af:group id="g2">
+                      <af:panelGroupLayout id="pgl12">
+                        <af:commandButton text="Get Salary" id="cb13"
+                                          action="#{AttendanceBean.getSal}"/>
+                      </af:panelGroupLayout>
+                    </af:group>
+                  </f:facet>
+                  <af:inputText label="Basic:" id="it50"
+                                value="#{AttendanceBean.var_sal_basic}"
+                                disabled="true"/>
+                  <af:spacer width="10" height="10" id="s3"/>
+                  <af:outputText value="Allowance" id="ot12"
+                                 inlineStyle="color:green;"/>
+                  <af:inputText label="H.Rent" id="it52"
+                                value="#{AttendanceBean.var_sal_hrent}"
+                                disabled="true"/>
+                  <af:inputText label="Util" id="it55"
+                                value="#{AttendanceBean.var_sal_util}"
+                                disabled="true"/>
+                  <af:inputText label="Allowance" id="it41"
+                                value="#{AttendanceBean.var_sal_allowence}"
+                                disabled="true"
+                                rendered="#{AttendanceBean.var_sal_allowence != 0}"/>
+                  <af:outputText value="#{AttendanceBean.var_sal_gross} PKR" id="ot14"
+                                 inlineStyle="color:black; font-weight:bold;"/>
+                  <af:spacer width="10" height="10" id="s1"/>
+                  <af:spacer width="10" height="10" id="s2"/>
+                  <af:outputText value="Deductions" id="ot11"
+                                 inlineStyle="color:red;margin-top:20px"/>
+                  <af:inputText label="E.O.B.I" id="it51"
+                                value="#{AttendanceBean.var_sal_eobi}"
+                                disabled="true"/>
+                  <af:inputText label="P.Fund" id="it54"
+                                value="#{AttendanceBean.var_sal_pfund}"
+                                disabled="true"/>
+                  <af:inputText label="I.Tax" id="it56"
+                                value="#{AttendanceBean.var_sal_itax}"
+                                disabled="true"
+                                rendered="#{AttendanceBean.var_sal_itax != 0}"/>
+                  <af:inputText label="other Deductions" id="it42"
+                                value="#{AttendanceBean.var_sal_total_deduction}"
+                                disabled="true"
+                                rendered="#{AttendanceBean.var_sal_total_deduction != 0}"/>
+                  <af:outputText value="#{AttendanceBean.var_sal_netsalary} PKR" id="ot15"
+                                 inlineStyle="color:black; font-weight:bold;"/>
+                </af:panelFormLayout>
+                <af:inputText value="#{bindings.EmpType.inputValue}"
+                              label="#{bindings.EmpType.hints.label}"
+                              required="#{bindings.EmpType.hints.mandatory}"
+                              columns="#{bindings.EmpType.hints.displayWidth}"
+                              maximumLength="#{bindings.EmpType.hints.precision}"
+                              shortDesc="#{bindings.EmpType.hints.tooltip}"
+                              id="it44">
+                  <f:validator binding="#{bindings.EmpType.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.EmpType.format}"/>
+                </af:inputText>
+              </af:panelBox>
+            </af:panelGroupLayout>
+          </f:facet>
+          <f:facet name="content">
+            <af:panelGroupLayout id="pgl1" layout="vertical"
+                                 inlineStyle="background-color:#eaedee;"
+                                 halign="center">
+              <af:panelGroupLayout id="pgl10" layout="vertical"
+                                   rendered="#{sessionScope.userid != null}"
+                                   halign="center">
+                <af:panelBox text="Attendance ✔"
+                             id="pb1"
+                             binding="#{AttendanceBean.attendancePanel}"
+                             partialTriggers="soc3">
+                  <f:facet name="toolbar">
+                    <af:group id="g3">
+                      <af:toolbar id="t5">
+                        <af:outputText id="ot26"/>
+                      </af:toolbar>
+                      <af:outputText value="#{bindings.Month.inputValue}"
+                                     id="ot44" partialTriggers="soc3"
+                                     binding="#{AttendanceBean.curr_month}"
+                                     visible="false">
+                        <af:convertNumber groupingUsed="false"
+                                          pattern="#{bindings.MonthNumber.format}"/>
+                      </af:outputText>
+                      <af:inputText value="#{bindings.Year.attributeValue}"
+                                    label="#{bindings.Year1.hints.label}"
+                                    required="#{bindings.Year1.hints.mandatory}"
+                                    columns="#{bindings.Year1.hints.displayWidth}"
+                                    maximumLength="#{bindings.Year1.hints.precision}"
+                                    shortDesc="#{bindings.Year1.hints.tooltip}"
+                                    id="it16" partialTriggers="soc4"
+                                    visible="false">
+                        <f:validator binding="#{bindings.Year1.validator}"/>
+                      </af:inputText>
+                    </af:group>
+                  </f:facet>
+                  <af:panelCollection id="pc1"
+                                      inlineStyle="width:inherit; height:430.0px;">
+                    <f:facet name="menus"/>
+                    <f:facet name="toolbar">
+                      <af:toolbar id="t3">
+                        <af:query id="qryId1" headerText="Search"
+                                  disclosed="true"
+                                  value="#{bindings.VOAttendanceCriteriaQuery.queryDescriptor}"
+                                  model="#{bindings.VOAttendanceCriteriaQuery.queryModel}"
+                                  queryListener="#{bindings.VOAttendanceCriteriaQuery.processQuery}"
+                                  queryOperationListener="#{bindings.VOAttendanceCriteriaQuery.processQueryOperation}"
+                                  resultComponentId="::t1" displayMode="simple"
+                                  visible="false"/>
+                        <af:commandButton text="Apply" id="cb1">
+                          <af:showPopupBehavior popupId=":::p2"
+                                                triggerType="action"
+                                                align="endAfter"/>
+                        </af:commandButton>
+                        <af:commandButton text="Export" id="cb3">
+                          <af:exportCollectionActionListener exportedId="t1"
+                                                             type="excelHTML"
+                                                             filename="attendance.xls"/>
+                        </af:commandButton>
+                        <af:commandButton text="Leave Deduction Policy Chart" id="cb14"
+                                          rendered="false">
+                          <af:showPopupBehavior popupId=":::p3"/>
+                        </af:commandButton>
+                        <af:commandButton text="Hierarchy" id="cb8"
+                                          action="#{AttendanceBean.mail}"
+                                          rendered="false"/>
+                        <af:commandButton text="Post" id="cb5"
+                                          action="#{AttendanceBean.post}"
+                                          disabled="#{TestBean.year > bindings.Year.attributeValue ? 'false': 'true'}"
+                                          partialTriggers="::soc3 ::soc4"/>
+                        <af:commandButton actionListener="#{bindings.Commit.execute}"
+                                          text="Save" id="cb6"
+                                          rendered="false"/>
+                        
+                      </af:toolbar>
+                    </f:facet>
+                    <f:facet name="statusbar"/>
+                    <af:table value="#{bindings.VO_Attendance2.collectionModel}"
+                              var="row"
+                              rows="#{bindings.VO_Attendance2.rangeSize}"
+                              emptyText="#{bindings.VO_Attendance2.viewable ? 'No data to display.' : 'Access Denied.'}"
+                              fetchSize="#{bindings.VO_Attendance2.rangeSize}"
+                              rowBandingInterval="0"
+                              filterModel="#{bindings.VO_Attendance2Query.queryDescriptor}"
+                              queryListener="#{bindings.VO_Attendance2Query.processQuery}"
+                              filterVisible="true" varStatus="vs"
+                              selectedRowKeys="#{bindings.VO_Attendance2.collectionModel.selectedRow}"
+                              selectionListener="#{bindings.VO_Attendance2.collectionModel.makeCurrent}"
+                              rowSelection="single" id="t1"
+                              partialTriggers=":::soc3 :::soc4"
+                              binding="#{AttendanceBean.attTable}">
+                      <af:column sortProperty="#{bindings.VO_Attendance2.hints.EmpAtdId.name}"
+                                 filterable="true" sortable="true"
+                                 headerText="#{bindings.VO_Attendance2.hints.EmpAtdId.label}"
+                                 id="c30" rendered="false">
+                        <af:inputText value="#{row.bindings.EmpAtdId.inputValue}"
+                                      label="#{bindings.VO_Attendance2.hints.EmpAtdId.label}"
+                                      required="#{bindings.VO_Attendance2.hints.EmpAtdId.mandatory}"
+                                      columns="#{bindings.VO_Attendance2.hints.EmpAtdId.displayWidth}"
+                                      maximumLength="#{bindings.VO_Attendance2.hints.EmpAtdId.precision}"
+                                      shortDesc="#{bindings.VO_Attendance2.hints.EmpAtdId.tooltip}"
+                                      id="it15">
+                          <f:validator binding="#{row.bindings.EmpAtdId.validator}"/>
+                          <af:convertNumber groupingUsed="false"
+                                            pattern="#{bindings.VO_Attendance2.hints.EmpAtdId.format}"/>
+                        </af:inputText>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.VO_Attendance2.hints.EmpId.name}"
+                                 filterable="true" sortable="true"
+                                 headerText="#{bindings.VO_Attendance2.hints.EmpId.label}"
+                                 id="c27" rendered="false">
+                        <af:inputText value="#{row.bindings.EmpId.inputValue}"
+                                      label="#{bindings.VO_Attendance2.hints.EmpId.label}"
+                                      required="#{bindings.VO_Attendance2.hints.EmpId.mandatory}"
+                                      columns="#{bindings.VO_Attendance2.hints.EmpId.displayWidth}"
+                                      maximumLength="#{bindings.VO_Attendance2.hints.EmpId.precision}"
+                                      shortDesc="#{bindings.VO_Attendance2.hints.EmpId.tooltip}"
+                                      id="it4">
+                          <f:validator binding="#{row.bindings.EmpId.validator}"/>
+                          <af:convertNumber groupingUsed="false"
+                                            pattern="#{bindings.VO_Attendance2.hints.EmpId.format}"/>
+                        </af:inputText>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.VO_Attendance2.hints.EmpName.name}"
+                                 filterable="true" sortable="true"
+                                 headerText="#{bindings.VO_Attendance2.hints.EmpName.label}"
+                                 id="c15" rendered="false">
+                        <af:inputText value="#{row.bindings.EmpName.inputValue}"
+                                      label="#{bindings.VO_Attendance2.hints.EmpName.label}"
+                                      required="#{bindings.VO_Attendance2.hints.EmpName.mandatory}"
+                                      columns="#{bindings.VO_Attendance2.hints.EmpName.displayWidth}"
+                                      maximumLength="#{bindings.VO_Attendance2.hints.EmpName.precision}"
+                                      shortDesc="#{bindings.VO_Attendance2.hints.EmpName.tooltip}"
+                                      id="it12">
+                          <f:validator binding="#{row.bindings.EmpName.validator}"/>
+                        </af:inputText>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.VO_Attendance2.hints.CardNum.name}"
+                                 filterable="true" sortable="true"
+                                 headerText="#{bindings.VO_Attendance2.hints.CardNum.label}"
+                                 id="c23" rendered="false">
+                        <af:inputText value="#{row.bindings.CardNum.inputValue}"
+                                      label="#{bindings.VO_Attendance2.hints.CardNum.label}"
+                                      required="#{bindings.VO_Attendance2.hints.CardNum.mandatory}"
+                                      columns="#{bindings.VO_Attendance2.hints.CardNum.displayWidth}"
+                                      maximumLength="#{bindings.VO_Attendance2.hints.CardNum.precision}"
+                                      shortDesc="#{bindings.VO_Attendance2.hints.CardNum.tooltip}"
+                                      id="it24">
+                          <f:validator binding="#{row.bindings.CardNum.validator}"/>
+                        </af:inputText>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.VO_Attendance2.hints.ExpectedWorkHours.name}"
+                                 filterable="true" sortable="true"
+                                 headerText="#{bindings.VO_Attendance2.hints.ExpectedWorkHours.label}"
+                                 id="c28" rendered="false">
+                        <af:inputText value="#{row.bindings.ExpectedWorkHours.inputValue}"
+                                      label="#{bindings.VO_Attendance2.hints.ExpectedWorkHours.label}"
+                                      required="#{bindings.VO_Attendance2.hints.ExpectedWorkHours.mandatory}"
+                                      columns="#{bindings.VO_Attendance2.hints.ExpectedWorkHours.displayWidth}"
+                                      maximumLength="#{bindings.VO_Attendance2.hints.ExpectedWorkHours.precision}"
+                                      shortDesc="#{bindings.VO_Attendance2.hints.ExpectedWorkHours.tooltip}"
+                                      id="it19">
+                          <f:validator binding="#{row.bindings.ExpectedWorkHours.validator}"/>
+                          <af:convertNumber groupingUsed="false"
+                                            pattern="#{bindings.VO_Attendance2.hints.ExpectedWorkHours.format}"/>
+                        </af:inputText>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.VO_Attendance2.hints.MinInTime.name}"
+                                 filterable="true" sortable="true"
+                                 headerText="#{bindings.VO_Attendance2.hints.MinInTime.label}"
+                                 id="c1" rendered="false">
+                        <f:facet name="filter"/>
+                        <af:inputDate value="#{row.bindings.MinInTime.inputValue}"
+                                      label="#{bindings.VO_Attendance2.hints.MinInTime.label}"
+                                      required="#{bindings.VO_Attendance2.hints.MinInTime.mandatory}"
+                                      shortDesc="#{bindings.VO_Attendance2.hints.MinInTime.tooltip}"
+                                      id="id5">
+                          <f:validator binding="#{row.bindings.MinInTime.validator}"/>
+                          <af:convertDateTime pattern="#{bindings.VO_Attendance2.hints.MinInTime.format}"/>
+                        </af:inputDate>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.VO_Attendance2.hints.MaxOutTime.name}"
+                                 filterable="true" sortable="true"
+                                 headerText="#{bindings.VO_Attendance2.hints.MaxOutTime.label}"
+                                 id="c22" rendered="false">
+                        <f:facet name="filter"/>
+                        <af:inputDate value="#{row.bindings.MaxOutTime.inputValue}"
+                                      label="#{bindings.VO_Attendance2.hints.MaxOutTime.label}"
+                                      required="#{bindings.VO_Attendance2.hints.MaxOutTime.mandatory}"
+                                      shortDesc="#{bindings.VO_Attendance2.hints.MaxOutTime.tooltip}"
+                                      id="id2">
+                          <f:validator binding="#{row.bindings.MaxOutTime.validator}"/>
+                          <af:convertDateTime pattern="#{bindings.VO_Attendance2.hints.MaxOutTime.format}"/>
+                        </af:inputDate>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.VO_Attendance2.hints.PreviousDayOutTime.name}"
+                                 filterable="true" sortable="true"
+                                 headerText="#{bindings.VO_Attendance2.hints.PreviousDayOutTime.label}"
+                                 id="c2" rendered="false">
+                        <af:inputText value="#{row.bindings.PreviousDayOutTime.inputValue}"
+                                      label="#{bindings.VO_Attendance2.hints.PreviousDayOutTime.label}"
+                                      required="#{bindings.VO_Attendance2.hints.PreviousDayOutTime.mandatory}"
+                                      columns="#{bindings.VO_Attendance2.hints.PreviousDayOutTime.displayWidth}"
+                                      maximumLength="#{bindings.VO_Attendance2.hints.PreviousDayOutTime.precision}"
+                                      shortDesc="#{bindings.VO_Attendance2.hints.PreviousDayOutTime.tooltip}"
+                                      id="it13">
+                          <f:validator binding="#{row.bindings.PreviousDayOutTime.validator}"/>
+                        </af:inputText>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.VO_Attendance2.hints.PreviousDayEffectiveHours.name}"
+                                 filterable="true" sortable="true"
+                                 headerText="#{bindings.VO_Attendance2.hints.PreviousDayEffectiveHours.label}"
+                                 id="c8" rendered="false">
+                        <af:inputText value="#{row.bindings.PreviousDayEffectiveHours.inputValue}"
+                                      label="#{bindings.VO_Attendance2.hints.PreviousDayEffectiveHours.label}"
+                                      required="#{bindings.VO_Attendance2.hints.PreviousDayEffectiveHours.mandatory}"
+                                      columns="#{bindings.VO_Attendance2.hints.PreviousDayEffectiveHours.displayWidth}"
+                                      maximumLength="#{bindings.VO_Attendance2.hints.PreviousDayEffectiveHours.precision}"
+                                      shortDesc="#{bindings.VO_Attendance2.hints.PreviousDayEffectiveHours.tooltip}"
+                                      id="it10">
+                          <f:validator binding="#{row.bindings.PreviousDayEffectiveHours.validator}"/>
+                        </af:inputText>
+                      </af:column>
+                      <af:column id="c47" rendered="false">
+                        <af:inputText value="#{row.bindings.Description.inputValue}"
+                                      simple="true"
+                                      required="#{bindings.VO_Attendance2.hints.Description.mandatory}"
+                                      columns="#{bindings.VO_Attendance2.hints.Description.displayWidth}"
+                                      maximumLength="#{bindings.VO_Attendance2.hints.Description.precision}"
+                                      shortDesc="#{bindings.VO_Attendance2.hints.Description.tooltip}"
+                                      id="it38">
+                          <f:validator binding="#{row.bindings.Description.validator}"/>
+                        </af:inputText>
+                      </af:column>
+                      <af:column id="c50" rendered="false">
+                        <af:inputText value="#{row.bindings.LeaveCancelled.inputValue}"
+                                      simple="true"
+                                      required="#{bindings.VO_Attendance2.hints.LeaveCancelled.mandatory}"
+                                      columns="#{bindings.VO_Attendance2.hints.LeaveCancelled.displayWidth}"
+                                      maximumLength="#{bindings.VO_Attendance2.hints.LeaveCancelled.precision}"
+                                      shortDesc="#{bindings.VO_Attendance2.hints.LeaveCancelled.tooltip}"
+                                      id="it40">
+                          <f:validator binding="#{row.bindings.LeaveCancelled.validator}"/>
+                        </af:inputText>
+                      </af:column>
+                      <af:column id="c52" rendered="false">
+                        <af:outputText value="#{row.EmpType}" id="ot8">
+                          <af:convertNumber groupingUsed="false"
+                                            pattern="#{bindings.VO_Attendance2.hints.EmpType.format}"/>
+                        </af:outputText>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.VO_Attendance2.hints.AttendanceDate.name}"
+                                 filterable="false" sortable="true"
+                                 headerText="Attendance Date" id="c3"
+                                 align="left" width="200">
+                        <f:facet name="filter"/>
+                        <af:inputDate value="#{row.bindings.AttendanceDate.inputValue}"
+                                      label="#{bindings.VO_Attendance2.hints.AttendanceDate.label}"
+                                      required="#{bindings.VO_Attendance2.hints.AttendanceDate.mandatory}"
+                                      shortDesc="#{bindings.VO_Attendance2.hints.AttendanceDate.tooltip}"
+                                      id="id6" readOnly="true"
+                                      contentStyle="#{row.bindings.Description.inputValue == 'SATURDAY_OFF' or row.bindings.Day.inputValue == 'SUNDAY' ? 'padding:10px;font-weight:normal;color:black':'padding:10px;font-weight:normal'}">
+                          <f:validator binding="#{row.bindings.AttendanceDate.validator}"/>
+                          <af:convertDateTime pattern="#{bindings.VO_Attendance2.hints.AttendanceDate.format}"
+                                              dateStyle="full"/>
+                        </af:inputDate>
+                      </af:column>
+                      <af:column id="c44" rendered="true" visible="false">
+                        <af:outputText value="#{TestBean.now > row.bindings.AttendanceDate.inputValue}" id="ot16"/>
+                      </af:column>
+                      <af:column id="c42" headerText="Day Description"
+                                 rendered="false">
+                        <af:inputText value="#{row.bindings.Description.inputValue}"
+                                      simple="true"
+                                      required="#{bindings.VO_Attendance2.hints.Description.mandatory}"
+                                      columns="#{bindings.VO_Attendance2.hints.Description.displayWidth}"
+                                      maximumLength="#{bindings.VO_Attendance2.hints.Description.precision}"
+                                      shortDesc="#{bindings.VO_Attendance2.hints.Description.tooltip}"
+                                      id="it34">
+                          <f:validator binding="#{row.bindings.Description.validator}"/>
+                        </af:inputText>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.VO_Attendance2.hints.Intime.name}"
+                                 filterable="false" sortable="true"
+                                 headerText="In Time" id="c11" align="center">
+                        <af:inputText value="#{row.bindings.Intime.inputValue} "
+                                      label="#{bindings.VO_Attendance2.hints.Intime.label}"
+                                      required="#{bindings.VO_Attendance2.hints.Intime.mandatory}"
+                                      columns="#{bindings.VO_Attendance2.hints.Intime.displayWidth}"
+                                      maximumLength="#{bindings.VO_Attendance2.hints.Intime.precision}"
+                                      shortDesc="#{bindings.VO_Attendance2.hints.Intime.tooltip}"
+                                      id="it3">
+                          <f:validator binding="#{row.bindings.Intime.validator}"/>
+                        </af:inputText>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.VO_Attendance2.hints.Outtime.name}"
+                                 filterable="false" sortable="true" id="c33"
+                                 headerText="Out Time" align="center">
+                        <af:inputText value="#{ row.bindings.Outtime.inputValue} "
+                                      label="#{bindings.VO_Attendance2.hints.Outtime.label}"
+                                      required="#{bindings.VO_Attendance2.hints.Outtime.mandatory}"
+                                      columns="#{bindings.VO_Attendance2.hints.Outtime.displayWidth}"
+                                      maximumLength="#{bindings.VO_Attendance2.hints.Outtime.precision}"
+                                      shortDesc="#{bindings.VO_Attendance2.hints.Outtime.tooltip}"
+                                      id="it14">
+                          <f:validator binding="#{row.bindings.Outtime.validator}"/>
+                        </af:inputText>
+                      </af:column>
+                      <af:column id="c77" align="center"
+                                 headerText="Hours Worked"
+                                 rendered="#{bindings.EmpType1.inputValue == '3'}">
+                        <af:outputText value="#{row.Total}" id="ot25"/>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.VO_Attendance2.hints.EffectiveWorkedHours.name}"
+                                 filterable="false" sortable="true"
+                                 headerText="Hours Worked" id="c4"
+                                 align="center"
+                                 rendered="#{bindings.EmpType1.inputValue != '3'}"
+                                 visible="true">
+                        <af:outputText
+                                       shortDesc="#{bindings.VO_Attendance2.hints.EffectiveWorkedHours.tooltip}"
+                                       id="it1ghf6"
+                                       
+                                       value="#{(row.bindings.AttendanceDate.inputValue lt TestBean.now and row.bindings.EffectiveWorkedHours.inputValue eq null and row.bindings.Day.inputValue ne 'SUNDAY' and row.bindings.Description.inputValue eq null and row.bindings.LeaveToday.inputValue eq null) ? 'Absent' : row.bindings.EffectiveWorkedHours.inputValue }" inlineStyle="#{(row.bindings.AttendanceDate.inputValue lt TestBean.now and row.bindings.EffectiveWorkedHours.inputValue eq null and row.bindings.Day.inputValue ne 'SUNDAY' and row.bindings.Description.inputValue eq null and row.bindings.LeaveToday.inputValue eq null) ? 'color:red' :' '}
+" rendered="true">
+                        </af:outputText>
+                      </af:column>
+                      <af:column id="c51" headerText="Missing Time"
+                                 align="center"
+                                 rendered="#{bindings.EmpId.inputValue == '3'}">
+                        <af:outputText value="#{ row.HoursMissing} " id="ot7"
+                                       rendered="#{(row.EmpType == '2' or  row.EmpType == '3' ) ? 'true' : 'false' }"/>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.VO_Attendance2.hints.MaxStartTime.name}"
+                                 filterable="true" sortable="true"
+                                 headerText="#{bindings.VO_Attendance2.hints.MaxStartTime.label}"
+                                 id="c5" rendered="false">
+                        <af:inputText value="#{row.bindings.MaxStartTime.inputValue}"
+                                      label="#{bindings.VO_Attendance2.hints.MaxStartTime.label}"
+                                      required="#{bindings.VO_Attendance2.hints.MaxStartTime.mandatory}"
+                                      columns="#{bindings.VO_Attendance2.hints.MaxStartTime.displayWidth}"
+                                      maximumLength="#{bindings.VO_Attendance2.hints.MaxStartTime.precision}"
+                                      shortDesc="#{bindings.VO_Attendance2.hints.MaxStartTime.tooltip}"
+                                      id="it20">
+                          <f:validator binding="#{row.bindings.MaxStartTime.validator}"/>
+                        </af:inputText>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.VO_Attendance2.hints.MaxEndTime.name}"
+                                 filterable="true" sortable="true"
+                                 headerText="#{bindings.VO_Attendance2.hints.MaxEndTime.label}"
+                                 id="c12" rendered="false">
+                        <af:inputText value="#{row.bindings.MaxEndTime.inputValue}"
+                                      label="#{bindings.VO_Attendance2.hints.MaxEndTime.label}"
+                                      required="#{bindings.VO_Attendance2.hints.MaxEndTime.mandatory}"
+                                      columns="#{bindings.VO_Attendance2.hints.MaxEndTime.displayWidth}"
+                                      maximumLength="#{bindings.VO_Attendance2.hints.MaxEndTime.precision}"
+                                      shortDesc="#{bindings.VO_Attendance2.hints.MaxEndTime.tooltip}"
+                                      id="it26">
+                          <f:validator binding="#{row.bindings.MaxEndTime.validator}"/>
+                        </af:inputText>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.VO_Attendance2.hints.EndTime.name}"
+                                 filterable="true" sortable="true"
+                                 headerText="#{bindings.VO_Attendance2.hints.EndTime.label}"
+                                 id="c21" rendered="false">
+                        <af:inputText value="#{row.bindings.EndTime.inputValue}"
+                                      label="#{bindings.VO_Attendance2.hints.EndTime.label}"
+                                      required="#{bindings.VO_Attendance2.hints.EndTime.mandatory}"
+                                      columns="#{bindings.VO_Attendance2.hints.EndTime.displayWidth}"
+                                      maximumLength="#{bindings.VO_Attendance2.hints.EndTime.precision}"
+                                      shortDesc="#{bindings.VO_Attendance2.hints.EndTime.tooltip}"
+                                      id="it27">
+                          <f:validator binding="#{row.bindings.EndTime.validator}"/>
+                        </af:inputText>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.VO_Attendance2.hints.StartTime.name}"
+                                 filterable="true" sortable="true"
+                                 headerText="#{bindings.VO_Attendance2.hints.StartTime.label}"
+                                 id="c17" rendered="false">
+                        <af:inputText value="#{row.bindings.StartTime.inputValue}"
+                                      label="#{bindings.VO_Attendance2.hints.StartTime.label}"
+                                      required="#{bindings.VO_Attendance2.hints.StartTime.mandatory}"
+                                      columns="#{bindings.VO_Attendance2.hints.StartTime.displayWidth}"
+                                      maximumLength="#{bindings.VO_Attendance2.hints.StartTime.precision}"
+                                      shortDesc="#{bindings.VO_Attendance2.hints.StartTime.tooltip}"
+                                      id="it18">
+                          <f:validator binding="#{row.bindings.StartTime.validator}"/>
+                        </af:inputText>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.VO_Attendance2.hints.LeaveTypeId.name}"
+                                 filterable="true" sortable="true"
+                                 headerText="#{bindings.VO_Attendance2.hints.LeaveTypeId.label}"
+                                 id="c13" rendered="false">
+                        <af:inputText value="#{row.bindings.LeaveTypeId.inputValue}"
+                                      label="#{bindings.VO_Attendance2.hints.LeaveTypeId.label}"
+                                      required="#{bindings.VO_Attendance2.hints.LeaveTypeId.mandatory}"
+                                      columns="#{bindings.VO_Attendance2.hints.LeaveTypeId.displayWidth}"
+                                      maximumLength="#{bindings.VO_Attendance2.hints.LeaveTypeId.precision}"
+                                      shortDesc="#{bindings.VO_Attendance2.hints.LeaveTypeId.tooltip}"
+                                      id="it8">
+                          <f:validator binding="#{row.bindings.LeaveTypeId.validator}"/>
+                          <af:convertNumber groupingUsed="false"
+                                            pattern="#{bindings.VO_Attendance2.hints.LeaveTypeId.format}"/>
+                        </af:inputText>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.VO_Attendance2.hints.LeaveApprovedFlag.name}"
+                                 filterable="true" sortable="true"
+                                 headerText="#{bindings.VO_Attendance2.hints.LeaveApprovedFlag.label}"
+                                 id="c31" rendered="false">
+                        <af:inputText value="#{row.bindings.LeaveApprovedFlag.inputValue}"
+                                      label="#{bindings.VO_Attendance2.hints.LeaveApprovedFlag.label}"
+                                      required="#{bindings.VO_Attendance2.hints.LeaveApprovedFlag.mandatory}"
+                                      columns="#{bindings.VO_Attendance2.hints.LeaveApprovedFlag.displayWidth}"
+                                      maximumLength="#{bindings.VO_Attendance2.hints.LeaveApprovedFlag.precision}"
+                                      shortDesc="#{bindings.VO_Attendance2.hints.LeaveApprovedFlag.tooltip}"
+                                      id="it1">
+                          <f:validator binding="#{row.bindings.LeaveApprovedFlag.validator}"/>
+                        </af:inputText>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.VO_Attendance2.hints.PolicyException.name}"
+                                 filterable="true" sortable="true"
+                                 headerText="#{bindings.VO_Attendance2.hints.PolicyException.label}"
+                                 id="c19" rendered="false">
+                        <af:inputText value="#{row.bindings.PolicyException.inputValue}"
+                                      label="#{bindings.VO_Attendance2.hints.PolicyException.label}"
+                                      required="#{bindings.VO_Attendance2.hints.PolicyException.mandatory}"
+                                      columns="#{bindings.VO_Attendance2.hints.PolicyException.displayWidth}"
+                                      maximumLength="#{bindings.VO_Attendance2.hints.PolicyException.precision}"
+                                      shortDesc="#{bindings.VO_Attendance2.hints.PolicyException.tooltip}"
+                                      id="it11">
+                          <f:validator binding="#{row.bindings.PolicyException.validator}"/>
+                        </af:inputText>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.VO_Attendance2.hints.LeaveToday.name}"
+                                 filterable="true" sortable="true"
+                                 headerText="#{bindings.VO_Attendance2.hints.LeaveToday.label}"
+                                 id="c10" rendered="false">
+                        <af:inputText value="#{row.bindings.LeaveToday.inputValue}"
+                                      label="#{bindings.VO_Attendance2.hints.LeaveToday.label}"
+                                      required="#{bindings.VO_Attendance2.hints.LeaveToday.mandatory}"
+                                      columns="#{bindings.VO_Attendance2.hints.LeaveToday.displayWidth}"
+                                      maximumLength="#{bindings.VO_Attendance2.hints.LeaveToday.precision}"
+                                      shortDesc="#{bindings.VO_Attendance2.hints.LeaveToday.tooltip}"
+                                      id="it5">
+                          <f:validator binding="#{row.bindings.LeaveToday.validator}"/>
+                        </af:inputText>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.VO_Attendance2.hints.IsHalf.name}"
+                                 filterable="true" sortable="true"
+                                 headerText="#{bindings.VO_Attendance2.hints.IsHalf.label}"
+                                 id="c16" rendered="false">
+                        <af:inputText value="#{row.bindings.IsHalf.inputValue}"
+                                      label="#{bindings.VO_Attendance2.hints.IsHalf.label}"
+                                      required="#{bindings.VO_Attendance2.hints.IsHalf.mandatory}"
+                                      columns="#{bindings.VO_Attendance2.hints.IsHalf.displayWidth}"
+                                      maximumLength="#{bindings.VO_Attendance2.hints.IsHalf.precision}"
+                                      shortDesc="#{bindings.VO_Attendance2.hints.IsHalf.tooltip}"
+                                      id="it6">
+                          <f:validator binding="#{row.bindings.IsHalf.validator}"/>
+                        </af:inputText>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.VO_Attendance2.hints.LeaveType.name}"
+                                 filterable="true" sortable="true"
+                                 headerText="#{bindings.VO_Attendance2.hints.LeaveType.label}"
+                                 id="c14" rendered="false">
+                        <af:inputText value="#{row.bindings.LeaveType.inputValue}"
+                                      label="#{bindings.VO_Attendance2.hints.LeaveType.label}"
+                                      required="#{bindings.VO_Attendance2.hints.LeaveType.mandatory}"
+                                      columns="#{bindings.VO_Attendance2.hints.LeaveType.displayWidth}"
+                                      maximumLength="#{bindings.VO_Attendance2.hints.LeaveType.precision}"
+                                      shortDesc="#{bindings.VO_Attendance2.hints.LeaveType.tooltip}"
+                                      id="it28">
+                          <f:validator binding="#{row.bindings.LeaveType.validator}"/>
+                        </af:inputText>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.VO_Attendance2.hints.PolicyExceptionApprovedFlag.name}"
+                                 filterable="true" sortable="true"
+                                 headerText="#{bindings.VO_Attendance2.hints.PolicyExceptionApprovedFlag.label}"
+                                 id="c29" rendered="false">
+                        <af:inputText value="#{row.bindings.PolicyExceptionApprovedFlag.inputValue}"
+                                      label="#{bindings.VO_Attendance2.hints.PolicyExceptionApprovedFlag.label}"
+                                      required="#{bindings.VO_Attendance2.hints.PolicyExceptionApprovedFlag.mandatory}"
+                                      columns="#{bindings.VO_Attendance2.hints.PolicyExceptionApprovedFlag.displayWidth}"
+                                      maximumLength="#{bindings.VO_Attendance2.hints.PolicyExceptionApprovedFlag.precision}"
+                                      shortDesc="#{bindings.VO_Attendance2.hints.PolicyExceptionApprovedFlag.tooltip}"
+                                      id="it23">
+                          <f:validator binding="#{row.bindings.PolicyExceptionApprovedFlag.validator}"/>
+                        </af:inputText>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.VO_Attendance2.hints.LateSittingMinTiming.name}"
+                                 filterable="true" sortable="true"
+                                 headerText="#{bindings.VO_Attendance2.hints.LateSittingMinTiming.label}"
+                                 id="c6" rendered="false">
+                        <af:inputText value="#{row.bindings.LateSittingMinTiming.inputValue}"
+                                      label="#{bindings.VO_Attendance2.hints.LateSittingMinTiming.label}"
+                                      required="#{bindings.VO_Attendance2.hints.LateSittingMinTiming.mandatory}"
+                                      columns="#{bindings.VO_Attendance2.hints.LateSittingMinTiming.displayWidth}"
+                                      maximumLength="#{bindings.VO_Attendance2.hints.LateSittingMinTiming.precision}"
+                                      shortDesc="#{bindings.VO_Attendance2.hints.LateSittingMinTiming.tooltip}"
+                                      id="it21">
+                          <f:validator binding="#{row.bindings.LateSittingMinTiming.validator}"/>
+                        </af:inputText>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.VO_Attendance2.hints.Day.name}"
+                                 filterable="true" sortable="true"
+                                 headerText="#{bindings.VO_Attendance2.hints.Day.label}"
+                                 id="c7" rendered="false">
+                        <af:inputText value="#{row.bindings.Day.inputValue}"
+                                      label="#{bindings.VO_Attendance2.hints.Day.label}"
+                                      required="#{bindings.VO_Attendance2.hints.Day.mandatory}"
+                                      columns="#{bindings.VO_Attendance2.hints.Day.displayWidth}"
+                                      maximumLength="#{bindings.VO_Attendance2.hints.Day.precision}"
+                                      shortDesc="#{bindings.VO_Attendance2.hints.Day.tooltip}"
+                                      id="it9">
+                          <f:validator binding="#{row.bindings.Day.validator}"/>
+                        </af:inputText>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.VO_Attendance2.hints.Today.name}"
+                                 filterable="true" sortable="true"
+                                 headerText="#{bindings.VO_Attendance2.hints.Today.label}"
+                                 id="c18" rendered="false">
+                        <af:inputText value="#{row.bindings.Today.inputValue}"
+                                      label="#{bindings.VO_Attendance2.hints.Today.label}"
+                                      required="#{bindings.VO_Attendance2.hints.Today.mandatory}"
+                                      columns="#{bindings.VO_Attendance2.hints.Today.displayWidth}"
+                                      maximumLength="#{bindings.VO_Attendance2.hints.Today.precision}"
+                                      shortDesc="#{bindings.VO_Attendance2.hints.Today.tooltip}"
+                                      id="it22">
+                          <f:validator binding="#{row.bindings.Today.validator}"/>
+                        </af:inputText>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.VO_Attendance2.hints.Month.name}"
+                                 filterable="true" sortable="true"
+                                 headerText="#{bindings.VO_Attendance2.hints.Month.label}"
+                                 id="c20" rendered="false">
+                        <af:selectOneChoice value="#{row.bindings.Month.inputValue}"
+                                            label="#{row.bindings.Month.label}"
+                                            required="#{bindings.VO_Attendance2.hints.Month.mandatory}"
+                                            shortDesc="#{bindings.VO_Attendance2.hints.Month.tooltip}"
+                                            id="soc1">
+                          <f:selectItems value="#{row.bindings.Month.items}"
+                                         id="si2"/>
+                        </af:selectOneChoice>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.VO_Attendance2.hints.Year.name}"
+                                 filterable="true" sortable="true"
+                                 headerText="#{bindings.VO_Attendance2.hints.Year.label}"
+                                 id="c9" rendered="false">
+                        <af:selectOneChoice value="#{row.bindings.Year.inputValue}"
+                                            label="#{row.bindings.Year.label}"
+                                            required="#{bindings.VO_Attendance2.hints.Year.mandatory}"
+                                            shortDesc="#{bindings.VO_Attendance2.hints.Year.tooltip}"
+                                            id="soc2">
+                          <f:selectItems value="#{row.bindings.Year.items}"
+                                         id="si1"/>
+                        </af:selectOneChoice>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.VO_Attendance2.hints.LateIn.name}"
+                                 filterable="false" sortable="true"
+                                 headerText="Late In" id="c24" align="center">
+                        <af:inputText value="#{row.bindings.LateIn.inputValue} "
+                                      label="#{bindings.VO_Attendance2.hints.LateIn.label}"
+                                      required="#{bindings.VO_Attendance2.hints.LateIn.mandatory}"
+                                      columns="#{bindings.VO_Attendance2.hints.LateIn.displayWidth}"
+                                      maximumLength="#{bindings.VO_Attendance2.hints.LateIn.precision}"
+                                      shortDesc="#{bindings.VO_Attendance2.hints.LateIn.tooltip}"
+                                      id="it7"
+                                      rendered="#{(row.EmpType == '2' or  row.EmpType == '3' or row.EmpType=='5') ? 'false' : 'true' }"
+                                      contentStyle="#{row.bindings.LateIn.inputValue != '0:00' ? 'color:red':''}">
+                          <f:validator binding="#{row.bindings.LateIn.validator}"/>
+                        </af:inputText>
+                      </af:column>
+                      <af:column id="c40"
+                                 headerText="Test Text To Increase Column Height"
+                                 visible="false"/>
+                      <af:column sortProperty="#{bindings.VO_Attendance2.hints.EarlyOut.name}"
+                                 filterable="false" sortable="true"
+                                 headerText="Early Out" id="c26" align="center">
+                        <af:inputText value="#{row.bindings.EarlyOut.inputValue}"
+                                      label="#{bindings.VO_Attendance2.hints.EarlyOut.label}"
+                                      required="#{bindings.VO_Attendance2.hints.EarlyOut.mandatory}"
+                                      columns="#{bindings.VO_Attendance2.hints.EarlyOut.displayWidth}"
+                                      maximumLength="#{bindings.VO_Attendance2.hints.EarlyOut.precision}"
+                                      shortDesc="#{bindings.VO_Attendance2.hints.EarlyOut.tooltip}"
+                                      id="it17"
+                                      rendered="#{(row.EmpType == '2' or  row.EmpType == '3' or row.EmpType == '5') ? 'false' : 'true' }"
+                                      contentStyle="#{row.bindings.EarlyOut.inputValue != '0:00' ? 'color:red':''}">
+                          <f:validator binding="#{row.bindings.EarlyOut.validator}"/>
+                        </af:inputText>
+                      </af:column>
+                      <af:column id="c43" headerText="Off Day Working"
+                                 align="center" rendered="false">
+                        <af:selectBooleanCheckbox value="#{row.bindings.off_day_working_bool.inputValue}"
+                                                  simple="true"
+                                                  required="#{bindings.VO_Attendance2.hints.off_day_working_bool.mandatory}"
+                                                  shortDesc="#{bindings.VO_Attendance2.hints.off_day_working_bool.tooltip}"
+                                                  id="it35" autoSubmit="true"
+                                                  disabled="#{(row.bindings.Description.inputValue == 'SATURDAY_OFF' or row.bindings.Day.inputValue == 'SUNDAY') and row.bindings.EffectiveWorkedHours.inputValue != null?'false':'true'}">
+                          <f:validator binding="#{row.bindings.off_day_working_bool.validator}"/>
+                        </af:selectBooleanCheckbox>
+                      </af:column>
+                      <af:column id="c46" width="150" headerText="Status"
+                                 align="center">
+                        <af:panelGroupLayout id="pgl6" layout="horizontal">
+                          <af:outputText value="#{row.saturdayOrHoliday}"
+                                         id="ot3"
+                                         inlineStyle="font-weight:bold;color:#207ebc"/>
+                          <af:outputText value="#{row.isLeave} " id="ot5"
+                                         inlineStyle="#{row.isLeave!=null and row.bindings.LeaveCancelled.inputValue == 'Y'?'font-weight:bold; text-decoration:line-through':'font-weight:bold;color:#207ebc'}"/>
+                          <af:outputText value="#{row.isSunday}" id="ot4"
+                                         inlineStyle="font-weight:bold;color:#207ebc"/>
+                        </af:panelGroupLayout>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.VO_Attendance2.hints.DayStatus.name}"
+                                 filterable="true" sortable="true"
+                                 headerText="#{bindings.VO_Attendance2.hints.DayStatus.label}"
+                                 id="c25" rendered="false">
+                        <af:inputText value="#{row.bindings.DayStatus.inputValue}"
+                                      label="#{bindings.VO_Attendance2.hints.DayStatus.label}"
+                                      required="#{bindings.VO_Attendance2.hints.DayStatus.mandatory}"
+                                      columns="#{bindings.VO_Attendance2.hints.DayStatus.displayWidth}"
+                                      maximumLength="#{bindings.VO_Attendance2.hints.DayStatus.precision}"
+                                      shortDesc="#{bindings.VO_Attendance2.hints.DayStatus.tooltip}"
+                                      id="it2">
+                          <f:validator binding="#{row.bindings.DayStatus.validator}"/>
+                        </af:inputText>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.VO_Attendance2.hints.Sysdate.name}"
+                                 filterable="true" sortable="true"
+                                 headerText="#{bindings.VO_Attendance2.hints.Sysdate.label}"
+                                 id="c32" rendered="false">
+                        <af:inputText value="#{row.bindings.Sysdate.inputValue}"
+                                      label="#{bindings.VO_Attendance2.hints.Sysdate.label}"
+                                      required="#{bindings.VO_Attendance2.hints.Sysdate.mandatory}"
+                                      columns="#{bindings.VO_Attendance2.hints.Sysdate.displayWidth}"
+                                      maximumLength="#{bindings.VO_Attendance2.hints.Sysdate.precision}"
+                                      shortDesc="#{bindings.VO_Attendance2.hints.Sysdate.tooltip}"
+                                      id="it25">
+                          <f:validator binding="#{row.bindings.Sysdate.validator}"/>
+                        </af:inputText>
+                      </af:column>
+                    </af:table>
+                  </af:panelCollection>
+                  <af:inputText value="#{bindings.Month1.inputValue}"
+                                simple="true"
+                                required="#{bindings.Month1.hints.mandatory}"
+                                columns="#{bindings.Month1.hints.displayWidth}"
+                                maximumLength="#{bindings.Month1.hints.precision}"
+                                shortDesc="#{bindings.Month1.hints.tooltip}"
+                                id="it36" rendered="false">
+                    <f:validator binding="#{bindings.Month1.validator}"/>
+                  </af:inputText>
+                  <af:inputText value="#{bindings.Month1.inputValue}"
+                                simple="true"
+                                required="#{bindings.Month1.hints.mandatory}"
+                                columns="#{bindings.Month1.hints.displayWidth}"
+                                maximumLength="#{bindings.Month1.hints.precision}"
+                                shortDesc="#{bindings.Month1.hints.tooltip}"
+                                id="it37" rendered="true"
+                                binding="#{AttendanceBean.postingMonth}">
+                    <f:validator binding="#{bindings.Month1.validator}"/>
+                  </af:inputText>
+                  <af:panelBox text="Attendance Irregularities" id="pb2">
+                    <f:facet name="toolbar">
+                      <af:panelGroupLayout id="pgl8" layout="horizontal"
+                                           halign="left">
+                        <af:outputText value="#{bindings.ExceptionApproved.inputValue}"
+                                       id="ot17" partialTriggers="t2"
+                                       visible="false"/>
+                        <af:selectOneChoice value="#{bindings.LeaveType2.inputValue}"
+                                            required="#{bindings.LeaveType2.hints.mandatory}"
+                                            shortDesc="#{bindings.LeaveType2.hints.tooltip}"
+                                            id="soc8"
+                                            valueChangeListener="#{AttendanceBean.atdEventTypeChanged}"
+                                            partialTriggers="t2"
+                                            autoSubmit="true">
+                          <f:selectItems value="#{bindings.LeaveType2.items}"
+                                         id="si25"/>
+                        </af:selectOneChoice>
+                      </af:panelGroupLayout>
+                    </f:facet>
+                    <af:table value="#{bindings.VO_AttendanceEvents2.collectionModel}"
+                              var="row"
+                              rows="#{bindings.VO_AttendanceEvents2.rangeSize}"
+                              emptyText="#{bindings.VO_AttendanceEvents2.viewable ? 'No data to display.' : 'Access Denied.'}"
+                              fetchSize="#{bindings.VO_AttendanceEvents2.rangeSize}"
+                              rowBandingInterval="0"
+                              selectedRowKeys="#{bindings.VO_AttendanceEvents2.collectionModel.selectedRow}"
+                              selectionListener="#{bindings.VO_AttendanceEvents2.collectionModel.makeCurrent}"
+                              rowSelection="single" id="t2" width="100%"
+                              partialTriggers="::pc1:t1"
+                              inlineStyle="height:80.0px;"
+                              binding="#{AttendanceBean.irgTable}">
+                      <af:column sortProperty="#{bindings.VO_AttendanceEvents2.hints.IrregularityId.name}"
+                                 sortable="false"
+                                 headerText="#{bindings.VO_AttendanceEvents2.hints.IrregularityId.label}"
+                                 id="c34" rendered="false">
+                        <af:inputText value="#{row.bindings.IrregularityId.inputValue}"
+                                      label="#{bindings.VO_AttendanceEvents2.hints.IrregularityId.label}"
+                                      required="#{bindings.VO_AttendanceEvents2.hints.IrregularityId.mandatory}"
+                                      columns="#{bindings.VO_AttendanceEvents2.hints.IrregularityId.displayWidth}"
+                                      maximumLength="#{bindings.VO_AttendanceEvents2.hints.IrregularityId.precision}"
+                                      shortDesc="#{bindings.VO_AttendanceEvents2.hints.IrregularityId.tooltip}"
+                                      id="it32">
+                          <f:validator binding="#{row.bindings.IrregularityId.validator}"/>
+                          <af:convertNumber groupingUsed="false"
+                                            pattern="#{bindings.VO_AttendanceEvents2.hints.IrregularityId.format}"/>
+                        </af:inputText>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.VO_AttendanceEvents2.hints.EmpAtdId.name}"
+                                 sortable="false"
+                                 headerText="#{bindings.VO_AttendanceEvents2.hints.EmpAtdId.label}"
+                                 id="c36" rendered="false">
+                        <af:inputText value="#{row.bindings.EmpAtdId.inputValue}"
+                                      label="#{bindings.VO_AttendanceEvents2.hints.EmpAtdId.label}"
+                                      required="#{bindings.VO_AttendanceEvents2.hints.EmpAtdId.mandatory}"
+                                      columns="#{bindings.VO_AttendanceEvents2.hints.EmpAtdId.displayWidth}"
+                                      maximumLength="#{bindings.VO_AttendanceEvents2.hints.EmpAtdId.precision}"
+                                      shortDesc="#{bindings.VO_AttendanceEvents2.hints.EmpAtdId.tooltip}"
+                                      id="it31">
+                          <f:validator binding="#{row.bindings.EmpAtdId.validator}"/>
+                          <af:convertNumber groupingUsed="false"
+                                            pattern="#{bindings.VO_AttendanceEvents2.hints.EmpAtdId.format}"/>
+                        </af:inputText>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.VO_AttendanceEvents2.hints.AttendanceDate.name}"
+                                 sortable="false"
+                                 headerText="#{bindings.VO_AttendanceEvents2.hints.AttendanceDate.label}"
+                                 id="c38" rendered="false">
+                        <af:inputDate value="#{row.bindings.AttendanceDate.inputValue}"
+                                      label="#{bindings.VO_AttendanceEvents2.hints.AttendanceDate.label}"
+                                      required="#{bindings.VO_AttendanceEvents2.hints.AttendanceDate.mandatory}"
+                                      shortDesc="#{bindings.VO_AttendanceEvents2.hints.AttendanceDate.tooltip}"
+                                      id="id7">
+                          <f:validator binding="#{row.bindings.AttendanceDate.validator}"/>
+                          <af:convertDateTime pattern="#{bindings.VO_AttendanceEvents2.hints.AttendanceDate.format}"/>
+                        </af:inputDate>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.VO_AttendanceEvents2.hints.Type.name}"
+                                 sortable="false" headerText="Irregularity Type"
+                                 id="c39" align="center">
+                        <af:inputText value="#{row.bindings.Type.inputValue}"
+                                      label="#{bindings.VO_AttendanceEvents2.hints.Type.label}"
+                                      required="#{bindings.VO_AttendanceEvents2.hints.Type.mandatory}"
+                                      columns="#{bindings.VO_AttendanceEvents2.hints.Type.displayWidth}"
+                                      maximumLength="#{bindings.VO_AttendanceEvents2.hints.Type.precision}"
+                                      shortDesc="#{bindings.VO_AttendanceEvents2.hints.Type.tooltip}"
+                                      id="it30" readOnly="true"
+                                      contentStyle="padding:10px">
+                          <f:validator binding="#{row.bindings.Type.validator}"/>
+                        </af:inputText>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.VO_AttendanceEvents2.hints.MinutesMissing.name}"
+                                 sortable="false" headerText="Missing Time"
+                                 id="c35" align="center" rendered="false">
+                        <af:inputText value="#{row.bindings.MinutesMissing.inputValue}"
+                                      label="#{bindings.VO_AttendanceEvents2.hints.MinutesMissing.label}"
+                                      required="#{bindings.VO_AttendanceEvents2.hints.MinutesMissing.mandatory}"
+                                      columns="#{bindings.VO_AttendanceEvents2.hints.MinutesMissing.displayWidth}"
+                                      maximumLength="#{bindings.VO_AttendanceEvents2.hints.MinutesMissing.precision}"
+                                      shortDesc="#{bindings.VO_AttendanceEvents2.hints.MinutesMissing.tooltip}"
+                                      id="it29" readOnly="true">
+                          <f:validator binding="#{row.bindings.MinutesMissing.validator}"/>
+                          <af:convertNumber groupingUsed="false"
+                                            pattern="#{bindings.VO_AttendanceEvents2.hints.MinutesMissing.format}"/>
+                        </af:inputText>
+                      </af:column>
+                      <af:column id="c74" headerText="Missing time"
+                                 align="center">
+                        <af:outputText value="#{row.MissingTime}" id="ot43"/>
+                      </af:column>
+                      <af:column sortProperty="#{bindings.VO_AttendanceEvents2.hints.ExceptionRemarks.name}"
+                                 sortable="false" headerText="Reason" id="c37"
+                                 align="center" width="500">
+                        <af:inputText value="#{row.bindings.ExceptionRemarks.inputValue}"
+                                      label="#{bindings.VO_AttendanceEvents2.hints.ExceptionRemarks.label}"
+                                      required="#{bindings.VO_AttendanceEvents2.hints.ExceptionRemarks.mandatory}"
+                                      columns="300"
+                                      maximumLength="#{bindings.VO_AttendanceEvents2.hints.ExceptionRemarks.precision}"
+                                      shortDesc="#{bindings.VO_AttendanceEvents2.hints.ExceptionRemarks.tooltip}"
+                                      id="it33"
+                                      contentStyle="padding:5px;font-weight:bold;">
+                          <f:validator binding="#{row.bindings.ExceptionRemarks.validator}"/>
+                        </af:inputText>
+                      </af:column>
+                      <af:column id="c49">
+                        <af:outputText value="#{row.bindings.ExceptionApproved.inputValue=='Y' ? 'Approved' : row.bindings.ExceptionApproved.inputValue == 'P' ? 'Pending': row.bindings.ExceptionApproved.inputValue=='N' ? 'Disapproved' : ''}"
+                                       id="ot6"/>
+                      </af:column>
+                      <af:column id="c48" rendered="false">
+                        <af:inputText value="#{row.bindings.ExceptionApproved.inputValue}"
+                                      simple="true"
+                                      required="#{bindings.VO_AttendanceEvents2.hints.ExceptionApproved.mandatory}"
+                                      columns="#{bindings.VO_AttendanceEvents2.hints.ExceptionApproved.displayWidth}"
+                                      maximumLength="#{bindings.VO_AttendanceEvents2.hints.ExceptionApproved.precision}"
+                                      shortDesc="#{bindings.VO_AttendanceEvents2.hints.ExceptionApproved.tooltip}"
+                                      id="it39" readOnly="true">
+                          <f:validator binding="#{row.bindings.ExceptionApproved.validator}"/>
+                        </af:inputText>
+                      </af:column>
+                      <af:column id="c41" headerText="Action" width="120">
+                        <af:commandButton text="Submit for Waive Off" id="cb4"
+                                          action="#{AttendanceBean.saveException}"
+                                          disabled="#{row.bindings.ExceptionApproved.inputValue != null}"/>
+                      </af:column>
+                    </af:table>
+                  </af:panelBox>
+                </af:panelBox>
+              </af:panelGroupLayout>
+              <af:goLink text="Please Login" id="gl1"
+                         destination="http://fmw.nishat.net:7003/TheHUB/faces/login_page.jspx"
+                         inlineStyle="font-size:medium;color:black"
+                         rendered="#{sessionScope.userid == null}"/>
+            </af:panelGroupLayout>
+          </f:facet>
+        </af:pageTemplate>
+        <af:popup id="p2" contentDelivery="immediate">
+          <af:panelGroupLayout id="pgl7" inlineStyle="background-color:white;">
+            <af:panelGroupLayout id="pgl4" layout="vertical"
+                                 inlineStyle="background-color:white;">
+              <af:panelFormLayout id="pfl1" labelAlignment="start">
+                <af:inputText value="#{bindings.LeaveTypeId.inputValue}"
+                              label="#{bindings.LeaveTypeId.hints.label}"
+                              required="#{bindings.LeaveTypeId.hints.mandatory}"
+                              columns="#{bindings.LeaveTypeId.hints.displayWidth}"
+                              maximumLength="#{bindings.LeaveTypeId.hints.precision}"
+                              shortDesc="#{bindings.LeaveTypeId.hints.tooltip}"
+                              id="inputText1" rendered="false">
+                  <f:validator binding="#{bindings.LeaveTypeId.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.LeaveTypeId.format}"/>
+                </af:inputText>
+                <af:inputText value="#{bindings.LeaveTypeId.inputValue}"
+                              required="#{bindings.LeaveTypeId.hints.mandatory}"
+                              columns="#{bindings.LeaveTypeId.hints.displayWidth}"
+                              maximumLength="#{bindings.LeaveTypeId.hints.precision}"
+                              shortDesc="#{bindings.LeaveTypeId.hints.tooltip}"
+                              id="inputText2" partialTriggers="selectOneChoice1"
+                              visible="false"
+                              binding="#{AttendanceBean.leaveTypeId}">
+                  <f:validator binding="#{bindings.LeaveTypeId.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.LeaveTypeId.format}"/>
+                </af:inputText>
+                <af:selectOneChoice value="#{bindings.LeaveType1.inputValue}"
+                                    label="#{bindings.LeaveType1.label}"
+                                    required="#{bindings.LeaveType1.hints.mandatory}"
+                                    shortDesc="#{bindings.LeaveType1.hints.tooltip}"
+                                    valueChangeListener="#{AttendanceBean.leaveTypeChanged}"
+                                    attributeChangeListener="#{AttendanceBean.attributeChangeListener}"
+                                    autoSubmit="true" id="selectOneChoice1"
+                                    binding="#{AttendanceBean.leaveTypeLOV}">
+                  <f:selectItems value="#{bindings.LeaveType1.items}" id="si3"/>
+                </af:selectOneChoice>
+                <af:inputDate label="Casual Leave Start Date:"
+                              visible="#{AttendanceBean.showCasualDatesPicker}"
+                              id="inputDate1" partialTriggers="selectOneChoice1"
+                              binding="#{AttendanceBean.casualLeaveDate}"/>
+                <af:inputDate label="Casual Leave End Date:" id="inputDate2"
+                              binding="#{AttendanceBean.casualLeaveEndDate}"
+                              visible="#{AttendanceBean.showCasualDatesPicker}"
+                              partialTriggers="selectOneChoice1"/>
+                <af:inputDate label="Start Date:" id="id3"
+                              partialTriggers="selectOneChoice1"
+                              visible="#{AttendanceBean.showAnnualDatesPicker}"
+                              binding="#{AttendanceBean.annualLeaveFromDate}"/>
+                <af:inputDate label="End Date:" id="inputDate3"
+                              partialTriggers="selectOneChoice1"
+                              visible="#{AttendanceBean.showAnnualDatesPicker}"
+                              binding="#{AttendanceBean.annualLeaveToDate}"/>
+                <af:selectBooleanCheckbox label="Half" id="sbc1"
+                                          binding="#{AttendanceBean.cbIsHalf}"
+                                          rendered="false"/>
+                <af:commandButton text="Apply" id="cb2"
+                                  action="#{AttendanceBean.applyForLeave}"/>
+              </af:panelFormLayout>
+            </af:panelGroupLayout>
+          </af:panelGroupLayout>
+        </af:popup>
+        <af:popup id="p4">
+          <af:dialog id="d4">
+            <af:table value="#{bindings.list3.collectionModel}" var="row"
+                      rows="#{bindings.list3.rangeSize}"
+                      emptyText="#{bindings.list3.viewable ? 'No data to display.' : 'Access Denied.'}"
+                      fetchSize="#{bindings.list3.rangeSize}"
+                      rowBandingInterval="0"
+                      selectedRowKeys="#{bindings.list3.collectionModel.selectedRow}"
+                      selectionListener="#{bindings.list3.collectionModel.makeCurrent}"
+                      rowSelection="single" id="t7" width="100%">
+              <af:column sortProperty="#{bindings.list3.hints.leaveID.name}"
+                         sortable="false"
+                         headerText="#{bindings.list3.hints.leaveID.label}"
+                         id="c70" rendered="false">
+                <af:outputText value="#{row.leaveID}" id="ot37"/>
+              </af:column>
+              <af:column sortProperty="#{bindings.list3.hints.leaveType.name}"
+                         sortable="false"
+                         headerText="#{bindings.list3.hints.leaveType.label}"
+                         id="c69" rendered="false">
+                <af:outputText value="#{row.leaveType}" id="ot38"/>
+              </af:column>
+              <af:column sortProperty="#{bindings.list3.hints.leaveCause.name}"
+                         sortable="false"
+                         headerText="#{bindings.list3.hints.leaveCause.label}"
+                         id="c66" rendered="false">
+                <af:outputText value="#{row.leaveCause}" id="ot34"/>
+              </af:column>
+              <af:column sortProperty="#{bindings.list3.hints.userID.name}"
+                         sortable="false"
+                         headerText="#{bindings.list3.hints.userID.label}"
+                         id="c67" rendered="false">
+                <af:outputText value="#{row.userID}" id="ot36"/>
+              </af:column>
+              <af:column sortProperty="#{bindings.list3.hints.leaveTypeStr.name}"
+                         sortable="false"
+                         headerText="Leave Type"
+                         id="c68" align="center" width="200">
+                <af:outputText value="#{row.leaveTypeStr}" id="ot40"/>
+              </af:column>
+              <af:column sortProperty="#{bindings.list3.hints.leaveDate.name}"
+                         sortable="false"
+                         headerText="Leave Date"
+                         id="c71" align="center">
+                <af:outputText value="#{row.leaveDate}" id="ot35">
+                  <af:convertDateTime pattern="#{bindings.list3.hints.leaveDate.format}"/>
+                </af:outputText>
+              </af:column>
+              <af:column sortProperty="#{bindings.list3.hints.jobStatus.name}"
+                         sortable="false"
+                         headerText="#{bindings.list3.hints.jobStatus.label}"
+                         id="c72" rendered="false">
+                <af:outputText value="#{row.jobStatus}" id="ot39"/>
+              </af:column>
+            </af:table>
+          </af:dialog>
+        </af:popup>
+        <af:popup id="p3">
+          <af:dialog id="d3">
+            <af:panelGroupLayout id="pgl13" halign="center" layout="vertical">
+              <af:image source="/images/chart.png" id="i1"/>
+            </af:panelGroupLayout>
+          </af:dialog>
+        </af:popup>
+        <af:popup id="p1" contentDelivery="immediate">
+          <af:dialog id="d2" type="ok" title="Salary Breakup"
+                     closeIconVisible="false">
+            <af:panelGroupLayout id="pgl44" layout="vertical" halign="center">
+              <af:outputText value="#{AttendanceBean.var_sal_eobi}" id="ot13"/>
+            </af:panelGroupLayout>
+          </af:dialog>
+        </af:popup>
+      </af:form>
+    </af:document>
+  </f:view>
+  <!--oracle-jdev-comment:preferred-managed-bean-name:AttendanceBean-->
+</jsp:root>
